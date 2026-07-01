@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda | Website Resmi Kecamatan Makale</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+    <!-- POP-UP MODAL MAKLUMAT PELAYANAN -->
+    <div id="maklumatModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm transition-opacity duration-300 opacity-100">
+        <div class="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto border-4 border-amber-500 flex flex-col transform scale-100 transition-transform duration-300">
+            <div class="bg-red-800 p-4 text-center border-b-2 border-amber-400">
+                <span class="text-xs font-bold text-amber-300 tracking-widest uppercase">Pemerintah Kabupaten Tana Toraja</span>
+                <h2 class="text-xl font-bold text-white tracking-wide mt-1">KECAMATAN MAKALE</h2>
+            </div>
+            <div class="p-6 md:p-8 flex-grow space-y-6 text-center">
+                <div class="flex justify-center">
+                    <img src="assets/images/LOGO TATOR3.jpg" alt="Logo Tana Toraja" class="h-24 w-auto object-contain">
+                </div>
+                <div class="space-y-1">
+                    <h3 class="text-2xl font-black text-red-950 uppercase tracking-wide">Maklumat Pelayanan</h3>
+                    <div class="h-0.5 w-32 bg-amber-500 mx-auto rounded"></div>
+                </div>
+                <p class="text-sm md:text-base text-gray-800 leading-relaxed font-medium italic px-2">
+                    "Dengan ini kami menyatakan sanggup menyelenggarakan pelayanan sesuai standar pelayanan yang telah ditetapkan. Kami akan memberikan pelayanan sesuai dengan kewajiban dan akan melakukan perbaikan secara terus menerus. Apabila tidak menepati, kami siap menerima sanksi sesuai dan/atau memberi kompensasi sesuai dengan peraturan yang berlaku."
+                </p>
+                <div class="pt-6 flex flex-col items-center">
+                    <p class="text-xs text-gray-500">Makale, 02 Juli 2026</p>
+                    <p class="text-sm font-bold text-gray-950 mt-1 uppercase tracking-wider">Camat Makale</p>
+                    <div class="relative w-64 h-32 my-1 flex items-center justify-center select-none">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-85 z-10 transform -rotate-12 scale-110 pointer-events-none">
+                            <div class="w-28 h-28 border-4 border-double border-blue-700/90 rounded-full flex flex-col items-center justify-center p-1 text-center bg-transparent">
+                                <span class="text-[7.5px] font-black text-blue-700/90 uppercase tracking-tight leading-none">PEMERINTAH KABUPATEN</span>
+                                <div class="w-10 h-10 my-0.5 border border-dashed border-blue-700/60 rounded flex items-center justify-center">
+                                    <span class="text-[6px] text-blue-700/80 font-bold uppercase">TATOR</span>
+                                </div>
+                                <span class="text-[8px] font-black text-blue-700/90 uppercase tracking-wide border-t border-blue-700/40 pt-0.5 leading-none">KECAMATAN MAKALE</span>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center z-20 transform translate-x-2 pointer-events-none">
+                            <svg class="w-48 h-24 text-gray-950 drop-shadow-[0_1px_1px_rgba(0,0,0,0.15)]" viewBox="0 0 120 60" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M15 35 C 30 15, 35 10, 50 45" />
+                                <path d="M45 42 C 55 12, 60 5, 62 30" />
+                                <path d="M35 32 Q 70 38, 105 32" />
+                                <path d="M52 25 L 98 42" stroke-width="2.2" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="text-center space-y-0.5 z-30 relative">
+                        <h4 class="text-base font-bold text-gray-900 underline tracking-wide uppercase">BENYAMIN DENGEN, S.S., M.M.</h4>
+                        <p class="text-xs font-medium text-gray-700">Pangkat: Pembina</p>
+                        <p class="text-xs text-gray-600 tracking-wider">NIP. 197208312007011011</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 bg-gray-50 border-t border-gray-100 flex justify-center">
+                <button onclick="closeMaklumat()" class="w-full sm:w-auto px-8 py-3 bg-red-800 hover:bg-red-900 text-amber-300 font-bold rounded-xl shadow-md transition-all duration-200 uppercase tracking-wider text-sm">
+                    Tutup Maklumat
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- REUSABLE COMPONENT PLACEHOLDERS -->
+    <div id="header-placeholder"></div>
+
+    <!-- HERO SECTION -->
+    <section class="relative text-white py-24 px-4 overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('assets/images/Plaza Kolam Makale.jpg');">
+        <div class="absolute inset-0 bg-black opacity-50 z-0"></div>
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:16px_16px] z-10"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-20">
+            <span class="inline-block bg-red-800 text-amber-300 text-xs font-bold tracking-widest px-3 py-1 rounded-full mb-4 border border-amber-500">
+                MANGKANTA' - MARAMPA' - MASERO
+            </span>
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight drop-shadow-lg">
+                Selamat Datang di Portal Resmi<br>Kecamatan Makale
+            </h2>
+            <p class="text-base md:text-lg text-gray-100 max-w-2xl mx-auto drop-shadow-md">
+                Pusat informasi pelayanan publik, transparansi tata kelola pemerintahan, dan roda pembangunan di Ibu Kota Kabupaten Tana Toraja.
+            </p>
+        </div>
+    </section>
+
+    <!-- CONTAINER GRID BERITA UTAMA -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
+        <div class="mb-8 border-b-2 border-amber-500 pb-2 flex justify-between items-center">
+            <h2 class="text-2xl font-bold text-gray-800">Berita & Kegiatan Terbaru</h2>
+            <a href="berita.html" class="text-sm font-semibold text-red-800 hover:text-red-950">Lihat Semua &rarr;</a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <article class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col hover:shadow-lg transition-shadow duration-300">
+                <div class="relative h-48 w-full bg-gray-200 overflow-hidden">
+                    <div class="w-full h-full bg-red-900/10 flex items-center justify-center text-gray-400">Photo 1</div>
+                    <span class="absolute top-3 left-3 bg-red-800 text-amber-300 text-xs font-bold px-2.5 py-1 rounded">Kegiatan</span>
+                </div>
+                <div class="p-5 flex flex-col flex-grow">
+                    <div class="flex items-center text-xs text-gray-500 mb-2"><span>01 Juli 2026</span></div>
+                    <h3 class="text-lg font-bold text-gray-800 leading-snug mb-2 line-clamp-2"><a href="#" class="hover:text-red-800">Musrenbang Kecamatan Makale 2026</a></h3>
+                    <p class="text-sm text-gray-600 mb-5 line-clamp-3 flex-grow">Pemerintah Kecamatan Makale menggelar Musrenbang guna menyusun skala prioritas pembangunan infrastruktur.</p>
+                    <div class="pt-4 border-t border-gray-100 mt-auto">
+                        <a href="#" class="inline-flex items-center text-sm font-semibold text-red-800 hover:text-red-950">Baca Selengkapnya</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="assets/js/main.js"></script>
+    <script>
+        function closeMaklumat() {
+            const modal = document.getElementById('maklumatModal');
+            if (modal) {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => { modal.style.display = 'none'; }, 300);
+            }
+        }
+    </script>
+</body>
+</html>

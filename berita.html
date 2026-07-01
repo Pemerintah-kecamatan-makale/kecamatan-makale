@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pusat Berita & Pengumuman | Kecamatan Makale</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+    <!-- REUSABLE HEADER PLACEHOLDER -->
+    <div id="header-placeholder"></div>
+
+    <!-- KONTEN UTAMA BERITA -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
+        
+        <!-- Header & Pencarian Dokumen -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 border-b border-gray-200 pb-6">
+            <div>
+                <h1 class="text-3xl font-black text-gray-900 tracking-tight">Kabar Makale</h1>
+                <p class="text-sm text-gray-500 mt-1">Informasi terpercaya seputar regulasi, pembangunan, dan pengumuman kecamatan.</p>
+            </div>
+            <!-- Search Bar Statis -->
+            <div class="relative w-full md:w-72">
+                <input type="text" placeholder="Cari berita..." class="w-full bg-white border border-gray-300 rounded-xl pl-4 pr-10 py-2 text-sm focus:outline-none focus:border-red-800 transition-colors">
+                <span class="absolute right-3 top-2.5 text-gray-400 text-xs">🔍</span>
+            </div>
+        </div>
+
+        <!-- 1. BERITA UTAMA / FEATURED POST (Tampilan Besar Dinamis) -->
+        <section class="mb-12">
+            <article class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0 hover:shadow-md transition-shadow duration-300">
+                <div class="lg:col-span-7 bg-gray-100 relative min-h-[250px] lg:min-h-[380px]">
+                    <div class="absolute inset-0 bg-red-900/10 flex items-center justify-center text-gray-400 text-sm italic">Foto Berita Utama (assets/images/berita_utama.jpg)</div>
+                    <!-- <img src="assets/images/berita_utama.jpg" alt="Musrenbang Makale" class="w-full h-full object-cover"> -->
+                    <span class="absolute top-4 left-4 bg-red-800 text-amber-300 text-xs font-bold px-3 py-1 rounded-lg uppercase tracking-wider">Berita Utama</span>
+                </div>
+                <div class="lg:col-span-5 p-6 md:p-8 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <span class="text-xs font-semibold text-gray-400">Kamis, 02 Juli 2026</span>
+                        <h2 class="text-xl md:text-2xl font-bold text-gray-900 leading-tight hover:text-red-800 transition-colors">
+                            <a href="#">Musrenbang Anggaran 2027 Resmi Digelar, Makale Fokus Benahi Infrastruktur Kolam</a>
+                        </h2>
+                        <p class="text-sm text-gray-600 leading-relaxed line-clamp-4">
+                            Pemerintah Kecamatan Makale bersama tokoh adat dan seluruh kepala kelurahan mengadakan koordinasi terpadu untuk merancang pemeliharaan berkala kawasan wisata Plaza Kolam Makale serta perluasan digitalisasi layanan administrasi kependudukan tingkat lembang.
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-gray-100 mt-6 flex justify-between items-center">
+                        <span class="text-xs font-medium text-gray-500">Oleh: Admin Kecamatan</span>
+                        <a href="#" class="text-sm font-bold text-red-800 hover:text-red-950 transition-colors">Baca Artikel &rarr;</a>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- 2. GRID KUMPULAN BERITA REGULER (Tata Letak 3 Kolom) -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- KARTU BERITA 1 -->
+            <article class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+                <div class="h-44 bg-gray-100 relative">
+                    <div class="w-full h-full bg-red-900/10 flex items-center justify-center text-gray-400 text-xs italic">Foto Kegiatan 1</div>
+                    <span class="absolute top-3 left-3 bg-amber-500 text-gray-900 text-[10px] font-bold px-2 py-0.5 rounded uppercase">Pengumuman</span>
+                </div>
+                <div class="p-5 flex flex-col flex-grow justify-between">
+                    <div class="space-y-2">
+                        <span class="text-[10px] text-gray-400 font-medium">30 Juni 2026</span>
+                        <h3 class="font-bold text-gray-800 text-base leading-snug line-clamp-2 hover:text-red-800">
+                            <a href="#">Jadwal Perekaman KTP Keliling di Lembang Ke'pe' Tinoring</a>
+                        </h3>
+                        <p class="text-xs text-gray-600 line-clamp-3">Layanan jemput bola Dinas Dukcapil bersama jajaran staf paten Kecamatan Makale siap melayani warga lansia bulan ini.</p>
+                    </div>
+                    <a href="#" class="text-xs font-bold text-red-800 hover:text-red-950 mt-4 block pt-2 border-t border-gray-50">Selengkapnya &rarr;</a>
+                </div>
+            </article>
+
+            <!-- KARTU BERITA 2 -->
+            <article class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+                <div class="h-44 bg-gray-100 relative">
+                    <div class="w-full h-full bg-red-900/10 flex items-center justify-center text-gray-400 text-xs italic">Foto Kegiatan 2</div>
+                    <span class="absolute top-3 left-3 bg-blue-800 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">Kesehatan</span>
+                </div>
+                <div class="p-5 flex flex-col flex-grow justify-between">
+                    <div class="space-y-2">
+                        <span class="text-[10px] text-gray-400 font-medium">28 Juni 2026</span>
+                        <h3 class="font-bold text-gray-800 text-base leading-snug line-clamp-2 hover:text-red-800">
+                            <a href="#">Pemberian Vitamin A & Imunisasi Serentak di Posyandu Bombongan</a>
+                        </h3>
+                        <p class="text-xs text-gray-600 line-clamp-3">Sinergi kader PKK Kecamatan Makale menekan angka stunting melalui pemantauan gizi rutin bagi balita.</p>
+                    </div>
+                    <a href="#" class="text-xs font-bold text-red-800 hover:text-red-950 mt-4 block pt-2 border-t border-gray-50">Selengkapnya &rarr;</a>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <!-- REUSABLE FOOTER PLACEHOLDER -->
+    <div id="footer-placeholder"></div>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

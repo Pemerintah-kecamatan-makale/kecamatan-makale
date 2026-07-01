@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Pengaduan Warga | Kecamatan Makale</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+    <!-- REUSABLE HEADER PLACEHOLDER -->
+    <div id="header-placeholder"></div>
+
+    <!-- KONTEN UTAMA HALAMAN PENGADUAN -->
+    <main class="flex-grow max-w-4xl mx-auto px-4 py-12 w-full">
+        
+        <!-- Judul Halaman -->
+        <div class="text-center mb-10">
+            <span class="text-xs font-bold text-red-800 uppercase tracking-widest bg-red-100 px-3 py-1 rounded-full border border-red-200">
+                Layanan Aspirasi & Pengaduan Online
+            </span>
+            <h1 class="text-3xl md:text-4xl font-black text-gray-900 mt-3 mb-2">Formulir Pengaduan Mandiri</h1>
+            <div class="h-1 w-20 bg-amber-500 mx-auto rounded"></div>
+            <p class="mt-4 text-sm md:text-base text-gray-600 max-w-xl mx-auto">
+                Laporkan masalah pelayanan, infrastruktur, atau pungutan liar di wilayah Makale secara aman dan rahasia.
+            </p>
+        </div>
+
+        <!-- NOTIFIKASI SUKSES (Disembunyikan secara bawaan) -->
+        <div id="successNotice" class="hidden mb-8 p-6 bg-green-50 border-2 border-green-500/30 rounded-2xl text-center space-y-3 shadow-sm transform scale-95 transition-all duration-300">
+            <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto text-xl font-bold">✓</div>
+            <h3 class="text-lg font-bold text-green-900">Laporan Berhasil Dikirim!</h3>
+            <p class="text-sm text-green-700 max-w-md mx-auto">
+                Terima kasih atas laporan Anda. Tim pengawas Kecamatan Makale akan segera memverifikasi aduan ini dalam waktu maksimal 2x24 jam.
+            </p>
+            <div class="inline-block bg-white border border-green-200 px-4 py-2 rounded-xl mt-2">
+                <span class="block text-xs uppercase tracking-wider text-gray-400 font-bold">Nomor Tiket Anda:</span>
+                <span id="ticketNumber" class="text-lg font-mono font-bold text-gray-900">MKL-2026-0000</span>
+            </div>
+            <p class="text-xs text-gray-400 pt-2">*Simpan nomor tiket di atas untuk melacak status aduan Anda di kantor kecamatan.</p>
+        </div>
+
+        <!-- KOTAK FORMULIR UTAMA -->
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-10">
+            <form id="complaintForm" class="space-y-6">
+                
+                <!-- SEKSI 1: IDENTITAS (Bisa Anonim) -->
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between border-b border-gray-100 pb-2">
+                        <h2 class="text-sm font-bold text-gray-400 uppercase tracking-wider">1. Data Pelapor</h2>
+                        <label class="flex items-center space-x-2 text-xs font-semibold text-red-800 bg-red-50 px-2.5 py-1 rounded-lg cursor-pointer">
+                            <input type="checkbox" id="anonymousCheck" class="rounded text-red-800 focus:ring-red-800">
+                            <span>Sembunyikan Nama Saya (Anonim)</span>
+                        </label>
+                    </div>
+                    
+                    
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">Nama Lengkap Sesuai KTP</label>
+                            <input type="text" id="reporterName" required class="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-red-800 focus:bg-white transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">Nomor WhatsApp Aktif</label>
+                            <input type="tel" id="reporterPhone" required placeholder="Contoh: 08123456789" class="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-red-800 focus:bg-white transition-colors">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEKSI 2: DETAIL ADUAN -->
+                <div class="space-y-4 pt-4 border-t border-gray-100">
+                    <h2 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">2. Isi Laporan Pengaduan</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">Kategori Masalah</label>
+                            <select required class="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-red-800 focus:bg-white transition-colors">
+                                <option value="">-- Pilih Kategori Laporan --</option>
+                                <option>Pelayanan Administrasi Kependudukan (KTP/KK)</option>
+                                <option>Pungutan Liar (Pungli) / Perilaku Aparatur</option>
+                                <option>Infrastruktur Jalan & Jembatan Rusak</option>
+                                <option>Fasilitas Umum & Kebersihan Lingkungan</option>
+                                <option>Gangguan Keamanan & Ketertiban (Trantib)</option>
+                                <option>Lainnya</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">Lokasi Kejadian (Kelurahan/Lembang)</label>
+                            <select required class="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-red-800 focus:bg-white transition-colors">
+                                <option value="">-- Pilih Wilayah --</option>
+                                <option>Bombongan</option>
+                                <option>Tondon Mamullu</option>
+                                <option>Kamali Pentalluan</option>
+                                <option>Tarongko</option>
+                                <option>Lamunan</option>
+                                <option>Pantan</option>
+                                <option>Ariang</option>
+                                <option>Ke'pe' Tinoring (Lembang)</option>
+                                <option>Wilayah Makale Lainnya</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">Judul Ringkas Laporan</label>
+                        <input type="text" required placeholder="Contoh: Lampu Jalan Mati di Area Kolam Makale" class="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-red-800 focus:bg-white transition-colors">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">Uraian Kronologi Pengaduan secara Detail</label>
+                        <textarea rows="6" required placeholder="Tuliskan keterangan lengkap mengenai apa, siapa, di mana, dan kapan kejadian tersebut terjadi..." class="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-red-800 focus:bg-white transition-colors"></textarea>
+                    </div>
+                </div>
+
+                <!-- TOMBOL KIRIM -->
+                <div class="pt-4 flex justify-end">
+                    <button type="submit" class="w-full md:w-auto px-10 py-3.5 bg-red-800 hover:bg-red-900 text-amber-300 font-bold rounded-xl shadow-md transition-all duration-200 transform hover:-translate-y-0.5 uppercase tracking-wider text-sm">
+                        Kirim Aduan Resmi
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- REUSABLE FOOTER PLACEHOLDER -->
+    <div id="footer-placeholder"></div>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Logika 1: Mengatur fitur centang Anonim
+        const anonCheck = document.getElementById('anonymousCheck');
+        const repName = document.getElementById('reporterName');
+        const repPhone = document.getElementById('reporterPhone');
+
+        anonCheck.addEventListener('change', function() {
+            if (this.checked) {
+                repName.value = "ANONIM (RAHASIA)";
+                repName.disabled = true;
+                repPhone.placeholder = "Opsional (Untuk update status via WA)";
+                repPhone.required = false;
+            } else {
+                repName.value = "";
+                repName.disabled = false;
+                repPhone.placeholder = "Contoh: 08123456789";
+                repPhone.required = true;
+            }
+        });
+
+        // Logika 2: Penanganan submit formulir & pembuatan nomor tiket acak
+        document.getElementById('complaintForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Membuat Nomor Tiket Acak Unik untuk Warga
+            const randomNum = Math.floor(1000 + Math.random() * 9000);
+            const ticket = `MKL-2026-${randomNum}`;
+            
+            // Tampilkan nomor tiket di dalam div notif
+            document.getElementById('ticketNumber').innerText = ticket;
+            

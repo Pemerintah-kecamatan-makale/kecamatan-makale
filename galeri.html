@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Budaya | Website Resmi Kecamatan Makale</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+    <!-- REUSABLE HEADER PLACEHOLDER -->
+    <div id="header-placeholder"></div>
+
+    <!-- KONTEN UTAMA GALERI -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
+        <!-- Judul Halaman -->
+        <div class="text-center mb-10">
+            <span class="text-xs font-bold text-red-800 uppercase tracking-widest bg-red-100 px-3 py-1 rounded-full border border-red-200">
+                Pesona Bumi Lakipadada
+            </span>
+            <h1 class="text-3xl md:text-4xl font-black text-gray-900 mt-3 mb-2">Dokumentasi Budaya & Kegiatan</h1>
+            <div class="h-1 w-20 bg-amber-500 mx-auto rounded"></div>
+            <p class="mt-4 text-sm text-gray-600 max-w-xl mx-auto">
+                Arsip visual ragam warisan adat leluhur, upacara sakral, dan denyut nadi pembangunan di Ibu Kota Tana Toraja.
+            </p>
+        </div>
+
+        <!-- TOMBOL FILTER KATEGORI -->
+        <div class="flex flex-wrap justify-center gap-2 mb-12">
+            <button onclick="filterGallery('semua')" class="gallery-filter-btn px-5 py-2 bg-red-800 text-amber-300 font-bold text-xs rounded-xl shadow-sm uppercase tracking-wider transition-all">Semua</button>
+            <button onclick="filterGallery('adat')" class="gallery-filter-btn px-5 py-2 bg-white text-gray-700 hover:bg-gray-100 font-bold text-xs rounded-xl shadow-sm uppercase tracking-wider transition-all border border-gray-200">Upacara Adat</button>
+            <button onclick="filterGallery('arsitektur')" class="gallery-filter-btn px-5 py-2 bg-white text-gray-700 hover:bg-gray-100 font-bold text-xs rounded-xl shadow-sm uppercase tracking-wider transition-all border border-gray-200">Arsitektur</button>
+            <button onclick="filterGallery('pemerintahan')" class="gallery-filter-btn px-5 py-2 bg-white text-gray-700 hover:bg-gray-100 font-bold text-xs rounded-xl shadow-sm uppercase tracking-wider transition-all border border-gray-200">Kegiatan Pemerintahan</button>
+        </div>
+
+        <!-- GRID FOTO MASONRY -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="galleryGrid">
+            
+            <!-- FOTO 1: RAMBU SOLO -->
+            <div class="gallery-item bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden group" data-category="adat">
+                <div class="relative overflow-hidden aspect-video bg-gray-100">
+                    <div class="w-full h-full bg-red-900/10 flex items-center justify-center text-gray-400 text-xs italic">Foto Rambu Solo (assets/images/rambu_solo.jpg)</div>
+                    <!-- Jika gambar sudah ada, hapus div di atas dan buka komentar tag img di bawah: -->
+                    <!-- <img src="assets/images/rambu_solo.jpg" alt="Upacara Rambu Solo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"> -->
+                    <span class="absolute bottom-3 left-3 bg-red-800 text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded uppercase">Adat</span>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-bold text-gray-800 text-base group-hover:text-red-800 transition-colors">Prosesi Upacara Rambu Solo'</h3>
+                    <p class="text-xs text-gray-500 mt-1">Penghormatan terakhir dan pengantaran leluhur di wilayah Makale.</p>
+                </div>
+            </div>
+
+            <!-- FOTO 2: TONGKONAN -->
+            <div class="gallery-item bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden group" data-category="arsitektur">
+                <div class="relative overflow-hidden aspect-video bg-gray-100">
+                    <div class="w-full h-full bg-red-900/10 flex items-center justify-center text-gray-400 text-xs italic">Foto Tongkonan (assets/images/tongkonan.jpg)</div>
+                    <!-- <img src="assets/images/tongkonan.jpg" alt="Rumah Adat Tongkonan" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"> -->
+                    <span class="absolute bottom-3 left-3 bg-amber-500 text-gray-900 text-[10px] font-bold px-2 py-0.5 rounded uppercase">Arsitektur</span>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-bold text-gray-800 text-base group-hover:text-red-800 transition-colors">Kemegahan Ukiran Tongkonan</h3>
+                    <p class="text-xs text-gray-500 mt-1">Simbol ikatan keluarga dan tatanan adat masyarakat Toraja.</p>
+                </div>
+            </div>
+
+            <!-- FOTO 3: HUT TATOR -->
+            <div class="gallery-item bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden group" data-category="pemerintahan">
+                <div class="relative overflow-hidden aspect-video bg-gray-100">
+                    <div class="w-full h-full bg-red-900/10 flex items-center justify-center text-gray-400 text-xs italic">Foto Kegiatan (assets/images/hut_tator.jpg)</div>
+                    <!-- <img src="assets/images/hut_tator.jpg" alt="HUT Tana Toraja" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"> -->
+                    <span class="absolute bottom-3 left-3 bg-blue-800 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">Pemerintahan</span>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-bold text-gray-800 text-base group-hover:text-red-800 transition-colors">Partisipasi HUT Kabupaten</h3>
+                    <p class="text-xs text-gray-500 mt-1">Barisan defile perwakilan Kecamatan Makale mengenakan baju adat lengkap.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- REUSABLE FOOTER PLACEHOLDER -->
+    <div id="footer-placeholder"></div>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Logika Client-Side Filter Galeri
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.gallery-filter-btn');
+            
+            // Setel ulang warna semua tombol filter
+            buttons.forEach(btn => {
+                btn.className = "gallery-filter-btn px-5 py-2 bg-white text-gray-700 hover:bg-gray-100 font-bold text-xs rounded-xl shadow-sm uppercase tracking-wider transition-all border border-gray-200";
+            });
+
+            // Warnai tombol yang sedang aktif
+            event.target.className = "gallery-filter-btn px-5 py-2 bg-red-800 text-amber-300 font-bold text-xs rounded-xl shadow-sm uppercase tracking-wider transition-all";
+
+            // Sembunyikan atau tampilkan item galeri sesuai kategori
+            items.forEach(item => {
+                if (category === 'semua' || item.getAttribute('data-category') === category) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

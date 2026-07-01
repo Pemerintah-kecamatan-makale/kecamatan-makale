@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelayanan Publik | Website Resmi Kecamatan Makale</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+    <!-- REUSABLE HEADER PLACEHOLDER -->
+    <div id="header-placeholder"></div>
+
+    <!-- KONTEN UTAMA LAYANAN -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
+        <!-- Header Halaman -->
+        <div class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">Standar Pelayanan Publik</h1>
+            <div class="h-1 w-24 bg-red-800 mx-auto rounded"></div>
+            <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
+                Komitmen kami untuk memberikan pelayanan yang transparan, mudah, dan tanpa pungutan liar demi kenyamanan warga Kecamatan Makale.
+            </p>
+        </div>
+
+        <!-- GRID KARTU LAYANAN -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- LAYANAN 1: KTP-EL -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+                <div class="p-6 bg-red-800 text-white">
+                    <span class="text-xs uppercase font-bold tracking-wider text-amber-300">Administrasi</span>
+                    <h3 class="text-lg font-bold mt-1">Perekaman & Cetak KTP-el</h3>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Persyaratan Dokumen:</h4>
+                        <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside">
+                            <li>Berusia minimal 17 tahun</li>
+                            <li>Fotokopi Kartu Keluarga (KK) terbaru</li>
+                            <li>Surat Pengantar dari Kelurahan/Lembang</li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+                        <span>Waktu: 1 Hari Kerja</span>
+                        <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Gratis (Rp 0)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LAYANAN 2: KARTU KELUARGA -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+                <div class="p-6 bg-red-800 text-white">
+                    <span class="text-xs uppercase font-bold tracking-wider text-amber-300">Administrasi</span>
+                    <h3 class="text-lg font-bold mt-1">Penerbitan Kartu Keluarga</h3>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Persyaratan Dokumen:</h4>
+                        <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside">
+                            <li>KK Lama (untuk penambahan/pengurangan anggota)</li>
+                            <li>Surat Nikah / Akta Cerai (jika pecah KK)</li>
+                            <li>Surat Pengantar Kelurahan/Lembang</li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+                        <span>Waktu: 1-2 Hari Kerja</span>
+                        <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Gratis (Rp 0)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LAYANAN 3: SURAT KETERANGAN -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+                <div class="p-6 bg-red-800 text-white">
+                    <span class="text-xs uppercase font-bold tracking-wider text-amber-300">Pelayanan Umum</span>
+                    <h3 class="text-lg font-bold mt-1">Surat Keterangan Tidak Mampu</h3>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Persyaratan Dokumen:</h4>
+                        <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside">
+                            <li>Fotokopi KTP Pemohon & Kartu Keluarga</li>
+                            <li>Surat Keterangan Miskin asli dari Lurah/Lembang</li>
+                            <li>Surat Pernyataan bermaterai Rp 10.000</li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+                        <span>Waktu: 15 Menit</span>
+                        <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Gratis (Rp 0)</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CALLOUT LAYANAN PENGADUAN INTEGRASI -->
+        <div class="mt-16 p-6 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div>
+                <h4 class="text-lg font-bold text-gray-900">Menemukan pelanggaran atau pungli dalam pelayanan?</h4>
+                <p class="text-sm text-gray-600 mt-1">Laporkan langsung kepada tim pengawas internal kecamatan melalui formulir pengaduan resmi.</p>
+            </div>
+            <a href="kontak.html" class="px-6 py-2.5 bg-red-800 hover:bg-red-900 text-amber-300 font-bold rounded-xl text-sm transition-colors whitespace-nowrap shadow-sm">
+                Ajukan Pengaduan &rarr;
+            </button>
+        </div>
+    </main>
+
+    <!-- REUSABLE FOOTER PLACEHOLDER -->
+    <div id="footer-placeholder"></div>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
