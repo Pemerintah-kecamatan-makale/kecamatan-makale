@@ -1,10 +1,16 @@
 // main.js - Penggerak Komponen Reusable Website Kecamatan Makale
 document.addEventListener("DOMContentLoaded", function() {
     
+    // DETEKSI OTOMATIS JALUR REPOSITORI GITHUB PAGES
+    // Jika dibuka di GitHub Pages, base path akan mendeteksi '/kecamatan-makale/'
+    // Jika dibuka di komputer lokal (Live Server), base path otomatis menjadi kosong/relatif
+    const isGitHubPages = window.location.hostname.includes('github.io');
+    const basePath = isGitHubPages ? '/kecamatan-makale/' : '';
+    
     // 1. Memuat Elemen Gabungan Header & Navbar
     const headerContainer = document.getElementById('header-placeholder');
     if (headerContainer) {
-        fetch('assets/components/header.html')
+        fetch(`${basePath}assets/components/header.html`)
             .then(response => {
                 if (!response.ok) throw new Error('Network response was not ok');
                 return response.text();
@@ -19,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // 2. Memuat Elemen Footer
     const footerContainer = document.getElementById('footer-placeholder');
     if (footerContainer) {
-        fetch('assets/components/footer.html')
+        fetch(`${basePath}assets/components/footer.html`)
             .then(response => {
                 if (!response.ok) throw new Error('Network response was not ok');
                 return response.text();
