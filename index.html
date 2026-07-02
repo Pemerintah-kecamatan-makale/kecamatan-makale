@@ -5,100 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beranda | Website Resmi Kecamatan Makale</title>
     
-    <!-- SKRIP UTAMA TAILWIND CSS (Wajib Ada & Utuh) -->
-    <script src="https://tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- HUBUNGKAN KE CSS LOKAL -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="bg-gray-50 flex flex-col min-h-screen">
 
-   <!-- POP-UP MODAL MAKLUMAT PELAYANAN -->
-<div id="maklumatModal" style="position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 16px; background-color: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); opacity: 1; transition: opacity 0.3s ease;">
-    
-    <!-- KOTAK MODAL MAKLUMAT MAJU -->
-    <div style="position: relative; bg-color: #ffffff; background: white; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); max-width: 512px; width: 100%; max-height: 85vh; overflow-y: auto; border: 4px solid #f59e0b; display: flex; flex-direction: column;">
+    <div id="maklumatModal" style="position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 16px; background-color: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); opacity: 1; transition: opacity 0.3s ease;">
         
-        <!-- Header Ornamen Warna Merah -->
-        <div style="background-color: #991b1b; padding: 16px; text-align: center; border-bottom: 2px solid #fbbf24;">
-            <span style="font-size: 12px; font-weight: bold; color: #fcd34d; tracking: 0.1em; text-transform: uppercase; font-family: sans-serif;">Pemerintah Kabupaten Tana Toraja</span>
-            <h2 style="font-size: 20px; font-weight: bold; color: #ffffff; margin-top: 4px; font-family: sans-serif; letter-spacing: 0.05em;">KECAMATAN MAKALE</h2>
-        </div>
-
-        <!-- Konten Utama Lembar Maklumat -->
-        <div style="padding: 24px; flex-grow: 1; text-align: center; font-family: sans-serif;">
+        <div style="position: relative; background: white; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); max-width: 512px; width: 100%; max-height: 85vh; overflow-y: auto; border: 4px solid #f59e0b; display: flex; flex-direction: column;">
             
-            <!-- Logo Kabupaten Tana Toraja -->
-            <div style="display: flex; justify-content: center; margin-bottom: 16px;">
-                <img src="assets/images/LOGO TATOR3.jpg" alt="Logo Tana Toraja" style="height: 96px; width: auto; object-fit: contain;">
+            <div style="background-color: #991b1b; padding: 16px; text-align: center; border-bottom: 2px solid #fbbf24;">
+                <span style="font-size: 12px; font-weight: bold; color: #fcd34d; tracking: 0.1em; text-transform: uppercase; font-family: sans-serif;">Pemerintah Kabupaten Tana Toraja</span>
+                <h2 style="font-size: 20px; font-weight: bold; color: #ffffff; margin-top: 4px; font-family: sans-serif; letter-spacing: 0.05em;">KECAMATAN MAKALE</h2>
             </div>
 
-            <!-- Judul Maklumat -->
-            <div style="margin-bottom: 16px;">
-                <h3 style="font-size: 24px; font-weight: 900; color: #1c1917; text-transform: uppercase; margin: 0;">Maklumat Pelayanan</h3>
-                <div style="height: 2px; width: 128px; background-color: #f59e0b; margin: 4px auto 0 auto; border-radius: 9999px;"></div>
-            </div>
-
-            <!-- Kalimat Isi Maklumat -->
-            <p style="font-size: 14px; color: #1c1917; line-height: 1.6; font-weight: 500; font-style: italic; padding: 0 8px; margin-bottom: 24px;">
-                "Dengan ini kami menyatakan sanggup menyelenggarakan pelayanan sesuai standar pelayanan yang telah ditetapkan. Kami akan memberikan pelayanan sesuai dengan kewajiban dan akan melakukan perbaikan secara terus menerus. Apabila tidak menepati, kami siap menerima sanksi sesuai dan/atau memberi kompensasi sesuai dengan peraturan yang berlaku."
-            </p>
-
-            <!-- Bagian Tanda Tangan, Stempel, dan Pejabat -->
-            <div style="display: flex; flex-direction: column; align-items: center; margin-top: 16px;">
-                <p style="font-size: 12px; color: #4b5563; margin: 0;">Makale, 02 Juli 2026</p>
-                <p style="font-size: 14px; font-weight: bold; color: #030712; text-transform: uppercase; margin: 4px 0 0 0; tracking: 0.05em;">Camat Makale</p>
+            <div style="padding: 24px; flex-grow: 1; text-align: center; font-family: sans-serif;">
                 
-                <!-- Area Tanda Tangan & Stempel Berkunci Absolut -->
-                <div style="position: relative; width: 240px; height: 120px; margin: 4px 0; display: flex; align-items: center; justify-content: center;">
-                    
-                    <!-- LAYER 1: STEMPEL BASAH KECAMATAN -->
-                    <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0.85; z-index: 10; transform: rotate(-12deg) scale(1.1); pointer-events: none;">
-                        <div style="width: 104px; height: 104px; border: 4px double rgba(29, 78, 216, 0.9); rounded-radius: 9999px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4px; text-align: center;">
-                            <span style="font-size: 7px; font-weight: 900; color: rgba(29, 78, 216, 0.9); text-transform: uppercase; line-height: 1;">PEMERINTAH KABUPATEN</span>
-                            <div style="width: 36px; height: 36px; margin: 2px 0; border: 1px dashed rgba(29, 78, 216, 0.6); border-radius: 4px; display: flex; align-items: center; justify-content: center;">
-                                <span style="font-size: 6px; color: rgba(29, 78, 216, 0.8); font-weight: bold;">TATOR</span>
-                            </div>
-                            <span style="font-size: 7.5px; font-weight: 900; color: rgba(29, 78, 216, 0.9); text-transform: uppercase; border-top: 1px solid rgba(29, 78, 216, 0.4); padding-top: 2px; line-height: 1;">KECAMATAN MAKALE</span>
-                        </div>
-                    </div>
-
-                    <!-- LAYER 2: SIMULASI GORESAN TANDA TANGAN -->
-                    <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 20; transform: translateX(8px); pointer-events: none;">
-                        <svg width="180" height="90" viewBox="0 0 120 60" fill="none" stroke="#030712" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M15 35 C 30 15, 35 10, 50 45" />
-                            <path d="M45 42 C 55 12, 60 5, 62 30" />
-                            <path d="M35 32 Q 70 38, 105 32" />
-                            <path d="M52 25 L 98 42" stroke-width="2.2" />
-                        </svg>
-                    </div>
-
+                <div style="display: flex; justify-content: center; margin-bottom: 16px;">
+                    <img src="assets/images/LOGO TATOR3.jpg" alt="Logo Tana Toraja" style="height: 96px; width: auto; object-fit: contain;">
                 </div>
 
-                <!-- NAMA DAN IDENTITAS RESMI PEJABAT -->
-                <div style="text-align: center; margin-top: 4px;">
-                    <h4 style="font-size: 15px; font-weight: bold; color: #111827; text-decoration: underline; text-transform: uppercase; margin: 0; tracking: 0.05em;">BENYAMIN DENGEN, S.S., M.M.</h4>
-                    <p style="font-size: 12px; font-weight: 500; color: #374151; margin: 2px 0 0 0;">Pangkat: Pembina</p>
-                    <p style="font-size: 12px; color: #4b5563; margin: 1px 0 0 0; tracking: 0.05em;">NIP. 197208312007011011</p>
+                <div style="margin-bottom: 16px;">
+                    <h3 style="font-size: 24px; font-weight: 900; color: #1c1917; text-transform: uppercase; margin: 0;">Maklumat Pelayanan</h3>
+                    <div style="height: 2px; width: 128px; background-color: #f59e0b; margin: 4px auto 0 auto; border-radius: 9999px;"></div>
+                </div>
+
+                <p style="font-size: 14px; color: #1c1917; line-height: 1.6; font-weight: 500; font-style: italic; padding: 0 8px; margin-bottom: 24px;">
+                    "Dengan ini kami menyatakan sanggup menyelenggarakan pelayanan sesuai standar pelayanan yang telah ditetapkan. Kami akan memberikan pelayanan sesuai dengan kewajiban dan akan melakukan perbaikan secara terus menerus. Apabila tidak menepati, kami siap menerima sanksi sesuai dan/atau memberi kompensasi sesuai dengan peraturan yang berlaku."
+                </p>
+
+                <div style="display: flex; flex-direction: column; align-items: center; margin-top: 16px;">
+                    <p style="font-size: 12px; color: #4b5563; margin: 0;">Makale, 02 Juli 2026</p>
+                    <p style="font-size: 14px; font-weight: bold; color: #030712; text-transform: uppercase; margin: 4px 0 0 0; tracking: 0.05em;">Camat Makale</p>
+                    
+                    <div style="position: relative; width: 240px; height: 120px; margin: 4px 0; display: flex; align-items: center; justify-content: center;">
+                        
+                        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0.85; z-index: 10; transform: rotate(-12deg) scale(1.1); pointer-events: none;">
+                            <div style="width: 104px; height: 104px; border: 4px double rgba(29, 78, 216, 0.9); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4px; text-align: center;">
+                                <span style="font-size: 7px; font-weight: 900; color: rgba(29, 78, 216, 0.9); text-transform: uppercase; line-height: 1;">PEMERINTAH KABUPATEN</span>
+                                <div style="width: 36px; height: 36px; margin: 2px 0; border: 1px dashed rgba(29, 78, 216, 0.6); border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+                                    <span style="font-size: 6px; color: rgba(29, 78, 216, 0.8); font-weight: bold;">TATOR</span>
+                                </div>
+                                <span style="font-size: 7.5px; font-weight: 900; color: rgba(29, 78, 216, 0.9); text-transform: uppercase; border-top: 1px solid rgba(29, 78, 216, 0.4); padding-top: 2px; line-height: 1;">KECAMATAN MAKALE</span>
+                            </div>
+                        </div>
+
+                        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 20; transform: translateX(8px); pointer-events: none;">
+                            <svg width="180" height="90" viewBox="0 0 120 60" fill="none" stroke="#030712" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M15 35 C 30 15, 35 10, 50 45" />
+                                <path d="M45 42 C 55 12, 60 5, 62 30" />
+                                <path d="M35 32 Q 70 38, 105 32" />
+                                <path d="M52 25 L 98 42" stroke-width="2.2" />
+                            </svg>
+                        </div>
+
+                    </div>
+
+                    <div style="text-align: center; margin-top: 4px;">
+                        <h4 style="font-size: 15px; font-weight: bold; color: #111827; text-decoration: underline; text-transform: uppercase; margin: 0; tracking: 0.05em;">BENYAMIN DENGEN, S.S., M.M.</h4>
+                        <p style="font-size: 12px; font-weight: 500; color: #374151; margin: 2px 0 0 0;">Pangkat: Pembina</p>
+                        <p style="font-size: 12px; color: #4b5563; margin: 1px 0 0 0; tracking: 0.05em;">NIP. 197208312007011011</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Tombol Tutup / Close Modal -->
-        <div style="padding: 16px; background-color: #f9fafb; border-top: 1px solid #f3f4f6; display: flex; justify-content: center;">
-            <button onclick="closeMaklumat()" style="width: 100%; padding: 12px 24px; background-color: #991b1b; color: #fcd34d; font-weight: bold; border: none; border-radius: 12px; cursor: pointer; text-transform: uppercase; font-family: sans-serif; font-size: 14px; letter-spacing: 0.05em; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
-                Tutup Maklumat
-            </button>
-        </div>
+            <div style="padding: 16px; background-color: #f9fafb; border-top: 1px solid #f3f4f6; display: flex; justify-content: center;">
+                <button onclick="closeMaklumat()" style="width: 100%; padding: 12px 24px; background-color: #991b1b; color: #fcd34d; font-weight: bold; border: none; border-radius: 12px; cursor: pointer; text-transform: uppercase; font-family: sans-serif; font-size: 14px; letter-spacing: 0.05em; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                    Tutup Maklumat
+                </button>
+            </div>
 
+        </div>
     </div>
-</div>
 
-
-    <!-- REUSABLE COMPONENT PLACEHOLDERS -->
     <div id="header-placeholder"></div>
 
-    <!-- HERO SECTION -->
     <section class="relative text-white py-24 px-4 overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('assets/images/Plaza Kolam Makale.jpg');">
         <div class="absolute inset-0 bg-black opacity-50 z-0"></div>
         <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:16px_16px] z-10"></div>
@@ -115,9 +97,6 @@
         </div>
     </section>
 
-    <!-- CONTAINER GRID BERITA UTAMA -->
-    <main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
-            <!-- CONTAINER GRID BERITA UTAMA -->
     <main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
         <div class="mb-8 border-b-2 border-amber-500 pb-2 flex justify-between items-center">
             <h2 class="text-2xl font-bold text-gray-800">Berita & Kegiatan Terbaru</h2>
@@ -141,30 +120,22 @@
         </div>
     </main>
 
-    <!-- FOOTER PLACEHOLDER -->
     <div id="footer-placeholder"></div>
     
-    <!-- SKRIP UTAMA APLIKASI -->
     <script src="assets/js/main.js"></script>
 
-    <!-- SKRIP PENGONTROL MEMORI POP-UP MAKLUMAT (HANYA SEKALI MUNCUL) -->
     <script>
         window.addEventListener('load', function() {
             const modal = document.getElementById('maklumatModal');
-            
-            // Memeriksa apakah warga sudah pernah menutup maklumat sebelumnya
             const sudahMelihatMaklumat = localStorage.getItem('maklumatTelahDitutup');
 
             if (modal) {
                 if (!sudahMelihatMaklumat) {
-                    // Jika BELUM PERNAH, paksa modal muncul di layar
                     modal.style.display = 'flex';
-                    // Memberikan sedikit jeda waktu agar animasi transisi opacity CSS berjalan halus
                     setTimeout(() => {
                         modal.style.opacity = '1';
                     }, 50);
                 } else {
-                    // Jika SUDAH PERNAH, sembunyikan total sejak awal load
                     modal.style.display = 'none';
                     modal.style.pointerEvents = 'none';
                 }
@@ -174,12 +145,8 @@
         function closeMaklumat() {
             const modal = document.getElementById('maklumatModal');
             if (modal) {
-                // Memicu efek memudar halus memakai transisi inline-style bawaan modal Anda
                 modal.style.opacity = '0';
-                
-                // MENYIMPAN STATUS KE MEMORI BROWSER WARGA
                 localStorage.setItem('maklumatTelahDitutup', 'true');
-                
                 setTimeout(() => { 
                     modal.style.display = 'none'; 
                 }, 300);
@@ -188,4 +155,3 @@
     </script>
 </body>
 </html>
-
