@@ -117,6 +117,8 @@
 
     <!-- CONTAINER GRID BERITA UTAMA -->
     <main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
+            <!-- CONTAINER GRID BERITA UTAMA -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
         <div class="mb-8 border-b-2 border-amber-500 pb-2 flex justify-between items-center">
             <h2 class="text-2xl font-bold text-gray-800">Berita & Kegiatan Terbaru</h2>
             <a href="berita.html" class="text-sm font-semibold text-red-800 hover:text-red-950">Lihat Semua &rarr;</a>
@@ -139,18 +141,13 @@
         </div>
     </main>
 
+    <!-- FOOTER PLACEHOLDER -->
     <div id="footer-placeholder"></div>
+    
+    <!-- SKRIP UTAMA APLIKASI -->
     <script src="assets/js/main.js"></script>
-    <script>
-        function closeMaklumat() {
-            const modal = document.getElementById('maklumatModal');
-            if (modal) {
-                modal.classList.add('opacity-0', 'pointer-events-none');
-                setTimeout(() => { modal.style.display = 'none'; }, 300);
-            }
-        }
-    </script>
-        <!-- SKRIP PENGONTROL MEMORI POP-UP MAKLUMAT (HANYA SEKALI MUNCUL) -->
+
+    <!-- SKRIP PENGONTROL MEMORI POP-UP MAKLUMAT (HANYA SEKALI MUNCUL) -->
     <script>
         window.addEventListener('load', function() {
             const modal = document.getElementById('maklumatModal');
@@ -162,7 +159,10 @@
                 if (!sudahMelihatMaklumat) {
                     // Jika BELUM PERNAH, paksa modal muncul di layar
                     modal.style.display = 'flex';
-                    modal.style.opacity = '1';
+                    // Memberikan sedikit jeda waktu agar animasi transisi opacity CSS berjalan halus
+                    setTimeout(() => {
+                        modal.style.opacity = '1';
+                    }, 50);
                 } else {
                     // Jika SUDAH PERNAH, sembunyikan total sejak awal load
                     modal.style.display = 'none';
@@ -174,7 +174,8 @@
         function closeMaklumat() {
             const modal = document.getElementById('maklumatModal');
             if (modal) {
-                modal.classList.add('opacity-0', 'pointer-events-none');
+                // Memicu efek memudar halus memakai transisi inline-style bawaan modal Anda
+                modal.style.opacity = '0';
                 
                 // MENYIMPAN STATUS KE MEMORI BROWSER WARGA
                 localStorage.setItem('maklumatTelahDitutup', 'true');
