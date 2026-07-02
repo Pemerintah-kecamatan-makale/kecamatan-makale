@@ -1,5 +1,6 @@
 /* style.css - Custom Style Sheet Tambahan Website Kecamatan Makale */
-@import url('https://googleapis.com');
+/* PERBAIKAN: Menggunakan URL impor Google Fonts asli agar huruf terbaca normal */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 body {
     font-family: 'Inter', sans-serif;
