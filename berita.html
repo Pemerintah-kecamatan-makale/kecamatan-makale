@@ -49,8 +49,8 @@
         </div>
     </div>
 
-    <script>
-        // ID Spreadsheet Terintegrasi
+  <script>
+        // ID Spreadsheet Terintegrasi dari Link Anda
         const SPREADSHEET_ID = '1lhslwSr1kKfvU19cwQ3CPNvDf0X-0xGTPuiLmxzX6zs'; 
         const jsonUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
         
@@ -64,27 +64,27 @@
                 const rows = jsonData.table.rows;
                 
                 const gridContainer = document.querySelector('.grid');
-                gridContainer.innerHTML = ''; // Hapus pesan loading
+                gridContainer.innerHTML = ''; // Bersihkan loading text
 
-                // Membalikkan baris agar inputan terbaru di HP berada di posisi paling atas halaman web
+                // Membalikkan baris agar berita paling baru di HP muncul paling atas di web
                 rows.reverse().forEach((row, index) => {
-                    // Membaca Kolom: B (Foto), C (Judul), D (Isi Berita)
-                    const rawFotoUrl = row.c[1]?.v || ''; 
-                    const judulBerita = row.c[2]?.v || ''; 
-                    const isiBerita = row.c[3]?.v || '';   
+                    // DISESUAIKAN DENGAN IMAGE_85B95E.PNG:
+                    const judulBerita = row.c[1]?.v || ''; // Kolom B: Judul
+                    const rawFotoUrl = row.c[2]?.v || '';  // Kolom C: Upload Foto
+                    const isiBerita = row.c[3]?.v || '';   // Kolom D: Isi Berita
                     const timestamp = row.c[0]?.f || '';
-                    const tanggal = timestamp.split(' ')[0]; // Ambil format tanggal saja
+                    const tanggal = timestamp.split(' ')[0]; // Mengambil komponen tanggal saja
 
                     if (!judulBerita || !isiBerita) return; 
 
-                    // KONVERSI LINK GOOGLE DRIVE AGAR TEMBUS KE WEBSITE:
-                    let fotoFinal = "Plaza Kolam Makale.jpg"; // Gambar cadangan jika link eror
+                    // KONVERSI LINK GOOGLE DRIVE AGAR TEMBUS LANGSUNG SEBAGAI GAMBAR WEB
+                    let fotoFinal = "Plaza Kolam Makale.jpg"; // Gambar cadangan jika eror
                     if (rawFotoUrl.includes('id=')) {
                         const fileId = rawFotoUrl.split('id=')[1].split('&')[0];
-                        fotoFinal = `https://lh3.googleusercontent.com/u/0/d/${fileId}`;
+                        fotoFinal = `https://drive.google.com/uc?export=view&id=${fileId}`;
                     } else if (rawFotoUrl.includes('file/d/')) {
                         const fileId = rawFotoUrl.split('file/d/')[1].split('/')[0];
-                        fotoFinal = `https://lh3.googleusercontent.com/u/0/d/${fileId}`;
+                        fotoFinal = `https://drive.google.com/uc?export=view&id=${fileId}`;
                     } else if (rawFotoUrl.startsWith('http')) {
                         fotoFinal = rawFotoUrl;
                     }
@@ -92,17 +92,17 @@
                     const newsId = `berita_${index}`;
                     const ringkasanTeks = isiBerita.length > 120 ? isiBerita.substring(0, 120) + "..." : isiBerita;
 
-                    // Daftarkan data ke sistem pencatatan pop-up modal
+                    // Daftarkan data lengkap untuk pop-up modal
                     globalNewsData[newsId] = {
                         title: judulBerita,
                         date: tanggal,
                         badge: "Kabar Makale",
                         badgeColor: "bg-amber-700",
                         image: fotoFinal,
-                        content: isiBerita.replace(/\n/g, '<br>') // Menjaga baris enter teks saat diketik di HP
+                        content: isiBerita.replace(/\n/g, '<br>') // Mengubah Enter ketikan HP menjadi paragraf HTML
                     };
 
-                    // Render Komponen Kartu Grid
+                    // Cetak Kartu Berita ke Layout
                     const cardHtml = `
                         <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
                             <div>
@@ -131,7 +131,7 @@
                 });
             }
 
-            // Fungsi Membuka Jendela Modal Pop-Up
+            // Pengendali Modal Pop-Up
             function openNewsModal(key) {
                 const data = globalNewsData[key];
                 if (!data) return;
@@ -163,6 +163,6 @@
             }
 
             document.addEventListener("DOMContentLoaded", loadNewsFromForm);
-        </script>
+    </script>
 </body>
 </html>
