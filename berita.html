@@ -3,297 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nama Halaman | Website Resmi Kecamatan Makale</title>
-    
+    <title>Kabar Makale | Website Resmi Kecamatan Makale</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="bg-gray-50 flex flex-col min-h-screen">
 
-    <!-- REUSABLE HEADER PLACEHOLDER -->
     <div id="header-placeholder"></div>
 
-    <!-- KONTEN UTAMA BERITA -->
     <main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
         
-        <!-- Header & Pencarian Dokumen -->
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 border-b border-gray-200 pb-6">
             <div>
                 <h1 class="text-3xl font-black text-gray-900 tracking-tight">Kabar Makale</h1>
                 <p class="text-sm text-gray-500 mt-1">Informasi terpercaya seputar regulasi, pembangunan, dan pengumuman kecamatan.</p>
             </div>
-            <!-- Search Bar Statis -->
-            <div class="relative w-full md:w-72">
-                <input type="text" placeholder="Cari berita..." class="w-full bg-white border border-gray-300 rounded-xl pl-4 pr-10 py-2 text-sm focus:outline-none focus:border-red-800 transition-colors">
-                <span class="absolute right-3 top-2.5 text-gray-400 text-xs">🔍</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="col-span-full text-center py-12 text-gray-500">
+                <i class="fas fa-spinner fa-spin text-2xl mb-2 text-amber-800"></i>
+                <p>Memuat kabar terbaru dari Kecamatan Makale...</p>
             </div>
         </div>
 
-     <!-- KONTEN UTAMA PORTAL BERITA -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
-            
-            <!-- BERITA 1: PIN POLIO -->
-            <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
-                <div>
-                    <div class="relative overflow-hidden h-52 bg-gray-100">
-                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnTjt_1Qnr-J2RoJRCTihY_bBKN9qGWNoBqx9tyr26p8D5AhPrzIkpZoxVNMUfBmTXdEmdUAmATppoELkSLcJZoJz5pNTsiowgrUaHr7qm5QHrbOyjvnFbO5502vu0o82k25DOJqrwF3nNU-Rv8iJ-he-ub7_k9wWTXv5ihyH4MgWckzRzTedgtRyCjaM/s320/PIN%20POLIO.jpg" alt="PIN Polio" />
-                        <span class="absolute top-4 left-4 bg-red-600 text-white font-semibold text-xs px-3 py-1 rounded-full shadow-sm">Kesehatan</span>
-                    </div>
-                    <div class="p-5">
-                        <div class="text-xs text-gray-400 mb-2"><i class="far fa-calendar-alt mr-1"></i> 23 Juli 2024</div>
-                        <h3 class="font-bold text-gray-900 line-clamp-2 group-hover:text-amber-800 transition duration-200 text-lg mb-3">
-                            Pekan Imunisasi Nasional (PIN) Polio Serentak di Kecamatan Makale
-                        </h3>
-                        <p class="text-gray-600 text-sm line-clamp-3 text-justify">
-                            PIN Polio adalah program imunisasi pemerintah yang dilaksanakan di tingkat kecamatan melalui puskesmas, posyandu, dan pos imunisasi lainnya guna melindungi anak usia 0-7 tahun dari kelumpuhan.
-                        </p>
-                    </div>
-                </div>
-                <div class="px-5 pb-5 pt-2">
-                    <button onclick="openNewsModal('polio')" class="w-full text-center bg-stone-50 hover:bg-amber-800 hover:text-white text-amber-900 font-medium text-sm py-2.5 px-4 rounded-xl border border-stone-200/60 transition-all duration-200">
-                        Baca Selengkapnya
-                    </button>
-                </div>
-            </article>
+    </main>
 
-            <!-- BERITA 2: MUSRENBANG 2025 -->
-            <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
-                <div>
-                    <div class="relative overflow-hidden h-52 bg-gray-100">
-                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhF87rYTYbZgVRRMAvTKw43F8TOMKKRNNQ8q6hMmNoNoLy5Dfr6IQkalm5U6ZVtcNUjkg0LZFw2z3m20PKvWz38Ume0TjOxCAB1tssXgwhhM7OmjLsyd_FOnp64DJGM1EAyX0ZlFAcPmq5MpxMTH8oy4tt4FFDWO_y_qnA71E6qcRG8LHSCaV6btahHTUU/s320/Foto%20Musrenbang%202025_1.jpg" alt="Musrenbang" />
-                        <span class="absolute top-4 left-4 bg-amber-600 text-white font-semibold text-xs px-3 py-1 rounded-full shadow-sm">Pembangunan</span>
-                    </div>
-                    <div class="p-5">
-                        <div class="text-xs text-gray-400 mb-2"><i class="far fa-calendar-alt mr-1"></i> 23 Januari 2025</div>
-                        <h3 class="font-bold text-gray-900 line-clamp-2 group-hover:text-amber-800 transition duration-200 text-lg mb-3">
-                            Bupati Tana Toraja Buka Musrenbang 2025 Kecamatan Makale di Gedung Tammuan Mali'
-                        </h3>
-                        <p class="text-gray-600 text-sm line-clamp-3 text-justify">
-                            Kecamatan Makale menggelar acara rutin tahunan yaitu Musyawarah Perencanaan Pembangunan (Musrenbang) Kecamatan untuk mendapatkan masukan mengenai kegiatan prioritas pembangunan.
-                        </p>
-                    </div>
+    <div id="newsModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-all duration-300">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-xl transform scale-95 transition-transform duration-300 flex flex-col">
+            <div class="p-5 border-b border-gray-100 flex justify-between items-start sticky top-0 bg-white z-10">
+                <div class="pr-6">
+                    <span id="modalBadge" class="text-white font-bold text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full"></span>
+                    <h2 id="modalTitle" class="text-xl font-bold text-gray-900 mt-2"></h2>
+                    <p id="modalDate" class="text-xs text-gray-400 mt-1"></p>
                 </div>
-                <div class="px-5 pb-5 pt-2">
-                    <button onclick="openNewsModal('musrenbang')" class="w-full text-center bg-stone-50 hover:bg-amber-800 hover:text-white text-amber-900 font-medium text-sm py-2.5 px-4 rounded-xl border border-stone-200/60 transition-all duration-200">
-                        Baca Selengkapnya
-                    </button>
-                </div>
-            </article>
-
-            <!-- BERITA 3: LOMBA B2SA -->
-            <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
-                <div>
-                    <div class="relative overflow-hidden h-52 bg-gray-100">
-                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3Uabv8lz6bVoCa5kq1ZpPRmoo29oOB86hDsVPzuMx1giWLmuozcUKW271DyDwtdVgv78qYDcTyBhf9hKnpISgMIAeoqaeYkYWDIkJy49219cjXIyr9JXSrGxUwC6Ra5i5mhx_Kg6Yt7DxTR0wpe_ST03t3Uqg96vdaaf0OBKYrtZMgApLuZtsVl-sf1g/s1600/97047baf-24cf-4bcd-b506-015c0920ca14.jpeg" alt="Lomba B2SA" />
-                        <span class="absolute top-4 left-4 bg-green-600 text-white font-semibold text-xs px-3 py-1 rounded-full shadow-sm">Ketahanan Pangan</span>
-                    </div>
-                    <div class="p-5">
-                        <div class="text-xs text-gray-400 mb-2"><i class="far fa-calendar-alt mr-1"></i> 21 Juli 2025</div>
-                        <h3 class="font-bold text-gray-900 line-clamp-2 group-hover:text-amber-800 transition duration-200 text-lg mb-3">
-                            Kecamatan Makale Raih Juara di Lomba Cipta Menu B2SA Berbasis Pangan Lokal
-                        </h3>
-                        <p class="text-gray-600 text-sm line-clamp-3 text-justify">
-                            Pemerintah Kabupaten Tana Toraja menggelar Lomba Cipta Menu B2SA (Beragam, Bergizi Seimbang, dan Aman) Berbasis Pangan Lokal tingkat Kabupaten.
-                        </p>
-                    </div>
-                </div>
-                <div class="px-5 pb-5 pt-2">
-                    <button onclick="openNewsModal('b2sa')" class="w-full text-center bg-stone-50 hover:bg-amber-800 hover:text-white text-amber-900 font-medium text-sm py-2.5 px-4 rounded-xl border border-stone-200/60 transition-all duration-200">
-                        Baca Selengkapnya
-                    </button>
-                </div>
-            </article>
-
-            <!-- BERITA 4: BIMTEK RKA -->
-            <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
-                <div>
-                    <div class="relative overflow-hidden h-52 bg-gray-100">
-                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgNI-pknwyO9nBAEMmt7ukjDHANh4P7rdJGYNHuBkSkYlXJ1XtQ9u6i7ZCAeI6KyrPVllLY1NR-oqnZvOtigxErJ5QVwt3ID8Nybnjxfn_5p3zX8MVNI9lwfbtYkp_44OkeLEbk_7fZR3H5ffurpOsdPZS7IIE2ezhrIiie3dYNuQ7t_wueyxzTUSDVQus/s1599/7a4a2646-61cb-4203-b982-cb0eaa5a01f9.jfif" alt="Bimtek RKA" />
-                        <span class="absolute top-4 left-4 bg-blue-600 text-white font-semibold text-xs px-3 py-1 rounded-full shadow-sm">Keuangan</span>
-                    </div>
-                    <div class="p-5">
-                        <div class="text-xs text-gray-400 mb-2"><i class="far fa-calendar-alt mr-1"></i> 08 April 2026</div>
-                        <h3 class="font-bold text-gray-900 line-clamp-2 group-hover:text-amber-800 transition duration-200 text-lg mb-3">
-                            BPKPD Tana Toraja Gelar Bimtek Penyusunan RKA Berbasis Kinerja di Makale
-                        </h3>
-                        <p class="text-gray-600 text-sm line-clamp-3 text-justify">
-                            BPKPD Tana Toraja menggelar Bimbingan Teknis (Bimtek) Penyusunan Rencana Kerja dan Anggaran (RKA) bagi staf kecamatan dan kelurahan se-Kecamatan Makale.
-                        </p>
-                    </div>
-                </div>
-                <div class="px-5 pb-5 pt-2">
-                    <button onclick="openNewsModal('bimtek')" class="w-full text-center bg-stone-50 hover:bg-amber-800 hover:text-white text-amber-900 font-medium text-sm py-2.5 px-4 rounded-xl border border-stone-200/60 transition-all duration-200">
-                        Baca Selengkapnya
-                    </button>
-                </div>
-            </article>
-
-        </div>
-
-        <!-- ==================== STRUCTURE CONTAINER MODAL (POP-UP) ==================== -->
-        <div id="newsModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-all duration-300">
-            <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-xl transform scale-95 transition-transform duration-300 flex flex-col">
-               <!-- Header Modal -->
-                <div class="p-5 border-b border-gray-100 flex justify-between items-start sticky top-0 bg-white z-10">
-                    <div class="pr-6">
-                        <span id="modalBadge" class="text-white font-bold text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full"></span>
-                        <h2 id="modalTitle" class="text-xl font-bold text-gray-900 mt-2"></h2>
-                        <p id="modalDate" class="text-xs text-gray-400 mt-1"></p>
-                    </div>
-                    <!-- Tombol Close yang Diperbaiki (Lebih Kontras & Jelas) -->
-                    <button onclick="closeNewsModal()" class="text-gray-500 hover:text-gray-800 hover:bg-gray-100 p-2.5 rounded-xl border border-gray-200/60 transition-all duration-200 flex items-center justify-center shrink-0 min-w-[40px] h-[40px]" title="Tutup">
-                        <span class="font-bold text-base">✕</span>
-                    </button>
-                </div>
-                <!-- Isi Konten Modal -->
-                <div class="p-6 overflow-y-auto">
-                    <img id="modalImage" class="w-full h-64 object-cover rounded-xl shadow-sm mb-5" src="" alt="" />
-                    <div id="modalBody" class="text-gray-700 text-sm leading-relaxed space-y-4 text-justify"></div>
-                </div>
+                <button onclick="closeNewsModal()" class="text-gray-500 hover:text-gray-800 hover:bg-gray-100 p-2.5 rounded-xl border border-gray-200/60 transition-all duration-200 flex items-center justify-center shrink-0 min-w-[40px] h-[40px]" title="Tutup">
+                    <span class="font-bold text-base">✕</span>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto">
+                <img id="modalImage" class="w-full h-64 object-cover rounded-xl shadow-sm mb-5" src="" alt="" />
+                <div id="modalBody" class="text-gray-700 text-sm leading-relaxed space-y-4 text-justify"></div>
             </div>
         </div>
+    </div>
 
-        <!-- ==================== JAVASCRIPT SYSTEM ENGINE ==================== -->
-        <script>
-            // Data Konten Berita Lengkap
-            const newsData = {
-                polio: {
-                    title: "Pekan Imunisasi Nasional (PIN) Polio Serentak di Kecamatan Makale",
-                    date: "23 Juli 2024",
-                    badge: "Kesehatan",
-                    badgeColor: "bg-red-600",
-                    image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnTjt_1Qnr-J2RoJRCTihY_bBKN9qGWNoBqx9tyr26p8D5AhPrzIkpZoxVNMUfBmTXdEmdUAmATppoELkSLcJZoJz5pNTsiowgrUaHr7qm5QHrbOyjvnFbO5502vu0o82k25DOJqrwF3nNU-Rv8iJ-he-ub7_k9wWTXv5ihyH4MgWckzRzTedgtRyCjaM/s904/PIN%20POLIO.jpg",
-                    content: `
-                        <p>PIN Polio adalah program imunisasi nasional dari pemerintah yang dilaksanakan secara serentak guna memutus rantai penularan virus polio yang dapat menyebabkan kelumpuhan permanen pada anak.</p>
-                        <p>Pencanangan PIN Polio tingkat Kecamatan Makale ini dihadiri langsung oleh Ketua Tim Penggerak PKK Kabupaten Tana Toraja, Ibu Yariana Somalinggi, SE. Sasarannya adalah seluruh anak usia 0 sampai 7 tahun tanpa memandang status imunisasi sebelumnya.</p>
-                        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 my-3 text-amber-950">
-                            <strong>Informasi Pelaksanaan Imunisasi:</strong>
-                            <ul class="list-disc list-inside mt-2 space-y-1">
-                                <li><strong>Putaran I:</strong> 23 - 29 Juli 2024</li>
-                                <li><strong>Putaran II:</strong> 6 - 12 Agustus 2024</li>
-                                <li><strong>Metode Pemberian:</strong> 2 Tetes manis vaksin polio oral.</li>
-                                <li><strong>Fasilitas Layanan:</strong> Puskesmas Makale, Posyandu, TK/PAUD, SD, dan Pos Imunisasi Terdekat.</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                musrenbang: {
-                    title: "Bupati Tana Toraja Buka Musrenbang 2025 Kecamatan Makale di Gedung Tammuan Mali'",
-                    date: "23 Januari 2025",
-                    badge: "Pembangunan",
-                    badgeColor: "bg-amber-600",
-                    image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhF87rYTYbZgVRRMAvTKw43F8TOMKKRNNQ8q6hMmNoNoLy5DfrIQkalm5U6ZVtcNUjkg0LZFw2z3m20PKvWz38Ume0TjOxCAB1tssXgwhhM7OmjLsyd_FOnp64DJGM1EAyX0ZlFAcPmq5MpxMTH8oy4tt4FFDWO_y_qnA71E6qcRG8LHSCaV6btahHTUU/s4035/Foto%20Musrenbang%202025_1.jpg",
-                    content: `
-                        <p>Kecamatan Makale pada hari Kamis (23/1) menggelar acara rutin tahunan yaitu Musyawarah Perencanaan Pembangunan (Musrenbang) Kecamatan. Forum ini mempertemukan para pemangku kepentingan/stakeholders tingkat kecamatan guna menyusun kegiatan prioritas pembangunan berdasarkan rekapitulasi hasil Musrenbang Kelurahan dan Lembang.</p>
-                        <p>Bupati Tana Toraja, Theofilus Allorerung, SE hadir langsung sekaligus membuka kegiatan tersebut di Gedung Tammuan Mali'. Beliau menyampaikan bahwa arah kebijakan tahun ini difokuskan pada pemantapan kualitas produksi daerah, meliputi Bidang Perencanaan Fisik, Prasarana dan Sumber Daya (Fispra), Ekonomi, serta Sosial Budaya.</p>
-                        <p>Camat Makale, Fius Minggu, SH., M.Si memaparkan bahwa pada perencanaan kali ini terdapat total <strong>503 usulan</strong> dari Kelurahan dan Lembang. Diharapkan usulan strategis ini dapat diakomodasi dalam penyusunan program kerja pemerintah daerah. Di akhir acara, Bupati menyerahkan bantuan bibit tanaman pangan ke tiap kelurahan/lembang demi mendukung program kemandirian ketahanan pangan.</p>
-                    `
-                },
-                b2sa: {
-                    title: "Kecamatan Makale Raih Juara di Lomba Cipta Menu B2SA Berbasis Pangan Lokal",
-                    date: "21 Juli 2025",
-                    badge: "Ketahanan Pangan",
-                    badgeColor: "bg-green-600",
-                    image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3Uabv8lz6bVoCa5kq1ZpPRmoo29oOB86hDsVPzuMx1giWLmuozcUKW271DyDwtdVgv78qYDcTyBhf9hKnpISgMIAeoqaeYkYWDIkJy49219cjXIyr9JXSrGxUwC6Ra5i5mhx_Kg6Yt7DxTR0wpe_ST03t3Uqg96vdaaf0OBKYrtZMgApLuZtsVl-sf1g/s1600/97047baf-24cf-4bcd-b506-015c0920ca14.jpeg",
-                    content: `
-                        <p>Pemerintah Kabupaten Tana Toraja melalui Dinas Pertanian, Ketahanan Pangan dan Perikanan bekerja sama dengan Tim Penggerak PKK menyelenggarakan Lomba Cipta Menu B2SA (Beragam, Bergizi Seimbang, dan Aman) Berbasis Pangan Lokal di Pasar Seni Makale.</p>
-                        <p>Kegiatan ini diikuti oleh seluruh perwakilan dari 19 kecamatan se-Kabupaten Tana Toraja untuk mempromosikan diversifikasi pangan lokal sehat bagi ketahanan keluarga. Berikut adalah daftar lengkap pemenang lomba tahun 2025:</p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-2">
-                            <div class="p-3 bg-stone-50 border border-gray-100 rounded-xl">
-                                <h4 class="font-bold text-amber-900 mb-1">Kategori Menu Keluarga</h4>
-                                <ol class="list-decimal list-inside text-xs text-gray-600 space-y-1">
-                                    <li>Kec. Gandangbatu Sillanan</li>
-                                    <li>Kec. Makale Utara</li>
-                                    <li>Kec. Bittuang</li>
-                                    <li class="font-semibold text-amber-800">Harapan I: Kec. Makale</li>
-                                    <li>Harapan II: Kec. Makale Selatan</li>
-                                    <li>Harapan III: Kec. Rembon</li>
-                                </ol>
-                            </div>
-                            <div class="p-3 bg-stone-50 border border-gray-100 rounded-xl">
-                                <h4 class="font-bold text-amber-900 mb-1">Kategori Olahan Pangan</h4>
-                                <ol class="list-decimal list-inside text-xs text-gray-600 space-y-1">
-                                    <li>Kec. Gandangbatu Sillanan</li>
-                                    <li class="font-semibold text-amber-800">Juara II: Kec. Makale</li>
-                                    <li>Kec. Bittuang</li>
-                                    <li>Harapan I: Kec. Malimbong Balepe</li>
-                                    <li>Harapan II: Kec. Sangalla Utara</li>
-                                    <li>Harapan III: Kec. Rembon</li>
-                                </ol>
-                            </div>
-                        </div>
-                    `
-                },
-                bimtek: {
-                    title: "BPKPD Tana Toraja Gelar Bimtek Penyusunan RKA Berbasis Kinerja di Makale",
-                    date: "08 April 2026",
-                    badge: "Keuangan",
-                    badgeColor: "bg-blue-600",
-                    image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgNI-pknwyO9nBAEMmt7ukjDHANh4P7rdJGYNHuBkSkYlXJ1XtQ9u6i7ZCAeI6KyrPVllLY1NR-oqnZvOtigxErJ5QVwt3ID8Nybnjxfn_5p3zX8MVNI9lwfbtYkp_44OkeLEbk_7fZR3H5ffurpOsdPZS7IIE2ezhrIiie3dYNuQ7t_wueyxzTUSDVQus/s1599/7a4a2646-61cb-4203-b982-cb0eaa5a01f9.jfif",
-                    content: `
-                        <p>Bertempat di Aula Kantor Kecamatan Makale, Badan Pengelolaan Keuangan dan Pendapatan Daerah (BPKPD) Tana Toraja menggelar <strong>Bimbingan Teknis (Bimtek) Penyusunan Rencana Kerja dan Anggaran (RKA)</strong>. Agenda ini diikuti oleh aparatur dan staf perwakilan kecamatan serta kelurahan se-Kecamatan Makale.</p>
-                        <p>Penyusunan anggaran ini berlandaskan pada PP No. 12 Tahun 2019 tentang Pengelolaan Keuangan Daerah yang menggunakan pendekatan berbasis kinerja/prestasi kerja. Pendekatan ini berfokus pada hasil nyata/output kualitas pelayanan publik yang rasional.</p>
-                        <div class="bg-stone-50 border border-gray-100 p-4 rounded-xl space-y-2">
-                            <h4 class="font-bold text-gray-900 text-xs uppercase tracking-wider text-amber-900">Materi Pokok Pelatihan:</h4>
-                            <p class="text-xs">1. Tata cara penyusunan dokumen anggaran Pendapatan & Belanja SKPD.</p>
-                            <p class="text-xs">2. Sinkronisasi rencana kerja (Renja) dengan pagu harga ASB & SSH.</p>
-                            <p class="text-xs">3. Simulasi praktis penginputan data keuangan melalui platform nasional <strong>SIPD RI</strong>.</p>
-                        </div>
-                    `
-                }
-            };
+    <script>
+        // ID Spreadsheet Terintegrasi
+        const SPREADSHEET_ID = '1lhslwSr1kKfvU19cwQ3CPNvDf0X-0xGTPuiLmxzX6zs'; 
+        const jsonUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
+        
+        let globalNewsData = {};
 
-            // Fungsi Membuka Modal Pop-Up Berita
+        async function loadNewsFromForm() {
+            try {
+                const response = await fetch(jsonUrl);
+                const text = await response.text();
+                const jsonData = JSON.parse(text.substring(47, text.length - 2));
+                const rows = jsonData.table.rows;
+                
+                const gridContainer = document.querySelector('.grid');
+                gridContainer.innerHTML = ''; // Hapus pesan loading
+
+                // Membalikkan baris agar inputan terbaru di HP berada di posisi paling atas halaman web
+                rows.reverse().forEach((row, index) => {
+                    // Membaca Kolom: B (Foto), C (Judul), D (Isi Berita)
+                    const rawFotoUrl = row.c[1]?.v || ''; 
+                    const judulBerita = row.c[2]?.v || ''; 
+                    const isiBerita = row.c[3]?.v || '';   
+                    const timestamp = row.c[0]?.f || '';
+                    const tanggal = timestamp.split(' ')[0]; // Ambil format tanggal saja
+
+                    if (!judulBerita || !isiBerita) return; 
+
+                    // KONVERSI LINK GOOGLE DRIVE AGAR TEMBUS KE WEBSITE:
+                    let fotoFinal = "Plaza Kolam Makale.jpg"; // Gambar cadangan jika link eror
+                    if (rawFotoUrl.includes('id=')) {
+                        const fileId = rawFotoUrl.split('id=')[1].split('&')[0];
+                        fotoFinal = `https://lh3.googleusercontent.com/u/0/d/${fileId}`;
+                    } else if (rawFotoUrl.includes('file/d/')) {
+                        const fileId = rawFotoUrl.split('file/d/')[1].split('/')[0];
+                        fotoFinal = `https://lh3.googleusercontent.com/u/0/d/${fileId}`;
+                    } else if (rawFotoUrl.startsWith('http')) {
+                        fotoFinal = rawFotoUrl;
+                    }
+
+                    const newsId = `berita_${index}`;
+                    const ringkasanTeks = isiBerita.length > 120 ? isiBerita.substring(0, 120) + "..." : isiBerita;
+
+                    // Daftarkan data ke sistem pencatatan pop-up modal
+                    globalNewsData[newsId] = {
+                        title: judulBerita,
+                        date: tanggal,
+                        badge: "Kabar Makale",
+                        badgeColor: "bg-amber-700",
+                        image: fotoFinal,
+                        content: isiBerita.replace(/\n/g, '<br>') // Menjaga baris enter teks saat diketik di HP
+                    };
+
+                    // Render Komponen Kartu Grid
+                    const cardHtml = `
+                        <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
+                            <div>
+                                <div class="relative overflow-hidden h-52 bg-gray-100">
+                                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${fotoFinal}" alt="${judulBerita}" onerror="this.src='Plaza Kolam Makale.jpg';" />
+                                    <span class="absolute top-4 left-4 bg-amber-700 text-white font-semibold text-xs px-3 py-1 rounded-full shadow-sm">Kabar Makale</span>
+                                </div>
+                                <div class="p-5">
+                                    <div class="text-xs text-gray-400 mb-2"><i class="far fa-calendar-alt mr-1"></i> ${tanggal}</div>
+                                    <h3 class="font-bold text-gray-900 line-clamp-2 group-hover:text-amber-800 transition duration-200 text-base mb-3 min-h-[48px]">
+                                        ${judulBerita}
+                                    </h3>
+                                    <p class="text-gray-600 text-sm line-clamp-3 text-justify">
+                                        ${ringkasanTeks}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="px-5 pb-5 pt-2">
+                                <button onclick="openNewsModal('${newsId}')" class="w-full text-center bg-stone-50 hover:bg-amber-800 hover:text-white text-amber-900 font-medium text-sm py-2.5 px-4 rounded-xl border border-stone-200/60 transition-all duration-200">
+                                    Baca Selengkapnya
+                                </button>
+                            </div>
+                        </article>
+                    `;
+                    gridContainer.innerHTML += cardHtml;
+                });
+            }
+
+            // Fungsi Membuka Jendela Modal Pop-Up
             function openNewsModal(key) {
-                const data = newsData[key];
+                const data = globalNewsData[key];
                 if (!data) return;
 
                 document.getElementById('modalTitle').innerText = data.title;
                 document.getElementById('modalDate').innerHTML = `<i class="far fa-calendar-alt mr-1"></i> Ditulis pada: ` + data.date;
                 document.getElementById('modalBadge').innerText = data.badge;
-                
-                // Set warna kategori secara dinamis
-                const badgeElement = document.getElementById('modalBadge');
-                badgeElement.className = `text-white font-bold text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full ` + data.badgeColor;
-
+                document.getElementById('modalBadge').className = `text-white font-bold text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full ` + data.badgeColor;
                 document.getElementById('modalImage').src = data.image;
-                document.getElementById('modalImage').alt = data.title;
+                document.getElementById('modalImage').onerror = function() { this.src = 'Plaza Kolam Makale.jpg'; };
                 document.getElementById('modalBody').innerHTML = data.content;
 
-                // Tampilkan Modal
                 const modal = document.getElementById('newsModal');
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
-                document.body.style.overflow = 'hidden'; // Kunci scroll latar belakang
+                document.body.style.overflow = 'hidden';
             }
 
-            // Fungsi Menutup Modal
             function closeNewsModal() {
                 const modal = document.getElementById('newsModal');
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
-                document.body.style.overflow = 'auto'; // Aktifkan kembali scroll
+                document.body.style.overflow = 'auto';
             }
 
-            // Tutup modal jika area luar diklik
             window.onclick = function(event) {
                 const modal = document.getElementById('newsModal');
-                if (event.target == modal) {
-                    closeNewsModal();
-                }
+                if (event.target == modal) { closeNewsModal(); }
             }
+
+            document.addEventListener("DOMContentLoaded", loadNewsFromForm);
         </script>
-            </article>
-
-        </div>
-
-        </section>
-    </main>
-
-    <!-- REUSABLE FOOTER PLACEHOLDER -->
-    <div id="footer-placeholder"></div>
-
-    <script src="assets/js/main.js"></script>
 </body>
 </html>
