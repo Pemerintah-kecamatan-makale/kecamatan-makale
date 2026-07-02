@@ -10,159 +10,216 @@
 </head>
 <body class="bg-gray-50 flex flex-col min-h-screen">
 
-    <div id="header-placeholder"></div>
+    <header class="bg-amber-900 text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <img src="LOGO TATOR3.jpg" alt="Logo Tana Toraja" class="h-12 w-auto" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/b/b2/Lambang_Kabupaten_Tana_Toraja.png'">
+                <div>
+                    <h2 class="font-black tracking-wider text-lg uppercase">Portal Resmi</h2>
+                    <p class="text-xs text-amber-200/90 font-medium tracking-tight">Pemerintah Kecamatan Makale - Kabupaten Tana Toraja</p>
+                </div>
+            </div>
+            <nav class="flex gap-1 text-sm font-semibold">
+                <a href="index.html" class="px-3 py-2 rounded-lg hover:bg-amber-800 transition">Beranda</a>
+                <a href="profil.html" class="px-3 py-2 rounded-lg hover:bg-amber-800 transition">Profil</a>
+                <a href="layanan.html" class="px-3 py-2 rounded-lg hover:bg-amber-800 transition">Pelayanan</a>
+                <a href="berita.html" class="px-3 py-2 rounded-lg bg-amber-950 text-amber-300 shadow-inner">Berita</a>
+                <a href="galeri.html" class="px-3 py-2 rounded-lg hover:bg-amber-800 transition">Galeri</a>
+                <a href="kontak.html" class="px-3 py-2 rounded-lg hover:bg-amber-800 transition">Kontak</a>
+            </nav>
+        </div>
+    </header>
 
     <main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
         
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 border-b border-gray-200 pb-6">
             <div>
                 <h1 class="text-3xl font-black text-gray-900 tracking-tight">Kabar Makale</h1>
-                <p class="text-sm text-gray-500 mt-1">Informasi terpercaya seputar regulasi, pembangunan, dan pengumuman kecamatan.</p>
+                <p class="text-sm text-gray-500 mt-1">Informasi terpercaya seputar pembangunan, kegiatan masyarakat, dan pengumuman dinas resmi.</p>
             </div>
+            <a href="https://forms.gle/kYTRU8a5GgM4vYfz5" target="_blank" class="bg-amber-800 hover:bg-amber-900 text-white font-semibold text-xs py-2.5 px-4 rounded-xl shadow-sm transition flex items-center gap-2 self-start md:self-auto">
+                <i class="fas fa-plus-circle"></i> Tulis Kabar Baru
+            </a>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="col-span-full text-center py-12 text-gray-500">
-                <i class="fas fa-spinner fa-spin text-2xl mb-2 text-amber-800"></i>
-                <p>Memuat kabar terbaru dari Kecamatan Makale...</p>
+        <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="col-span-full text-center py-16 text-gray-400">
+                <i class="fas fa-circle-notch fa-spin text-3xl mb-3 text-amber-800"></i>
+                <p class="text-sm font-medium">Sinkronisasi data dengan sistem informasi desa/kecamatan...</p>
             </div>
         </div>
 
     </main>
 
-    <div id="newsModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-all duration-300">
+    <footer class="bg-stone-900 text-stone-400 text-xs py-6 mt-12 border-t border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2026 Pemerintah Kecamatan Makale. Hak Cipta Dilindungi Undang-Undang.</p>
+        </div>
+    </footer>
+
+    <div id="newsModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4 transition-all duration-300">
         <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-xl transform scale-95 transition-transform duration-300 flex flex-col">
             <div class="p-5 border-b border-gray-100 flex justify-between items-start sticky top-0 bg-white z-10">
                 <div class="pr-6">
-                    <span id="modalBadge" class="text-white font-bold text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full"></span>
-                    <h2 id="modalTitle" class="text-xl font-bold text-gray-900 mt-2"></h2>
-                    <p id="modalDate" class="text-xs text-gray-400 mt-1"></p>
+                    <span id="modalBadge" class="text-white font-bold text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-700">Kabar Makale</span>
+                    <h2 id="modalTitle" class="text-xl font-bold text-gray-900 mt-2 leading-snug"></h2>
+                    <p id="modalDate" class="text-xs text-gray-400 mt-1.5"></p>
                 </div>
-                <button onclick="closeNewsModal()" class="text-gray-500 hover:text-gray-800 hover:bg-gray-100 p-2.5 rounded-xl border border-gray-200/60 transition-all duration-200 flex items-center justify-center shrink-0 min-w-[40px] h-[40px]" title="Tutup">
-                    <span class="font-bold text-base">✕</span>
+                <button onclick="closeNewsModal()" class="text-gray-400 hover:text-gray-700 hover:bg-gray-100 p-2 rounded-xl transition-all duration-200 flex items-center justify-center h-9 w-9 border border-gray-100 shrink-0" title="Tutup">
+                    <span class="font-bold text-lg">✕</span>
                 </button>
             </div>
             <div class="p-6 overflow-y-auto">
-                <img id="modalImage" class="w-full h-64 object-cover rounded-xl shadow-sm mb-5" src="" alt="" />
-                <div id="modalBody" class="text-gray-700 text-sm leading-relaxed space-y-4 text-justify"></div>
+                <img id="modalImage" class="w-full h-64 object-cover rounded-xl shadow-sm mb-5 bg-stone-100" src="" alt="" />
+                <div id="modalBody" class="text-gray-700 text-sm leading-relaxed space-y-4 text-justify whitespace-pre-line"></div>
             </div>
         </div>
     </div>
 
-  <script>
-        // ID Spreadsheet Terintegrasi dari Link Anda
-        const SPREADSHEET_ID = '1lhslwSr1kKfvU19cwQ3CPNvDf0X-0xGTPuiLmxzX6zs'; 
+    <script>
+        // Menggunakan ID Google Sheets Anda yang Baru
+        const SPREADSHEET_ID = '1_GquxmeGxQMmD-FLULau2cyQV9taCppPG665O6qT9TY'; 
         const jsonUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
         
         let globalNewsData = {};
 
-        async function loadNewsFromForm() {
+        async function fetchLiveNewsData() {
             try {
                 const response = await fetch(jsonUrl);
                 const text = await response.text();
+                // Parsing format string kueri Google Visualization API menjadi JSON murni
                 const jsonData = JSON.parse(text.substring(47, text.length - 2));
                 const rows = jsonData.table.rows;
                 
-                const gridContainer = document.querySelector('.grid');
-                gridContainer.innerHTML = ''; // Bersihkan loading text
+                const gridContainer = document.getElementById('news-grid');
+                if (!gridContainer) return;
+                gridContainer.innerHTML = ''; // Bersihkan loading spinner
 
-                // Membalikkan baris agar berita paling baru di HP muncul paling atas di web
-                rows.reverse().forEach((row, index) => {
-                    // DISESUAIKAN DENGAN IMAGE_85B95E.PNG:
+                // Membalik urutan data agar baris pengisian terbaru di HP muncul di posisi paling atas halaman
+                let reverseRows = [...rows].reverse();
+                let dataCount = 0;
+
+                reverseRows.forEach((row, index) => {
+                    // Peta Kolom Google Sheets berdasarkan urutan input Google Form Anda:
                     const judulBerita = row.c[1]?.v || ''; // Kolom B: Judul
                     const rawFotoUrl = row.c[2]?.v || '';  // Kolom C: Upload Foto
                     const isiBerita = row.c[3]?.v || '';   // Kolom D: Isi Berita
-                    const timestamp = row.c[0]?.f || '';
-                    const tanggal = timestamp.split(' ')[0]; // Mengambil komponen tanggal saja
+                    
+                    const timestamp = row.c[0]?.f || row.c[0]?.v || '';
+                    const tanggal = timestamp ? timestamp.split(' ')[0] : 'Baru Saja';
 
-                    if (!judulBerita || !isiBerita) return; 
+                    // Pengaman filter: Lewati baris nama kolom header utama atau entri kosong
+                    if (!judulBerita || !isiBerita || judulBerita === "Judul") return;
+                    dataCount++;
 
-                    // KONVERSI LINK GOOGLE DRIVE AGAR TEMBUS LANGSUNG SEBAGAI GAMBAR WEB
-                    let fotoFinal = "Plaza Kolam Makale.jpg"; // Gambar cadangan jika eror
-                    if (rawFotoUrl.includes('id=')) {
+                    // Konversi Link Media Drive bawaan form agar bisa ditembus render tag img HTML
+                    let fotoFinal = "Plaza Kolam Makale.jpg"; 
+                    if (rawFotoUrl && rawFotoUrl.includes('id=')) {
                         const fileId = rawFotoUrl.split('id=')[1].split('&')[0];
                         fotoFinal = `https://drive.google.com/uc?export=view&id=${fileId}`;
-                    } else if (rawFotoUrl.includes('file/d/')) {
+                    } else if (rawFotoUrl && rawFotoUrl.includes('file/d/')) {
                         const fileId = rawFotoUrl.split('file/d/')[1].split('/')[0];
                         fotoFinal = `https://drive.google.com/uc?export=view&id=${fileId}`;
-                    } else if (rawFotoUrl.startsWith('http')) {
+                    } else if (rawFotoUrl && rawFotoUrl.startsWith('http')) {
                         fotoFinal = rawFotoUrl;
                     }
 
-                    const newsId = `berita_${index}`;
-                    const ringkasanTeks = isiBerita.length > 120 ? isiBerita.substring(0, 120) + "..." : isiBerita;
+                    const newsId = `berita_id_${index}`;
+                    const cuplikanTeks = isiBerita.length > 115 ? isiBerita.substring(0, 115) + "..." : isiBerita;
 
-                    // Daftarkan data lengkap untuk pop-up modal
+                    // Daftarkan data lengkap ke penyimpanan memori lokal sistem pop-up
                     globalNewsData[newsId] = {
                         title: judulBerita,
                         date: tanggal,
-                        badge: "Kabar Makale",
-                        badgeColor: "bg-amber-700",
                         image: fotoFinal,
-                        content: isiBerita.replace(/\n/g, '<br>') // Mengubah Enter ketikan HP menjadi paragraf HTML
+                        content: isiBerita
                     };
 
-                    // Cetak Kartu Berita ke Layout
-                    const cardHtml = `
-                        <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
+                    // Konstruksi Komponen Kartu Berita Modern
+                    const cardTemplate = `
+                        <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between group">
                             <div>
-                                <div class="relative overflow-hidden h-52 bg-gray-100">
+                                <div class="relative overflow-hidden h-52 bg-stone-100">
                                     <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${fotoFinal}" alt="${judulBerita}" onerror="this.src='Plaza Kolam Makale.jpg';" />
-                                    <span class="absolute top-4 left-4 bg-amber-700 text-white font-semibold text-xs px-3 py-1 rounded-full shadow-sm">Kabar Makale</span>
+                                    <span class="absolute top-4 left-4 bg-amber-700 text-white font-semibold text-[11px] px-3 py-1 rounded-full shadow-sm tracking-wide">Kabar Makale</span>
                                 </div>
                                 <div class="p-5">
-                                    <div class="text-xs text-gray-400 mb-2"><i class="far fa-calendar-alt mr-1"></i> ${tanggal}</div>
-                                    <h3 class="font-bold text-gray-900 line-clamp-2 group-hover:text-amber-800 transition duration-200 text-base mb-3 min-h-[48px]">
+                                    <div class="text-[11px] font-medium text-gray-400 mb-2 flex items-center gap-1.5">
+                                        <i class="far fa-calendar-alt"></i> ${tanggal}
+                                    </div>
+                                    <h3 class="font-bold text-gray-900 line-clamp-2 group-hover:text-amber-800 transition duration-200 text-base mb-2.5 min-h-[48px] leading-snug">
                                         ${judulBerita}
                                     </h3>
-                                    <p class="text-gray-600 text-sm line-clamp-3 text-justify">
-                                        ${ringkasanTeks}
+                                    <p class="text-gray-600 text-xs leading-relaxed line-clamp-3 text-justify">
+                                        ${cuplikanTeks}
                                     </p>
                                 </div>
                             </div>
                             <div class="px-5 pb-5 pt-2">
-                                <button onclick="openNewsModal('${newsId}')" class="w-full text-center bg-stone-50 hover:bg-amber-800 hover:text-white text-amber-900 font-medium text-sm py-2.5 px-4 rounded-xl border border-stone-200/60 transition-all duration-200">
+                                <button onclick="openNewsModal('${newsId}')" class="w-full text-center bg-stone-50 hover:bg-amber-800 hover:text-white text-amber-900 font-semibold text-xs py-2.5 px-4 rounded-xl border border-stone-200/70 transition-all duration-200 tracking-wide shadow-sm">
                                     Baca Selengkapnya
                                 </button>
                             </div>
                         </article>
                     `;
-                    gridContainer.innerHTML += cardHtml;
+                    gridContainer.innerHTML += cardTemplate;
                 });
+
+                // Tangani kasus jika dokumen respons spreadsheet terpublikasi kosong
+                if (dataCount === 0) {
+                    gridContainer.innerHTML = `
+                        <div class="col-span-full text-center py-16 text-gray-400 border-2 border-dashed border-stone-200 rounded-2xl bg-white">
+                            <i class="far fa-newspaper text-3xl mb-3 text-gray-300"></i>
+                            <p class="text-sm font-medium">Belum ada rilis berita terkini. Gunakan form admin untuk mempublikasikan kabar kecamatan pertama Anda.</p>
+                        </div>`;
+                }
+
+            } catch (err) {
+                console.error("Sistem gagal menarik repositori API data: ", err);
+                const gridContainer = document.getElementById('news-grid');
+                if (gridContainer) {
+                    gridContainer.innerHTML = `
+                        <div class="col-span-full text-center py-12 text-red-700 bg-red-50 rounded-2xl border border-red-100 p-4">
+                            <i class="fas fa-exclamation-triangle text-xl mb-2"></i>
+                            <p class="text-sm font-semibold">Gagal memuat basis data berita secara otomatis. Pastikan dokumen Google Sheets baru Anda telah disetel ke "Publikasikan di Web" (Publish to Web).</p>
+                        </div>`;
+                }
             }
+        }
 
-            // Pengendali Modal Pop-Up
-            function openNewsModal(key) {
-                const data = globalNewsData[key];
-                if (!data) return;
+        // Kontrol Buka Jendela Modal Detail Berita
+        function openNewsModal(key) {
+            const data = globalNewsData[key];
+            if (!data) return;
 
-                document.getElementById('modalTitle').innerText = data.title;
-                document.getElementById('modalDate').innerHTML = `<i class="far fa-calendar-alt mr-1"></i> Ditulis pada: ` + data.date;
-                document.getElementById('modalBadge').innerText = data.badge;
-                document.getElementById('modalBadge').className = `text-white font-bold text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full ` + data.badgeColor;
-                document.getElementById('modalImage').src = data.image;
-                document.getElementById('modalImage').onerror = function() { this.src = 'Plaza Kolam Makale.jpg'; };
-                document.getElementById('modalBody').innerHTML = data.content;
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalDate').innerHTML = `<i class="far fa-calendar-alt mr-1"></i> Publikasi Resmi: ` + data.date;
+            document.getElementById('modalImage').src = data.image;
+            document.getElementById('modalImage').onerror = function() { this.src = 'Plaza Kolam Makale.jpg'; };
+            document.getElementById('modalBody').innerText = data.content;
 
-                const modal = document.getElementById('newsModal');
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
-                document.body.style.overflow = 'hidden';
-            }
+            const modal = document.getElementById('newsModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; // Mengunci scroll latar belakang web
+        }
 
-            function closeNewsModal() {
-                const modal = document.getElementById('newsModal');
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-                document.body.style.overflow = 'auto';
-            }
+        // Kontrol Tutup Jendela Modal
+        function closeNewsModal() {
+            const modal = document.getElementById('newsModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto'; // Mengembalikan scroll normal web
+        }
 
-            window.onclick = function(event) {
-                const modal = document.getElementById('newsModal');
-                if (event.target == modal) { closeNewsModal(); }
-            }
+        // Menutup modal otomatis jika area hitam di luar kotak modal di-klik
+        window.onclick = function(event) {
+            const modal = document.getElementById('newsModal');
+            if (event.target == modal) { closeNewsModal(); }
+        }
 
-            document.addEventListener("DOMContentLoaded", loadNewsFromForm);
+        // Menjalankan kueri penarikan data sesaat setelah dokumen DOM HTML web termuat sempurna
+        document.addEventListener("DOMContentLoaded", fetchLiveNewsData);
     </script>
 </body>
 </html>
