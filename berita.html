@@ -134,15 +134,16 @@
         <!-- ==================== STRUCTURE CONTAINER MODAL (POP-UP) ==================== -->
         <div id="newsModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-all duration-300">
             <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-xl transform scale-95 transition-transform duration-300 flex flex-col">
-                <!-- Header Modal -->
+               <!-- Header Modal -->
                 <div class="p-5 border-b border-gray-100 flex justify-between items-start sticky top-0 bg-white z-10">
-                    <div>
+                    <div class="pr-6">
                         <span id="modalBadge" class="text-white font-bold text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full"></span>
                         <h2 id="modalTitle" class="text-xl font-bold text-gray-900 mt-2"></h2>
                         <p id="modalDate" class="text-xs text-gray-400 mt-1"></p>
                     </div>
-                    <button onclick="closeNewsModal()" class="text-gray-400 hover:text-gray-700 bg-gray-50 hover:bg-gray-100 p-2 rounded-lg transition">
-                        <i class="fas fa-times text-lg"></i>
+                    <!-- Tombol Close yang Diperbaiki (Lebih Kontras & Jelas) -->
+                    <button onclick="closeNewsModal()" class="text-gray-500 hover:text-gray-800 hover:bg-gray-100 p-2.5 rounded-xl border border-gray-200/60 transition-all duration-200 flex items-center justify-center shrink-0 min-w-[40px] h-[40px]" title="Tutup">
+                        <span class="font-bold text-base">✕</span>
                     </button>
                 </div>
                 <!-- Isi Konten Modal -->
