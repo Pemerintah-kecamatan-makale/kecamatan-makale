@@ -54,16 +54,42 @@
         </div>
     </div>
 
+    <div id="footer-placeholder"></div>
+
     <script>
+        // ==================== CORE 1: MEMANGGIL HEADER & FOOTER secara Komponen ====================
+        function loadComponents() {
+            // Memanggil file header.html dari root
+            fetch('components/header.html')
+                .then(response => {
+                    if (!response.ok) throw new Error("File header.html tidak ditemukan");
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                })
+                .catch(err => console.error("Gagal memuat header:", err));
+
+            // Memanggil file footer.html dari root
+            fetch('components/footer.html')
+                .then(response => {
+                    if (!response.ok) throw new Error("File footer.html tidak ditemukan");
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                })
+                .catch(err => console.error("Gagal memuat footer:", err));
+        }
+
+        // ==================== CORE 2: SISTEM ENGINE GENERATOR BERITA REAL-TIME ====================
         const SPREADSHEET_ID = '1_GquxmeGxQMmD-FLULau2cyQV9taCppPG665O6qT9TY'; 
         const jsonUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
         
         let globalNewsData = {};
 
-        // Fungsi pengekstrak ID Google Drive yang fleksibel menggunakan Regular Expression
         function extractDriveId(url) {
             if (!url) return null;
-            // Menangkap deretan karakter unik ID Google Drive (25 sampai 40 karakter)
             const match = url.match(/(?:id=|\/d\/)([a-zA-Z0-9-_]{25,40})/);
             return match ? match[1] : null;
         }
@@ -77,9 +103,7 @@
                 const startIdx = text.indexOf('{');
                 const endIdx = text.lastIndexOf('}');
                 
-                if (startIdx === -1 || endIdx === -1) {
-                    throw new Error("Format respon data tidak valid.");
-                }
+                if (startIdx === -1 || endIdx === -1) throw new Error("Format data tidak valid.");
                 
                 const jsonRaw = text.substring(startIdx, endIdx + 1);
                 const jsonData = JSON.parse(jsonRaw);
@@ -103,13 +127,11 @@
                     if (!judulBerita || !isiBerita || judulBerita === "Judul") return;
                     dataCount++;
 
-                    // Konversi Link secara Aman Menggunakan Fungsi Ekstraktor
                     let fotoFinal = "Plaza Kolam Makale.jpg"; 
                     const driveId = extractDriveId(rawFotoUrl);
                     
-                    // ⬇️ SATU-SATUNYA YANG DIUBAH — ganti uc?export=view jadi thumbnail ⬇️
                     if (driveId) {
-                        fotoFinal = `https://drive.google.com/thumbnail?id=${driveId}&sz=w800`;
+                        fotoFinal = `https://drive.google.com/uc?export=view&id=${driveId}`;
                     } else if (rawFotoUrl && rawFotoUrl.startsWith('http')) {
                         fotoFinal = rawFotoUrl;
                     }
@@ -163,11 +185,7 @@
 
             } catch (err) {
                 console.error("Gagal menarik data: ", err);
-                gridContainer.innerHTML = `
-                    <div class="col-span-full text-center py-16 text-red-500 border-2 border-dashed border-red-200 rounded-2xl bg-red-50">
-                        <i class="fas fa-exclamation-triangle text-3xl mb-3"></i>
-                        <p class="text-sm font-semibold">Gagal memuat berita secara real-time.</p>
-                    </div>`;
+                gridContainer.innerHTML = `<div class="col-span-full text-center py-16 text-red-500">Gagal memuat berita secara real-time.</div>`;
             }
         }
 
@@ -208,7 +226,11 @@
             if (event.target == modal) { closeNewsModal(); }
         }
 
-        document.addEventListener("DOMContentLoaded", fetchLiveNewsData);
+        // MENJALANKAN KEDUA FUNGSI SAAT HALAMAN DI-LOAD
+        document.addEventListener("DOMContentLoaded", () => {
+            loadComponents();      // Memanggil Header dan Footer
+            fetchLiveNewsData();   // Memanggil Berita Real-time
+        });
     </script>
 </body>
 </html>
