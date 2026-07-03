@@ -107,8 +107,9 @@
                     let fotoFinal = "Plaza Kolam Makale.jpg"; 
                     const driveId = extractDriveId(rawFotoUrl);
                     
+                    // ⬇️ SATU-SATUNYA YANG DIUBAH — ganti uc?export=view jadi thumbnail ⬇️
                     if (driveId) {
-                        fotoFinal = `https://drive.google.com/uc?export=view&id=${driveId}`;
+                        fotoFinal = `https://drive.google.com/thumbnail?id=${driveId}&sz=w800`;
                     } else if (rawFotoUrl && rawFotoUrl.startsWith('http')) {
                         fotoFinal = rawFotoUrl;
                     }
