@@ -10,7 +10,7 @@
 </head>
 <body class="bg-gray-50 flex flex-col min-h-screen">
 
-    <div id="header-placeholder"></div>
+    <div id="header-placeholder" class="w-full"></div>
 
     <main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
         
@@ -54,35 +54,37 @@
         </div>
     </div>
 
-    <div id="footer-placeholder"></div>
+    <div id="footer-placeholder" class="w-full"></div>
 
     <script>
-        // ==================== CORE 1: MEMANGGIL HEADER & FOOTER secara Komponen ====================
+        // ==================== ENGINE 1: PEMANGGIL HEADER & FOOTER (Jalur Diperbaiki) ====================
         function loadComponents() {
-            // Memanggil file header.html dari root
-            fetch('components/header.html')
+            // Memanggil Header dari assets/components/
+            fetch('assets/components/header.html')
                 .then(response => {
-                    if (!response.ok) throw new Error("File header.html tidak ditemukan");
-                    return response.text();
+                    if (!response.ok) return fetch('/assets/components/header.html');
+                    return response;
                 })
+                .then(response => response.text())
                 .then(data => {
                     document.getElementById('header-placeholder').innerHTML = data;
                 })
-                .catch(err => console.error("Gagal memuat header:", err));
+                .catch(err => console.error("Gagal memuat komponen header:", err));
 
-            // Memanggil file footer.html dari root
-            fetch('components/footer.html')
+            // Memanggil Footer dari assets/components/
+            fetch('assets/components/footer.html')
                 .then(response => {
-                    if (!response.ok) throw new Error("File footer.html tidak ditemukan");
-                    return response.text();
+                    if (!response.ok) return fetch('/assets/components/footer.html');
+                    return response;
                 })
+                .then(response => response.text())
                 .then(data => {
                     document.getElementById('footer-placeholder').innerHTML = data;
                 })
-                .catch(err => console.error("Gagal memuat footer:", err));
+                .catch(err => console.error("Gagal memuat komponen footer:", err));
         }
 
-        // ==================== CORE 2: SISTEM ENGINE GENERATOR BERITA REAL-TIME ====================
+        // ==================== ENGINE 2: SISTEM ENGINE GENERATOR BERITA REAL-TIME ====================
         const SPREADSHEET_ID = '1_GquxmeGxQMmD-FLULau2cyQV9taCppPG665O6qT9TY'; 
         const jsonUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
         
