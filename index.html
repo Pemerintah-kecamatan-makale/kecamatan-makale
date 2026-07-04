@@ -11,6 +11,7 @@
 </head>
 <body class="bg-gray-50 flex flex-col min-h-screen">
 
+    <!-- ==================== MODAL MAKLUMAT PELAYANAN ==================== -->
     <div id="maklumatModal" style="position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 16px; background-color: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); opacity: 1; transition: opacity 0.3s ease;">
         
         <div style="position: relative; background: white; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); max-width: 512px; width: 100%; max-height: 85vh; overflow-y: auto; border: 4px solid #f59e0b; display: flex; flex-direction: column;">
@@ -157,8 +158,8 @@
 
         // ==================== ENGINE REAL-TIME BERITA BERANDA (3 DATA) ====================
         async function fetchBeritaBeranda() {
-            // SPREADSHEET_ID BERHASIL DISAMAKAN DENGAN BERITA.HTML (HURUF Q BESAR)
-            const SPREADSHEET_ID = '1_GquxmeGxQMmD-FLULau2cyQV9taCppPG665O6qT9TY'; 
+            // BERHASIL DIPERBARUI: MENGGUNAKAN ID SPREADSHEET BARU YANG BERSIH
+            const SPREADSHEET_ID = '1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ'; 
             const sheetUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=Form+Responses+1`;
             const container = document.getElementById('berita-container');
 
@@ -190,7 +191,7 @@
                     let fotoFinal = "Plaza Kolam Makale.jpg";
                     const driveId = extractDriveId(rawFotoUrl);
                     if (driveId) {
-                        fotoFinal = `https://lh3.googleusercontent.com/d/$${driveId}`;
+                        fotoFinal = `https://lh3.googleusercontent.com/d/${driveId}`;
                     } else if (rawFotoUrl && rawFotoUrl.startsWith('http')) {
                         fotoFinal = rawFotoUrl;
                     }
