@@ -81,19 +81,19 @@
 
     <div id="header-placeholder"></div>
 
-   <section class="relative text-white py-24 px-4 overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('assets/images/Plaza Kolam Makale.jpg');">
+    <section class="relative text-white py-24 px-4 overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('assets/images/Plaza Kolam Makale.jpg');">
         <div class="absolute inset-0 bg-black opacity-50 z-0"></div>
         <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:16px_16px] z-10"></div>
         <div class="max-w-4xl mx-auto text-center relative z-20">
             
             <div class="inline-flex flex-col items-center mb-6 max-w-xs sm:max-w-sm">
-    <span class="bg-red-800 text-amber-300 text-base font-black tracking-widest px-6 py-2 rounded-t-full border-t-2 border-x-2 border-amber-500 text-center w-full shadow-sm">
-        MASERO
-    </span>
-    <span class="bg-red-900 text-amber-300 text-sm font-bold tracking-widest px-6 py-2 rounded-b-full border-b-2 border-x-2 border-amber-600/50 text-center whitespace-nowrap shadow-sm">
-        TANGNGA' - PAINAAN - TIKULAO
-    </span>
-</div>
+                <span class="bg-red-800 text-amber-300 text-base font-black tracking-widest px-6 py-2 rounded-t-full border-t-2 border-x-2 border-amber-500 text-center w-full shadow-sm">
+                    MASERO
+                </span>
+                <span class="bg-red-900 text-amber-300 text-sm font-bold tracking-widest px-6 py-2 rounded-b-full border-b-2 border-x-2 border-amber-600/50 text-center whitespace-nowrap shadow-sm">
+                    TANGNGA' - PAINAAN - TIKULAO
+                </span>
+            </div>
 
             <h2 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight drop-shadow-lg">
                 Selamat Datang di Portal Resmi<br>Kecamatan Makale
@@ -119,6 +119,7 @@
     <script src="assets/js/main.js"></script>
 
     <script>
+        // ENGINE MODAL MAKLUMAT CONTROL
         window.addEventListener('load', function() {
             const modal = document.getElementById('maklumatModal');
             const sudahMelihatMaklumat = localStorage.getItem('maklumatTelahDitutup');
@@ -147,68 +148,98 @@
             }
         }
 
-        // KODE SCRIPT UNTUK MENARIK DATA GOOGLE SHEETS KE BERANDA (3 BERITA TERBARU)
+        // ENGINE PARSING DRIVE ID FOTO
+        function extractDriveId(url) {
+            if (!url) return null;
+            const match = url.match(/(?:id=|\/d\/)([a-zA-Z0-9-_]{25,40})/);
+            return match ? match[1] : null;
+        }
+
+        // ==================== ENGINE REAL-TIME BERITA BERANDA (3 DATA) ====================
         async function fetchBeritaBeranda() {
-            // URL Sheet News Generator Anda menuju tab 'Form Responses 1'
-            const sheetUrl = 'https://docs.google.com/spreadsheets/d/1_GquxmeGxQMmD-FLULau2cyQV9taCppPG665O6qt9TY/gviz/tq?tqx=out:json&sheet=Form+Responses+1';
+            // SPREADSHEET_ID BERHASIL DISAMAKAN DENGAN BERITA.HTML (HURUF Q BESAR)
+            const SPREADSHEET_ID = '1_GquxmeGxQMmD-FLULau2cyQV9taCppPG665O6qT9TY'; 
+            const sheetUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=Form+Responses+1`;
             const container = document.getElementById('berita-container');
 
             try {
                 const response = await fetch(sheetUrl);
                 const text = await response.text();
                 
-                // Bersihkan text response JSON Google
-                const jsonData = JSON.parse(text.substring(47, text.length - 2));
+                const startIdx = text.indexOf('{');
+                const endIdx = text.lastIndexOf('}');
+                if (startIdx === -1 || endIdx === -1) throw new Error("Format data tidak valid.");
+                
+                const jsonRaw = text.substring(startIdx, endIdx + 1);
+                const jsonData = JSON.parse(jsonRaw);
                 const rows = jsonData.table.rows;
 
-                // Konversi data rows spreadsheet ke array object bersih
-                let daftarBerita = rows.map(row => {
-                    return {
-                        timestamp: row.c[0] ? row.c[0].f || row.c[0].v : '',
-                        judul: row.c[1] ? row.c[1].v : 'Tanpa Judul',
-                        isi: row.c[2] ? row.c[2].v : '',
-                        foto: row.c[3] ? row.c[3].v : '',
-                        identitas: row.c[4] ? row.c[4].v : ''
-                    };
+                let daftarBerita = [];
+                rows.forEach(row => {
+                    if (!row || !row.c) return;
+
+                    const judulBerita = row.c[1] ? row.c[1].v : '';
+                    const isiBerita = row.c[2] ? row.c[2].v : '';
+                    const rawFotoUrl = row.c[3] ? row.c[3].v : '';
+                    const timestamp = row.c[0] ? row.c[0].f || row.c[0].v : '';
+                    const tanggal = timestamp ? timestamp.split(' ')[0] : 'Baru Saja';
+
+                    if (!judulBerita || !isiBerita || judulBerita === "Judul") return;
+
+                    // Menggunakan Googleusercontent Engine agar gambar terproses dengan aman
+                    let fotoFinal = "Plaza Kolam Makale.jpg";
+                    const driveId = extractDriveId(rawFotoUrl);
+                    if (driveId) {
+                        fotoFinal = `https://lh3.googleusercontent.com/d/$${driveId}`;
+                    } else if (rawFotoUrl && rawFotoUrl.startsWith('http')) {
+                        fotoFinal = rawFotoUrl;
+                    }
+
+                    daftarBerita.push({
+                        tanggal: tanggal,
+                        judul: judulBerita,
+                        isi: isiBerita,
+                        foto: fotoFinal
+                    });
                 });
 
-                // Membalik urutan agar yang di-upload terakhir berada paling atas/awal
+                // Membalik urutan agar berita teranyar muncul paling atas
                 daftarBerita.reverse();
 
-                // Batasi hanya mengambil 3 berita teratas untuk halaman Beranda
+                // Membatasi hanya memuat 3 berita terbaru di beranda
                 const tigaBeritaTerbaru = daftarBerita.slice(0, 3);
 
                 if (tigaBeritaTerbaru.length === 0) {
-                    container.innerHTML = '<div class="col-span-full text-center text-gray-500 py-8">Belum ada berita yang tersedia.</div>';
+                    container.innerHTML = `
+                        <div class="col-span-full text-center text-gray-400 py-8 border-2 border-dashed border-gray-200 rounded-xl bg-white">
+                            <p class="text-sm font-medium">Belum ada berita terbaru yang tersedia.</p>
+                        </div>`;
                     return;
                 }
 
-                container.innerHTML = ''; // Bersihkan loader teks
+                container.innerHTML = ''; // Bersihkan loading state
 
                 tigaBeritaTerbaru.forEach(berita => {
-                    // Normalisasi link gambar jika masih memakai link pratinjau 'open?id='
-                    let srcFoto = berita.foto;
-                    if (srcFoto.includes('open?id=')) {
-                        srcFoto = srcFoto.replace('open?id=', 'uc?export=view&id=');
-                    }
+                    const cuplikanTeks = berita.isi.length > 115 ? berita.isi.substring(0, 115) + "..." : berita.isi;
 
                     const articleHTML = `
-                        <article class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col hover:shadow-lg transition-shadow duration-300">
+                        <article class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col hover:shadow-lg transition-all duration-300 group">
                             <div class="relative h-48 w-full bg-gray-200 overflow-hidden">
-                                ${srcFoto ? 
-                                    `<img src="${srcFoto}" alt="${berita.judul}" class="w-full h-full object-cover">` : 
-                                    `<div class="w-full h-full bg-red-900/10 flex items-center justify-center text-gray-400">Tidak ada foto</div>`
-                                }
-                                <span class="absolute top-3 left-3 bg-red-800 text-amber-300 text-xs font-bold px-2.5 py-1 rounded">Kegiatan</span>
+                                <img src="${berita.foto}" alt="${berita.judul}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='Plaza Kolam Makale.jpg';">
+                                <span class="absolute top-3 left-3 bg-red-800 text-amber-300 text-xs font-bold px-2.5 py-1 rounded">Kabar Makale</span>
                             </div>
                             <div class="p-5 flex flex-col flex-grow">
-                                <div class="flex items-center text-xs text-gray-500 mb-2"><span>${berita.timestamp.split(' ')[0]}</span></div>
-                                <h3 class="text-lg font-bold text-gray-800 leading-snug mb-2 line-clamp-2">
-                                    <a href="berita.html" class="hover:text-red-800">${berita.judul}</a>
+                                <div class="flex items-center text-xs text-gray-400 mb-2">
+                                    <i class="far fa-calendar-alt mr-1.5"></i> <span>${berita.tanggal}</span>
+                                </div>
+                                <h3 class="text-base font-bold text-gray-900 leading-snug mb-2 line-clamp-2 group-hover:text-amber-800 transition duration-200 min-h-[44px]">
+                                    <a href="berita.html">${berita.judul}</a>
                                 </h3>
-                                <p class="text-sm text-gray-600 mb-5 line-clamp-3 flex-grow">${berita.isi}</p>
+                                <p class="text-xs text-gray-600 mb-5 line-clamp-3 flex-grow text-justify leading-relaxed">${cuplikanTeks}</p>
                                 <div class="pt-4 border-t border-gray-100 mt-auto">
-                                    <a href="berita.html" class="inline-flex items-center text-sm font-semibold text-red-800 hover:text-red-950">Baca Selengkapnya</a>
+                                    <a href="berita.html" class="inline-flex items-center text-xs font-bold text-red-800 hover:text-red-950">
+                                        Baca Selengkapnya &rarr;
+                                    </a>
                                 </div>
                             </div>
                         </article>
@@ -218,11 +249,11 @@
 
             } catch (error) {
                 console.error("Gagal mengambil data berita:", error);
-                container.innerHTML = '<div class="col-span-full text-center text-red-600 py-8">Gagal memuat berita terbaru.</div>';
+                container.innerHTML = '<div class="col-span-full text-center text-red-600 py-8 font-medium">Gagal memuat berita terbaru.</div>';
             }
         }
 
-        // Jalankan fungsi ketika halaman dimuat
+        // Jalankan sistem beranda saat DOM siap
         document.addEventListener('DOMContentLoaded', fetchBeritaBeranda);
     </script>
 </body>
