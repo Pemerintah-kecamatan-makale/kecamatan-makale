@@ -157,76 +157,80 @@
         }
 
 // ==================== ENGINE REAL-TIME BERITA BERANDA (DENGAN LAYOUT SEJAJAR & TOMBOL KE HALAMAN KONTAK) ====================
-        async function fetchBeritaBeranda() {
-            const SPREADSHEET_ID = '1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ'; 
-            const sheetUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=Form+Responses+1`;
-            const container = document.getElementById('berita-container');
+async function fetchBeritaBeranda() {
+  const SPREADSHEET_ID = '1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ';
+  const sheetUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=Form+Responses+1`;
+  const container = document.getElementById('berita-container');
 
-            try {
-                const response = await fetch(sheetUrl);
-                const text = await response.text();
-                
-                const startIdx = text.indexOf('{');
-                const endIdx = text.lastIndexOf('}');
-                if (startIdx === -1 || endIdx === -1) throw new Error("Format data tidak valid.");
-                
-                const jsonRaw = text.substring(startIdx, endIdx + 1);
-                const jsonData = JSON.parse(jsonRaw);
-                const rows = jsonData.table.rows;
+  try {
+    const response = await fetch(sheetUrl);
+    const text = await response.text();
 
-                let daftarBerita = [];
-                rows.forEach(row => {
-                    if (!row || !row.c) return;
+    const startIdx = text.indexOf('{');
+    const endIdx = text.lastIndexOf('}');
+    if (startIdx === -1 || endIdx === -1) throw new Error("Format data tidak valid.");
 
-                    const judulBerita = row.c[1] ? row.c[1].v : '';
-                    const isiBerita = row.c[2] ? row.c[2].v : '';
-                    const rawFotoUrl = row.c[3] ? row.c[3].v : '';
-                    const timestamp = row.c[0] ? row.c[0].f || row.c[0].v : '';
-                    const tanggal = timestamp ? timestamp.split(' ')[0] : 'Baru Saja';
+    const jsonRaw = text.substring(startIdx, endIdx + 1);
+    const jsonData = JSON.parse(jsonRaw);
+    const rows = jsonData.table.rows;
 
-                    if (!judulBerita || !isiBerita || judulBerita === "Judul") return;
+    let daftarBerita = [];
+    rows.forEach(row => {
+      if (!row || !row.c) return;
 
-                    let fotoFinal = "Plaza Kolam Makale.jpg";
-                    const driveId = extractDriveId(rawFotoUrl);
-                    if (driveId) {
-                        fotoFinal = `https://lh3.googleusercontent.com/d/${driveId}`;
-                    } else if (rawFotoUrl && rawFotoUrl.startsWith('http')) {
-                        fotoFinal = rawFotoUrl;
-                    }
+      const judulBerita = row.c[1] ? row.c[1].v : '';
+      const isiBerita = row.c[2] ? row.c[2].v : '';
+      const rawFotoUrl = row.c[3] ? row.c[3].v : '';
+      const timestamp = row.c[0] ? row.c[0].f || row.c[0].v : '';
+      const tanggal = timestamp ? timestamp.split(' ')[0] : 'Baru Saja';
 
-                    daftarBerita.push({
-                        tanggal: tanggal,
-                        judul: judulBerita,
-                        isi: isiBerita,
-                        foto: fotoFinal
-                    });
-                });
+      if (!judulBerita || !isiBerita || judulBerita === "Judul") return;
 
-                daftarBerita.reverse();
-                const beritaTerbaru = daftarBerita.slice(0, 1);
+      let fotoFinal = "Plaza Kolam Makale.jpg";
+      const driveId = extractDriveId(rawFotoUrl);
+      if (driveId) {
+        fotoFinal = `https://lh3.googleusercontent.com/d/${driveId}`;
+      } else if (rawFotoUrl && rawFotoUrl.startsWith('http')) {
+        fotoFinal = rawFotoUrl;
+      }
 
-                if (beritaTerbaru.length === 0) {
-                    container.innerHTML = `
+      daftarBerita.push({
+        tanggal: tanggal,
+        judul: judulBerita,
+        isi: isiBerita,
+        foto: fotoFinal
+      });
+    });
+
+    daftarBerita.reverse();
+    const beritaTerbaru = daftarBerita.slice(0, 1);
+
+    if (beritaTerbaru.length === 0) {
+      container.innerHTML = `
                         <div class="col-span-full text-center text-gray-400 py-8 border-2 border-dashed border-gray-200 rounded-xl bg-white">
                             <p class="text-sm font-medium">Belum ada berita terbaru yang tersedia.</p>
                         </div>`;
-                    return;
-                }
+      return;
+    }
 
-                container.className = "grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch w-full mt-6";
-                container.innerHTML = ''; 
+    container.className = "grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch w-full mt-6";
+    container.innerHTML = '';
 
-                beritaTerbaru.forEach(berita => {
-                    const cuplikanTeks = berita.isi.length > 160 ? berita.isi.substring(0, 160) + "..." : berita.isi;
+    beritaTerbaru.forEach(berita => {
+      const cuplikanTeks = berita.isi.length > 160 ? berita.isi.substring(0, 160) + "..." : berita.isi;
 
-                    const layoutHTML = `
+      const layoutHTML = `
                         <div class="flex justify-center md:justify-end w-full h-full">
                             <article class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col hover:shadow-lg transition-all duration-300 group max-w-xl w-full">
-                                <div class="relative h-64 w-full bg-gray-200 overflow-hidden">
+                                <div class="h-64 w-full bg-gray-200 overflow-hidden">
                                     <img src="${berita.foto}" alt="${berita.judul}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='Plaza Kolam Makale.jpg';">
-                                    <span class="absolute top-3 left-3 bg-red-800 text-amber-300 text-xs font-bold px-2.5 py-1 rounded">Kabar Makale Terbaru</span>
                                 </div>
+                                
                                 <div class="p-6 flex flex-col flex-grow">
+                                    <div class="mb-3">
+                                        <span class="inline-block bg-red-800 text-amber-300 text-xs font-bold px-2.5 py-1 rounded">Kabar Makale Terbaru</span>
+                                    </div>
+                                    
                                     <div class="flex items-center text-xs text-gray-400 mb-2">
                                         <i class="far fa-calendar-alt mr-1.5"></i> <span>${berita.tanggal}</span>
                                     </div>
@@ -255,26 +259,25 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Cari bagian ini di dalam tag <script> Anda, lalu pastikan href-nya sudah seperti ini -->
-<div class="w-full mt-4 pt-4 border-t border-gray-100 flex flex-col items-center gap-2">
-    <a href="https://pemerintah-kecamatan-makale.github.io/kecamatan-makale/kontak.html" class="w-full bg-red-800 hover:bg-red-900 text-white font-bold py-2.5 px-4 rounded-lg text-sm flex items-center justify-center gap-2 transition-colors duration-200 shadow-sm">
-        <i class="fas fa-edit text-xs text-amber-300"></i> Isi Form Pengaduan Warga
-    </a>
-    <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">
-        <i class="fas fa-mobile-alt mr-1"></i> Respons Cepat Kecamatan Makale
-    </p>
-</div>
+                                <div class="w-full mt-4 pt-4 border-t border-gray-100 flex flex-col items-center gap-2">
+                                    <a href="https://pemerintah-kecamatan-makale.github.io/kecamatan-makale/kontak.html" class="w-full bg-red-800 hover:bg-red-900 text-white font-bold py-2.5 px-4 rounded-lg text-sm flex items-center justify-center gap-2 transition-colors duration-200 shadow-sm">
+                                        <i class="fas fa-edit text-xs text-amber-300"></i> Isi Form Pengaduan Warga
+                                    </a>
+                                    <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">
+                                        <i class="fas fa-mobile-alt mr-1"></i> Respons Cepat Kecamatan Makale
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     `;
-                    container.innerHTML = layoutHTML;
-                });
+      container.innerHTML = layoutHTML;
+    });
 
-            } catch (error) {
-                console.error("Gagal mengambil data berita:", error);
-                container.innerHTML = '<div class="col-span-full text-center text-red-600 py-8 font-medium">Gagal memuat berita terbaru.</div>';
-            }
-        }
+  } catch (error) {
+    console.error("Gagal mengambil data berita:", error);
+    container.innerHTML = '<div class="col-span-full text-center text-red-600 py-8 font-medium">Gagal memuat berita terbaru.</div>';
+  }
+}
 
         document.addEventListener('DOMContentLoaded', fetchBeritaBeranda);
     </script>
