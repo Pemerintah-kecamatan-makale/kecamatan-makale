@@ -156,9 +156,8 @@
             return match ? match[1] : null;
         }
 
-        // ==================== ENGINE REAL-TIME BERITA BERANDA (3 DATA) ====================
+// ==================== ENGINE REAL-TIME BERITA BERANDA (HANYA 1 BERITA TERBARU) ====================
         async function fetchBeritaBeranda() {
-            // BERHASIL DIPERBARUI: MENGGUNAKAN ID SPREADSHEET BARU YANG BERSIH
             const SPREADSHEET_ID = '1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ'; 
             const sheetUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=Form+Responses+1`;
             const container = document.getElementById('berita-container');
@@ -187,7 +186,6 @@
 
                     if (!judulBerita || !isiBerita || judulBerita === "Judul") return;
 
-                    // Menggunakan Googleusercontent Engine agar gambar terproses dengan aman
                     let fotoFinal = "Plaza Kolam Makale.jpg";
                     const driveId = extractDriveId(rawFotoUrl);
                     if (driveId) {
@@ -207,10 +205,10 @@
                 // Membalik urutan agar berita teranyar muncul paling atas
                 daftarBerita.reverse();
 
-                // Membatasi hanya memuat 3 berita terbaru di beranda
-                const tigaBeritaTerbaru = daftarBerita.slice(0, 3);
+                // SEKARANG HANYA MENGAMBIL 1 BERITA TERAKHIR DI BERANDA
+                const beritaTerbaru = daftarBerita.slice(0, 1);
 
-                if (tigaBeritaTerbaru.length === 0) {
+                if (beritaTerbaru.length === 0) {
                     container.innerHTML = `
                         <div class="col-span-full text-center text-gray-400 py-8 border-2 border-dashed border-gray-200 rounded-xl bg-white">
                             <p class="text-sm font-medium">Belum ada berita terbaru yang tersedia.</p>
@@ -218,34 +216,36 @@
                     return;
                 }
 
-                container.innerHTML = ''; // Bersihkan loading state
+                container.innerHTML = ''; 
+                // Mengubah susunan container luar agar jika hanya 1 berita, posisinya rapi di tengah
+                container.className = "flex justify-center w-full";
 
-                tigaBeritaTerbaru.forEach(berita => {
-                    const cuplikanTeks = berita.isi.length > 115 ? berita.isi.substring(0, 115) + "..." : berita.isi;
+                beritaTerbaru.forEach(berita => {
+                    const cuplikanTeks = berita.isi.length > 150 ? berita.isi.substring(0, 150) + "..." : berita.isi;
 
                     const articleHTML = `
-                        <article class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col hover:shadow-lg transition-all duration-300 group">
-                            <div class="relative h-48 w-full bg-gray-200 overflow-hidden">
+                        <article class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col hover:shadow-lg transition-all duration-300 group max-w-md w-full">
+                            <div class="relative h-56 w-full bg-gray-200 overflow-hidden">
                                 <img src="${berita.foto}" alt="${berita.judul}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='Plaza Kolam Makale.jpg';">
-                                <span class="absolute top-3 left-3 bg-red-800 text-amber-300 text-xs font-bold px-2.5 py-1 rounded">Kabar Makale</span>
+                                <span class="absolute top-3 left-3 bg-red-800 text-amber-300 text-xs font-bold px-2.5 py-1 rounded">Kabar Makale Terbaru</span>
                             </div>
-                            <div class="p-5 flex flex-col flex-grow">
+                            <div class="p-6 flex flex-col flex-grow">
                                 <div class="flex items-center text-xs text-gray-400 mb-2">
                                     <i class="far fa-calendar-alt mr-1.5"></i> <span>${berita.tanggal}</span>
                                 </div>
-                                <h3 class="text-base font-bold text-gray-900 leading-snug mb-2 line-clamp-2 group-hover:text-amber-800 transition duration-200 min-h-[44px]">
+                                <h3 class="text-lg font-bold text-gray-900 leading-snug mb-3 group-hover:text-amber-800 transition duration-200">
                                     <a href="berita.html">${berita.judul}</a>
                                 </h3>
-                                <p class="text-xs text-gray-600 mb-5 line-clamp-3 flex-grow text-justify leading-relaxed">${cuplikanTeks}</p>
+                                <p class="text-sm text-gray-600 mb-6 flex-grow text-justify leading-relaxed">${cuplikanTeks}</p>
                                 <div class="pt-4 border-t border-gray-100 mt-auto">
-                                    <a href="berita.html" class="inline-flex items-center text-xs font-bold text-red-800 hover:text-red-950">
+                                    <a href="berita.html" class="inline-flex items-center text-sm font-bold text-red-800 hover:text-red-950">
                                         Baca Selengkapnya &rarr;
                                     </a>
                                 </div>
                             </div>
                         </article>
                     `;
-                    container.innerHTML += articleHTML;
+                    container.innerHTML = articleHTML;
                 });
 
             } catch (error) {
@@ -254,7 +254,6 @@
             }
         }
 
-        // Jalankan sistem beranda saat DOM siap
         document.addEventListener('DOMContentLoaded', fetchBeritaBeranda);
     </script>
 </body>
