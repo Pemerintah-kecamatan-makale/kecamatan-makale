@@ -3,18 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nama Halaman | Website Resmi Kecamatan Makale</title>
+    <title>Hubungi & Laporkan | Website Resmi Kecamatan Makale</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="bg-gray-50 flex flex-col min-h-screen">
 
-    <!-- REUSABLE HEADER PLACEHOLDER -->
     <div id="header-placeholder"></div>
 
-    <!-- KONTEN UTAMA KONTAK -->
     <main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
         <div class="text-center mb-12">
             <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">Hubungi & Laporkan</h1>
@@ -26,7 +23,6 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
-            <!-- KOLOM KIRI: INFO DETAIL KANTOR -->
             <div class="lg:col-span-1 space-y-6">
                 <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4">
                     <h3 class="text-lg font-bold text-gray-900 border-b border-gray-100 pb-2">Kontak Resmi</h3>
@@ -49,15 +45,12 @@
                     </div>
                 </div>
 
-                <!-- PETA INTEGRASI (GOOGLE MAPS PLACEHOLDER) -->
                 <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm h-64 overflow-hidden relative">
-                    <!-- Ganti URL iframe src di bawah ini dengan kode semat (embed) maps asli Makale jika sudah ada -->
-                    <iframe src="https://google.com" 
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3980.5055375713437!2d119.88002677587843!3d-3.106560441221616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d93e70dd3579075%3A0x633ee66ef1bc4ad!2sKantor%20Kecamatan%20Makale!5e0!3m2!1sid!2sid!4v1714800000000!5m2!1sid!2sid" 
                         class="absolute inset-0 w-full h-full border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
 
-            <!-- KOLOM KANAN: FORMULIR INTERAKTIF -->
             <div class="lg:col-span-2">
                 <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
                     <h3 class="text-lg font-bold text-gray-900 mb-6">Formulir Pesan & Pengaduan Warga</h3>
@@ -66,17 +59,17 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">Nama Lengkap</label>
-                                <input type="text" required class="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-red-800 transition-colors">
+                                <input type="text" id="namaLengkap" required class="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-red-800 transition-colors">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">Nomor WhatsApp / HP</label>
-                                <input type="tel" required class="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-red-800 transition-colors">
+                                <input type="tel" id="nomorHp" required class="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-red-800 transition-colors">
                             </div>
                         </div>
 
                         <div>
                             <label class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">Kategori Laporan</label>
-                            <select class="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-red-800 transition-colors">
+                            <select id="kategoriLaporan" class="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-red-800 transition-colors">
                                 <option>Aduan Pelayanan Publik</option>
                                 <option>Saran / Usulan Pembangunan</option>
                                 <option>Permintaan Informasi Umum</option>
@@ -86,7 +79,7 @@
 
                         <div>
                             <label class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">Isi Pesan / Uraian Pengaduan</label>
-                            <textarea rows="5" required class="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-red-800 transition-colors" placeholder="Tuliskan secara detail kronologi atau kebutuhan Anda..."></textarea>
+                            <textarea id="isiPesan" rows="5" required class="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-red-800 transition-colors" placeholder="Tuliskan secara detail kronologi atau kebutuhan Anda..."></textarea>
                         </div>
 
                         <div class="pt-2">
@@ -101,15 +94,28 @@
         </div>
     </main>
 
-    <!-- REUSABLE FOOTER PLACEHOLDER -->
     <div id="footer-placeholder"></div>
 
     <script src="assets/js/main.js"></script>
     <script>
-        // Logika penanganan pengiriman form dasar
+        // Logika penanganan pengiriman form ke WhatsApp Admin Resmi
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Terima kasih. Pesan atau laporan Anda telah berhasil terkirim dan akan segera ditinjau oleh staf Kantor Kecamatan Makale.');
+            
+            // Mengambil value data inputan form
+            const nama = document.getElementById('namaLengkap').value;
+            const hp = document.getElementById('nomorHp').value;
+            const kategori = document.getElementById('kategoriLaporan').value;
+            const pesan = document.getElementById('isiPesan').value;
+            
+            // Menyusun format teks pesan
+            const nomorAdmin = "6282347219587"; 
+            const teksWhatsApp = `Halo Admin Layanan Kecamatan Makale,%0A%0ASaya ingin mengirimkan laporan pengaduan melalui portal website resmi:%0A%0A*Nama Lengkap:* ${nama}%0A*No. WhatsApp/HP:* ${hp}%0A*Kategori Laporan:* ${kategori}%0A%0A*Uraian Aduan:*%0A${pesan}`;
+            
+            // Membuka tab baru untuk mengirim ke WhatsApp admin
+            window.open(`https://api.whatsapp.com/send?phone=${nomorAdmin}&text=${teksWhatsApp}`, '_blank');
+            
+            // Reset form input setelah data terlempar
             this.reset();
         });
     </script>
