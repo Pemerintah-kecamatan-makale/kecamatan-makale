@@ -132,8 +132,8 @@
                     let fotoFinal = "Plaza Kolam Makale.jpg"; 
                     const driveId = extractDriveId(rawFotoUrl);
                     
-                    if (driveId) {
-                        fotoFinal = `https://drive.google.com/uc?export=view&id=${driveId}`;
+                   if (driveId) {
+    fotoFinal = `https://lh3.googleusercontent.com/d/${driveId}`;
                     } else if (rawFotoUrl && rawFotoUrl.startsWith('http')) {
                         fotoFinal = rawFotoUrl;
                     }
