@@ -57,7 +57,6 @@
     <div id="footer-placeholder" class="w-full"></div>
 
     <script>
-        // ==================== ENGINE 1: PEMANGGIL HEADER & FOOTER ====================
         function loadComponents() {
             fetch('assets/components/header.html')
                 .then(response => {
@@ -82,27 +81,22 @@
                 .catch(err => console.error("Gagal memuat komponen footer:", err));
         }
 
-        // ==================== ENGINE 2: SISTEM ENGINE GENERATOR BERITA REAL-TIME ====================
         const SPREADSHEET_ID = '1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ'; 
         const jsonUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
         
         let globalNewsData = {};
 
-        // PERBAIKAN REGEX: Mengekstrak ID Drive secara universal untuk format /d/ maupun ?id=
         function extractDriveId(url) {
             if (!url) return null;
             
-            // Format 1: jika mengandung /d/
             if (url.includes('/d/')) {
                 const parts = url.split('/d/');
                 if (parts[1]) return parts[1].split('/')[0];
             }
             
-            // Format 2: jika mengandung ?id= atau &id=
             const match = url.match(/[?&]id=([^&#]+)/);
             if (match && match[1]) return match[1];
             
-            // Format fallback regex lama
             const fallbackMatch = url.match(/(?:id=|\/d\/)([a-zA-Z0-9-_]{25,40})/);
             return fallbackMatch ? fallbackMatch[1] : null;
         }
@@ -139,8 +133,6 @@
                     const tanggalCadangan = timestampBawaan ? timestampBawaan.split(' ')[0] : 'Baru Saja';
                     const tanggal = tanggalManual.trim() ? tanggalManual.trim() : tanggalCadangan;
 
-                    const identitasAdmin = row.c[4] ? (row.c[4].f || row.c[4].v || '') : '';
-
                     if (!judulBerita || !isiBerita || judulBerita === "Judul") return;
                     dataCount++;
 
@@ -148,8 +140,8 @@
                     const driveId = extractDriveId(rawFotoUrl);
                     
                     if (driveId) {
-                        // Jalur Direct view link resmi Google Drive
-                        fotoFinal = `https://docs.google.com/uc?export=view&id=${driveId}`;
+                        // MENGGUNAKAN THUMBNAIL ENGINE (Paling Stabil untuk GitHub Pages & Anti-Blokir)
+                        fotoFinal = `https://drive.google.com/thumbnail?sz=w800&id=${driveId}`;
                     } else if (rawFotoUrl && rawFotoUrl.startsWith('http')) {
                         fotoFinal = rawFotoUrl;
                     }
