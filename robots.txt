@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pemerintah-kecamatan-makale.github.io/kecamatan-makale/sitemap.xml
