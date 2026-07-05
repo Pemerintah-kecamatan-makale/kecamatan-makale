@@ -124,15 +124,20 @@
             const rawFotoUrl = row.c[3]?.v || '';  
             
             // ==================== PERBAIKAN DI SINI ====================
-            // 1. Ambil data tanggal manual dari Kolom F (Indeks 5)
-            const tanggalManual = row.c[5]?.v || '';
-            
-            // 2. Jika Kolom F isi datanya ada, gunakan data tersebut. Jika kosong, tampilkan 'Baru Saja'
-            const tanggal = tanggalManual.trim() ? tanggalManual.trim() : 'Baru Saja';
-            
-            // (Opsional) Jika suatu saat butuh data Identitas dari Kolom E (Indeks 4):
-            // const identitasAdmin = row.c[4]?.v || '';
-            // ===========================================================
+          // ==================== PERBAIKAN DI SINI (ANTI-GAGAL) ====================
+// 1. Ambil data tanggal manual dari Kolom F (Indeks 5). Periksa .f terlebih dahulu, baru .v jika .f kosong.
+const tanggalManual = row.c[5] ? (row.c[5].f || row.c[5].v || '') : '';
+
+// 2. Ambil data Timestamp dari Kolom A (Indeks 0) sebagai cadangan otomatis jika admin lupa isi Kolom F
+const timestampBawaan = row.c[0] ? (row.c[0].f || row.c[0].v || '') : '';
+const tanggalCadangan = timestampBawaan ? timestampBawaan.split(' ')[0] : 'Baru Saja';
+
+// 3. Jika Kolom F isi datanya ada, gunakan data tersebut. Jika kosong, gunakan tanggal dari Timestamp bawaan.
+const tanggal = tanggalManual.trim() ? tanggalManual.trim() : tanggalCadangan;
+
+// (Opsional) Jika suatu saat butuh data Identitas dari Kolom E (Indeks 4):
+const identitasAdmin = row.c[4] ? (row.c[4].f || row.c[4].v || '') : '';
+// ========================================================================
 
             if (!judulBerita || !isiBerita || judulBerita === "Judul") return;
             dataCount++;
