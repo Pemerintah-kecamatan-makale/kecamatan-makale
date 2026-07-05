@@ -59,7 +59,6 @@
     <script>
         // ==================== ENGINE 1: PEMANGGIL HEADER & FOOTER ====================
         function loadComponents() {
-            // Memanggil Header dari assets/components/
             fetch('assets/components/header.html')
                 .then(response => {
                     if (!response.ok) return fetch('/assets/components/header.html');
@@ -71,7 +70,6 @@
                 })
                 .catch(err => console.error("Gagal memuat komponen header:", err));
 
-            // Memanggil Footer dari assets/components/
             fetch('assets/components/footer.html')
                 .then(response => {
                     if (!response.ok) return fetch('/assets/components/footer.html');
@@ -90,10 +88,23 @@
         
         let globalNewsData = {};
 
+        // PERBAIKAN REGEX: Mengekstrak ID Drive secara universal untuk format /d/ maupun ?id=
         function extractDriveId(url) {
             if (!url) return null;
-            const match = url.match(/(?:id=|\/d\/)([a-zA-Z0-9-_]{25,40})/);
-            return match ? match[1] : null;
+            
+            // Format 1: jika mengandung /d/
+            if (url.includes('/d/')) {
+                const parts = url.split('/d/');
+                if (parts[1]) return parts[1].split('/')[0];
+            }
+            
+            // Format 2: jika mengandung ?id= atau &id=
+            const match = url.match(/[?&]id=([^&#]+)/);
+            if (match && match[1]) return match[1];
+            
+            // Format fallback regex lama
+            const fallbackMatch = url.match(/(?:id=|\/d\/)([a-zA-Z0-9-_]{25,40})/);
+            return fallbackMatch ? fallbackMatch[1] : null;
         }
 
         async function fetchLiveNewsData() {
@@ -123,20 +134,12 @@
                     const isiBerita = row.c[2]?.v || '';   
                     const rawFotoUrl = row.c[3]?.v || '';  
                     
-                    // ==================== ENGINE PERBAIKAN TANGGAL DINAMIS (ANTI-GAGAL) ====================
-                    // 1. Ambil data tanggal manual dari Kolom F (Indeks 5). Periksa .f terlebih dahulu, baru .v jika .f kosong.
                     const tanggalManual = row.c[5] ? (row.c[5].f || row.c[5].v || '') : '';
-
-                    // 2. Ambil data Timestamp dari Kolom A (Indeks 0) sebagai cadangan otomatis jika admin lupa isi Kolom F
                     const timestampBawaan = row.c[0] ? (row.c[0].f || row.c[0].v || '') : '';
                     const tanggalCadangan = timestampBawaan ? timestampBawaan.split(' ')[0] : 'Baru Saja';
-
-                    // 3. Jika Kolom F isi datanya ada, gunakan data tersebut. Jika kosong, gunakan tanggal dari Timestamp bawaan.
                     const tanggal = tanggalManual.trim() ? tanggalManual.trim() : tanggalCadangan;
 
-                    // (Opsional) Jika suatu saat butuh data Identitas dari Kolom E (Indeks 4):
                     const identitasAdmin = row.c[4] ? (row.c[4].f || row.c[4].v || '') : '';
-                    // =======================================================================================
 
                     if (!judulBerita || !isiBerita || judulBerita === "Judul") return;
                     dataCount++;
@@ -144,13 +147,12 @@
                     let fotoFinal = "Plaza Kolam Makale.jpg"; 
                     const driveId = extractDriveId(rawFotoUrl);
                     
-                    // ==================== ENGINE PERBAIKAN DIRECT VIEW FOTO DRIVE ====================
                     if (driveId) {
+                        // Jalur Direct view link resmi Google Drive
                         fotoFinal = `https://docs.google.com/uc?export=view&id=${driveId}`;
                     } else if (rawFotoUrl && rawFotoUrl.startsWith('http')) {
                         fotoFinal = rawFotoUrl;
                     }
-                    // =================================================================================
 
                     const newsId = `berita_id_${index}`;
                     const cuplikanTeks = isiBerita.length > 115 ? isiBerita.substring(0, 115) + "..." : isiBerita;
@@ -242,7 +244,6 @@
             if (event.target == modal) { closeNewsModal(); }
         }
 
-        // Jalankan pemanggilan data ketika seluruh elemen halaman siap
         document.addEventListener("DOMContentLoaded", () => {
             loadComponents();      
             fetchLiveNewsData();   
