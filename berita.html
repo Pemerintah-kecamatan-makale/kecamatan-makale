@@ -96,100 +96,108 @@
             return match ? match[1] : null;
         }
 
-        async function fetchLiveNewsData() {
-            const gridContainer = document.getElementById('news-grid');
-            try {
-                const response = await fetch(jsonUrl);
-                const text = await response.text();
-                
-                const startIdx = text.indexOf('{');
-                const endIdx = text.lastIndexOf('}');
-                
-                if (startIdx === -1 || endIdx === -1) throw new Error("Format data tidak valid.");
-                
-                const jsonRaw = text.substring(startIdx, endIdx + 1);
-                const jsonData = JSON.parse(jsonRaw);
-                const rows = jsonData.table.rows;
-                
-                gridContainer.innerHTML = ''; 
+       async function fetchLiveNewsData() {
+    const gridContainer = document.getElementById('news-grid');
+    try {
+        const response = await fetch(jsonUrl);
+        const text = await response.text();
+        
+        const startIdx = text.indexOf('{');
+        const endIdx = text.lastIndexOf('}');
+        
+        if (startIdx === -1 || endIdx === -1) throw new Error("Format data tidak valid.");
+        
+        const jsonRaw = text.substring(startIdx, endIdx + 1);
+        const jsonData = JSON.parse(jsonRaw);
+        const rows = jsonData.table.rows;
+        
+        gridContainer.innerHTML = ''; 
 
-                let reverseRows = [...rows].reverse();
-                let dataCount = 0;
+        let reverseRows = [...rows].reverse();
+        let dataCount = 0;
 
-                reverseRows.forEach((row, index) => {
-                    if (!row || !row.c) return;
+        reverseRows.forEach((row, index) => {
+            if (!row || !row.c) return;
 
-                    const judulBerita = row.c[1]?.v || ''; 
-                    const isiBerita = row.c[2]?.v || '';   
-                    const rawFotoUrl = row.c[3]?.v || '';  
-                    
-                    const timestamp = row.c[0]?.f || row.c[0]?.v || '';
-                    const tanggal = '23 Januari 2025'; // Ubah tanggal sesuai kebutuhan Anda
+            const judulBerita = row.c[1]?.v || ''; 
+            const isiBerita = row.c[2]?.v || '';   
+            const rawFotoUrl = row.c[3]?.v || '';  
+            
+            // ==================== PERBAIKAN DI SINI ====================
+            // 1. Ambil data tanggal manual dari Kolom F (Indeks 5)
+            const tanggalManual = row.c[5]?.v || '';
+            
+            // 2. Jika Kolom F isi datanya ada, gunakan data tersebut. Jika kosong, tampilkan 'Baru Saja'
+            const tanggal = tanggalManual.trim() ? tanggalManual.trim() : 'Baru Saja';
+            
+            // (Opsional) Jika suatu saat butuh data Identitas dari Kolom E (Indeks 4):
+            // const identitasAdmin = row.c[4]?.v || '';
+            // ===========================================================
 
-                    if (!judulBerita || !isiBerita || judulBerita === "Judul") return;
-                    dataCount++;
+            if (!judulBerita || !isiBerita || judulBerita === "Judul") return;
+            dataCount++;
 
-                    let fotoFinal = "Plaza Kolam Makale.jpg"; 
-                    const driveId = extractDriveId(rawFotoUrl);
-                    
-                   if (driveId) {
-    fotoFinal = `https://lh3.googleusercontent.com/d/${driveId}`;
-                    } else if (rawFotoUrl && rawFotoUrl.startsWith('http')) {
-                        fotoFinal = rawFotoUrl;
-                    }
-
-                    const newsId = `berita_id_${index}`;
-                    const cuplikanTeks = isiBerita.length > 115 ? isiBerita.substring(0, 115) + "..." : isiBerita;
-
-                    globalNewsData[newsId] = {
-                        title: judulBerita,
-                        date: tanggal,
-                        image: fotoFinal,
-                        content: isiBerita
-                    };
-
-                    const cardTemplate = `
-                        <article data-title="${judulBerita.toLowerCase()}" class="news-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
-                            <div>
-                                <div class="relative overflow-hidden h-52 bg-stone-100">
-                                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${fotoFinal}" alt="${judulBerita}" onerror="this.src='Plaza Kolam Makale.jpg';" />
-                                    <span class="absolute top-4 left-4 bg-amber-700 text-white font-semibold text-[11px] px-3 py-1 rounded-full shadow-sm">Kabar Makale</span>
-                                </div>
-                                <div class="p-5">
-                                    <div class="text-[11px] font-medium text-gray-400 mb-2 flex items-center gap-1.5">
-                                        <i class="far fa-calendar-alt"></i> ${tanggal}
-                                    </div>
-                                    <h3 class="font-bold text-gray-900 line-clamp-2 group-hover:text-amber-800 transition duration-200 text-base mb-2.5 min-h-[48px] leading-snug">
-                                        ${judulBerita}
-                                    </h3>
-                                    <p class="text-gray-600 text-xs leading-relaxed line-clamp-3 text-justify">
-                                        ${cuplikanTeks}
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="px-5 pb-5 pt-2">
-                                <button onclick="openNewsModal('${newsId}')" class="w-full text-center bg-stone-50 hover:bg-amber-800 hover:text-white text-amber-900 font-semibold text-xs py-2.5 px-4 rounded-xl border border-stone-200/70 transition-all duration-200 shadow-sm">
-                                    Baca Selengkapnya
-                                </button>
-                            </div>
-                        </article>
-                    `;
-                    gridContainer.innerHTML += cardTemplate;
-                });
-
-                if (dataCount === 0) {
-                    gridContainer.innerHTML = `
-                        <div class="col-span-full text-center py-16 text-gray-400 border-2 border-dashed border-stone-200 rounded-2xl bg-white">
-                            <i class="far fa-newspaper text-3xl mb-3 text-gray-300"></i>
-                            <p class="text-sm font-medium">Belum ada data berita yang masuk di spreadsheet.</p>
-                        </div>`;
-                }
-
-            } catch (err) {
-                console.error("Gagal menarik data: ", err);
-                gridContainer.innerHTML = `<div class="col-span-full text-center py-16 text-red-500">Gagal memuat berita secara real-time.</div>`;
+            let fotoFinal = "Plaza Kolam Makale.jpg"; 
+            const driveId = extractDriveId(rawFotoUrl);
+            
+            if (driveId) {
+                fotoFinal = `https://lh3.googleusercontent.com/d/$${driveId}`;
+            } else if (rawFotoUrl && rawFotoUrl.startsWith('http')) {
+                fotoFinal = rawFotoUrl;
             }
+
+            const newsId = `berita_id_${index}`;
+            const cuplikanTeks = isiBerita.length > 115 ? isiBerita.substring(0, 115) + "..." : isiBerita;
+
+            globalNewsData[newsId] = {
+                title: judulBerita,
+                date: tanggal,
+                image: fotoFinal,
+                content: isiBerita
+            };
+
+            const cardTemplate = `
+                <article data-title="${judulBerita.toLowerCase()}" class="news-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="relative overflow-hidden h-52 bg-stone-100">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${fotoFinal}" alt="${judulBerita}" onerror="this.src='Plaza Kolam Makale.jpg';" />
+                            <span class="absolute top-4 left-4 bg-amber-700 text-white font-semibold text-[11px] px-3 py-1 rounded-full shadow-sm">Kabar Makale</span>
+                        </div>
+                        <div class="p-5">
+                            <div class="text-[11px] font-medium text-gray-400 mb-2 flex items-center gap-1.5">
+                                <i class="far fa-calendar-alt"></i> ${tanggal}
+                            </div>
+                            <h3 class="font-bold text-gray-900 line-clamp-2 group-hover:text-amber-800 transition duration-200 text-base mb-2.5 min-h-[48px] leading-snug">
+                                ${judulBerita}
+                            </h3>
+                            <p class="text-gray-600 text-xs leading-relaxed line-clamp-3 text-justify">
+                                ${cuplikanTeks}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5 pt-2">
+                        <button onclick="openNewsModal('${newsId}')" class="w-full text-center bg-stone-50 hover:bg-amber-800 hover:text-white text-amber-900 font-semibold text-xs py-2.5 px-4 rounded-xl border border-stone-200/70 transition-all duration-200 shadow-sm">
+                            Baca Selengkapnya
+                        </button>
+                    </div>
+                </article>
+            `;
+            gridContainer.innerHTML += cardTemplate;
+        });
+
+        if (dataCount === 0) {
+            gridContainer.innerHTML = `
+                <div class="col-span-full text-center py-16 text-gray-400 border-2 border-dashed border-stone-200 rounded-2xl bg-white">
+                    <i class="far fa-newspaper text-3xl mb-3 text-gray-300"></i>
+                    <p class="text-sm font-medium">Belum ada data berita yang masuk di spreadsheet.</p>
+                </div>`;
         }
+
+    } catch (err) {
+        console.error("Gagal menarik data: ", err);
+        gridContainer.innerHTML = `<div class="col-span-full text-center py-16 text-red-500">Gagal memuat berita secara real-time.</div>`;
+    }
+}
 
         function filterNews() {
             const keyword = document.getElementById('news-search').value.toLowerCase();
