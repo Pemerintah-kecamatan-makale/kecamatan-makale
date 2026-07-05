@@ -138,23 +138,22 @@
             return fallbackMatch ? fallbackMatch[1] : null;
         }
 
-     // ==================== ENGINE REAL-TIME BERITA BERANDA ====================
+  // ==================== ENGINE REAL-TIME BERITA BERANDA ====================
 async function fetchBeritaBeranda() {
     const SPREADSHEET_ID = '1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ';
-    const sheetUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=Form+Responses+1`;
+    // Menambahkan &tq=select%20* untuk memastikan semua kolom (termasuk kolom F) terbaca oleh API
+    const sheetUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=Form+Responses+1&tq=select%20*`;
     const container = document.getElementById('berita-container');
 
-    // Fungsi pembantu untuk mengambil tanggal yang benar
+    // Fungsi pembantu untuk mengambil tanggal yang akurat
     function ambilTanggal(row) {
-        // Coba ambil dari Kolom F (indeks 5) - Tanggal Kegiatan
-        const cellF = row.c[5];
-        if (cellF && (cellF.f || cellF.v)) {
-            return (cellF.f || cellF.v).toString().trim();
+        // 1. Coba ambil dari Kolom F (indeks 5) - Pastikan kolom ini tidak kosong di Google Sheets
+        if (row.c[5] && (row.c[5].f || row.c[5].v)) {
+            return (row.c[5].f || row.c[5].v).toString().trim();
         }
-        // Cadangan: Ambil dari Timestamp (indeks 0)
-        const cellA = row.c[0];
-        if (cellA && (cellA.f || cellA.v)) {
-            return (cellA.f || cellA.v).toString().split(' ')[0];
+        // 2. Cadangan: Ambil dari Timestamp (indeks 0) jika kolom F kosong
+        if (row.c[0] && (row.c[0].f || row.c[0].v)) {
+            return (row.c[0].f || row.c[0].v).toString().split(' ')[0];
         }
         return 'Tanggal Tidak Tersedia';
     }
@@ -162,53 +161,55 @@ async function fetchBeritaBeranda() {
     try {
         const response = await fetch(sheetUrl);
         const text = await response.text();
+        // Membersihkan respon JSON dari Google Visualization API
         const jsonRaw = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
         const jsonData = JSON.parse(jsonRaw);
         
-        // Ambil baris data
         const rows = jsonData.table.rows;
-
         let daftarBerita = [];
+
         rows.forEach(row => {
             if (!row || !row.c) return;
 
-            const judulBerita = row.c[1] ? (row.c[1].v || '') : '';
-            const isiBerita = row.c[2] ? (row.c[2].v || '') : '';
-            const rawFotoUrl = row.c[3] ? (row.c[3].v || '') : '';
+            const judulBerita = row.c[1]?.v || '';
+            const isiBerita = row.c[2]?.v || '';
+            const rawFotoUrl = row.c[3]?.v || '';
             
             if (!judulBerita || judulBerita === "Judul") return;
 
-            // Proses Foto
+            // Proses URL Foto
             let fotoFinal = "Plaza Kolam Makale.jpg";
-            const driveId = extractDriveId(rawFotoUrl);
+            const driveId = typeof extractDriveId === 'function' ? extractDriveId(rawFotoUrl) : null;
+            
             if (driveId) {
                 fotoFinal = `https://drive.google.com/thumbnail?sz=w800&id=${driveId}`;
-            } else if (rawFotoUrl && rawFotoUrl.startsWith('http')) {
+            } else if (rawFotoUrl?.startsWith('http')) {
                 fotoFinal = rawFotoUrl;
             }
 
             daftarBerita.push({
-                tanggal: ambilTanggal(row), // Panggil fungsi di sini
+                tanggal: ambilTanggal(row),
                 judul: judulBerita,
                 isi: isiBerita,
                 foto: fotoFinal
             });
         });
 
-        // Tampilkan 1 berita terbaru
-        daftarBerita.reverse();
-        const berita = daftarBerita[0];
+        // Ambil data terbaru (terakhir di input)
+        const berita = daftarBerita.length > 0 ? daftarBerita[daftarBerita.length - 1] : null;
 
         if (!berita) {
-            container.innerHTML = `<div class="col-span-full text-center text-gray-400 py-8 border-2 border-dashed border-gray-200 rounded-xl bg-white">
-                                    <p class="text-sm font-medium">Belum ada berita terbaru yang tersedia.</p>
-                                  </div>`;
+            container.innerHTML = `
+                <div class="col-span-full text-center text-gray-400 py-8 border-2 border-dashed border-gray-200 rounded-xl bg-white">
+                    <p class="text-sm font-medium">Belum ada berita terbaru yang tersedia.</p>
+                </div>`;
             return;
         }
 
         container.className = "grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch w-full mt-6";
         const cuplikanTeks = berita.isi.length > 160 ? berita.isi.substring(0, 160) + "..." : berita.isi;
 
+        // Render HTML dengan struktur yang bersih
         container.innerHTML = `
             <div class="flex justify-center md:justify-end w-full h-full">
                 <article class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col hover:shadow-lg transition-all duration-300 group max-w-xl w-full">
@@ -224,9 +225,9 @@ async function fetchBeritaBeranda() {
                     </div>
                 </article>
             </div>
-            `;
+        `;
     } catch (error) {
-        console.error("Gagal mengambil data berita:", error);
+        console.error("Gagal memuat berita:", error);
     }
 }
     </script>
