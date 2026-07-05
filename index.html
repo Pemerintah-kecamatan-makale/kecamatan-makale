@@ -11,50 +11,44 @@
 </head>
 <body class="bg-gray-50 flex flex-col min-h-screen">
 
-    <div id="maklumatModal" style="position: fixed; inset: 0; z-index: 9999; display: none; align-items: center; justify-content: center; padding: 16px; background-color: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.3s ease;">
-        
-        <div style="position: relative; background: white; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); max-width: 512px; width: 100%; max-height: 85vh; overflow-y: auto; border: 4px solid #f59e0b; display: flex; flex-direction: column;">
-            
-            <div style="background-color: #991b1b; padding: 16px; text-align: center; border-bottom: 2px solid #fbbf24;">
-                
-            <div style="padding: 24px; flex-grow: 1; text-align: center; font-family: sans-serif;">
-                
-                <div style="display: flex; justify-content: center; margin-bottom: 16px;">
-                    <img src="assets/images/LOGO TATOR3.png" alt="Logo Tana Toraja" style="height: 96px; width: auto; object-fit: contain;">
-                </div>
-
-                <div style="margin-bottom: 16px;">
-                    <h3 style="font-size: 24px; font-weight: 900; color: #1c1917; text-transform: uppercase; margin: 0;">Maklumat Pelayanan</h3>
-                    <div style="height: 2px; width: 128px; background-color: #f59e0b; margin: 4px auto 0 auto; border-radius: 9999px;"></div>
-                </div>
-
-                <p style="font-size: 14px; color: #1c1917; line-height: 1.6; font-weight: 500; font-style: italic; padding: 0 8px; margin-bottom: 24px;">
-                    "Dengan ini kami menyatakan sanggup menyelenggarakan pelayanan sesuai standar pelayanan yang telah ditetapkan. Kami akan memberikan pelayanan sesuai dengan kewajiban and akan melakukan perbaikan secara terus menerus. Apabila tidak menepati, kami siap menerima sanksi sesuai dan/atau memberi kompensasi sesuai dengan peraturan yang berlaku."
-                </p>
-
-                <div style="display: flex; flex-direction: column; align-items: center; margin-top: 16px;">
-    <p style="font-size: 12px; color: #4b5563; margin: 0;">Makale, 02 Juli 2026</p>
-    <p style="font-size: 14px; font-weight: bold; color: #030712; text-transform: uppercase; margin: 4px 0 0 0;">Camat Makale</p>
+   <!-- Pastikan kode ini diletakkan di dalam <body>, tepat setelah pembuka <body> -->
+<div id="maklumatModal" style="position: fixed; inset: 0; z-index: 9999; display: none; align-items: center; justify-content: center; padding: 16px; background-color: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.3s ease;">
     
-    <div style="width: 100%; height: 160px; margin: 10px 0; display: flex; align-items: center; justify-content: center;">
-        <img src="assets/images/TTD_Camat1.png" 
-             alt="Tanda Tangan Camat" 
-             style="width: 220px; height: auto; object-fit: contain; display: block;">
-    </div>
-</div>
+    <!-- Container Modal -->
+    <div style="position: relative; background: white; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); max-width: 512px; width: 100%; max-height: 85vh; overflow-y: auto; border: 4px solid #f59e0b; display: flex; flex-direction: column;">
+        
+        <!-- Konten Utama (Langsung ke Padding agar tidak ada space kosong) -->
+        <div style="padding: 24px; flex-grow: 1; text-align: center; font-family: sans-serif;">
+            <div style="display: flex; justify-content: center; margin-bottom: 16px;">
+                <img src="assets/images/LOGO TATOR3.png" alt="Logo Tana Toraja" style="height: 96px; width: auto; object-fit: contain;">
+            </div>
 
-                   
+            <div style="margin-bottom: 16px;">
+                <h3 style="font-size: 24px; font-weight: 900; color: #1c1917; text-transform: uppercase; margin: 0;">Maklumat Pelayanan</h3>
+                <div style="height: 2px; width: 128px; background-color: #f59e0b; margin: 4px auto 0 auto; border-radius: 9999px;"></div>
+            </div>
+
+            <p style="font-size: 14px; color: #1c1917; line-height: 1.6; font-weight: 500; font-style: italic; padding: 0 8px; margin-bottom: 24px;">
+                "Dengan ini kami menyatakan sanggup menyelenggarakan pelayanan sesuai standar pelayanan yang telah ditetapkan. Kami akan memberikan pelayanan sesuai dengan kewajiban dan akan melakukan perbaikan secara terus menerus. Apabila tidak menepati, kami siap menerima sanksi sesuai dan/atau memberi kompensasi sesuai dengan peraturan yang berlaku."
+            </p>
+
+            <div style="display: flex; flex-direction: column; align-items: center; margin-top: 16px;">
+                <p style="font-size: 12px; color: #4b5563; margin: 0;">Makale, 02 Juli 2026</p>
+                <p style="font-size: 14px; font-weight: bold; color: #030712; text-transform: uppercase; margin: 4px 0 0 0;">Camat Makale</p>
+                <div style="width: 100%; height: 160px; margin: 10px 0; display: flex; align-items: center; justify-content: center;">
+                    <img src="assets/images/TTD_Camat1.png" alt="Tanda Tangan Camat" style="width: 220px; height: auto; object-fit: contain; display: block;">
                 </div>
             </div>
+        </div>
 
-            <div style="padding: 16px; background-color: #f9fafb; border-top: 1px solid #f3f4f6; display: flex; justify-content: center;">
-                <button onclick="closeMaklumat()" style="width: 100%; padding: 12px 24px; background-color: #991b1b; color: #fcd34d; font-weight: bold; border: none; border-radius: 12px; cursor: pointer; text-transform: uppercase; font-family: sans-serif; font-size: 14px; letter-spacing: 0.05em; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
-                    Tutup Maklumat
-                </button>
-            </div>
-
+        <!-- Tombol Tutup -->
+        <div style="padding: 16px; background-color: #f9fafb; border-top: 1px solid #f3f4f6; display: flex; justify-content: center;">
+            <button onclick="closeMaklumat()" style="width: 100%; padding: 12px 24px; background-color: #991b1b; color: #fcd34d; font-weight: bold; border: none; border-radius: 12px; cursor: pointer; text-transform: uppercase; font-size: 14px;">
+                Tutup Maklumat
+            </button>
         </div>
     </div>
+</div>
 
     <div id="header-placeholder"></div>
 
