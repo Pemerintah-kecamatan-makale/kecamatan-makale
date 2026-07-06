@@ -5,231 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beranda | Website Resmi Kecamatan Makale</title>
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<div id="maklumatModal" style="position: fixed; inset: 0; z-index: 9999; display: none; align-items: center; justify-content: center; padding: 16px; background-color: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.3s ease;">
-    
-    <!-- Container Modal -->
-    <div style="position: relative; background: white; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); max-width: 800px; width: 100%; max-height: 95vh; overflow: hidden; border: 4px solid #f59e0b; display: flex; flex-direction: column;">
-        
-        <!-- HEADER MERAH (Seperti di image_1b159c.jpg) -->
-        <div style="background-color: #991b1b; padding: 12px; text-align: center; border-bottom: 2px solid #fbbf24;">
-            <p style="color: #ffffff; font-size: 10px; font-weight: bold; text-transform: uppercase; margin: 0; letter-spacing: 0.5px;">Pemerintah Kabupaten Tana Toraja</p>
-            <h4 style="color: #ffffff; font-size: 14px; font-weight: bold; text-transform: uppercase; margin: 2px 0 0 0;">Kecamatan Makale</h4>
-        </div>
-
-        <!-- Konten Utama -->
-        <div style="padding: 24px; flex-grow: 1; text-align: center; font-family: sans-serif; overflow-y: auto;">
-            <div style="display: flex; justify-content: center; margin-bottom: 16px;">
-                <img src="assets/images/LOGO TATOR3.png" alt="Logo Tana Toraja" style="height: 80px; width: auto; object-fit: contain;">
-            </div>
-
-            <div style="margin-bottom: 16px;">
-                <h3 style="font-size: 20px; font-weight: 900; color: #1c1917; text-transform: uppercase; margin: 0;">Maklumat Pelayanan</h3>
-                <div style="height: 2px; width: 100px; background-color: #f59e0b; margin: 4px auto 0 auto; border-radius: 9999px;"></div>
-            </div>
-
-            <p style="font-size: 13px; color: #1c1917; line-height: 1.5; font-weight: 500; font-style: italic; margin-bottom: 20px;">
-                "Dengan ini kami menyatakan sanggup menyelenggarakan pelayanan sesuai standar pelayanan yang telah ditetapkan. Kami akan memberikan pelayanan sesuai dengan kewajiban dan akan melakukan perbaikan secara terus menerus. Apabila tidak menepati, kami siap menerima sanksi sesuai dan/atau memberi kompensasi sesuai dengan peraturan yang berlaku."
-            </p>
-
-            <div style="display: flex; flex-direction: column; align-items: center;">
-                <p style="font-size: 11px; color: #4b5563; margin: 0;">Makale, 02 Juli 2026</p>
-                <div style="width: 100%; height: 120px; margin: 5px 0; display: flex; align-items: center; justify-content: center;">
-                    <img src="assets/images/TTD Camat.png" alt="Tanda Tangan Camat" style="height: 100%; width: auto; object-fit: contain;">
-                </div>
-            </div>
-        </div>
-
-        <!-- Tombol Tutup -->
-        <div style="padding: 16px; background-color: #f9fafb; border-top: 1px solid #f3f4f6;">
-            <button onclick="closeMaklumat()" style="width: 100%; padding: 10px; background-color: #991b1b; color: #ffffff; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; text-transform: uppercase; font-size: 13px;">
-                Tutup Maklumat
-            </button>
-        </div>
-    </div>
-</div>
+<body class="bg-gray-50">
 
     <div id="header-placeholder"></div>
 
-    <section class="relative text-white py-24 px-4 overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('assets/images/Plaza Kolam Makale.jpg');">
-        <div class="absolute inset-0 bg-black opacity-50 z-0"></div>
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:16px_16px] z-10"></div>
-        <div class="max-w-4xl mx-auto text-center relative z-20">
-            
-            <div class="inline-flex flex-col items-center mb-6 max-w-xs sm:max-w-sm">
-                <span class="bg-red-800 text-amber-300 text-base font-black tracking-widest px-6 py-2 rounded-t-full border-t-2 border-x-2 border-amber-500 text-center w-full shadow-sm">
-                    MASERO
-                </span>
-                <span class="bg-red-900 text-amber-300 text-sm font-bold tracking-widest px-6 py-2 rounded-b-full border-b-2 border-x-2 border-amber-600/50 text-center whitespace-nowrap shadow-sm">
-                    TANGNGA' - PAINAAN - TIKULAO
-                </span>
-            </div>
-
-            <h2 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight drop-shadow-lg">
-                Selamat Datang di Portal Resmi<br>Kecamatan Makale
-            </h2>
-            <p class="text-base md:text-lg text-gray-100 max-w-2xl mx-auto drop-shadow-md">
-                Pusat informasi pelayanan publik, transparansi tata kelola pemerintahan, dan roda pembangunan di Ibu Kota Kabupaten Tana Toraja.
-            </p>
+    <section class="relative text-white py-24 px-4 bg-cover bg-center" style="background-image: url('assets/images/Plaza Kolam Makale.jpg');">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Selamat Datang di Portal Resmi Kecamatan Makale</h2>
         </div>
     </section>
 
-    <main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
-        <div class="mb-8 border-b-2 border-amber-500 pb-2 flex justify-between items-center">
-            <h2 class="text-2xl font-bold text-gray-800">Berita & Kegiatan Terbaru</h2>
-            <a href="berita.html" class="text-sm font-semibold text-red-800 hover:text-red-950">Lihat Semua →</a>
-        </div>
-        <div id="berita-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <main class="max-w-7xl mx-auto px-4 py-12">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b-2 border-amber-500 pb-2">Berita & Kegiatan Terbaru</h2>
+        
+        <div id="news-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="col-span-full text-center text-gray-500 py-8">Memuat berita terbaru...</div>
         </div>
     </main>
 
     <div id="footer-placeholder"></div>
-    
+
     <script src="assets/js/main.js"></script>
-
-    <script>
-        // ==================== ENGINE CONTROL POP-UP MAKLUMAT (OPTIMAL) ====================
-        document.addEventListener("DOMContentLoaded", function() {
-            const modal = document.getElementById('maklumatModal');
-            // Menggunakan sessionStorage agar hanya muncul 1 kali per buka tab baru
-            const sudahMelihatMaklumat = sessionStorage.getItem('maklumatSesiIni');
-
-            if (modal) {
-                if (!sudahMelihatMaklumat) {
-                    modal.style.display = 'flex';
-                    document.body.style.overflow = 'hidden'; // Kunci scroll beranda saat pop-up aktif
-                    setTimeout(() => {
-                        modal.style.opacity = '1';
-                    }, 50);
-                } else {
-                    modal.style.display = 'none';
-                }
-            }
-        });
-
-        function closeMaklumat() {
-            const modal = document.getElementById('maklumatModal');
-            if (modal) {
-                modal.style.opacity = '0';
-                sessionStorage.setItem('maklumatSesiIni', 'true'); // Simpan status sesi tab browser
-                document.body.style.overflow = 'auto'; // Aktifkan kembali scroll beranda
-                setTimeout(() => { 
-                    modal.style.display = 'none'; 
-                }, 300);
-            }
-        }
-
-        // ==================== ENGINE PARSING UNIVERSAL DRIVE ID FOTO ====================
-        function extractDriveId(url) {
-            if (!url) return null;
-            if (url.includes('/d/')) {
-                const parts = url.split('/d/');
-                if (parts[1]) return parts[1].split('/')[0];
-            }
-            const match = url.match(/[?&]id=([^&#]+)/);
-            if (match && match[1]) return match[1];
-            
-            const fallbackMatch = url.match(/(?:id=|\/d\/)([a-zA-Z0-9-_]{25,40})/);
-            return fallbackMatch ? fallbackMatch[1] : null;
-        }
-
-  // ==================== ENGINE REAL-TIME BERITA BERANDA ====================
-async function fetchBeritaBeranda() {
-    const SPREADSHEET_ID = '1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ';
-    // Menambahkan &tq=select%20* untuk memastikan semua kolom (termasuk kolom F) terbaca oleh API
-    const sheetUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=Form+Responses+1&tq=select%20*`;
-    const container = document.getElementById('berita-container');
-
-    // Fungsi pembantu untuk mengambil tanggal yang akurat
-    function ambilTanggal(row) {
-        // 1. Coba ambil dari Kolom F (indeks 5) - Pastikan kolom ini tidak kosong di Google Sheets
-        if (row.c[5] && (row.c[5].f || row.c[5].v)) {
-            return (row.c[5].f || row.c[5].v).toString().trim();
-        }
-        // 2. Cadangan: Ambil dari Timestamp (indeks 0) jika kolom F kosong
-        if (row.c[0] && (row.c[0].f || row.c[0].v)) {
-            return (row.c[0].f || row.c[0].v).toString().split(' ')[0];
-        }
-        return 'Tanggal Tidak Tersedia';
-    }
-
-    try {
-        const response = await fetch(sheetUrl);
-        const text = await response.text();
-        // Membersihkan respon JSON dari Google Visualization API
-        const jsonRaw = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
-        const jsonData = JSON.parse(jsonRaw);
-        
-        const rows = jsonData.table.rows;
-        let daftarBerita = [];
-
-        rows.forEach(row => {
-            if (!row || !row.c) return;
-
-            const judulBerita = row.c[1]?.v || '';
-            const isiBerita = row.c[2]?.v || '';
-            const rawFotoUrl = row.c[3]?.v || '';
-            
-            if (!judulBerita || judulBerita === "Judul") return;
-
-            // Proses URL Foto
-            let fotoFinal = "Plaza Kolam Makale.jpg";
-            const driveId = typeof extractDriveId === 'function' ? extractDriveId(rawFotoUrl) : null;
-            
-            if (driveId) {
-                fotoFinal = `https://drive.google.com/thumbnail?sz=w800&id=${driveId}`;
-            } else if (rawFotoUrl?.startsWith('http')) {
-                fotoFinal = rawFotoUrl;
-            }
-
-            daftarBerita.push({
-                tanggal: ambilTanggal(row),
-                judul: judulBerita,
-                isi: isiBerita,
-                foto: fotoFinal
-            });
-        });
-
-        // Ambil data terbaru (terakhir di input)
-        const berita = daftarBerita.length > 0 ? daftarBerita[daftarBerita.length - 1] : null;
-
-        if (!berita) {
-            container.innerHTML = `
-                <div class="col-span-full text-center text-gray-400 py-8 border-2 border-dashed border-gray-200 rounded-xl bg-white">
-                    <p class="text-sm font-medium">Belum ada berita terbaru yang tersedia.</p>
-                </div>`;
-            return;
-        }
-
-        container.className = "grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch w-full mt-6";
-        const cuplikanTeks = berita.isi.length > 160 ? berita.isi.substring(0, 160) + "..." : berita.isi;
-
-        // Render HTML dengan struktur yang bersih
-        container.innerHTML = `
-            <div class="flex justify-center md:justify-end w-full h-full">
-                <article class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col hover:shadow-lg transition-all duration-300 group max-w-xl w-full">
-                    <div class="h-64 w-full bg-gray-200 overflow-hidden">
-                        <img src="${berita.foto}" alt="${berita.judul}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='Plaza Kolam Makale.jpg';">
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="mb-3"><span class="inline-block bg-red-800 text-amber-300 text-xs font-bold px-2.5 py-1 rounded">Kabar Makale Terbaru</span></div>
-                        <div class="flex items-center text-xs text-gray-400 mb-2"><i class="far fa-calendar-alt mr-1.5"></i> <span>${berita.tanggal}</span></div>
-                        <h3 class="text-xl font-bold text-gray-900 leading-snug mb-3 group-hover:text-amber-800 transition duration-200"><a href="berita.html">${berita.judul}</a></h3>
-                        <p class="text-sm text-gray-600 mb-6 flex-grow text-justify leading-relaxed">${cuplikanTeks}</p>
-                        <div class="pt-4 border-t border-gray-100 mt-auto"><a href="berita.html" class="inline-flex items-center text-sm font-bold text-red-800 hover:text-red-950">Baca Selengkapnya →</a></div>
-                    </div>
-                </article>
-            </div>
-        `;
-    } catch (error) {
-        console.error("Gagal memuat berita:", error);
-    }
-}
-    </script>
 </body>
 </html>
