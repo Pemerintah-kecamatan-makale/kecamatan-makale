@@ -198,9 +198,14 @@
                         </div>`;
                 }
 
-            } catch (err) {
-                console.error("Gagal menarik data: ", err);
-                gridContainer.innerHTML = `<div class="col-span-full text-center py-16 text-red-500">Gagal memuat berita secara real-time.</div>`;
+           } catch (err) {
+    console.error("Detail Error:", err);
+    gridContainer.innerHTML = `
+        <div class="col-span-full text-center py-16 text-red-500">
+            <p>Gagal memuat berita.</p>
+            <p class="text-xs mt-2">Pastikan Spreadsheet sudah "Publish to web" dan akses diset ke "Anyone with the link".</p>
+        </div>`;
+}
             }
         }
 
