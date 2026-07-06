@@ -40,7 +40,7 @@ async function fetchBerita() {
             
             // Konversi link Drive ke format gambar
             const idMatch = rawFoto.match(/[-\w]{25,}/);
-            const foto = idMatch ? `https://lh3.googleusercontent.com/d/${idMatch[0]}=w800` : 'assets/images/default.jpg';
+            const foto = idMatch ? `https://lh3.googleusercontent.com/d/${idMatch[0]}=w800` : 'https://via.placeholder.com/400x300';
 
             container.innerHTML += `
                 <article class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
