@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Muat komponen header/footer jika elemen ada
+    // Memuat Header & Footer
     loadComponent('header-placeholder', 'assets/components/header.html');
     loadComponent('footer-placeholder', 'assets/components/footer.html');
     
-    // Muat berita hanya jika berada di halaman yang memiliki container
+    // Cek apakah halaman memiliki container berita sebelum fetch
     if (document.getElementById('berita-container')) {
         fetchBerita();
     }
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function loadComponent(id, url) {
     const el = document.getElementById(id);
-    if (!el) return;
+    if (!el) return; // Keluar jika elemen tidak ada
     fetch(url)
         .then(res => res.text())
         .then(data => { el.innerHTML = data; })
@@ -20,6 +20,8 @@ function loadComponent(id, url) {
 
 async function fetchBerita() {
     const container = document.getElementById('berita-container');
+    if (!container) return; // Keluar jika container tidak ditemukan
+
     const SPREADSHEET_ID = '1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ';
     const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
 
@@ -35,8 +37,10 @@ async function fetchBerita() {
             const isi = row.c[2]?.v || "Tidak ada isi.";
             const tgl = row.c[5]?.f || "Baru saja";
             const rawFoto = row.c[3]?.v || ''; 
+            
+            // Konversi link Drive ke format gambar
             const idMatch = rawFoto.match(/[-\w]{25,}/);
-            const foto = idMatch ? `https://lh3.googleusercontent.com/d/$${idMatch[0]}=w800` : 'assets/images/default.jpg';
+            const foto = idMatch ? `https://lh3.googleusercontent.com/d/${idMatch[0]}=w800` : 'assets/images/default.jpg';
 
             container.innerHTML += `
                 <article class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
@@ -50,6 +54,7 @@ async function fetchBerita() {
             `;
         });
     } catch (err) {
+        console.error("Error fetching berita:", err);
         container.innerHTML = `<p class="text-red-500 text-center">Gagal memuat berita.</p>`;
     }
 }
