@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // 1. Load Header & Footer dengan aman
     loadComponent('header-placeholder', 'assets/components/header.html');
     loadComponent('footer-placeholder', 'assets/components/footer.html');
     
-    // 2. Fetch Berita hanya jika elemen container ada
+    // Hanya jalankan fetchBerita jika elemen container-nya benar-benar ada
     if (document.getElementById('berita-container')) {
         fetchBerita();
     }
@@ -11,16 +10,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function loadComponent(id, url) {
     const el = document.getElementById(id);
-    if (!el) return;
+    if (!el) return; // Penting: Jangan lakukan apa-apa jika elemen tidak ditemukan
     fetch(url)
         .then(res => res.text())
         .then(data => { el.innerHTML = data; })
-        .catch(err => console.log('Gagal load:', id, err));
+        .catch(err => console.log('Gagal memuat:', id, err));
 }
 
 async function fetchBerita() {
     const container = document.getElementById('berita-container');
-    if (!container) return;
+    if (!container) return; // Penting: Hentikan fungsi jika container tidak ada
 
     const SPREADSHEET_ID = '1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ';
     const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
@@ -38,7 +37,7 @@ async function fetchBerita() {
             const tgl = row.c[5]?.f || "Baru saja";
             const rawFoto = row.c[3]?.v || ''; 
             
-            // Konversi link Drive ke link gambar langsung
+            // Perbaikan logika gambar: Gunakan placeholder publik agar tidak 404
             const idMatch = rawFoto.match(/[-\w]{25,}/);
             const foto = idMatch ? `https://lh3.googleusercontent.com/d/${idMatch[0]}=w800` : 'https://via.placeholder.com/400x300';
 
