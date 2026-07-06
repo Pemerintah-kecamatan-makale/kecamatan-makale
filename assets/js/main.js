@@ -22,7 +22,7 @@ function getDirectImageUrl(url) {
 }
 
 async function fetchBerita() {
-    const SPREADSHEET_ID = '1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ';
+    const SPREADSHEET_ID = `1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ`;
     const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
     
     try {
