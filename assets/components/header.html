@@ -20,13 +20,23 @@
     </div>
 </header>
 <nav class="bg-amber-950 text-white py-3.5 px-6 shadow-md sticky top-0 z-40 w-full">
-    <div class="max-w-7xl mx-auto flex flex-wrap gap-6 items-center text-sm">
-        <a href="index.html" class="hover:text-amber-400 font-medium transition-colors">Beranda</a>
-        <a href="profil.html" class="hover:text-amber-400 font-medium transition-colors">Profil Kecamatan</a>
-        <a href="layanan.html" class="hover:text-amber-400 font-medium transition-colors">Pelayanan</a>
-        <a href="berita.html" class="hover:text-amber-400 font-medium transition-colors">Berita</a>
-        <a href="galeri.html" class="hover:text-amber-400 font-medium transition-colors">Galeri</a>
-        <a href="pengumuman.html" class="hover:text-amber-400 font-medium transition-colors">Pengumuman</a>
-        <a href="kontak.html" class="hover:text-amber-400 font-medium transition-colors">Kontak</a>
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center text-sm">
+        <!-- Menu Navigasi -->
+        <div class="flex flex-wrap gap-6 items-center">
+            <a href="index.html" class="hover:text-amber-400 font-medium transition-colors">Beranda</a>
+            <a href="profil.html" class="hover:text-amber-400 font-medium transition-colors">Profil Kecamatan</a>
+            <a href="layanan.html" class="hover:text-amber-400 font-medium transition-colors">Pelayanan</a>
+            <a href="berita.html" class="hover:text-amber-400 font-medium transition-colors">Berita</a>
+            <a href="galeri.html" class="hover:text-amber-400 font-medium transition-colors">Galeri</a>
+            <a href="pengumuman.html" class="hover:text-amber-400 font-medium transition-colors">Pengumuman</a>
+            <a href="kontak.html" class="hover:text-amber-400 font-medium transition-colors">Kontak</a>
+        </div>
+
+        <!-- Kotak Pencarian -->
+        <div>
+            <input type="text" id="search-input" onkeyup="filterContent()" 
+                   placeholder="Cari..." 
+                   class="bg-amber-900 text-white p-1.5 px-3 rounded border border-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 text-xs">
+        </div>
     </div>
 </nav>
