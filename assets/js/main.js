@@ -1,51 +1,48 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // 1. Load Header & Footer
+    // 1. Selalu load Header & Footer di semua halaman
     loadComponent('header-placeholder', 'assets/components/header.html');
     loadComponent('footer-placeholder', 'assets/components/footer.html');
-    
-    // 2. Fetch Berita
-    fetchBerita();
+
+    // 2. Jika di halaman berita.html, fetch semua data
+    if (window.location.pathname.includes('berita.html')) {
+        fetchLiveNewsData();
+    }
 });
 
-function loadComponent(id, url) {
-    fetch(url)
-        .then(res => res.text())
-        .then(data => { document.getElementById(id).innerHTML = data; })
-        .catch(err => console.log('Gagal load:', err));
-}
+// Fungsi fetch yang sudah diperbaiki
+async function fetchLiveNewsData() {
+    const gridContainer = document.getElementById('news-grid');
+    if (!gridContainer) return;
 
-// FUNGSI PENTING: Mengubah link Drive menjadi link gambar langsung
-function getDirectImageUrl(url) {
-    if (!url || !url.includes('drive.google.com')) return 'assets/images/default.jpg';
-    const id = url.match(/[-\w]{25,}/);
-    return id ? `https://lh3.googleusercontent.com/d/${id[0]}=w800` : url;
-}
+    const SPREADSHEET_ID = '1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ';
+    const jsonUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
 
-async function fetchBerita() {
-    const SPREADSHEET_ID = `1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ`;
-    const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
-    
     try {
-        const res = await fetch(url);
-        const text = await res.text();
-        const json = JSON.parse(text.substring(47, text.length - 2));
-        const container = document.getElementById('berita-container');
-        
-        container.innerHTML = ''; // Kosongkan placeholder
-        
-        json.table.rows.forEach(row => {
-            const judul = row.c[1]?.v || 'Tanpa Judul';
-            const linkFoto = row.c[3]?.v || ''; // Kolom Upload Foto
-            const foto = getDirectImageUrl(linkFoto);
-            
-            container.innerHTML += `
-                <div class="bg-white p-4 rounded-lg shadow">
-                    <img src="${foto}" class="w-full h-40 object-cover mb-4" onerror="this.src='assets/images/default.jpg'">
-                    <h3 class="font-bold">${judul}</h3>
-                </div>
+        const response = await fetch(jsonUrl);
+        const text = await response.text();
+        const json = JSON.parse(text.substr(47).slice(0, -2));
+        const rows = json.table.rows.slice(1).reverse(); // Balik urutan
+
+        gridContainer.innerHTML = ''; 
+
+        rows.forEach(row => {
+            const judul = row.c[1]?.v || "Tanpa Judul";
+            const isi = row.c[2]?.v || "";
+            const tgl = row.c[5]?.f || "Baru saja";
+            // Pastikan link foto diambil dari kolom yang benar
+            const foto = row.c[3]?.v || 'assets/images/default.jpg'; 
+
+            const card = document.createElement('article');
+            card.className = "bg-white p-6 rounded-2xl shadow-sm border border-gray-100";
+            card.innerHTML = `
+                <img src="${foto}" class="w-full h-40 object-cover rounded-lg mb-4" onerror="this.src='assets/images/default.jpg'">
+                <h3 class="font-bold text-lg mb-2">${judul}</h3>
+                <p class="text-xs text-gray-400 mb-4">${tgl}</p>
+                <p class="text-gray-700 text-sm line-clamp-3">${isi}</p>
             `;
+            gridContainer.appendChild(card);
         });
     } catch (err) {
-        console.error(err);
+        gridContainer.innerHTML = `<p class="text-red-500">Gagal memuat berita.</p>`;
     }
 }
