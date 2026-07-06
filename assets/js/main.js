@@ -38,19 +38,20 @@ async function fetchBerita() {
             const rawFoto = row.c[3]?.v || ''; 
             
             // Perbaikan logika gambar: Gunakan placeholder publik agar tidak 404
-            const idMatch = rawFoto.match(/[-\w]{25,}/);
-            const foto = idMatch ? `https://lh3.googleusercontent.com/d/${idMatch[0]}=w800` : 'https://via.placeholder.com/400x300';
+           // Temukan bagian ini di dalam fungsi fetchBerita
+const foto = idMatch ? `https://lh3.googleusercontent.com/d/${idMatch[0]}=w800` : 'https://via.placeholder.com/400x300';
 
-            container.innerHTML += `
-                <article class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
-                    <img src="${foto}" class="w-full h-48 object-cover rounded-xl mb-4" 
-                         onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
-                    <div class="flex-grow">
-                        <h3 class="font-bold text-lg mb-2 leading-tight">${judul}</h3>
-                        <p class="text-xs text-gray-400 mb-3">${tgl}</p>
-                        <p class="text-gray-700 text-sm leading-relaxed">${isi}</p>
-                    </div>
-                </article>
+container.innerHTML += `
+    <article class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
+        <img src="${foto}" class="w-full h-48 object-cover rounded-xl mb-4" 
+             onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
+        <div class="flex-grow">
+            <h3 class="font-bold text-lg mb-2 leading-tight">${judul}</h3>
+            <p class="text-xs text-gray-400 mb-3">${tgl}</p>
+            <p class="text-gray-700 text-sm leading-relaxed">${isi}</p>
+        </div>
+    </article>
+`;
             `;
         });
     } catch (err) {
