@@ -1,61 +1,61 @@
+// main.js - Penggerak Komponen Reusable Website Kecamatan Makale
 document.addEventListener("DOMContentLoaded", function() {
-    loadComponent('header-placeholder', 'assets/components/header.html');
-    loadComponent('footer-placeholder', 'assets/components/footer.html');
     
-    // Hanya jalankan fetchBerita jika elemen container-nya benar-benar ada
-    if (document.getElementById('berita-container')) {
-        fetchBerita();
+    // DETEKSI OTOMATIS JALUR REPOSITORI GITHUB PAGES (Pembersihan Jalur Slash)
+    const isGitHubPages = window.location.hostname.includes('github.io');
+    const basePath = isGitHubPages ? '/kecamatan-makale/' : '/';
+    
+    // 1. Memuat Elemen Gabungan Header & Navbar
+    const headerContainer = document.getElementById('header-placeholder');
+    if (headerContainer) {
+        // PERBAIKAN: Menyusun url mutlak yang dinamis dan bersih untuk fetch komponen
+        const fetchUrl = `${window.location.origin}${basePath}assets/components/header.html`;
+        
+        fetch(fetchUrl)
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.text();
+            })
+            .then(data => {
+                headerContainer.innerHTML = data;
+                highlightActiveMenu();
+            })
+            .catch(err => console.error('Gagal memuat Header:', err));
+    }
+
+    // 2. Memuat Elemen Footer
+    const footerContainer = document.getElementById('footer-placeholder');
+    if (footerContainer) {
+        const fetchUrl = `${window.location.origin}${basePath}assets/components/footer.html`;
+        
+        fetch(fetchUrl)
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.text();
+            })
+            .then(data => {
+                footerContainer.innerHTML = data;
+            })
+            .catch(err => console.error('Gagal memuat Footer:', err));
+    }
+
+    // Fungsi otomatis menandai menu halaman aktif saat ini
+    function highlightActiveMenu() {
+        let currentPath = window.location.pathname.split("/").pop();
+        
+        // Atur default ke index.html jika pengguna berada di beranda root folder
+        if (currentPath === '') {
+            currentPath = 'index.html';
+        }
+        
+        const menuLinks = document.querySelectorAll('#header-placeholder nav a');
+        
+        menuLinks.forEach(link => {
+            const hrefAttr = link.getAttribute('href');
+            if (currentPath === hrefAttr) {
+                // Modifikasi penanda aktif warna amber khas ornamen Toraja
+                link.classList.add('text-amber-400', 'font-bold', 'border-b-2', 'border-amber-400', 'pb-1');
+            }
+        });
     }
 });
-
-function loadComponent(id, url) {
-    const el = document.getElementById(id);
-    if (!el) return; // Penting: Jangan lakukan apa-apa jika elemen tidak ditemukan
-    fetch(url)
-        .then(res => res.text())
-        .then(data => { el.innerHTML = data; })
-        .catch(err => console.log('Gagal memuat:', id, err));
-}
-
-async function fetchBerita() {
-    const container = document.getElementById('berita-container');
-    if (!container) return; // Penting: Hentikan fungsi jika container tidak ada
-
-    const SPREADSHEET_ID = '1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ';
-    const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
-
-    try {
-        const res = await fetch(url);
-        const text = await res.text();
-        const json = JSON.parse(text.substr(47).slice(0, -2));
-        
-        container.innerHTML = ''; 
-        
-        json.table.rows.slice(1).reverse().forEach(row => {
-            const judul = row.c[1]?.v || "Tanpa Judul";
-            const isi = row.c[2]?.v || "Tidak ada isi.";
-            const tgl = row.c[5]?.f || "Baru saja";
-            const rawFoto = row.c[3]?.v || ''; 
-            
-            // Perbaikan logika gambar: Gunakan placeholder publik agar tidak 404
-           // Temukan bagian ini di dalam fungsi fetchBerita
-const foto = idMatch ? `https://lh3.googleusercontent.com/d/${idMatch[0]}=w800` : 'https://via.placeholder.com/400x300';
-
-container.innerHTML += `
-    <article class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
-        <img src="${foto}" class="w-full h-48 object-cover rounded-xl mb-4" 
-             onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
-        <div class="flex-grow">
-            <h3 class="font-bold text-lg mb-2 leading-tight">${judul}</h3>
-            <p class="text-xs text-gray-400 mb-3">${tgl}</p>
-            <p class="text-gray-700 text-sm leading-relaxed">${isi}</p>
-        </div>
-    </article>
-`;
-            `;
-        });
-    } catch (err) {
-        console.error("Error fetching:", err);
-        container.innerHTML = `<p class="text-red-500 text-center">Gagal memuat berita.</p>`;
-    }
-}
