@@ -10,7 +10,7 @@
 
 const CONFIG = {
 
-    spreadsheetId: "GANTI_DENGAN_SPREADSHEET_ID_ANDA",
+    spreadsheetId: "1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ",
 
     sheetUrl(id) {
         return `https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:json`;
