@@ -1095,7 +1095,31 @@ console.log(
 
 );
 
+/* ============================================================
+   COPY LINK BERITA
+============================================================ */
 
+function copyNewsLink(id){
+
+    const url =
+        window.location.origin +
+        "/kecamatan-makale/detail-berita.html?id=" +
+        id;
+
+
+    navigator.clipboard.writeText(url)
+    .then(()=>{
+
+        alert("Link berita berhasil disalin");
+
+    })
+    .catch(()=>{
+
+        alert("Gagal menyalin link");
+
+    });
+
+}
 /* ============================================================
    END OF FILE
 ============================================================ */
