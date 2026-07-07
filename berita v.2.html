@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>
+Berita Kecamatan Makale
+</title>
+
+<meta
+    name="description"
+    content="Portal Berita Resmi Kecamatan Makale">
+
+<meta
+    name="keywords"
+    content="Berita Kecamatan Makale, Pemerintah Kecamatan Makale, Tana Toraja">
+
+<meta
+    name="author"
+    content="Website Resmi Kecamatan Makale">
+
+<meta
+    property="og:title"
+    content="Berita Kecamatan Makale">
+
+<meta
+    property="og:description"
+    content="Portal Berita Resmi Kecamatan Makale">
+
+<meta
+    property="og:type"
+    content="website">
+
+<meta
+    property="og:image"
+    content="assets/images/Plaza Kolam Makale.jpg">
+
+<meta
+    property="og:locale"
+    content="id_ID">
+
+<link
+    rel="icon"
+    href="assets/images/LOGO TATOR3.png">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link
+rel="stylesheet"
+href="assets/css/style.css">
+
+<link
+rel="stylesheet"
+href="assets/css/berita.css">
+
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+<!-- HEADER -->
+<div id="header-placeholder"></div>
+
+<!-- HERO -->
+
+<section
+class="relative overflow-hidden bg-gradient-to-r from-amber-900 via-amber-700 to-yellow-600 text-white">
+
+<div class="absolute inset-0 opacity-20">
+
+<img
+src="assets/images/Tongkonan.webp"
+alt="Tongkonan"
+class="w-full h-full object-cover">
+
+</div>
+
+<div class="relative max-w-7xl mx-auto px-6 py-20">
+
+<div class="max-w-3xl">
+
+<h1
+class="text-4xl lg:text-5xl font-extrabold mb-4">
+
+Portal Berita
+
+</h1>
+
+<p
+class="text-lg text-amber-100 leading-8">
+
+Informasi terbaru mengenai kegiatan Pemerintah
+Kecamatan Makale, pelayanan masyarakat,
+pembangunan wilayah, serta berbagai agenda
+dan pengumuman resmi.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ======================================================
+     CONTENT
+======================================================= -->
+
+<main class="max-w-7xl mx-auto px-6 py-10">
+
+    <!-- Breadcrumb -->
+
+    <nav class="breadcrumb mb-8">
+
+        <a href="index.html">
+
+            <i class="fas fa-home mr-2"></i>
+
+            Beranda
+
+        </a>
+
+        <span class="mx-2">/</span>
+
+        <span class="text-gray-700">
+
+            Berita
+
+        </span>
+
+    </nav>
+
+
+    <!-- Header Section -->
+
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-10">
+
+        <div>
+
+            <h2 class="text-3xl font-bold text-gray-800">
+
+                Berita Terbaru
+
+            </h2>
+
+            <p class="text-gray-500 mt-2">
+
+                Informasi resmi Pemerintah Kecamatan Makale.
+
+            </p>
+
+        </div>
+
+        <div
+        id="total-news"
+        class="bg-white rounded-xl shadow px-6 py-4">
+
+            <div class="text-sm text-gray-500">
+
+                Total Berita
+
+            </div>
+
+            <div
+            id="news-count"
+            class="text-3xl font-bold text-amber-700">
+
+                ...
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Search & Filter -->
+
+    <div class="grid lg:grid-cols-3 gap-5 mb-10">
+
+        <!-- Search -->
+
+        <div class="lg:col-span-2 relative">
+
+            <i
+            class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+
+            </i>
+
+            <input
+
+                id="search-news"
+
+                type="text"
+
+                placeholder="Cari judul berita..."
+
+                class="w-full bg-white rounded-xl border border-gray-200 pl-12 pr-4 py-4 focus:ring-2 focus:ring-amber-600 focus:outline-none">
+
+        </div>
+
+
+        <!-- Filter -->
+
+        <select
+
+            id="category-filter"
+
+            class="bg-white rounded-xl border border-gray-200 px-4 py-4 focus:ring-2 focus:ring-amber-600 focus:outline-none">
+
+            <option value="">
+
+                Semua Kategori
+
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <!-- Grid Berita -->
+
+    <section>
+
+        <div
+
+        id="news-container"
+
+        class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+
+            <!-- Skeleton Loading -->
+
+            <div class="news-card animate-pulse">
+
+                <div class="bg-gray-300 h-60"></div>
+
+                <div class="p-6">
+
+                    <div class="bg-gray-300 h-4 rounded w-24 mb-4"></div>
+
+                    <div class="bg-gray-300 h-6 rounded mb-3"></div>
+
+                    <div class="bg-gray-300 h-6 rounded w-4/5 mb-6"></div>
+
+                    <div class="bg-gray-300 h-4 rounded"></div>
+
+                </div>
+
+            </div>
+
+            <div class="news-card animate-pulse">
+
+                <div class="bg-gray-300 h-60"></div>
+
+                <div class="p-6">
+
+                    <div class="bg-gray-300 h-4 rounded w-24 mb-4"></div>
+
+                    <div class="bg-gray-300 h-6 rounded mb-3"></div>
+
+                    <div class="bg-gray-300 h-6 rounded w-4/5 mb-6"></div>
+
+                    <div class="bg-gray-300 h-4 rounded"></div>
+
+                </div>
+
+            </div>
+
+            <div class="news-card animate-pulse">
+
+                <div class="bg-gray-300 h-60"></div>
+
+                <div class="p-6">
+
+                    <div class="bg-gray-300 h-4 rounded w-24 mb-4"></div>
+
+                    <div class="bg-gray-300 h-6 rounded mb-3"></div>
+
+                    <div class="bg-gray-300 h-6 rounded w-4/5 mb-6"></div>
+
+                    <div class="bg-gray-300 h-4 rounded"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ======================================================
+         PAGINATION
+    ======================================================= -->
+
+    <div
+        id="pagination"
+        class="pagination mt-12">
+    </div>
+
+
+    <!-- ======================================================
+         EMPTY STATE
+    ======================================================= -->
+
+    <section
+        id="empty-state"
+        class="hidden">
+
+        <div class="bg-white rounded-2xl shadow-lg p-12 text-center">
+
+            <i class="fas fa-newspaper text-6xl text-gray-300 mb-6"></i>
+
+            <h3 class="text-3xl font-bold text-gray-700">
+
+                Belum Ada Berita
+
+            </h3>
+
+            <p class="text-gray-500 mt-4 max-w-2xl mx-auto">
+
+                Saat ini belum ada berita yang dapat ditampilkan.
+                Silakan kembali beberapa saat lagi.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ======================================================
+         LOADING OVERLAY
+    ======================================================= -->
+
+    <div
+        id="loading-overlay"
+        class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center">
+
+        <div class="bg-white rounded-2xl shadow-xl px-8 py-8 text-center">
+
+            <i class="fas fa-spinner fa-spin text-5xl text-amber-700"></i>
+
+            <p class="mt-5 text-gray-600">
+
+                Memuat berita...
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+</main>
+
+
+<!-- ======================================================
+     BACK TO TOP
+======================================================= -->
+
+<button
+
+    id="backToTop"
+
+    class="hidden fixed bottom-8 right-8 w-14 h-14 rounded-full bg-amber-700 hover:bg-amber-800 text-white shadow-xl transition duration-300 z-40"
+
+    title="Kembali ke atas">
+
+    <i class="fas fa-arrow-up"></i>
+
+</button>
+
+
+<!-- ======================================================
+     FOOTER
+======================================================= -->
+
+<div id="footer-placeholder"></div>
+<!-- ======================================================
+     JAVASCRIPT
+======================================================= -->
+
+<script src="assets/js/main.js"></script>
+
+<script src="assets/js/berita.js"></script>
+
+<script>
+/* ======================================================
+   INISIALISASI HALAMAN
+======================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    /*
+      Menampilkan jumlah berita setelah data selesai dimuat.
+      Berita.js sudah menyediakan window.NewsApp.
+    */
+
+    const updateCounter = () => {
+
+        if (
+            window.NewsApp &&
+            typeof window.NewsApp.total === "function"
+        ) {
+
+            const total = window.NewsApp.total();
+
+            const counter =
+                document.getElementById("news-count");
+
+            if(counter){
+
+                counter.textContent = total;
+
+            }
+
+        }
+
+    };
+
+    // Tunggu data selesai dimuat
+    setTimeout(updateCounter, 800);
+
+});
+</script>
+
+</body>
+
+</html>
