@@ -3,13 +3,13 @@
    Website Resmi Kecamatan Makale
 ========================================================== */
 
-// ===============================
-// KONFIGURASI
-// ===============================
+/* ===============================
+   KONFIGURASI
+================================ */
 
 const SPREADSHEET_ID = "1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ";
 
-const SHEET_URL =
+const JSON_URL =
 `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
 
 const isGitHubPages =
@@ -26,21 +26,17 @@ BASE_PATH + "Plaza Kolam Makale.jpg";
 const container =
 document.getElementById("detail-container");
 
-
-// ===============================
-// AMBIL PARAMETER URL
-// ===============================
-
-const params =
-new URLSearchParams(window.location.search);
-
 const NEWS_ID =
-params.get("id");
+new URLSearchParams(window.location.search)
+.get("id");
+
+let allNews = [];
 
 
-// ===============================
-// HELPER
-// ===============================
+
+/* ===============================
+   HELPER
+================================ */
 
 function extractDriveId(url){
 
@@ -48,10 +44,7 @@ function extractDriveId(url){
 
     if(url.includes("/d/")){
 
-        const part =
-        url.split("/d/")[1];
-
-        return part.split("/")[0];
+        return url.split("/d/")[1].split("/")[0];
 
     }
 
@@ -67,6 +60,7 @@ function extractDriveId(url){
     return null;
 
 }
+
 
 
 function buildImage(url){
@@ -89,6 +83,7 @@ function buildImage(url){
     return url;
 
 }
+
 
 
 function formatTanggal(row){
@@ -115,180 +110,224 @@ function formatTanggal(row){
 
 
 
-// ===============================
-// LOADING
-// ===============================
+function formatContent(text){
 
-function loading(){
+    if(!text) return "";
 
-container.innerHTML=`
+    return text
 
-<div class="text-center py-24">
+    .split(/\n\s*\n/)
 
-<i class="fas fa-spinner fa-spin
-text-5xl text-amber-700"></i>
+    .map(item=>`<p class="mb-5">${item.replace(/\n/g,"<br>")}</p>`)
 
-<p class="mt-5">
+    .join("");
 
-Memuat berita...
+}
 
-</p>
+/* ===============================
+   LOADING & ERROR
+================================ */
 
-</div>
+function showLoading() {
 
-`;
+    container.innerHTML = `
+    <div class="text-center py-20">
+        <i class="fas fa-spinner fa-spin text-5xl text-amber-700"></i>
+        <p class="mt-4 text-gray-500">
+            Memuat berita...
+        </p>
+    </div>`;
+}
 
+
+function showNotFound() {
+
+    container.innerHTML = `
+    <div class="text-center py-20">
+
+        <i class="fas fa-newspaper
+                  text-6xl
+                  text-gray-300"></i>
+
+        <h2 class="text-3xl
+                   font-bold
+                   mt-5">
+
+            Berita tidak ditemukan
+
+        </h2>
+
+        <p class="mt-3 text-gray-500">
+
+            Berita yang Anda cari tidak tersedia.
+
+        </p>
+
+        <a href="berita.html"
+           class="inline-block
+                  mt-8
+                  bg-amber-700
+                  hover:bg-amber-800
+                  text-white
+                  px-6
+                  py-3
+                  rounded-xl">
+
+            ← Kembali ke Daftar Berita
+
+        </a>
+
+    </div>`;
 }
 
 
 
-// ===============================
-// ERROR
-// ===============================
+/* ===============================
+   AMBIL DATA SPREADSHEET
+================================ */
 
-function show404(){
+async function loadNews() {
 
-container.innerHTML=`
-
-<div class="text-center py-24">
-
-<i class="fas fa-newspaper
-text-6xl
-text-gray-300"></i>
-
-<h2
-class="text-3xl
-font-bold
-mt-6">
-
-Berita tidak ditemukan
-
-</h2>
-
-<p
-class="mt-3
-text-gray-500">
-
-Data berita tidak tersedia.
-
-</p>
-
-<a
-
-href="berita.html"
-
-class="inline-block
-mt-8
-bg-amber-700
-hover:bg-amber-800
-text-white
-px-6
-py-3
-rounded-xl">
-
-← Kembali ke Daftar Berita
-
-</a>
-
-</div>
-
-`;
-
-}
-/* ==========================================================
-   BAGIAN B
-   Memuat Detail Berita
-========================================================== */
-
-async function loadNewsDetail() {
-
-    loading();
+    showLoading();
 
     try {
 
-        const response = await fetch(SHEET_URL);
+        const response =
+            await fetch(JSON_URL);
 
-        const text = await response.text();
+        const text =
+            await response.text();
 
-        const json = JSON.parse(
-            text.substring(
-                text.indexOf("{"),
-                text.lastIndexOf("}") + 1
-            )
-        );
+        const json =
+            JSON.parse(
+                text.substring(
+                    text.indexOf("{"),
+                    text.lastIndexOf("}") + 1
+                )
+            );
 
-        const rows = json.table.rows || [];
+        const rows =
+            json.table.rows || [];
 
-        let berita = null;
+        allNews = [];
 
-        rows.forEach(row => {
+        rows.reverse().forEach(row => {
 
             if (!row || !row.c) return;
 
-            const rawTimestamp = row.c[0]?.v || "";
+            const rawTimestamp =
+                row.c[0]?.v || "";
 
-            const id = String(rawTimestamp)
+            const id =
+                String(rawTimestamp)
                 .replace(/[^0-9]/g, "");
 
-            if (id !== NEWS_ID) return;
+            const title =
+                row.c[1]?.v || "";
 
-            berita = {
+            const content =
+                row.c[2]?.v || "";
 
-                id: id,
+            if (
+                title.trim() === "" ||
+                content.trim() === "" ||
+                title === "Judul"
+            ) {
+                return;
+            }
 
-                title: row.c[1]?.v || "",
+            allNews.push({
 
-                content: row.c[2]?.v || "",
+                id,
 
-                image: buildImage(
-                    row.c[3]?.v || ""
-                ),
+                title,
 
-                date: formatTanggal(row)
+                date:
+                    formatTanggal(row),
 
-            };
+                image:
+                    buildImage(
+                        row.c[3]?.v || ""
+                    ),
+
+                content
+
+            });
 
         });
 
-        if (!berita) {
+        const currentNews =
+            allNews.find(item =>
+                item.id === NEWS_ID
+            );
 
-            show404();
+        if (!currentNews) {
+
+            showNotFound();
+
             return;
 
         }
 
         document.title =
-            berita.title +
+            currentNews.title +
             " | Kecamatan Makale";
 
-        renderDetail(berita);
+        renderDetail(currentNews);
 
     }
 
-    catch (err) {
+    catch (error) {
 
-        console.error(err);
+        console.error(error);
 
-        show404();
+        showNotFound();
 
     }
 
 }
 
-
-
-/* ==========================================================
+/* ===============================
    TAMPILKAN DETAIL BERITA
-========================================================== */
+================================ */
 
 function renderDetail(news) {
 
-    container.innerHTML = `
+    const html = `
+
+<nav class="text-sm text-gray-500 mb-6">
+
+    <a href="index.html"
+       class="hover:text-amber-700">
+
+        Beranda
+
+    </a>
+
+    <span class="mx-2">/</span>
+
+    <a href="berita.html"
+       class="hover:text-amber-700">
+
+        Berita
+
+    </a>
+
+    <span class="mx-2">/</span>
+
+    <span class="text-gray-700 font-medium">
+
+        ${news.title}
+
+    </span>
+
+</nav>
+
 
 <article
 class="bg-white
 rounded-2xl
-shadow-md
+shadow-lg
 overflow-hidden">
 
     <img
@@ -306,63 +345,107 @@ overflow-hidden">
     <div class="p-8">
 
         <div
-        class="text-sm
-        text-gray-500
-        mb-3">
+        class="flex
+               flex-wrap
+               items-center
+               gap-4
+               text-sm
+               text-gray-500
+               mb-5">
 
-            <i class="far fa-calendar-alt"></i>
+            <span>
 
-            ${news.date}
+                <i class="far fa-calendar-alt"></i>
+
+                ${news.date}
+
+            </span>
+
+            <span>
+
+                <i class="fas fa-building"></i>
+
+                Kecamatan Makale
+
+            </span>
 
         </div>
 
+
         <h1
         class="text-4xl
-        font-black
-        text-gray-900
-        leading-tight
-        mb-6">
+               font-black
+               text-gray-900
+               leading-tight
+               mb-8">
 
             ${news.title}
 
         </h1>
 
+
         <div
         class="prose
-        max-w-none
-        text-justify
-        leading-8
-        text-gray-700
-        whitespace-pre-line">
+               prose-lg
+               max-w-none
+               text-gray-700
+               leading-8">
 
-            ${news.content}
+            ${formatContent(news.content)}
 
         </div>
 
+
+        <hr class="my-10">
+
+
         <div
-        class="border-t
-        mt-10
-        pt-6">
+        class="flex
+               flex-wrap
+               justify-between
+               items-center
+               gap-3">
 
-            <a
+            <div class="flex gap-3">
 
-            href="berita.html"
+                <button
 
-            class="inline-flex
-                   items-center
-                   gap-2
-                   bg-amber-700
-                   hover:bg-amber-800
-                   text-white
-                   px-5
-                   py-3
-                   rounded-xl">
+                    onclick="shareNews()"
 
-                <i class="fas fa-arrow-left"></i>
+                    class="bg-blue-600
+                           hover:bg-blue-700
+                           text-white
+                           px-5
+                           py-3
+                           rounded-xl">
 
-                Kembali ke Daftar Berita
+                    <i class="fas fa-share-alt mr-2"></i>
 
-            </a>
+                    Bagikan
+
+                </button>
+
+            </div>
+
+
+            <div>
+
+                <a
+
+                    href="berita.html"
+
+                    class="bg-amber-700
+                           hover:bg-amber-800
+                           text-white
+                           px-5
+                           py-3
+                           rounded-xl">
+
+                    ← Kembali ke Daftar Berita
+
+                </a>
+
+            </div>
 
         </div>
 
@@ -372,375 +455,150 @@ overflow-hidden">
 
 `;
 
-}
-/* ==========================================================
-   BAGIAN C
-   Navigasi, Share & Inisialisasi
-========================================================== */
-
-let newsList = [];
-
-/**
- * Membuat paragraf HTML dari isi berita
- */
-function formatContent(text) {
-
-    if (!text) return "";
-
-    return text
-        .split(/\n\s*\n/)
-        .map(p => `<p class="mb-5">${p.replace(/\n/g,"<br>")}</p>`)
-        .join("");
+    container.innerHTML = html;
 
 }
 
-
-/**
- * Tombol Share
- */
-function shareNews() {
-
-    if (navigator.share) {
-
-        navigator.share({
-
-            title: document.title,
-
-            text: document.title,
-
-            url: window.location.href
-
-        });
-
-    } else {
-
-        navigator.clipboard.writeText(window.location.href);
-
-        alert("Link berita berhasil disalin.");
-
-    }
-
-}
-
-
-/**
- * Berita Sebelumnya
- */
-function previousNews(currentId) {
-
-    const index =
-        newsList.findIndex(n => n.id === currentId);
-
-    if (index < newsList.length - 1) {
-
-        window.location.href =
-            "detail-berita.html?id=" +
-            newsList[index + 1].id;
-
-    }
-
-}
-
-
-/**
- * Berita Berikutnya
- */
-function nextNews(currentId) {
-
-    const index =
-        newsList.findIndex(n => n.id === currentId);
-
-    if (index > 0) {
-
-        window.location.href =
-            "detail-berita.html?id=" +
-            newsList[index - 1].id;
-
-    }
-
-}
-
-
-/* ==========================================================
-   Render Detail (Versi Lengkap)
-========================================================== */
-
-function renderDetail(news) {
-
-    news.content = formatContent(news.content);
-
-    container.innerHTML = `
-
-<nav class="text-sm text-gray-500 mb-5">
-
-<a href="index.html"
-class="hover:text-amber-700">
-
-Beranda
-
-</a>
-
-<span class="mx-2">/</span>
-
-<a href="berita.html"
-class="hover:text-amber-700">
-
-Berita
-
-</a>
-
-<span class="mx-2">/</span>
-
-<span class="text-gray-700">
-
-${news.title}
-
-</span>
-
-</nav>
-
-
-<article
-class="bg-white
-rounded-2xl
-shadow-lg
-overflow-hidden">
-
-<img
-
-src="${news.image}"
-
-class="w-full
-max-h-[520px]
-object-cover"
-
-onerror="this.src='${DEFAULT_IMAGE}'">
-
-
-<div class="p-8">
-
-<div
-class="text-sm
-text-gray-500
-mb-3">
-
-<i class="far fa-calendar-alt"></i>
-
-${news.date}
-
-</div>
-
-<h1
-class="text-4xl
-font-black
-leading-tight
-mb-8">
-
-${news.title}
-
-</h1>
-
-<div
-class="text-gray-700
-leading-8
-text-justify">
-
-${news.content}
-
-</div>
-
-<div
-class="border-t
-mt-10
-pt-8
-flex
-flex-wrap
-gap-3
-justify-between">
-
-<div class="flex gap-3">
-
-<button
-
-onclick="previousNews('${news.id}')"
-
-class="px-5
-py-3
-rounded-xl
-bg-gray-100
-hover:bg-gray-200">
-
-← Sebelumnya
-
-</button>
-
-<button
-
-onclick="nextNews('${news.id}')"
-
-class="px-5
-py-3
-rounded-xl
-bg-gray-100
-hover:bg-gray-200">
-
-Berikutnya →
-
-</button>
-
-</div>
-
-<div class="flex gap-3">
-
-<button
-
-onclick="shareNews()"
-
-class="px-5
-py-3
-rounded-xl
-bg-blue-600
-text-white
-hover:bg-blue-700">
-
-<i class="fas fa-share-alt"></i>
-
-Bagikan
-
-</button>
-
-<a
-
-href="berita.html"
-
-class="px-5
-py-3
-rounded-xl
-bg-amber-700
-text-white
-hover:bg-amber-800">
-
-← Daftar Berita
-
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</article>
-
-`;
-
-}
-
-
-/* ==========================================================
-   Ambil seluruh berita
-========================================================== */
-
-async function loadNewsDetail() {
-
-    loading();
+/* ===============================
+   SHARE BERITA
+================================ */
+
+async function shareNews() {
+
+    const shareData = {
+        title: document.title,
+        text: document.title,
+        url: window.location.href
+    };
 
     try {
 
-        const response =
-            await fetch(SHEET_URL);
+        if (navigator.share) {
 
-        const text =
-            await response.text();
+            await navigator.share(shareData);
 
-        const json =
-            JSON.parse(
-                text.substring(
-                    text.indexOf("{"),
-                    text.lastIndexOf("}") + 1
-                )
-            );
+        } else if (navigator.clipboard) {
 
-        const rows =
-            json.table.rows || [];
+            await navigator.clipboard.writeText(window.location.href);
 
-        newsList = [];
+            alert("Link berita berhasil disalin.");
 
-        let berita = null;
+        } else {
 
-        rows.reverse().forEach(row => {
-
-            if (!row || !row.c) return;
-
-            const raw =
-                row.c[0]?.v || "";
-
-            const id =
-                String(raw).replace(/[^0-9]/g,"");
-
-            const item = {
-
-                id,
-
-                title:
-                row.c[1]?.v || "",
-
-                content:
-                row.c[2]?.v || "",
-
-                image:
-                buildImage(
-                    row.c[3]?.v || ""
-                ),
-
-                date:
-                formatTanggal(row)
-
-            };
-
-            newsList.push(item);
-
-            if(id===NEWS_ID){
-
-                berita = item;
-
-            }
-
-        });
-
-        if(!berita){
-
-            show404();
-
-            return;
+            prompt("Salin link berikut:", window.location.href);
 
         }
 
-        document.title =
-        berita.title +
-        " | Kecamatan Makale";
+    } catch (err) {
 
-        renderDetail(berita);
-
-    }
-
-    catch(err){
-
-        console.error(err);
-
-        show404();
+        console.log("Share dibatalkan.");
 
     }
 
 }
 
 
-/* ==========================================================
+
+/* ===============================
+   NAVIGASI BERITA
+================================ */
+
+function previousNews() {
+
+    const index =
+        allNews.findIndex(item => item.id === NEWS_ID);
+
+    if (index < 0) return;
+
+    if (index < allNews.length - 1) {
+
+        window.location.href =
+            `detail-berita.html?id=${allNews[index + 1].id}`;
+
+    } else {
+
+        alert("Ini adalah berita paling lama.");
+
+    }
+
+}
+
+
+
+function nextNews() {
+
+    const index =
+        allNews.findIndex(item => item.id === NEWS_ID);
+
+    if (index <= 0) {
+
+        alert("Ini adalah berita terbaru.");
+
+        return;
+
+    }
+
+    window.location.href =
+        `detail-berita.html?id=${allNews[index - 1].id}`;
+
+}
+
+
+
+/* ===============================
+   KEYBOARD SHORTCUT
+================================ */
+
+document.addEventListener("keydown", function (e) {
+
+    if (e.key === "ArrowLeft") {
+
+        previousNews();
+
+    }
+
+    if (e.key === "ArrowRight") {
+
+        nextNews();
+
+    }
+
+});
+
+
+
+/* ===============================
+   SCROLL KE ATAS
+================================ */
+
+window.addEventListener("load", () => {
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+});
+
+
+
+/* ===============================
    START
-========================================================== */
+================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    loadNewsDetail();
+    if (!NEWS_ID) {
+
+        showNotFound();
+
+        return;
+
+    }
+
+    loadNews();
 
 });
