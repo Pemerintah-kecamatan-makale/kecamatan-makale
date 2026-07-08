@@ -81,6 +81,37 @@
 
 }
 
+/* ===========================
+   JUDUL BERITA
+=========================== */
+
+.news-title{
+
+    font-size:1.4rem;
+
+    font-weight:700;
+
+    color:#1f2937;
+
+    line-height:1.4;
+
+    margin-bottom:15px;
+
+}
+
+.news-title a{
+
+    color:inherit;
+
+    text-decoration:none;
+
+}
+
+.news-title a:hover{
+
+    color:#b45309;
+
+}
 
 /* ===========================
    BADGE KATEGORI
