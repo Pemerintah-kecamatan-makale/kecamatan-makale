@@ -53,42 +53,23 @@ sans-serif;
 
 
 
-<body class="bg-gray-100">
+<body class="bg-gray-50 flex flex-col min-h-screen">
 
 
-<!-- ================= HEADER ================= -->
+<!-- REUSABLE HEADER PLACEHOLDER -->
+<div id="header-placeholder"></div>
 
-<header class="bg-amber-700 text-white shadow-lg">
-
-
+<!-- HERO HALAMAN -->
+<section class="bg-amber-700 text-white shadow-lg">
 <div class="max-w-7xl mx-auto px-5 py-6">
-
-
-<h1 class="text-3xl md:text-4xl font-bold">
-
-Berita Kecamatan Makale
-
-</h1>
-
-
-<p class="mt-2 text-amber-100">
-
-Informasi terbaru dan kegiatan Kecamatan Makale
-
-</p>
-
-
+<h1 class="text-3xl md:text-4xl font-bold">Berita Kecamatan Makale</h1>
+<p class="mt-2 text-amber-100">Informasi terbaru dan kegiatan Kecamatan Makale</p>
 </div>
-
-
-</header>
-
-
-
+</section>
 
 <!-- ================= CONTENT ================= -->
 
-<main class="max-w-7xl mx-auto px-5 py-10">
+<main class="flex-grow max-w-7xl mx-auto px-5 py-10 w-full">
 
 
 
@@ -251,12 +232,11 @@ title="Kembali ke atas"
 
 <!-- SCRIPT BERITA -->
 
+<!-- REUSABLE FOOTER PLACEHOLDER -->
+<div id="footer-placeholder"></div>
+
+<script src="assets/js/main.js"></script>
 <script src="assets/js/berita.js"></script>
-
- <!-- REUSABLE FOOTER PLACEHOLDER -->
-    <div id="footer-placeholder"></div>
-
-    <script src="assets/js/main.js"></script>
     <script>
         // Logika Client-Side Filter Galeri
         function filterGallery(category) {
