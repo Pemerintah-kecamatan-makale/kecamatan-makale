@@ -439,11 +439,7 @@ function renderNews(){
 
         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
 
-        <span class="absolute top-4 left-4 bg-amber-700 text-white text-xs font-semibold px-3 py-1 rounded-full">
-
-            ${item.category}
-
-        </span>
+       
 
     </div>
 
