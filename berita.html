@@ -54,22 +54,18 @@ sans-serif;
 
 
 <body class="bg-gray-50 flex flex-col min-h-screen">
-
-
-<!-- REUSABLE HEADER PLACEHOLDER -->
 <div id="header-placeholder"></div>
-
-<!-- HERO HALAMAN -->
-<section class="bg-amber-700 text-white shadow-lg">
-<div class="max-w-7xl mx-auto px-5 py-6">
-<h1 class="text-3xl md:text-4xl font-bold">Berita Kecamatan Makale</h1>
-<p class="mt-2 text-amber-100">Informasi terbaru dan kegiatan Kecamatan Makale</p>
-</div>
-</section>
-
+<main class="flex-grow w-full">
+<section class="bg-gradient-to-r from-amber-800 to-amber-700 text-white shadow">
+<div class="max-w-7xl mx-auto px-6 py-10">
+<span class="text-xs font-bold uppercase tracking-widest text-amber-200">Informasi Publik</span>
+<h1 class="text-4xl font-black mt-2">Berita Kecamatan Makale</h1>
+<p class="mt-3 text-amber-100">Informasi terbaru dan kegiatan Kecamatan Makale.</p>
+</div></section>
+<section class="max-w-7xl mx-auto px-5 py-10">
 <!-- ================= CONTENT ================= -->
 
-<main class="flex-grow max-w-7xl mx-auto px-5 py-10 w-full">
+<main class="max-w-7xl mx-auto px-5 py-10">
 
 
 
@@ -204,7 +200,9 @@ class="mt-8"
 
 </div>
 
+</section>
 </main>
+<div id="footer-placeholder"></div>
 
 <!-- BACK TO TOP -->
 
@@ -232,36 +230,8 @@ title="Kembali ke atas"
 
 <!-- SCRIPT BERITA -->
 
-<!-- REUSABLE FOOTER PLACEHOLDER -->
-<div id="footer-placeholder"></div>
-
 <script src="assets/js/main.js"></script>
 <script src="assets/js/berita.js"></script>
-    <script>
-        // Logika Client-Side Filter Galeri
-        function filterGallery(category) {
-            const items = document.querySelectorAll('.gallery-item');
-            const buttons = document.querySelectorAll('.gallery-filter-btn');
-            
-            // Setel ulang warna semua tombol filter
-            buttons.forEach(btn => {
-                btn.className = "gallery-filter-btn px-5 py-2 bg-white text-gray-700 hover:bg-gray-100 font-bold text-xs rounded-xl shadow-sm uppercase tracking-wider transition-all border border-gray-200";
-            });
-
-            // Warnai tombol yang sedang aktif
-            event.target.className = "gallery-filter-btn px-5 py-2 bg-red-800 text-amber-300 font-bold text-xs rounded-xl shadow-sm uppercase tracking-wider transition-all";
-
-            // Sembunyikan atau tampilkan item galeri sesuai kategori
-            items.forEach(item => {
-                if (category === 'semua' || item.getAttribute('data-category') === category) {
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.add('hidden');
-                }
-            });
-        }
-    </script>
-
 </body>
 
 </html>
