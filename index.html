@@ -81,93 +81,89 @@
 
 <section class="max-w-7xl mx-auto px-4 py-7">
 
-    <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+    <section class="max-w-7xl mx-auto px-4 py-12">
 
-        <div class="grid lg:grid-cols-2 gap-0">
+<div class="grid lg:grid-cols-2 gap-8">
 
-            <!-- Kiri -->
+    <!-- KIRI -->
+    <div class="bg-red-800 rounded-2xl shadow-xl text-white p-8">
 
-            <div class="p-6">
+        <span class="inline-flex items-center bg-amber-400 text-red-900 font-bold px-4 py-2 rounded-full mb-5">
+            <i class="fas fa-star mr-2"></i>
+            SURVEI KEPUASAN MASYARAKAT
+        </span>
 
-                <div class="inline-flex items-center gap-2 bg-red-800 text-white px-4 py-2 rounded-full mb-5">
+        <h2 class="text-3xl font-bold mb-4">
+            Pendapat Anda Sangat Berarti
+        </h2>
 
-                    <i class="fas fa-clipboard-check"></i>
+        <p class="leading-8 text-red-100">
+            Mari berpartisipasi dalam Survei Kepuasan Masyarakat sebagai bahan evaluasi peningkatan kualitas pelayanan publik Kecamatan Makale.
+        </p>
 
-                    <span class="font-semibold">
-                        Survei Kepuasan Masyarakat
-                    </span>
+        <div class="mt-5 flex items-center">
+            <i class="fas fa-clock mr-2"></i>
+            ±2 menit
+        </div>
 
+        <div class="mt-8 flex gap-4">
+
+            <a href="survei.html"
+            class="bg-amber-400 text-red-900 font-bold px-6 py-3 rounded-lg hover:bg-yellow-300">
+
+                <i class="fas fa-paper-plane mr-2"></i>
+                Isi Survei
+
+            </a>
+
+            <button class="border border-white px-6 py-3 rounded-lg hover:bg-white hover:text-red-900">
+
+                <i class="fas fa-qrcode mr-2"></i>
+
+                QR Code
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- KANAN -->
+    <div class="bg-white rounded-2xl shadow-xl border p-8">
+
+        <h3 class="text-xl font-bold text-gray-800 mb-6">
+
+            Hasil Survei Kepuasan
+
+        </h3>
+
+        <div class="grid grid-cols-2 gap-4">
+
+            <div class="bg-red-50 rounded-xl p-5 text-center">
+
+                <div class="text-gray-500 text-sm">
+                    Nilai IKM
                 </div>
 
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                <div id="ikmValue"
+                     class="text-5xl font-black text-red-800 mt-2">
 
-                    Pendapat Anda Sangat Berarti
-
-                </h2>
-
-                <p class="text-gray-600 leading-8">
-
-                    Mari berpartisipasi dalam Survei Kepuasan Masyarakat
-                    sebagai bahan evaluasi untuk meningkatkan kualitas
-                    pelayanan publik di Kecamatan Makale.
-
-                </p>
-
-                <div class="mt-6 flex items-center text-red-800">
-
-                    <i class="fas fa-clock mr-2"></i>
-
-                    <span>Waktu pengisian sekitar 2 menit.</span>
-
-                </div>
-
-                <div class="mt-8 flex flex-wrap gap-4">
-
-                    <a href="survei.html"
-                        class="bg-red-800 hover:bg-red-900 text-white font-semibold px-6 py-3 rounded-lg transition">
-
-                        <i class="fas fa-paper-plane mr-2"></i>
-
-                        Isi Survei
-
-                    </a>
-
-                    <button
-                        class="border border-red-800 text-red-800 hover:bg-red-50 px-6 py-3 rounded-lg transition">
-
-                        <i class="fas fa-qrcode mr-2"></i>
-
-                        Scan QR Code
-
-                    </button>
+                    --
 
                 </div>
 
             </div>
 
-            <!-- Kanan -->
+            <div class="bg-green-50 rounded-xl p-5 text-center">
 
-            <div class="bg-gray-50 flex items-center justify-center p-8">
+                <div class="text-gray-500 text-sm">
+                    Mutu
+                </div>
 
-                <div class="text-center">
+                <div id="mutuValue"
+                     class="text-5xl font-black text-green-700 mt-2">
 
-                    <div
-                        class="w-48 h-48 bg-white border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center mx-auto">
-
-                        <div>
-
-                            <i class="fas fa-qrcode text-7xl text-gray-400"></i>
-
-                            <p class="mt-3 text-sm text-gray-500">
-
-                                QR Code akan ditambahkan
-                                pada tahap berikutnya
-
-                            </p>
-
-                        </div>
-
-                    </div>
+                    --
 
                 </div>
 
@@ -175,7 +171,15 @@
 
         </div>
 
+        <div class="mt-6">
+
+            <canvas id="ikmChart" height="200"></canvas>
+
+        </div>
+
     </div>
+
+</div>
 
 </section>
 <!-- ================= DASHBOARD SKM ================= -->
@@ -306,6 +310,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="assets/js/dashboard.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
         // ==================== ENGINE CONTROL POP-UP MAKLUMAT (OPTIMAL) ====================
