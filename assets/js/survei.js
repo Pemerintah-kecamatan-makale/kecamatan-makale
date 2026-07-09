@@ -7,8 +7,7 @@ document.getElementById("formSKM").addEventListener("submit", function(e){
     const btn = document.getElementById("btnKirim");
 
     btn.disabled = true;
-    btn.innerHTML = "Mengirim...";
-
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
     const data = {
 
         nama : document.getElementById("nama").value,
@@ -44,7 +43,19 @@ document.getElementById("formSKM").addEventListener("submit", function(e){
 
         if(res.status=="success"){
 
-            alert("Terima kasih.\n\nSurvei berhasil dikirim.");
+            const notif = document.getElementById("notif");
+const notifText = document.getElementById("notifText");
+
+notifText.innerHTML =
+"Survei Anda berhasil dikirim. Masukan Anda sangat berarti bagi peningkatan pelayanan Kecamatan Makale.";
+
+notif.classList.remove("hidden");
+
+setTimeout(() => {
+
+    notif.classList.add("hidden");
+
+}, 4000);
 
             document.getElementById("formSKM").reset();
 
@@ -68,7 +79,7 @@ document.getElementById("formSKM").addEventListener("submit", function(e){
 
         btn.disabled=false;
 
-        btn.innerHTML="Kirim Survei";
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Survei';
 
     });
 
