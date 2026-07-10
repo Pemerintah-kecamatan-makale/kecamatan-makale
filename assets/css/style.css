@@ -20,3 +20,63 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #7f1d1d;
 }
+/* ======================================================
+   QUICK SERVICES
+====================================================== */
+
+.quick-services{
+    background:#f8f9fa;
+}
+
+.service-card{
+    display:block;
+    background:#fff;
+    border-radius:18px;
+    padding:30px 20px;
+    text-align:center;
+    text-decoration:none;
+    color:#333;
+    height:100%;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    transition:.3s ease;
+}
+
+.service-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 28px rgba(0,0,0,.12);
+    color:#7B1113;
+}
+
+.service-icon{
+    width:70px;
+    height:70px;
+    margin:0 auto 20px;
+    border-radius:50%;
+    background:#7B1113;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+}
+
+.service-card h5{
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.service-card p{
+    font-size:.9rem;
+    color:#666;
+    margin:0;
+}
+
+.section-title{
+    font-weight:700;
+    color:#7B1113;
+}
+
+.section-subtitle{
+    color:#666;
+    margin-bottom:0;
+}
