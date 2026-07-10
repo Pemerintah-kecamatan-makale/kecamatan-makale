@@ -434,6 +434,18 @@ flex-direction:column;
                 console.log("✓ Data diterima dari Google Sheets");
                 console.log("Total rows:", rows.length);
                 console.log("Sample row:", rows.length > 0 ? rows[0] : "No rows");
+                
+                // Handle case ketika tidak ada rows
+                if (!rows || rows.length === 0) {
+                    console.warn("⚠ Tidak ada data berita di Google Sheets");
+                    container.innerHTML = `
+                        <div class="col-span-full text-center text-gray-400 py-8 border-2 border-dashed border-gray-200 rounded-xl bg-white">
+                            <i class="fas fa-newspaper text-4xl mb-3 text-gray-300"></i>
+                            <p class="text-sm font-medium">Belum ada berita yang tersedia di Google Sheets.</p>
+                            <p class="text-xs text-gray-400 mt-2">Silakan tambah data berita di spreadsheet terlebih dahulu.</p>
+                        </div>`;
+                    return;
+                }
 
                 let daftarBerita = [];
                 rows.forEach(row => {
@@ -477,6 +489,18 @@ flex-direction:column;
                 
                 if (beritaTerbaru.length > 0) {
                     console.log("Berita terakhir:", beritaTerbaru[0]);
+                }
+                
+                // Handle case ketika tidak ada berita yang valid
+                if (daftarBerita.length === 0) {
+                    console.warn("⚠ Tidak ada berita yang valid setelah parsing");
+                    container.innerHTML = `
+                        <div class="col-span-full text-center text-gray-400 py-8 border-2 border-dashed border-gray-200 rounded-xl bg-white">
+                            <i class="fas fa-newspaper text-4xl mb-3 text-gray-300"></i>
+                            <p class="text-sm font-medium">Tidak ada berita yang valid di Google Sheets.</p>
+                            <p class="text-xs text-gray-400 mt-2">Periksa kolom Judul dan Isi di spreadsheet.</p>
+                        </div>`;
+                    return;
                 }
 
                 if (beritaTerbaru.length === 0) {
@@ -545,6 +569,7 @@ flex-direction:column;
                         </div>
                     `;
                     container.innerHTML = layoutHTML;
+                    console.log("✓ Berita berhasil dirender di beranda");
                 });
 
             } catch (error) {
