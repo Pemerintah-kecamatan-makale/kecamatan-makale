@@ -1,0 +1,3 @@
+﻿Perbaikan responsivitas: tambahkan hamburger nav, ubah container tabel menjadi overflow-x-auto, dan gunakan aspect-ratio untuk gambar berita.
+
+Co-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>
