@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Berita Loading - Kecamatan Makale</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        pre { background: #f3f4f6; padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 12px; }
+        .success { color: #22c55e; }
+        .error { color: #ef4444; }
+        .warning { color: #f59e0b; }
+        .info { color: #3b82f6; }
+    </style>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
+        <h1 class="text-3xl font-bold mb-6">Debug: Test Berita Loading</h1>
+        
+        <div id="output" class="space-y-4"></div>
+    </div>
+
+    <script>
+        const output = document.getElementById('output');
+        
+        function log(message, type = 'info') {
+            const div = document.createElement('div');
+            div.innerHTML = `<span class="${type}">${new Date().toLocaleTimeString()}: ${message}</span>`;
+            output.appendChild(div);
+            console.log(`[${type.toUpperCase()}] ${message}`);
+        }
+
+        async function testBeritaLoading() {
+            log('=== Memulai Test Berita Loading ===', 'info');
+            
+            const SPREADSHEET_ID = '1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ';
+            const sheetUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
+            
+            log(`URL Spreadsheet: ${sheetUrl}`, 'info');
+            
+            try {
+                log('Step 1: Memulai fetch...', 'info');
+                const response = await fetch(sheetUrl);
+                
+                log(`Step 2: Response status: ${response.status}`, response.ok ? 'success' : 'error');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const text = await response.text();
+                log(`Step 3: Response text length: ${text.length} characters`, 'info');
+                
+                // Show sample of response
+                const sampleLength = Math.min(200, text.length);
+                log(`Sample response: ${text.substring(0, sampleLength)}...`, 'info');
+                
+                // Extract JSON
+                const startIdx = text.indexOf('{');
+                const endIdx = text.lastIndexOf('}');
+                
+                if (startIdx === -1 || endIdx === -1) {
+                    throw new Error("Tidak dapat menemukan JSON dalam response");
+                }
+                
+                log(`Step 4: JSON found at positions ${startIdx} to ${endIdx}`, 'success');
+                
+                const jsonRaw = text.substring(startIdx, endIdx + 1);
+                const jsonData = JSON.parse(jsonRaw);
+                
+                log(`Step 5: JSON parsed successfully`, 'success');
+                
+                if (!jsonData.table) {
+                    throw new Error("Tidak ada property 'table' dalam JSON");
+                }
+                
+                if (!jsonData.table.rows) {
+                    log(`Step 6: WARNING - table.rows tidak ada!`, 'warning');
+                    log(`Available properties in table: ${Object.keys(jsonData.table).join(', ')}`, 'info');
+                    return;
+                }
+                
+                const rows = jsonData.table.rows;
+                log(`Step 6: Total rows: ${rows.length}`, 'success');
+                
+                if (rows.length === 0) {
+                    log('WARNING: Tidak ada data di spreadsheet!', 'warning');
+                    log('Pastikan:
+1. Google Sheets ada datanya
+2. Sheet pertama berisi data berita
+3. Format kolom sesuai (Timestamp, Judul, Isi, Foto, Kategori, Tanggal)', 'warning');
+                    return;
+                }
+                
+                // Analyze first few rows
+                log(`\nAnalisis ${Math.min(3, rows.length)} baris pertama:`, 'info');
+                
+                rows.slice(0, 3).forEach((row, idx) => {
+                    if (!row || !row.c) {
+                        log(`Row ${idx}: EMPTY`, 'warning');
+                        return;
+                    }
+                    
+                    const cols = [];
+                    for (let i = 0; i < row.c.length; i++) {
+                        const cell = row.c[i];
+                        const val = cell ? (cell.v || cell.f || 'null') : 'null';
+                        cols.push(`[${i}]: ${val}`);
+                    }
+                    
+                    log(`Row ${idx}: ${cols.join(' | ')}`, 'info');
+                });
+                
+                // Try to parse berita
+                log('\nMemulai parsing berita...', 'info');
+                
+                let validBerita = 0;
+                rows.forEach((row, idx) => {
+                    if (!row || !row.c) return;
+                    
+                    const judul = row.c[1] ? row.c[1].v : '';
+                    const isi = row.c[2] ? row.c[2].v : '';
+                    
+                    if (judul && isi && judul !== "Judul") {
+                        validBerita++;
+                        if (validBerita <= 2) {
+                            log(`Valid berita ${validBerita}: "${judul.substring(0, 50)}..."`, 'success');
+                        }
+                    }
+                });
+                
+                log(`Total berita valid: ${validBerita}`, validBerita > 0 ? 'success' : 'warning');
+                
+                log('\n=== Test Complete ===', 'info');
+                
+            } catch (error) {
+                log(`ERROR: ${error.message}`, 'error');
+                log(`Stack: ${error.stack}`, 'error');
+            }
+        }
+
+        // Run test
+        document.addEventListener('DOMContentLoaded', testBeritaLoading);
+    </script>
+</body>
+</html>
