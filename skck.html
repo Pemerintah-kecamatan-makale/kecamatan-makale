@@ -1,1 +1,298 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permohonan Surat Pengantar SKCK | Kecamatan Makale</title>
 
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body class="bg-gray-100">
+
+<!-- Header -->
+
+<header class="bg-red-800 shadow">
+
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center">
+
+        <img src="assets/images/logo.png"
+             class="w-14 h-14 mr-4"
+             onerror="this.style.display='none'">
+
+        <div>
+
+            <h1 class="text-white text-2xl font-bold">
+                PEMERINTAH KECAMATAN MAKALE
+            </h1>
+
+            <p class="text-yellow-300 text-sm">
+                Kabupaten Tana Toraja
+            </p>
+
+        </div>
+
+    </div>
+
+</header>
+
+<!-- Judul -->
+
+<section class="bg-white shadow">
+
+    <div class="max-w-4xl mx-auto px-6 py-8">
+
+        <h2 class="text-3xl font-bold text-red-800">
+
+            <i class="fas fa-id-card mr-2"></i>
+
+            Permohonan Surat Pengantar SKCK
+
+        </h2>
+
+        <p class="text-gray-600 mt-2">
+
+            Silakan isi formulir berikut dengan benar.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- Form -->
+
+<section class="py-10">
+
+<div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<form id="formSKCK" class="space-y-6">
+
+<div>
+
+<label class="font-semibold">
+
+NIK
+
+</label>
+
+<input
+
+id="nik"
+
+maxlength="16"
+
+required
+
+class="mt-2 w-full border rounded-lg p-3"
+
+placeholder="Masukkan NIK">
+
+</div>
+
+<div>
+
+<label class="font-semibold">
+
+Nama Lengkap
+
+</label>
+
+<input
+
+id="nama"
+
+required
+
+class="mt-2 w-full border rounded-lg p-3"
+
+placeholder="Nama Lengkap">
+
+</div>
+
+<div>
+
+<label class="font-semibold">
+
+Nomor HP
+
+</label>
+
+<input
+
+id="hp"
+
+required
+
+class="mt-2 w-full border rounded-lg p-3"
+
+placeholder="08xxxxxxxxxx">
+
+</div>
+
+<div>
+
+<label class="font-semibold">
+
+Alamat
+
+</label>
+
+<textarea
+
+id="alamat"
+
+rows="3"
+
+required
+
+class="mt-2 w-full border rounded-lg p-3"
+
+placeholder="Alamat lengkap"></textarea>
+
+</div>
+
+<div>
+
+<label class="font-semibold">
+
+Keperluan
+
+</label>
+
+<select
+
+id="keperluan"
+
+required
+
+class="mt-2 w-full border rounded-lg p-3">
+
+<option value="">Pilih</option>
+
+<option>Melamar Kerja</option>
+
+<option>Melanjutkan Pendidikan</option>
+
+<option>Pembuatan Visa</option>
+
+<option>Keperluan Lainnya</option>
+
+</select>
+
+</div>
+
+<button
+
+type="submit"
+
+class="w-full bg-red-800 hover:bg-red-900 text-white font-bold py-4 rounded-lg">
+
+<i class="fas fa-paper-plane mr-2"></i>
+
+KIRIM PERMOHONAN
+
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+<footer class="bg-red-900 text-white py-6 mt-10">
+
+<div class="text-center text-sm">
+
+© 2026 Pemerintah Kecamatan Makale
+
+</div>
+
+</footer>
+
+<script>
+
+const WEB_APP="https://script.google.com/macros/s/AKfycbzBuk60etXZAXeEh2EYTWo_5byUMHgFHgbf442mCjgj4Y60gzK7OSpHw7efpEllhknd/exec";
+
+document.getElementById("formSKCK").addEventListener("submit",async(e)=>{
+
+e.preventDefault();
+
+const btn=e.target.querySelector("button");
+
+btn.disabled=true;
+
+btn.innerHTML="Mengirim...";
+
+const data={
+
+jenisSurat:"SKCK",
+
+nik:document.getElementById("nik").value,
+
+nama:document.getElementById("nama").value,
+
+hp:document.getElementById("hp").value,
+
+alamat:document.getElementById("alamat").value,
+
+keperluan:document.getElementById("keperluan").value
+
+};
+
+try{
+
+const res=await fetch(WEB_APP,{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+body:JSON.stringify(data)
+
+});
+
+const hasil=await res.json();
+
+if(hasil.success){
+
+alert(
+
+"Permohonan berhasil dikirim.\n\nNomor Registrasi : "+hasil.nomor
+
+);
+
+document.getElementById("formSKCK").reset();
+
+}else{
+
+alert(hasil.error);
+
+}
+
+}catch(err){
+
+alert("Tidak dapat terhubung ke server.");
+
+console.log(err);
+
+}
+
+btn.disabled=false;
+
+btn.innerHTML='<i class="fas fa-paper-plane mr-2"></i>KIRIM PERMOHONAN';
+
+});
+
+</script>
+
+</body>
+</html>
