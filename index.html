@@ -408,18 +408,28 @@ flex-direction:column;
             console.log("✓ berita-container element ditemukan");
 
             try {
-                const response = await fetch(sheetUrl);
+                log("✓ Fetch function starting...");
+                
+                // Add timeout to prevent hanging
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+                
+                const response = await fetch(sheetUrl, { signal: controller.signal });
+                clearTimeout(timeoutId);
+                
+                console.log("✓ Fetch response received");
                 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 
                 const text = await response.text();
+                console.log("✓ Response text received");
 
                 const startIdx = text.indexOf('{');
                 const endIdx = text.lastIndexOf('}');
                 if (startIdx === -1 || endIdx === -1) {
-                    throw new Error("Format data tidak valid - response tidak mengandung JSON.");
+                    throw new Error("Format data tidak valid - response tidak mengandung JSON. Response mungkin kosong atau format tidak sesuai.");
                 }
 
                 const jsonRaw = text.substring(startIdx, endIdx + 1);
@@ -578,10 +588,19 @@ flex-direction:column;
                 
                 // Tampilkan pesan error yang lebih informatif
                 let errorMsg = "Gagal memuat berita terbaru.";
-                if (error.message.includes("HTTP error")) {
-                    errorMsg = "Error koneksi ke Google Sheets. Pastikan spreadsheet dapat diakses.";
+                let isCorsError = false;
+                let isTimeoutError = false;
+                
+                if (error.name === 'AbortError') {
+                    isTimeoutError = true;
+                    errorMsg = "Koneksi timeout - Google Sheets tidak merespons dalam waktu yang ditentukan.";
+                } else if (error.message.includes("HTTP error")) {
+                    errorMsg = "Error koneksi ke Google Sheets (status: " + error.message + "). Pastikan spreadsheet dapat diakses.";
+                } else if (error.message.includes("Failed to fetch") || error.message.includes("CORS")) {
+                    isCorsError = true;
+                    errorMsg = "Error CORS - Mungkin browser memblokir akses ke Google Sheets.";
                 } else if (error.message.includes("Format data tidak valid")) {
-                    errorMsg = "Format data dari Google Sheets tidak valid.";
+                    errorMsg = "Format data dari Google Sheets tidak valid. Cek struktur spreadsheet.";
                 } else if (error.message.includes("Struktur data")) {
                     errorMsg = "Struktur data Google Sheets tidak sesuai. Periksa kolom data.";
                 }
@@ -590,7 +609,11 @@ flex-direction:column;
                     <div class="col-span-full text-center text-red-600 py-8 font-medium">
                         <i class="fas fa-exclamation-circle text-2xl mb-2"></i>
                         <p>${errorMsg}</p>
-                        <p class="text-xs text-gray-500 mt-2">Cek console untuk detail error</p>
+                        <p class="text-xs text-gray-500 mt-2">
+                            ${isTimeoutError ? 'Coba refresh halaman.' : ''}
+                            ${isCorsError ? 'Cek CORS setting di Google Sheets.' : ''}
+                            Cek browser console untuk detail lengkap.
+                        </p>
                     </div>
                 `;
             }
