@@ -398,6 +398,10 @@ flex-direction:column;
             const SPREADSHEET_ID = '1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ';
             const sheetUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
             const container = document.getElementById('berita-container');
+            
+            // Determine base path for GitHub Pages or local
+            const isGithubPages = window.location.hostname.includes('github.io');
+            const basePath = isGithubPages ? '/kecamatan-makale/' : '/';
 
             if (!container) {
                 console.error("❌ Element 'berita-container' tidak ditemukan di DOM");
@@ -437,15 +441,41 @@ flex-direction:column;
                     const tanggal = row.c[5] ? (row.c[5].f || row.c[5].v || '') : (row.c[0] ? row.c[0].v : 'Baru Saja');
                     
                     if (judul && isi && judul !== "Judul") {
-                        // Extract Google Drive ID if exists
-                        let fotoUrl = "assets/images/Plaza Kolam Makale.jpg";
+                        // Extract Google Drive ID if exists - improved regex patterns
+                        let fotoUrl = basePath + "assets/images/Plaza Kolam Makale.jpg";
+                        
                         if (foto) {
-                            const match = foto.match(/\/d\/([a-zA-Z0-9-_]{25,})/);
+                            console.log("Raw foto URL from sheet:", foto);
+                            
+                            // Try multiple patterns to extract Google Drive ID
+                            let driveId = null;
+                            
+                            // Pattern 1: /d/XXXXX format
+                            let match = foto.match(/\/d\/([a-zA-Z0-9-_]{20,})/);
                             if (match && match[1]) {
-                                fotoUrl = `https://drive.google.com/thumbnail?sz=w800&id=${match[1]}`;
-                            } else if (foto.startsWith('http')) {
-                                fotoUrl = foto;
+                                driveId = match[1];
                             }
+                            
+                            // Pattern 2: id=XXXXX format
+                            if (!driveId) {
+                                match = foto.match(/[?&]id=([a-zA-Z0-9-_]{20,})/);
+                                if (match && match[1]) {
+                                    driveId = match[1];
+                                }
+                            }
+                            
+                            // Pattern 3: Direct URL that starts with http
+                            if (!driveId && foto.startsWith('http')) {
+                                fotoUrl = foto;
+                                console.log("Using direct URL:", fotoUrl);
+                            }
+                            
+                            if (driveId) {
+                                fotoUrl = `https://drive.google.com/thumbnail?sz=w800&id=${driveId}`;
+                                console.log("Using Google Drive thumbnail:", fotoUrl);
+                            }
+                        } else {
+                            console.log("No foto URL from sheet, using default");
                         }
                         
                         daftarBerita.push({
@@ -470,7 +500,11 @@ flex-direction:column;
                 container.innerHTML = `
                     <div class="flex justify-center md:justify-end w-full">
                         <article class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col max-w-xl w-full">
-                            <img src="${berita.foto}" alt="${berita.judul}" class="w-full h-60 object-cover">
+                            <img src="${berita.foto}" 
+                                 alt="${berita.judul}" 
+                                 class="w-full h-60 object-cover"
+                                 onerror="this.src='${basePath}assets/images/Plaza Kolam Makale.jpg'; console.warn('Image failed to load, using fallback:', this.src);"
+                                 onload="console.log('Image loaded successfully:', this.src);">
                             <div class="p-6 flex flex-col flex-grow">
                                 <div class="text-xs text-gray-400 mb-2"><i class="far fa-calendar-alt mr-2"></i>${berita.tanggal}</div>
                                 <h3 class="text-xl font-bold text-gray-900 mb-3">${berita.judul}</h3>
