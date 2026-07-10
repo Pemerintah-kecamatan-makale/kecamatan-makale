@@ -522,75 +522,55 @@ flex-direction:column;
         }
 
         document.addEventListener('DOMContentLoaded', fetchBeritaBeranda);
-    </script>
-    const API =
+  <script>
+const API =
 "https://script.google.com/macros/s/AKfycbyvaAvWB2_ACWwN3Bk7fOezihnbLMZ_PmJ6Earj2y122Jsyt6RqbCKTPzKc30BW8J0rSw/exec?dashboard=1";
 
 fetch(API)
-.then(r=>r.json())
-.then(data=>{
+.then(r => r.json())
+.then(data => {
 
-document.getElementById("ikmValue").innerHTML=data.ikm.toFixed(2);
+    document.getElementById("ikmValue").innerHTML = data.ikm.toFixed(2);
+    document.getElementById("mutuValue").innerHTML = data.kategori;
 
-document.getElementById("mutuValue").innerHTML=data.kategori;
-
-new Chart(document.getElementById("ikmChart"),{
-
-type:'bar',
-
-data:{
-
-labels:["U1","U2","U3","U4","U5","U6","U7","U8","U9"],
-
-datasets:[{
-
-label:"Nilai Unsur",
-
-data:[
-
-data.u1,
-data.u2,
-data.u3,
-data.u4,
-data.u5,
-data.u6,
-data.u7,
-data.u8,
-data.u9
-
-]
-
-}]
-
-},
-
-options:{
-
-plugins:{
-
-legend:{
-display:false
-}
-
-},
-
-scales:{
-
-y:{
-
-beginAtZero:true,
-
-max:4
-
-}
-
-}
-
-}
+    new Chart(document.getElementById("ikmChart"), {
+        type: "bar",
+        data: {
+            labels: ["U1","U2","U3","U4","U5","U6","U7","U8","U9"],
+            datasets: [{
+                label: "Nilai Unsur",
+                data: [
+                    data.u1,
+                    data.u2,
+                    data.u3,
+                    data.u4,
+                    data.u5,
+                    data.u6,
+                    data.u7,
+                    data.u8,
+                    data.u9
+                ],
+                backgroundColor: "#991b1b"
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 4
+                }
+            }
+        }
+    });
 
 });
+</script>
 
-});
 <script src="assets/js/main.js"></script>
 <script src="assets/js/dashboard.js"></script>
 <script src="assets/js/berita.js"></script>
