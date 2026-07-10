@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Syntax Validator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow p-8">
+        <h1 class="text-2xl font-bold mb-4">HTML & JS Syntax Checker</h1>
+        <div id="output" class="space-y-2 text-sm font-mono"></div>
+    </div>
+
+    <script>
+        const output = document.getElementById('output');
+        
+        async function checkSyntax() {
+            try {
+                const response = await fetch('./index.html');
+                const html = await response.text();
+                
+                // Check for basic issues
+                let issues = [];
+                
+                // Count tags
+                const openScript = (html.match(/<script[^>]*>/g) || []).length;
+                const closeScript = (html.match(/<\/script>/g) || []).length;
+                
+                if (openScript !== closeScript) {
+                    issues.push(`❌ Script tags mismatch: open=${openScript}, close=${closeScript}`);
+                } else {
+                    output.appendChild(document.createElement('div')).textContent = `✓ Script tags balanced: ${openScript}/${closeScript}`;
+                }
+                
+                // Check for unclosed template strings
+                const backticks = (html.match(/`/g) || []).length;
+                if (backticks % 2 !== 0) {
+                    issues.push(`❌ Unbalanced backticks: ${backticks} (odd number)`);
+                } else {
+                    output.appendChild(document.createElement('div')).textContent = `✓ Backticks balanced: ${backticks}`;
+                }
+                
+                // Try to find specific syntax errors by checking structure
+                if (html.includes('SyntaxError')) {
+                    issues.push('❌ File contains "SyntaxError" text');
+                }
+                
+                // Display issues
+                if (issues.length > 0) {
+                    issues.forEach(issue => {
+                        const div = document.createElement('div');
+                        div.textContent = issue;
+                        div.className = 'text-red-600';
+                        output.appendChild(div);
+                    });
+                } else {
+                    const div = document.createElement('div');
+                    div.textContent = '✓ No obvious syntax errors detected';
+                    div.className = 'text-green-600 font-bold';
+                    output.appendChild(div);
+                }
+                
+            } catch (e) {
+                const div = document.createElement('div');
+                div.textContent = '❌ Error: ' + e.message;
+                div.className = 'text-red-600';
+                output.appendChild(div);
+            }
+        }
+        
+        checkSyntax();
+    </script>
+</body>
+</html>
