@@ -396,20 +396,44 @@ flex-direction:column;
         // ==================== ENGINE REAL-TIME BERITA BERANDA ====================
         async function fetchBeritaBeranda() {
             const SPREADSHEET_ID = '1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ';
-            const sheetUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=Form+Responses+1`;
+            const sheetUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
             const container = document.getElementById('berita-container');
+            
+            // Validasi container ada
+            if (!container) {
+                console.error("❌ Element 'berita-container' tidak ditemukan di DOM");
+                return;
+            }
+            
+            console.log("✓ berita-container element ditemukan");
 
             try {
                 const response = await fetch(sheetUrl);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
                 const text = await response.text();
 
                 const startIdx = text.indexOf('{');
                 const endIdx = text.lastIndexOf('}');
-                if (startIdx === -1 || endIdx === -1) throw new Error("Format data tidak valid.");
+                if (startIdx === -1 || endIdx === -1) {
+                    throw new Error("Format data tidak valid - response tidak mengandung JSON.");
+                }
 
                 const jsonRaw = text.substring(startIdx, endIdx + 1);
                 const jsonData = JSON.parse(jsonRaw);
+                
+                if (!jsonData.table || !jsonData.table.rows) {
+                    throw new Error("Struktur data tidak sesuai - tidak ada rows dalam table.");
+                }
+                
                 const rows = jsonData.table.rows;
+                
+                console.log("✓ Data diterima dari Google Sheets");
+                console.log("Total rows:", rows.length);
+                console.log("Sample row:", rows.length > 0 ? rows[0] : "No rows");
 
                 let daftarBerita = [];
                 rows.forEach(row => {
@@ -446,6 +470,14 @@ flex-direction:column;
 
                 daftarBerita.reverse();
                 const beritaTerbaru = daftarBerita.slice(0, 1);
+                
+                console.log("✓ Berita berhasil diparse");
+                console.log("Total berita setelah parse:", daftarBerita.length);
+                console.log("Berita untuk ditampilkan:", beritaTerbaru.length);
+                
+                if (beritaTerbaru.length > 0) {
+                    console.log("Berita terakhir:", beritaTerbaru[0]);
+                }
 
                 if (beritaTerbaru.length === 0) {
                     container.innerHTML = `
@@ -516,12 +548,35 @@ flex-direction:column;
                 });
 
             } catch (error) {
-                console.error("Gagal mengambil data berita:", error);
-                container.innerHTML = '<div class="col-span-full text-center text-red-600 py-8 font-medium">Gagal memuat berita terbaru.</div>';
+                console.error("❌ Gagal mengambil data berita:", error);
+                console.error("Error stack:", error.stack);
+                
+                // Tampilkan pesan error yang lebih informatif
+                let errorMsg = "Gagal memuat berita terbaru.";
+                if (error.message.includes("HTTP error")) {
+                    errorMsg = "Error koneksi ke Google Sheets. Pastikan spreadsheet dapat diakses.";
+                } else if (error.message.includes("Format data tidak valid")) {
+                    errorMsg = "Format data dari Google Sheets tidak valid.";
+                } else if (error.message.includes("Struktur data")) {
+                    errorMsg = "Struktur data Google Sheets tidak sesuai. Periksa kolom data.";
+                }
+                
+                container.innerHTML = `
+                    <div class="col-span-full text-center text-red-600 py-8 font-medium">
+                        <i class="fas fa-exclamation-circle text-2xl mb-2"></i>
+                        <p>${errorMsg}</p>
+                        <p class="text-xs text-gray-500 mt-2">Cek console untuk detail error</p>
+                    </div>
+                `;
             }
         }
 
-        document.addEventListener('DOMContentLoaded', fetchBeritaBeranda);
+        // Debug: Log saat fungsi siap dipanggil
+        console.log("✓ fetchBeritaBeranda function loaded");
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("✓ DOMContentLoaded fired, calling fetchBeritaBeranda");
+            fetchBeritaBeranda();
+        });
   <script>
 const API =
 "https://script.google.com/macros/s/AKfycbyvaAvWB2_ACWwN3Bk7fOezihnbLMZ_PmJ6Earj2y122Jsyt6RqbCKTPzKc30BW8J0rSw/exec?dashboard=1";
