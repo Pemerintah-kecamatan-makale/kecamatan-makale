@@ -262,91 +262,99 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // --- REAL-TIME BERITA ENGINE ---
-        async function fetchBeritaBeranda() {
-            const SPREADSHEET_ID = '1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ';
-            const sheetUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
-            const container = document.getElementById('berita-container');
+    // --- REAL-TIME BERITA ENGINE ---
+async function fetchBeritaBeranda() {
+    const SPREADSHEET_ID = '1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ';
+    const sheetUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
+    const container = document.getElementById('berita-container');
 
-            if (!container) return;
+    if (!container) return;
 
-            try {
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 10000);
-                const response = await fetch(sheetUrl, { signal: controller.signal });
-                clearTimeout(timeoutId);
-                
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                
-                const text = await response.text();
-                const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}')+1));
-                const rows = json.table.rows || [];
+    try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
+        const response = await fetch(sheetUrl, { signal: controller.signal });
+        clearTimeout(timeoutId);
+        
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
+        const text = await response.text();
+        const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}')+1));
+        const rows = json.table.rows || [];
 
-                if (rows.length === 0) {
-                    container.innerHTML = '<div class="text-center text-gray-400 py-8 bg-white rounded-xl border text-sm">Belum ada berita yang tersedia.</div>';
-                    return;
-                }
-
-                let daftarBerita = [];
-                rows.forEach(row => {
-                    if (!row || !row.c) return;
-                    const judul = row.c[1] ? row.c[1].v : '';
-                    const isi = row.c[2] ? row.c[2].v : '';
-                    const foto = row.c[3] ? row.c[3].v : '';
-                    const tanggal = row.c[5] ? (row.c[5].f || row.c[5].v || '') : (row.c[0] ? row.c[0].v : 'Baru Saja');
-                    
-                    if (judul && isi && judul !== "Judul") {
-                        let fotoUrl = "assets/images/Plaza Kolam Makale.jpg";
-                        if (foto) {
-                            let id = null;
-                            let match = foto.match(/\/d\/([A-Za-z0-9_-]+)/);
-                            if (match) id = match[1];
-                            if (!id) {
-                                match = foto.match(/[?&]id=([A-Za-z0-9_-]+)/);
-                                if (match) id = match[1];
-                            }
-                            if (!id && /^[A-Za-z0-9_-]{20,}$/.test(foto.trim())) id = foto.trim();
-                            if (id) {
-    // Menggunakan server usercontent agar foto langsung tembus di browser HP tanpa hambatan cookie
-    fotoUrl = `https://lh3.googleusercontent.com/d/${id}`; 
-} else {
-    fotoUrl = foto;
-}
-                            else fotoUrl = foto;
-                        }
-                        daftarBerita.push({ judul, isi, foto: fotoUrl, tanggal });
-                    }
-                });
-
-                daftarBerita.reverse();
-                const berita = daftarBerita[0];
-
-                if (!berita) {
-                    container.innerHTML = '<div class="text-center text-gray-400 py-8 bg-white rounded-xl border text-sm">Tidak ada berita yang valid.</div>';
-                    return;
-                }
-
-                const preview = berita.isi.length > 130 ? berita.isi.substring(0, 130) + "..." : berita.isi;
-                
-                container.innerHTML = `
-                    <article class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col h-full hover:shadow-lg transition duration-200">
-                        <img src="${berita.foto}" alt="${berita.judul}" class="w-full h-48 sm:h-56 object-cover" loading="lazy">
-                        <div class="p-4 sm:p-6 flex flex-col flex-grow">
-                            <div class="text-[11px] text-gray-400 mb-1.5"><i class="far fa-calendar-alt mr-1.5"></i>${berita.tanggal}</div>
-                            <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 leading-snug">${berita.judul}</h3>
-                            <p class="text-xs sm:text-sm text-gray-600 mb-4 flex-grow leading-relaxed">${preview}</p>
-                            <a href="berita.html" class="text-red-800 hover:text-red-950 text-xs sm:text-sm font-bold self-start inline-flex items-center group p-2 -ml-2">
-                                Baca Selengkapnya <i class="fas fa-arrow-right ml-1.5 group-hover:translate-x-1 transition-transform text-[10px]"></i>
-                            </a>
-                        </div>
-                    </article>
-                `;
-            } catch (error) {
-                container.innerHTML = `<div class="text-center text-red-600 py-8 text-xs bg-white rounded-xl border">Error: ${error.message}</div>`;
-            }
+        if (rows.length === 0) {
+            container.innerHTML = '<div class="text-center text-gray-400 py-8 bg-white rounded-xl border text-sm">Belum ada berita yang tersedia.</div>';
+            return;
         }
 
-        document.addEventListener('DOMContentLoaded', fetchBeritaBeranda);
+        let daftarBerita = [];
+        rows.forEach(row => {
+            if (!row || !row.c) return;
+            const judul = row.c[1] ? row.c[1].v : '';
+            const isi = row.c[2] ? row.c[2].v : '';
+            const foto = row.c[3] ? row.c[3].v : '';
+            const tanggal = row.c[5] ? (row.c[5].f || row.c[5].v || '') : (row.c[0] ? row.c[0].v : 'Baru Saja');
+            
+            if (judul && isi && judul !== "Judul") {
+                let fotoUrl = "assets/images/Plaza Kolam Makale.jpg"; // Gambar default jika kosong
+                
+                if (foto) {
+                    let id = null;
+                    
+                    // 1. Ekstrak ID jika format link adalah /d/ID
+                    let matchD = foto.match(/\/d\/([A-Za-z0-9_-]+)/);
+                    if (matchD) id = matchD[1];
+                    
+                    // 2. Ekstrak ID jika format link menggunakan ?id=ID
+                    if (!id) {
+                        let matchId = foto.match(/[?&]id=([A-Za-z0-9_-]+)/);
+                        if (matchId) id = matchId[1];
+                    }
+                    
+                    // 3. Jika yang dimasukkan di form murni teks ID saja
+                    if (!id && /^[A-Za-z0-9_-]{20,}$/.test(foto.trim())) {
+                        id = foto.trim();
+                    }
+                    
+                    // Terapkan URL jalur kilat googleusercontent agar tembus di browser HP
+                    if (id) {
+                        fotoUrl = `https://lh3.googleusercontent.com/d/${id}`;
+                    } else {
+                        fotoUrl = foto;
+                    }
+                }
+                
+                daftarBerita.push({ judul, isi, foto: fotoUrl, tanggal });
+            }
+        });
+
+        daftarBerita.reverse();
+        const berita = daftarBerita[0];
+
+        if (!berita) {
+            container.innerHTML = '<div class="text-center text-gray-400 py-8 bg-white rounded-xl border text-sm">Tidak ada berita yang valid.</div>';
+            return;
+        }
+
+        const preview = berita.isi.length > 130 ? berita.isi.substring(0, 130) + "..." : berita.isi;
+        
+        container.innerHTML = `
+            <article class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col h-full hover:shadow-lg transition duration-200">
+                <img src="${berita.foto}" alt="${berita.judul}" class="w-full h-48 sm:h-56 object-cover" loading="lazy">
+                <div class="p-4 sm:p-6 flex flex-col flex-grow">
+                    <div class="text-[11px] text-gray-400 mb-1.5"><i class="far fa-calendar-alt mr-1.5"></i>${berita.tanggal}</div>
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 leading-snug">${berita.judul}</h3>
+                    <p class="text-xs sm:text-sm text-gray-600 mb-4 flex-grow leading-relaxed">${preview}</p>
+                    <a href="berita.html" class="text-red-800 hover:text-red-950 text-xs sm:text-sm font-bold self-start inline-flex items-center group p-2 -ml-2">
+                        Baca Selengkapnya <i class="fas fa-arrow-right ml-1.5 group-hover:translate-x-1 transition-transform text-[10px]"></i>
+                    </a>
+                </div>
+            </article>
+        `;
+    } catch (error) {
+        container.innerHTML = `<div class="text-center text-red-600 py-8 text-xs bg-white rounded-xl border">Error: ${error.message}</div>`;
+    }
+}
 
         // --- FETCH SKM & INITIALIZE BAR CHART ---
         const API = "https://script.google.com/macros/s/AKfycbyvaAvWB2_ACWwN3Bk7fOezihnbLMZ_PmJ6Earj2y122Jsyt6RqbCKTPzKc30BW8J0rSw/exec?dashboard=1";
