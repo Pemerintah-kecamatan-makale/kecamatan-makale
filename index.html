@@ -324,13 +324,14 @@ async function fetchBeritaBeranda() {
                     
                     // Menggunakan format resmi HTTPS UC Google Drive yang didukung penuh oleh browser mobile
                   // GANTI BAGIAN TERKAIT FOTOURL DENGAN KODE INI:
+// Cari potongan kode ini di dalam fungsi fetchBeritaBeranda() pada index.html:
 if (id) {
-    // Jalur kilat khusus yang sangat ramah terhadap browser Chrome & Safari di HP
+    // Ubah menjadi format lh3 seperti di bawah ini:
     fotoUrl = `https://lh3.googleusercontent.com/d/${id}`;
 } else {
     fotoUrl = urlString;
-                    }
-                }
+}
+           
                 
                 daftarBerita.push({ judul, isi, foto: fotoUrl, tanggal });
             }
