@@ -6,361 +6,213 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beranda | Website Resmi Kecamatan Makale</title>
     
+    <!-- Third Party CSS / Frameworks -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-    <body>
-<div id="maklumatModal" style="position: fixed;inset: 0;z-index: 9999;display: none;align-items: center;justify-content: center;padding: 10px;background: rgba(0,0,0,.75);backdrop-filter: blur(4px);">
+<body class="bg-gray-50 flex flex-col min-hidden">
 
-<div
-style="
-position: relative;
-background: #fff;
-border-radius: 14px;
-width: 92%;
-max-width: 340px;
-max-height: 88vh;
-overflow: hidden;
-border: 3px solid #f59e0b;
-display:flex;
-flex-direction:column;
-">
-        
-        <!-- HEADER MERAH (Seperti di image_1b159c.jpg) -->
-        <div style="background-color: #991b1b; padding: 12px; text-align: center; border-bottom: 2px solid #fbbf24;">
-            <p style="color: #ffffff; font-size: 10px; font-weight: bold; text-transform: uppercase; margin: 0; letter-spacing: 0.5px;">Pemerintah Kabupaten Tana Toraja</p>
-            <h4 style="color: #ffffff; font-size: 14px; font-weight: bold; text-transform: uppercase; margin: 2px 0 0 0;">Kecamatan Makale</h4>
-        </div>
-
-        <!-- Konten Utama -->
-        <div style="padding: 24px; flex-grow: 1; text-align: center; font-family: sans-serif; overflow-y: auto;">
-            <div style="display: flex; justify-content: center; margin-bottom: 16px;">
-                <img src="assets/images/LOGO TATOR3.png" alt="Logo Tana Toraja" style="height: 80px; width: auto; object-fit: contain;">
+    <!-- ================= MODAL MAKLUMAT PELAYANAN ================= -->
+    <div id="maklumatModal" style="position: fixed; inset: 0; z-index: 9999; display: none; align-items: center; justify-content: center; padding: 10px; background: rgba(0,0,0,.75); backdrop-filter: blur(4px);">
+        <div style="position: relative; background: #fff; border-radius: 14px; width: 92%; max-width: 340px; max-height: 88vh; overflow: hidden; border: 3px solid #f59e0b; display: flex; flex-direction: column;">
+            
+            <!-- HEADER MERAH -->
+            <div style="background-color: #991b1b; padding: 12px; text-align: center; border-bottom: 2px solid #fbbf24;">
+                <p style="color: #ffffff; font-size: 12px; font-weight: bold; text-transform: uppercase; margin: 0; letter-spacing: 0.5px;">Pemerintah Kabupaten Tana Toraja</p>
+                <h4 style="color: #ffffff; font-size: 14px; font-weight: bold; text-transform: uppercase; margin: 2px 0 0 0;">Kecamatan Makale</h4>
             </div>
 
-            <div style="margin-bottom: 16px;">
-                <h3 style="font-size: 20px; font-weight: 900; color: #1c1917; text-transform: uppercase; margin: 0;">Maklumat Pelayanan</h3>
-                <div style="height: 2px; width: 100px; background-color: #f59e0b; margin: 4px auto 0 auto; border-radius: 9999px;"></div>
-            </div>
+            <!-- Konten Utama -->
+            <div style="padding: 24px; flex-grow: 1; text-align: center; font-family: sans-serif; overflow-y: auto;">
+                <div style="display: flex; justify-content: center; margin-bottom: 16px;">
+                    <img src="assets/images/LOGO TATOR3.png" alt="Logo Tana Toraja" style="height: 80px; width: auto; object-fit: contain;">
+                </div>
 
-            <p style="font-size: 13px; color: #1c1917; line-height: 1.5; font-weight: 500; font-style: italic; margin-bottom: 20px;">
-                "Dengan ini kami menyatakan sanggup menyelenggarakan pelayanan sesuai standar pelayanan yang telah ditetapkan. Kami akan memberikan pelayanan sesuai dengan kewajiban dan akan melakukan perbaikan secara terus menerus. Apabila tidak menepati, kami siap menerima sanksi sesuai dan/atau memberi kompensasi sesuai dengan peraturan yang berlaku."
-            </p>
+                <div style="margin-bottom: 16px;">
+                    <h3 style="font-size: 20px; font-weight: 900; color: #1c1917; text-transform: uppercase; margin: 0;">Maklumat Pelayanan</h3>
+                    <div style="height: 2px; width: 100px; background-color: #f59e0b; margin: 4px auto 0 auto; border-radius: 9999px;"></div>
+                </div>
 
-            <div style="display: flex; flex-direction: column; align-items: center;">
-                <p style="font-size: 11px; color: #4b5563; margin: 0;">Makale, 02 Juli 2026</p>
-                <div style="width: 100%; height: 120px; margin: 5px 0; display: flex; align-items: center; justify-content: center;">
-                    <img src="assets/images/TTD Camat.png" alt="Tanda Tangan Camat" style="height: 100%; width: auto; object-fit: contain;">
+                <p style="font-size: 13px; color: #1c1917; line-height: 1.5; font-weight: 500; font-style: italic; margin-bottom: 20px;">
+                    "Dengan ini kami menyatakan sanggup menyelenggarakan pelayanan sesuai standar pelayanan yang telah ditetapkan. Kami akan memberikan pelayanan sesuai dengan kewajiban dan akan melakukan perbaikan secara terus menerus. Apabila tidak menepati, kami siap menerima sanksi sesuai dan/atau memberi kompensasi sesuai dengan peraturan yang berlaku."
+                </p>
+
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <p style="font-size: 11px; color: #4b5563; margin: 0;">Makale, 02 Juli 2026</p>
+                    <div style="width: 100%; height: 120px; margin: 5px 0; display: flex; align-items: center; justify-content: center;">
+                        <img src="assets/images/TTD Camat.png" alt="Tanda Tangan Camat" style="height: 100%; width: auto; object-fit: contain;">
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Tombol Tutup -->
-        <div style="padding: 16px; background-color: #f9fafb; border-top: 1px solid #f3f4f6;">
-            <button onclick="closeMaklumat()" style="width: 100%; padding: 10px; background-color: #991b1b; color: #ffffff; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; text-transform: uppercase; font-size: 13px;">
-                Tutup Maklumat
-            </button>
+            <!-- Tombol Tutup -->
+            <div style="padding: 16px; background-color: #f9fafb; border-top: 1px solid #f3f4f6;">
+                <button onclick="closeMaklumat()" style="width: 100%; padding: 10px; background-color: #991b1b; color: #ffffff; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; text-transform: uppercase; font-size: 13px;">
+                    Tutup Maklumat
+                </button>
+            </div>
         </div>
     </div>
-</div>
 
+    <!-- PLACEHOLDER HEADER -->
     <div id="header-placeholder"></div>
 
-    <section class="relative text-white py-14 px-4 overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('assets/images/Plaza Kolam Makale.jpg');">
-        <div class="absolute inset-0 bg-black opacity-50 z-0"></div>
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:16px_16px] z-10"></div>
-        <div class="max-w-4xl mx-auto text-center relative z-20">
+    <!-- MAIN CONTENT (Dibungkus dengan satu tag semantik utama) -->
+    <main class="flex-grow w-full">
+        
+        <!-- HERO SECTION -->
+        <section class="relative text-white py-14 px-4 overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('assets/images/Plaza Kolam Makale.jpg');">
+            <div class="absolute inset-0 bg-black opacity-50 z-0"></div>
+            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:16px_16px] z-10"></div>
             
-            <div class="inline-flex flex-col items-center mb-6 max-w-xs sm:max-w-sm">
-                <span class="bg-red-800 text-amber-300 text-base font-black tracking-widest px-6 py-2 rounded-t-full border-t-2 border-x-2 border-amber-500 text-center w-full shadow-sm">
-                    MASERO
-                </span>
-                <span class="bg-red-900 text-amber-300 text-sm font-bold tracking-widest px-6 py-2 rounded-b-full border-b-2 border-x-2 border-amber-600/50 text-center whitespace-nowrap shadow-sm">
-                    TANGNGA' - PAINAAN - TIKULAO
-                </span>
+            <div class="max-w-4xl mx-auto text-center relative z-20">
+                <div class="inline-flex flex-col items-center mb-6 max-w-xs sm:max-w-sm">
+                    <span class="bg-red-800 text-amber-300 text-base font-black tracking-widest px-6 py-2 rounded-t-full border-t-2 border-x-2 border-amber-500 text-center w-full shadow-sm">
+                        MASERO
+                    </span>
+                    <span class="bg-red-900 text-amber-300 text-sm font-bold tracking-widest px-6 py-2 rounded-b-full border-b-2 border-x-2 border-amber-600/50 text-center whitespace-nowrap shadow-sm">
+                        TANGNGA' - PAINAAN - TIKULAO
+                    </span>
+                </div>
+
+                <h2 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight drop-shadow-lg">
+                    Selamat Datang di Portal Resmi<br>Kecamatan Makale
+                </h2>
+                <p class="text-base md:text-lg text-gray-100 max-w-2xl mx-auto drop-shadow-md">
+                    Pusat informasi pelayanan publik, transparansi tata kelola pemerintahan, dan roda pembangunan di Ibu Kota Kabupaten Tana Toraja.
+                </p>
+                
+                <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="layanan.html" class="bg-amber-400 text-red-900 font-bold px-6 py-3 rounded-full hover:bg-amber-300 transition">
+                        <i class="fas fa-building mr-2"></i>Pelayanan Publik
+                    </a>
+                    <a href="berita.html" class="border-2 border-white px-6 py-3 rounded-full hover:bg-white hover:text-red-900 transition">
+                        <i class="fas fa-newspaper mr-2"></i>Berita Terbaru
+                    </a>
+                </div>
             </div>
+        </section>
 
-            <h2 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight drop-shadow-lg">
-                Selamat Datang di Portal Resmi<br>Kecamatan Makale
-            </h2>
-            <p class="text-base md:text-lg text-gray-100 max-w-2xl mx-auto drop-shadow-md">
-                Pusat informasi pelayanan publik, transparansi tata kelola pemerintahan, dan roda pembangunan di Ibu Kota Kabupaten Tana Toraja.
-            </p>
-          <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-
-    <a href="layanan.html"
-        class="bg-amber-400 text-red-900 font-bold px-6 py-3 rounded-full hover:bg-amber-300 transition">
-
-        <i class="fas fa-building mr-2"></i>
-        Pelayanan Publik
-
-    </a>
-
-    <a href="berita.html"
-        class="border-2 border-white px-6 py-3 rounded-full hover:bg-white hover:text-red-900 transition">
-
-        <i class="fas fa-newspaper mr-2"></i>
-        Berita Terbaru
-
-    </a>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================= SURVEI KEPUASAN ================= -->
-
-<section class="max-w-7xl mx-auto px-4 py-7">
-
-    <section class="max-w-7xl mx-auto px-4 py-12">
-
-<div class="grid lg:grid-cols-2 gap-8">
-
-    <!-- KIRI -->
-    <div class="bg-red-800 rounded-2xl shadow-xl text-white p-8">
-
-        <span class="inline-flex items-center bg-amber-400 text-red-900 font-bold px-4 py-2 rounded-full mb-5">
-            <i class="fas fa-star mr-2"></i>
-            SURVEI KEPUASAN MASYARAKAT
-        </span>
-
-        <h2 class="text-3xl font-bold mb-4">
-            Pendapat Anda Sangat Berarti
-        </h2>
-
-        <p class="leading-8 text-red-100">
-            Mari berpartisipasi dalam Survei Kepuasan Masyarakat sebagai bahan evaluasi peningkatan kualitas pelayanan publik Kecamatan Makale.
-        </p>
-
-        <div class="mt-5 flex items-center">
-            <i class="fas fa-clock mr-2"></i>
-            ±2 menit
-        </div>
-
-        <div class="mt-8 flex gap-4">
-
-            <a href="survei.html"
-            class="bg-amber-400 text-red-900 font-bold px-6 py-3 rounded-lg hover:bg-yellow-300">
-
-                <i class="fas fa-paper-plane mr-2"></i>
-                Isi Survei
-
-            </a>
-
-            <button class="border border-white px-6 py-3 rounded-lg hover:bg-white hover:text-red-900">
-
-                <i class="fas fa-qrcode mr-2"></i>
-
-                QR Code
-
-            </button>
-
-        </div>
-
-    </div>
-
-    <!-- KANAN -->
-    <div class="bg-white rounded-2xl shadow-xl border p-8">
-
-        <h3 class="text-xl font-bold text-gray-800 mb-6">
-
-            Hasil Survei Kepuasan
-
-        </h3>
-
-        <div class="grid grid-cols-2 gap-4">
-
-            <div class="bg-red-50 rounded-xl p-5 text-center">
-
-                <div class="text-gray-500 text-sm">
-                    Nilai IKM
+        <!-- SURVEI KEPUASAN MASYARAKAT RINGKASAN -->
+        <section class="max-w-7xl mx-auto px-4 py-12">
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Kiri: Ajakan -->
+                <div class="bg-red-800 rounded-2xl shadow-xl text-white p-8">
+                    <span class="inline-flex items-center bg-amber-400 text-red-900 font-bold px-4 py-2 rounded-full mb-5 text-xs sm:text-sm">
+                        <i class="fas fa-star mr-2"></i>SURVEI KEPUASAN MASYARAKAT
+                    </span>
+                    <h2 class="text-3xl font-bold mb-4">Pendapat Anda Sangat Berarti</h2>
+                    <p class="leading-8 text-red-100">
+                        Mari berpartisipasi dalam Survei Kepuasan Masyarakat sebagai bahan evaluasi peningkatan kualitas pelayanan publik Kecamatan Makale.
+                    </p>
+                    <div class="mt-5 flex items-center">
+                        <i class="fas fa-clock mr-2"></i>±2 menit
+                    </div>
+                    <div class="mt-8 flex gap-4">
+                        <a href="survei.html" class="bg-amber-400 text-red-900 font-bold px-6 py-3 rounded-lg hover:bg-yellow-300 transition">
+                            <i class="fas fa-paper-plane mr-2"></i>Isi Survei
+                        </a>
+                        <button class="border border-white px-6 py-3 rounded-lg hover:bg-white hover:text-red-900 transition">
+                            <i class="fas fa-qrcode mr-2"></i>QR Code
+                        </button>
+                    </div>
                 </div>
 
-                <div id="ikmValue"
-                     class="text-5xl font-black text-red-800 mt-2">
-
-                    --
-
+                <!-- Kanan: Chart Ringkas -->
+                <div class="bg-white rounded-2xl shadow-xl border p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Hasil Survei Kepuasan</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-red-50 rounded-xl p-5 text-center">
+                            <div class="text-gray-500 text-sm">Nilai IKM</div>
+                            <div id="ikmValue" class="text-4xl font-black text-red-800 mt-2">--</div>
+                        </div>
+                        <div class="bg-green-50 rounded-xl p-5 text-center">
+                            <div class="text-gray-500 text-sm">Mutu</div>
+                            <div id="mutuValue" class="text-4xl font-black text-green-700 mt-2">--</div>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <canvas id="ikmChart" height="200"></canvas>
+                    </div>
                 </div>
-
             </div>
+        </section>
 
-            <div class="bg-green-50 rounded-xl p-5 text-center">
-
-                <div class="text-gray-500 text-sm">
-                    Mutu
+        <!-- DASHBOARD DETIL SKM -->
+        <section class="max-w-7xl mx-auto px-4 py-10">
+            <div class="bg-white rounded-2xl shadow-lg border overflow-hidden">
+                <div class="bg-gradient-to-r from-red-900 to-red-700 text-white px-8 py-5">
+                    <h2 class="text-2xl font-bold">
+                        <i class="fas fa-chart-line mr-2"></i>Dashboard Survei Kepuasan Masyarakat
+                    </h2>
+                    <!-- Karakter strip diganti dengan garis Tailwind yang responsif -->
+                    <hr class="border-red-400/30 mt-2">
                 </div>
 
-                <div id="mutuValue"
-                     class="text-5xl font-black text-green-700 mt-2">
+                <div class="p-8">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div class="bg-red-50 rounded-xl p-6 text-center">
+                            <i class="fas fa-users text-4xl text-red-700 mb-3"></i>
+                            <div class="text-gray-500 text-sm">Responden</div>
+                            <div id="responden" class="text-3xl font-bold text-red-900">...</div>
+                        </div>
+                        <div class="bg-green-50 rounded-xl p-6 text-center">
+                            <i class="fas fa-star text-4xl text-green-700 mb-3"></i>
+                            <div class="text-gray-500 text-sm">Nilai IKM</div>
+                            <div id="ikm" class="text-3xl font-bold text-green-700">...</div>
+                        </div>
+                        <div class="bg-blue-50 rounded-xl p-6 text-center">
+                            <i class="fas fa-award text-4xl text-blue-700 mb-3"></i>
+                            <div class="text-gray-500 text-sm">Mutu</div>
+                            <div id="mutu" class="text-3xl font-bold text-blue-700">...</div>
+                        </div>
+                        <div class="bg-yellow-50 rounded-xl p-6 text-center">
+                            <i class="fas fa-medal text-4xl text-yellow-600 mb-3"></i>
+                            <div class="text-gray-500 text-sm">Kategori</div>
+                            <div id="kategori" class="text-xl font-bold text-yellow-700">...</div>
+                        </div>
+                    </div>
 
-                    --
-
+                    <div class="mt-10">
+                        <canvas id="grafikSKM" height="120"></canvas>
+                    </div>
                 </div>
-
             </div>
+        </section>
 
-        </div>
-
-        <div class="mt-6">
-
-            <canvas id="ikmChart" height="200"></canvas>
-
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-<!-- ================= DASHBOARD SKM ================= -->
-
-<section class="max-w-7xl mx-auto px-4 py-10">
-
-    <div class="bg-white rounded-2xl shadow-lg border overflow-hidden">
-
-        <div class="bg-gradient-to-r from-red-900 to-red-700 text-white px-8 py-5">
-
-            <h2 class="text-2xl font-bold">
-                <i class="fas fa-chart-line mr-2"></i>
-                Dashboard Survei Kepuasan Masyarakat
-            </h2>
-
-            <p class="text-red-100 mt-1">
-                -------------------------------------------------------------------------
-            </p>
-
-        </div>
-
-        <div class="p-8">
-
-            <div class="grid md:grid-cols-4 gap-6">
-
-                <div class="bg-red-50 rounded-xl p-6 text-center">
-
-                    <i class="fas fa-users text-4xl text-red-700 mb-3"></i>
-
-                    <div class="text-gray-500">
-                        Responden
-                    </div>
-
-                    <div id="responden"
-                        class="text-4xl font-bold text-red-900">
-
-                        ...
-
-                    </div>
-
-                </div>
-
-                <div class="bg-green-50 rounded-xl p-6 text-center">
-
-                    <i class="fas fa-star text-4xl text-green-700 mb-3"></i>
-
-                    <div class="text-gray-500">
-
-                        Nilai IKM
-
-                    </div>
-
-                    <div id="ikm"
-
-                        class="text-4xl font-bold text-green-700">
-
-                        ...
-
-                    </div>
-
-                </div>
-
-                <div class="bg-blue-50 rounded-xl p-6 text-center">
-
-                    <i class="fas fa-award text-4xl text-blue-700 mb-3"></i>
-
-                    <div class="text-gray-500">
-
-                        Mutu
-
-                    </div>
-
-                    <div id="mutu"
-
-                        class="text-4xl font-bold text-blue-700">
-
-                        ...
-
-                    </div>
-
-                </div>
-
-                <div class="bg-yellow-50 rounded-xl p-6 text-center">
-
-                    <i class="fas fa-medal text-4xl text-yellow-600 mb-3"></i>
-
-                    <div class="text-gray-500">
-
-                        Kategori
-
-                    </div>
-
-                    <div id="kategori"
-
-                        class="text-2xl font-bold text-yellow-700">
-
-                        ...
-
-                    </div>
-
-                </div>
-
+        <!-- BERITA & KEGIATAN -->
+        <section class="max-w-7xl mx-auto px-4 py-12 w-full">
+            <div class="mb-8 border-b-2 border-amber-500 pb-2 flex justify-between items-center">
+                <h2 class="text-2xl font-bold text-gray-800">Berita & Kegiatan Terbaru</h2>
+                <a href="berita.html" class="text-sm font-semibold text-red-800 hover:text-red-950">Lihat Semua →</a>
             </div>
-
-            <div class="mt-10">
-
-                <canvas id="grafikSKM" height="120"></canvas>
-
+            <div id="berita-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="col-span-full text-center text-gray-500 py-8">Memuat berita terbaru...</div>
             </div>
+        </section>
 
-        </div>
-
-    </div>
-
-</section>
-<main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
-    <main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
-        <div class="mb-8 border-b-2 border-amber-500 pb-2 flex justify-between items-center">
-            <h2 class="text-2xl font-bold text-gray-800">Berita & Kegiatan Terbaru</h2>
-            <a href="berita.html" class="text-sm font-semibold text-red-800 hover:text-red-950">Lihat Semua →</a>
-        </div>
-        <div id="berita-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="col-span-full text-center text-gray-500 py-8">Memuat berita terbaru...</div>
-        </div>
     </main>
 
+    <!-- PLACEHOLDER FOOTER -->
     <div id="footer-placeholder"></div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="assets/js/dashboard.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <!-- ================= SCRIPTS CONFIGURATION ================= -->
+    <!-- Library dipanggil sekali di sini -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Script Internal Kontrol Halaman -->
     <script>
-        // ==================== ENGINE CONTROL POP-UP MAKLUMAT (OPTIMAL) ====================
+        // --- CONTROL POP-UP MAKLUMAT ---
         document.addEventListener("DOMContentLoaded", function() {
             const modal = document.getElementById('maklumatModal');
-            // Menggunakan sessionStorage agar hanya muncul 1 kali per buka tab baru
             const sudahMelihatMaklumat = sessionStorage.getItem('maklumatSesiIni');
 
             if (modal) {
                 if (!sudahMelihatMaklumat) {
                     modal.style.display = 'flex';
-                    document.body.style.overflow = 'hidden'; // Kunci scroll beranda saat pop-up aktif
-                    setTimeout(() => {
-                        modal.style.opacity = '1';
-                    }, 50);
+                    document.body.style.overflow = 'hidden';
+                    setTimeout(() => { modal.style.opacity = '1'; }, 50);
                 } else {
                     modal.style.display = 'none';
                 }
@@ -371,56 +223,31 @@ flex-direction:column;
             const modal = document.getElementById('maklumatModal');
             if (modal) {
                 modal.style.opacity = '0';
-                sessionStorage.setItem('maklumatSesiIni', 'true'); // Simpan status sesi tab browser
-                document.body.style.overflow = 'auto'; // Aktifkan kembali scroll beranda
-                setTimeout(() => { 
-                    modal.style.display = 'none'; 
-                }, 300);
+                sessionStorage.setItem('maklumatSesiIni', 'true');
+                document.body.style.overflow = 'auto';
+                setTimeout(() => { modal.style.display = 'none'; }, 300);
             }
         }
 
-        // ==================== ENGINE PARSING UNIVERSAL DRIVE ID FOTO ====================
-        function extractDriveId(url) {
-            if (!url) return null;
-            if (url.includes('/d/')) {
-                const parts = url.split('/d/');
-                if (parts[1]) return parts[1].split('/')[0];
-            }
-            const match = url.match(/[?&]id=([^&#]+)/);
-            if (match && match[1]) return match[1];
-            
-            const fallbackMatch = url.match(/(?:id=|\/d\/)([a-zA-Z0-9-_]{25,40})/);
-            return fallbackMatch ? fallbackMatch[1] : null;
-        }
-
-        // ==================== ENGINE REAL-TIME BERITA BERANDA ====================
+        // --- REAL-TIME BERITA ENGINE ---
         async function fetchBeritaBeranda() {
             const SPREADSHEET_ID = '1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ';
             const sheetUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
             const container = document.getElementById('berita-container');
 
-            if (!container) {
-                console.error("❌ Element 'berita-container' tidak ditemukan di DOM");
-                return;
-            }
+            if (!container) return;
 
             try {
-                // Add timeout
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 10000);
-                
                 const response = await fetch(sheetUrl, { signal: controller.signal });
                 clearTimeout(timeoutId);
                 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 
                 const text = await response.text();
                 const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}')+1));
                 const rows = json.table.rows || [];
-                
-                console.log("✓ Data berita berhasil diambil. Total rows:", rows.length);
 
                 if (rows.length === 0) {
                     container.innerHTML = '<div class="col-span-full text-center text-gray-400 py-8">Belum ada berita yang tersedia.</div>';
@@ -430,54 +257,27 @@ flex-direction:column;
                 let daftarBerita = [];
                 rows.forEach(row => {
                     if (!row || !row.c) return;
-                    
                     const judul = row.c[1] ? row.c[1].v : '';
                     const isi = row.c[2] ? row.c[2].v : '';
                     const foto = row.c[3] ? row.c[3].v : '';
                     const tanggal = row.c[5] ? (row.c[5].f || row.c[5].v || '') : (row.c[0] ? row.c[0].v : 'Baru Saja');
                     
                     if (judul && isi && judul !== "Judul") {
-                        // Extract Google Drive ID if exists
                         let fotoUrl = "assets/images/Plaza Kolam Makale.jpg";
-
-if (foto) {
-
-    let id = null;
-
-    // format /d/
-    let match = foto.match(/\/d\/([A-Za-z0-9_-]+)/);
-
-    if (match) {
-        id = match[1];
-    }
-
-    // format open?id=
-    if (!id) {
-        match = foto.match(/[?&]id=([A-Za-z0-9_-]+)/);
-
-        if (match) {
-            id = match[1];
-        }
-    }
-
-    // jika hanya ID
-    if (!id && /^[A-Za-z0-9_-]{20,}$/.test(foto.trim())) {
-        id = foto.trim();
-    }
-
-    if (id) {
-        fotoUrl = `https://drive.google.com/thumbnail?id=${id}&sz=w1200`;
-    } else {
-        fotoUrl = foto;
-    }
-}
+                        if (foto) {
+                            let id = null;
+                            let match = foto.match(/\/d\/([A-Za-z0-9_-]+)/);
+                            if (match) id = match[1];
+                            if (!id) {
+                                match = foto.match(/[?&]id=([A-Za-z0-9_-]+)/);
+                                if (match) id = match[1];
+                            }
+                            if (!id && /^[A-Za-z0-9_-]{20,}$/.test(foto.trim())) id = foto.trim();
+                            if (id) fotoUrl = `https://drive.google.com/thumbnail?id=${id}&sz=w1200`;
+                            else fotoUrl = foto;
+                        }
                         
-                        daftarBerita.push({
-                            judul,
-                            isi,
-                            foto: fotoUrl,
-                            tanggal
-                        });
+                        daftarBerita.push({ judul, isi, foto: fotoUrl, tanggal });
                     }
                 });
 
@@ -492,100 +292,67 @@ if (foto) {
                 const preview = berita.isi.length > 160 ? berita.isi.substring(0, 160) + "..." : berita.isi;
                 
                 container.innerHTML = `
-                    <div class="flex justify-center md:justify-end w-full">
-                        <article class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col max-w-xl w-full">
+                    <div class="flex justify-center w-full">
+                        <article class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col w-full">
                             <img src="${berita.foto}" alt="${berita.judul}" class="w-full h-60 object-cover">
                             <div class="p-6 flex flex-col flex-grow">
                                 <div class="text-xs text-gray-400 mb-2"><i class="far fa-calendar-alt mr-2"></i>${berita.tanggal}</div>
                                 <h3 class="text-xl font-bold text-gray-900 mb-3">${berita.judul}</h3>
-                                <p class="text-sm text-gray-600 mb-6">${preview}</p>
-                                <a href="berita.html" class="text-red-800 hover:text-red-950 font-bold">Baca Selengkapnya →</a>
+                                <p class="text-sm text-gray-600 mb-6 flex-grow">${preview}</p>
+                                <a href="berita.html" class="text-red-800 hover:text-red-950 font-bold self-start">Baca Selengkapnya →</a>
                             </div>
                         </article>
                     </div>
                     
-                    <div class="flex justify-center md:justify-start w-full">
-                        <div class="bg-white rounded-xl shadow-md border border-gray-100 p-6 flex flex-col items-center justify-between max-w-xl w-full text-center">
+                    <div class="flex justify-center w-full">
+                        <div class="bg-white rounded-xl shadow-md border border-gray-100 p-6 flex flex-col items-center justify-between w-full text-center">
                             <span class="bg-amber-100 text-amber-900 text-xs font-bold px-3 py-1 rounded-full mb-3">Layanan Publik</span>
                             <h3 class="text-lg font-bold text-gray-900 mb-1">Portal Pengaduan Masyarakat</h3>
                             <p class="text-xs text-gray-500 max-w-xs mb-4">Scan QR Code atau klik tombol di bawah untuk langsung menuju formulir pengaduan resmi.</p>
                             <img src="frame (1).png" alt="QR Code" class="w-44 h-auto mx-auto mb-4">
-                            <a href="kontak.html" class="w-full bg-red-800 hover:bg-red-900 text-white font-bold py-2.5 px-4 rounded-lg text-sm">
+                            <a href="kontak.html" class="w-full bg-red-800 hover:bg-red-900 text-white font-bold py-2.5 px-4 rounded-lg text-sm transition">
                                 <i class="fas fa-edit text-xs text-amber-300 mr-2"></i>Isi Form Pengaduan Warga
                             </a>
                         </div>
                     </div>
                 `;
-                
-                console.log("✓ Berita berhasil dirender");
-
             } catch (error) {
-                console.error("❌ Error:", error.message);
-                const msg = error.name === 'AbortError' ? 'Koneksi timeout' : error.message;
-                container.innerHTML = `<div class="col-span-full text-center text-red-600 py-8 font-medium">Error: ${msg}</div>`;
+                container.innerHTML = `<div class="col-span-full text-center text-red-600 py-8 font-medium">Error: ${error.message}</div>`;
             }
         }
 
-       // Debug: Log saat fungsi siap dipanggil
-        console.log("✓ fetchBeritaBeranda function loaded");
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log("✓ DOMContentLoaded fired, calling fetchBeritaBeranda");
-            fetchBeritaBeranda();
-        });
+        document.addEventListener('DOMContentLoaded', fetchBeritaBeranda);
+
+        // --- FETCH SKM & INITIALIZE BAR CHART ---
+        const API = "https://script.google.com/macros/s/AKfycbyvaAvWB2_ACWwN3Bk7fOezihnbLMZ_PmJ6Earj2y122Jsyt6RqbCKTPzKc30BW8J0rSw/exec?dashboard=1";
+        
+        fetch(API)
+        .then(r => r.json())
+        .then(data => {
+            document.getElementById("ikmValue").innerHTML = data.ikm.toFixed(2);
+            document.getElementById("mutuValue").innerHTML = data.kategori;
+
+            new Chart(document.getElementById("ikmChart"), {
+                type: "bar",
+                data: {
+                    labels: ["U1","U2","U3","U4","U5","U6","U7","U8","U9"],
+                    datasets: [{
+                        label: "Nilai Unsur",
+                        data: [data.u1, data.u2, data.u3, data.u4, data.u5, data.u6, data.u7, data.u8, data.u9],
+                        backgroundColor: "#991b1b"
+                    }]
+                },
+                options: {
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, max: 4 } }
+                }
+            });
+        }).catch(err => console.error("Gagal memuat chart IKM:", err));
     </script>
 
-    <script>
-const API =
-"https://script.google.com/macros/s/AKfycbyvaAvWB2_ACWwN3Bk7fOezihnbLMZ_PmJ6Earj2y122Jsyt6RqbCKTPzKc30BW8J0rSw/exec?dashboard=1";
-
-fetch(API)
-.then(r => r.json())
-.then(data => {
-
-    document.getElementById("ikmValue").innerHTML = data.ikm.toFixed(2);
-    document.getElementById("mutuValue").innerHTML = data.kategori;
-
-    new Chart(document.getElementById("ikmChart"), {
-        type: "bar",
-        data: {
-            labels: ["U1","U2","U3","U4","U5","U6","U7","U8","U9"],
-            datasets: [{
-                label: "Nilai Unsur",
-                data: [
-                    data.u1,
-                    data.u2,
-                    data.u3,
-                    data.u4,
-                    data.u5,
-                    data.u6,
-                    data.u7,
-                    data.u8,
-                    data.u9
-                ],
-                backgroundColor: "#991b1b"
-            }]
-        },
-        options: {
-            plugins: {
-                legend: {
-                    display: false
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 4
-                }
-            }
-        }
-    });
-
-});
-</script>
-
-<script src="assets/js/main.js"></script>
-<script src="assets/js/dashboard.js"></script>
-<script src="assets/js/berita.js"></script>
-
+    <!-- External Assets Script (Dipanggil sekali di paling akhir) -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/berita.js"></script>
 </body>
 </html>
