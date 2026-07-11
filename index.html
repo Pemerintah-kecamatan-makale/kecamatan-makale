@@ -337,7 +337,9 @@ if (id) {
         });
 
         daftarBerita.reverse();
-        const berita = daftarBerita[0];
+        const berita = daftarBerita
+    .filter(x => x.judul && x.isi)
+    .sort((a,b)=>new Date(b.tanggal)-new Date(a.tanggal))[0];
 
         if (!berita) {
             container.innerHTML = '<div class="text-center text-gray-400 py-8 bg-white rounded-xl border text-sm">Tidak ada berita yang valid.</div>';
@@ -404,6 +406,12 @@ fetchBeritaBeranda();
     <!-- Asset Skrip Tambahan -->
     <script src="assets/js/main.js"></script>
     <script src="assets/js/dashboard.js"></script>
-    <script src="assets/js/berita.js"></script>
+   <script>
+if (document.getElementById("news-container")) {
+    const s=document.createElement("script");
+    s.src="assets/js/berita.js";
+    document.body.appendChild(s);
+}
+</script>
 </body>
 </html>
