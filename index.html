@@ -262,7 +262,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-   // --- REAL-TIME BERITA ENGINE ---
+ // --- REAL-TIME BERITA ENGINE ---
 async function fetchBeritaBeranda() {
     const SPREADSHEET_ID = '1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ';
     const sheetUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
@@ -294,57 +294,46 @@ async function fetchBeritaBeranda() {
             const isi = row.c[2] ? row.c[2].v : '';
             const foto = row.c[3] ? row.c[3].v : '';
             
-            // Penanganan Tanggal agar tidak muncul "Invalid Date"
+            // Penanganan Tanggal Berita
             let tanggal = 'Baru Saja';
             if (row.c[5] && row.c[5].f) {
                 tanggal = row.c[5].f;
             } else if (row.c[0] && row.c[0].f) {
-                tanggal = row.c[0].f.split(' ')[0]; // Ambil tanggalnya saja dari timestamp
+                tanggal = row.c[0].f.split(' ')[0];
             }
             
-           if (judul && isi && judul !== "Judul") {
-    let fotoUrl = "assets/images/Plaza Kolam Makale.jpg"; // Gambar default
-    
-    // PERBAIKAN 1: Penanganan Tanggal agar tidak "Invalid Date"
-    let tanggal = 'Baru Saja';
-    if (row.c[5] && row.c[5].f) {
-        tanggal = row.c[5].f;
-    } else if (row.c[0] && row.c[0].f) {
-        tanggal = row.c[0].f.split(' ')[0]; 
-    }
-    
-    if (foto && foto.trim() !== "") {
-        let id = null;
-        const urlString = foto.trim();
-        
-        // PERBAIKAN 2: Ekstraksi ID Google Drive yang Akurat & Aman untuk HP
-        try {
-            if (urlString.includes('id=')) {
-                const urlObj = new URL(urlString);
-                id = urlObj.searchParams.get('id');
-            } else {
-                const matchD = urlString.match(/\/d\/([A-Za-z0-9_-]+)/);
-                if (matchD) id = matchD[1];
+            if (judul && isi && judul !== "Judul") {
+                let fotoUrl = "assets/images/Plaza Kolam Makale.jpg"; // Gambar default jika eror/kosong
+                
+                if (foto && foto.trim() !== "") {
+                    let id = null;
+                    const urlString = foto.trim();
+                    
+                    // Metode ekstraksi ID yang kebal terhadap berbagai format link Google Drive
+                    if (urlString.includes('id=')) {
+                        const matchId = urlString.match(/[?&]id=([A-Za-z0-9_-]+)/);
+                        if (matchId) id = matchId[1];
+                    } else {
+                        const matchD = urlString.match(/\/d\/([A-Za-z0-9_-]+)/);
+                        if (matchD) id = matchD[1];
+                    }
+                    
+                    if (!id && /^[A-Za-z0-9_-]{20,}$/.test(urlString)) {
+                        id = urlString;
+                    }
+                    
+                    // Menggunakan format resmi HTTPS UC Google Drive yang didukung penuh oleh browser mobile
+                    if (id) {
+                        fotoUrl = `https://docs.google.com/uc?export=view&id=${id}`;
+                    } else {
+                        fotoUrl = urlString;
+                    }
+                }
+                
+                daftarBerita.push({ judul, isi, foto: fotoUrl, tanggal });
             }
-        } catch (e) {
-            if (/^[A-Za-z0-9_-]{20,}$/.test(urlString)) {
-                id = urlString;
-            }
-        }
-        
-        // PERBAIKAN 3: Jalur HTTPS Resmi UCS Google Drive (Lolos sensor browser HP)
-        if (id) {
-            fotoUrl = `https://docs.google.com/uc?export=view&id=${id}`;
-        } else {
-            fotoUrl = urlString;
-        }
-    }
-    
-    daftarBerita.push({ judul, isi, foto: fotoUrl, tanggal });
-}
         });
 
-        // Urutkan dari yang terbaru
         daftarBerita.reverse();
         const berita = daftarBerita[0];
 
