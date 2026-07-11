@@ -308,33 +308,34 @@ console.log("Jumlah rows:", rows.length);
                 let fotoUrl = "assets/images/Plaza Kolam Makale.jpg"; // Gambar default jika eror/kosong
                 
                 if (foto && foto.trim() !== "") {
-                    let id = null;
-                    const urlString = foto.trim();
-                    
-                    // Metode ekstraksi ID yang kebal terhadap berbagai format link Google Drive
-                    if (urlString.includes('id=')) {
-                        const matchId = urlString.match(/[?&]id=([A-Za-z0-9_-]+)/);
-                        if (matchId) id = matchId[1];
-                    } else {
-                        const matchD = urlString.match(/\/d\/([A-Za-z0-9_-]+)/);
-                        if (matchD) id = matchD[1];
-                    }
-                    
-                    if (!id && /^[A-Za-z0-9_-]{20,}$/.test(urlString)) {
-                        id = urlString;
-                    }
-                    
-                 
-if (id) {
-    fotoUrl = `https://drive.google.com/thumbnail?id=${id}&sz=w1600`;
-} else {
-    fotoUrl = urlString;
-}
-           
-                
-                daftarBerita.push({ judul, isi, foto: fotoUrl, tanggal });
-            }
-        });
+    let id = null;
+    const urlString = foto.trim();
+
+    if (urlString.includes("id=")) {
+        const matchId = urlString.match(/[?&]id=([A-Za-z0-9_-]+)/);
+        if (matchId) id = matchId[1];
+    } else {
+        const matchD = urlString.match(/\/d\/([A-Za-z0-9_-]+)/);
+        if (matchD) id = matchD[1];
+    }
+
+    if (!id && /^[A-Za-z0-9_-]{20,}$/.test(urlString)) {
+        id = urlString;
+    }
+
+    if (id) {
+        fotoUrl = `https://drive.google.com/thumbnail?id=${id}&sz=w1600`;
+    } else {
+        fotoUrl = urlString;
+    }
+}   // <<< INI YANG HILANG
+
+daftarBerita.push({
+    judul,
+    isi,
+    foto: fotoUrl,
+    tanggal
+});
 
         daftarBerita.reverse();
         console.log("Daftar berita:", daftarBerita);
@@ -375,6 +376,7 @@ console.log("Berita pertama:", berita);
         </div>
     `;
 }
+    }
 fetchBeritaBeranda();
         // --- FETCH SKM & INITIALIZE BAR CHART ---
         const API = "https://script.google.com/macros/s/AKfycbyvaAvWB2_ACWwN3Bk7fOezihnbLMZ_PmJ6Earj2y122Jsyt6RqbCKTPzKc30BW8J0rSw/exec?dashboard=1";
