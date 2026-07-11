@@ -262,7 +262,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-    // --- REAL-TIME BERITA ENGINE ---
+   // --- REAL-TIME BERITA ENGINE ---
 async function fetchBeritaBeranda() {
     const SPREADSHEET_ID = '1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ';
     const sheetUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
@@ -293,34 +293,44 @@ async function fetchBeritaBeranda() {
             const judul = row.c[1] ? row.c[1].v : '';
             const isi = row.c[2] ? row.c[2].v : '';
             const foto = row.c[3] ? row.c[3].v : '';
-            const tanggal = row.c[5] ? (row.c[5].f || row.c[5].v || '') : (row.c[0] ? row.c[0].v : 'Baru Saja');
+            
+            // Penanganan Tanggal agar tidak muncul "Invalid Date"
+            let tanggal = 'Baru Saja';
+            if (row.c[5] && row.c[5].f) {
+                tanggal = row.c[5].f;
+            } else if (row.c[0] && row.c[0].f) {
+                tanggal = row.c[0].f.split(' ')[0]; // Ambil tanggalnya saja dari timestamp
+            }
             
             if (judul && isi && judul !== "Judul") {
-                let fotoUrl = "assets/images/Plaza Kolam Makale.jpg"; // Gambar default jika kosong
+                let fotoUrl = "assets/images/Plaza Kolam Makale.jpg"; // Gambar default
                 
-                if (foto) {
+                if (foto && foto.trim() !== "") {
                     let id = null;
+                    const urlString = foto.trim();
                     
-                    // 1. Ekstrak ID jika format link adalah /d/ID
-                    let matchD = foto.match(/\/d\/([A-Za-z0-9_-]+)/);
-                    if (matchD) id = matchD[1];
-                    
-                    // 2. Ekstrak ID jika format link menggunakan ?id=ID
-                    if (!id) {
-                        let matchId = foto.match(/[?&]id=([A-Za-z0-9_-]+)/);
-                        if (matchId) id = matchId[1];
+                    try {
+                        if (urlString.includes('id=')) {
+                            // Ekstraksi handal untuk format open?id=... atau file/d/...id=
+                            const urlObj = new URL(urlString);
+                            id = urlObj.searchParams.get('id');
+                        } else {
+                            // Ekstraksi untuk format umum /d/ID/view
+                            const matchD = urlString.match(/\/d\/([A-Za-z0-9_-]+)/);
+                            if (matchD) id = matchD[1];
+                        }
+                    } catch (e) {
+                        // Jika bukan URL valid, cek apakah murni ID teks
+                        if (/^[A-Za-z0-9_-]{20,}$/.test(urlString)) {
+                            id = urlString;
+                        }
                     }
                     
-                    // 3. Jika yang dimasukkan di form murni teks ID saja
-                    if (!id && /^[A-Za-z0-9_-]{20,}$/.test(foto.trim())) {
-                        id = foto.trim();
-                    }
-                    
-                    // Terapkan URL jalur kilat googleusercontent agar tembus di browser HP
+                    // Gunakan HTTPS link resmi ekspor gambar drive yang diizinkan browser mobile
                     if (id) {
-                        fotoUrl = `https://lh3.googleusercontent.com/d/${id}`;
+                        fotoUrl = `https://docs.google.com/uc?export=view&id=${id}`;
                     } else {
-                        fotoUrl = foto;
+                        fotoUrl = urlString;
                     }
                 }
                 
@@ -328,6 +338,7 @@ async function fetchBeritaBeranda() {
             }
         });
 
+        // Urutkan dari yang terbaru
         daftarBerita.reverse();
         const berita = daftarBerita[0];
 
@@ -340,7 +351,9 @@ async function fetchBeritaBeranda() {
         
         container.innerHTML = `
             <article class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col h-full hover:shadow-lg transition duration-200">
-                <img src="${berita.foto}" alt="${berita.judul}" class="w-full h-48 sm:h-56 object-cover" loading="lazy">
+                <div class="w-full h-48 sm:h-56 bg-gray-100 relative overflow-hidden">
+                    <img src="${berita.foto}" alt="${berita.judul}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='assets/images/Plaza Kolam Makale.jpg';">
+                </div>
                 <div class="p-4 sm:p-6 flex flex-col flex-grow">
                     <div class="text-[11px] text-gray-400 mb-1.5"><i class="far fa-calendar-alt mr-1.5"></i>${berita.tanggal}</div>
                     <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 leading-snug">${berita.judul}</h3>
