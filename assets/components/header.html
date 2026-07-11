@@ -38,10 +38,25 @@
             <a href="berita.html" class="hover:text-amber-400 font-medium transition-colors">Berita</a>
             <a href="galeri.html" class="hover:text-amber-400 font-medium transition-colors">Galeri</a>
             <a href="pengumuman.html" class="hover:text-amber-400 font-medium transition-colors">Pengumuman</a>
-            <a href="skck.html" class="hover:text-amber-400 font-medium transition-colors"> Layanan Online</a>
+            
+            <!-- Perubahan Bagian Layanan Online (Dropdown) -->
+            <div class="relative group cursor-pointer py-1">
+                <div class="flex items-center gap-1 hover:text-amber-400 font-medium transition-colors">
+                    <span>Layanan Online</span>
+                    <i class="fas fa-chevron-down text-xs transition-transform group-hover:rotate-180"></i>
+                </div>
+                <!-- Isi 3 Sub Menu -->
+                <div class="absolute left-0 mt-2 w-48 bg-amber-900 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 text-xs overflow-hidden">
+                    <a href="skck.html" class="block px-4 py-2.5 hover:bg-amber-800 hover:text-amber-300 border-b border-amber-950/30">Layanan SKCK</a>
+                    <a href="ktp.html" class="block px-4 py-2.5 hover:bg-amber-800 hover:text-amber-300 border-b border-amber-950/30">KTP Online</a>
+                    <a href="kk.html" class="block px-4 py-2.5 hover:bg-amber-800 hover:text-amber-300">Kartu Keluarga</a>
+                </div>
+            </div>
              
-            <a href="survei.html" class="flex items-center gap-2 hover:text-yellow-300 transition">  <i class="fas fa-clipboard-check"></i>
-    <span>Survei Kepuasan</span></a>
+            <a href="survei.html" class="flex items-center gap-2 hover:text-yellow-300 transition">  
+                <i class="fas fa-clipboard-check"></i>
+                <span>Survei Kepuasan</span>
+            </a>
             <a href="kontak.html" class="hover:text-amber-400 font-medium transition-colors">Kontak</a>
         </div>
 
@@ -53,3 +68,4 @@
         </div>
     </div>
 </nav>
+
