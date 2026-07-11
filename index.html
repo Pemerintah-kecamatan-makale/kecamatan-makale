@@ -281,7 +281,9 @@ async function fetchBeritaBeranda() {
         const text = await response.text();
         const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}')+1));
         const rows = json.table.rows || [];
-
+console.log("Rows:", rows);
+console.log("Jumlah rows:", rows.length);
+        
         if (rows.length === 0) {
             container.innerHTML = '<div class="text-center text-gray-400 py-8 bg-white rounded-xl border text-sm">Belum ada berita yang tersedia.</div>';
             return;
@@ -337,7 +339,9 @@ if (id) {
         });
 
         daftarBerita.reverse();
+        console.log("Daftar berita:", daftarBerita);
         const berita = daftarBerita
+            console.log("Berita pertama:", berita);
     .filter(x => x.judul && x.isi)
     .sort((a,b)=>new Date(b.tanggal)-new Date(a.tanggal))[0];
 
