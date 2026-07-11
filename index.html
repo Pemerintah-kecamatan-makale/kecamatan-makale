@@ -264,133 +264,173 @@
 
  // --- REAL-TIME BERITA ENGINE ---
 async function fetchBeritaBeranda() {
-    const SPREADSHEET_ID = '1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ';
-    const sheetUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
-    const container = document.getElementById('berita-container');
 
+    const SPREADSHEET_ID = "1Y2qLpJf_82-5i5EOfQYnfD_tV-oNJtc217pvNeyBJaQ";
+    const sheetUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
+
+    const container = document.getElementById("berita-container");
     if (!container) return;
 
     try {
+
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 10000);
-        const response = await fetch(sheetUrl, { signal: controller.signal });
+
+        const response = await fetch(sheetUrl, {
+            signal: controller.signal
+        });
+
         clearTimeout(timeoutId);
-        
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+
         const text = await response.text();
-        const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}')+1));
+        const json = JSON.parse(
+            text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1)
+        );
+
         const rows = json.table.rows || [];
-console.log("Rows:", rows);
-console.log("Jumlah rows:", rows.length);
-        
+
+        console.log("Rows:", rows);
+
         if (rows.length === 0) {
-            container.innerHTML = '<div class="text-center text-gray-400 py-8 bg-white rounded-xl border text-sm">Belum ada berita yang tersedia.</div>';
+            container.innerHTML =
+                '<div class="text-center text-gray-500 py-8">Belum ada berita.</div>';
             return;
         }
 
         let daftarBerita = [];
+
         rows.forEach(row => {
+
             if (!row || !row.c) return;
-            const judul = row.c[1] ? row.c[1].v : '';
-            const isi = row.c[2] ? row.c[2].v : '';
-            const foto = row.c[3] ? row.c[3].v : '';
-            
-            // Penanganan Tanggal Berita
-            let tanggal = 'Baru Saja';
-            if (row.c[5] && row.c[5].f) {
+
+            const judul = row.c[1]?.v || "";
+            const isi = row.c[2]?.v || "";
+            const foto = row.c[3]?.v || "";
+
+            let tanggal = "Baru Saja";
+
+            if (row.c[5]?.f) {
                 tanggal = row.c[5].f;
-            } else if (row.c[0] && row.c[0].f) {
-                tanggal = row.c[0].f.split(' ')[0];
+            } else if (row.c[0]?.f) {
+                tanggal = row.c[0].f.split(" ")[0];
             }
-            
-            if (judul && isi && judul !== "Judul") {
-                let fotoUrl = "assets/images/Plaza Kolam Makale.jpg"; // Gambar default jika eror/kosong
-                
-                if (foto && foto.trim() !== "") {
-    let id = null;
-    const urlString = foto.trim();
 
-    if (urlString.includes("id=")) {
-        const matchId = urlString.match(/[?&]id=([A-Za-z0-9_-]+)/);
-        if (matchId) id = matchId[1];
-    } else {
-        const matchD = urlString.match(/\/d\/([A-Za-z0-9_-]+)/);
-        if (matchD) id = matchD[1];
-    }
+            if (!judul || !isi || judul === "Judul") return;
 
-    if (!id && /^[A-Za-z0-9_-]{20,}$/.test(urlString)) {
-        id = urlString;
-    }
+            let fotoUrl = "assets/images/Plaza Kolam Makale.jpg";
 
-    if (id) {
-        fotoUrl = `https://drive.google.com/thumbnail?id=${id}&sz=w1600`;
-    } else {
-        fotoUrl = urlString;
-    }
-}   // <<< INI YANG HILANG
+            if (foto.trim() !== "") {
 
-daftarBerita.push({
-    judul,
-    isi,
-    foto: fotoUrl,
-    tanggal
-});
+                let id = null;
+                const urlString = foto.trim();
+
+                if (urlString.includes("id=")) {
+
+                    const match = urlString.match(/[?&]id=([A-Za-z0-9_-]+)/);
+
+                    if (match) id = match[1];
+
+                } else {
+
+                    const match = urlString.match(/\/d\/([A-Za-z0-9_-]+)/);
+
+                    if (match) id = match[1];
+
+                }
+
+                if (!id && /^[A-Za-z0-9_-]{20,}$/.test(urlString)) {
+                    id = urlString;
+                }
+
+                if (id) {
+                    fotoUrl = `https://drive.google.com/thumbnail?id=${id}&sz=w1600`;
+                } else {
+                    fotoUrl = urlString;
+                }
+
+            }
+
+            daftarBerita.push({
+                judul,
+                isi,
+                foto: fotoUrl,
+                tanggal
+            });
+
+        });
+
+        console.log("Daftar berita:", daftarBerita);
 
         daftarBerita.reverse();
-        console.log("Daftar berita:", daftarBerita);
-       const berita = daftarBerita
-    .filter(x => x.judul && x.isi)
-    .sort((a,b) => new Date(b.tanggal) - new Date(a.tanggal))[0];
 
-console.log("Berita pertama:", berita);
+        const berita = daftarBerita[0];
+
+        console.log("Berita pertama:", berita);
 
         if (!berita) {
-            container.innerHTML = '<div class="text-center text-gray-400 py-8 bg-white rounded-xl border text-sm">Tidak ada berita yang valid.</div>';
+            container.innerHTML =
+                '<div class="text-center text-gray-500 py-8">Tidak ada berita.</div>';
             return;
         }
 
-        const preview = berita.isi.length > 130
-    ? berita.isi.substring(0, 130) + "..."
-    : berita.isi;
+        const preview =
+            berita.isi.length > 130
+                ? berita.isi.substring(0, 130) + "..."
+                : berita.isi;
 
-container.innerHTML = `
-    <article class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col h-full hover:shadow-lg transition duration-200">
-        <div class="w-full h-48 sm:h-56 bg-gray-100 relative overflow-hidden">
-            <img src="${berita.foto}" alt="${berita.judul}" class="w-full h-full object-cover"
-                 onerror="this.onerror=null; this.src='assets/images/Plaza Kolam Makale.jpg';">
+        container.innerHTML = `
+<article class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col h-full hover:shadow-lg transition duration-200">
+
+    <div class="w-full h-48 sm:h-56 bg-gray-100 relative overflow-hidden">
+        <img
+            src="${berita.foto}"
+            alt="${berita.judul}"
+            class="w-full h-full object-cover"
+            onerror="this.onerror=null;this.src='assets/images/Plaza Kolam Makale.jpg';">
+    </div>
+
+    <div class="p-4 sm:p-6 flex flex-col flex-grow">
+
+        <div class="text-[11px] text-gray-400 mb-2">
+            <i class="far fa-calendar-alt mr-1"></i>
+            ${berita.tanggal}
         </div>
 
-        <div class="p-4 sm:p-6 flex flex-col flex-grow">
-            <div class="text-[11px] text-gray-400 mb-1.5">
-                <i class="far fa-calendar-alt mr-1.5"></i>${berita.tanggal}
-            </div>
+        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">
+            ${berita.judul}
+        </h3>
 
-            <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 leading-snug">
-                ${berita.judul}
-            </h3>
+        <p class="text-sm text-gray-600 flex-grow">
+            ${preview}
+        </p>
 
-            <p class="text-xs sm:text-sm text-gray-600 mb-4 flex-grow leading-relaxed">
-                ${preview}
-            </p>
+        <a href="berita.html"
+           class="mt-4 inline-flex items-center text-red-800 font-semibold">
+            Baca Selengkapnya
+            <i class="fas fa-arrow-right ml-2"></i>
+        </a>
 
-            <a href="berita.html"
-               class="text-red-800 hover:text-red-950 text-xs sm:text-sm font-bold self-start inline-flex items-center group p-2 -ml-2">
-                Baca Selengkapnya
-                <i class="fas fa-arrow-right ml-1.5 group-hover:translate-x-1 transition-transform text-[10px]"></i>
-            </a>
-        </div>
-    </article>
+    </div>
+
+</article>
 `;
 
-} catch (error) {
-    console.error("BERANDA ERROR:", error);
+    } catch (error) {
 
-    container.innerHTML = `
-        <div class="bg-red-50 border border-red-300 rounded-lg p-4 text-red-700">
-            ${error.message}
-        </div>
-    `;
+        console.error("BERANDA ERROR:", error);
+
+        container.innerHTML = `
+<div class="bg-red-50 border border-red-300 rounded-lg p-4 text-red-700">
+    ${error.message}
+</div>
+`;
+
+    }
+
 }
 
 fetchBeritaBeranda();
