@@ -326,8 +326,7 @@ async function fetchBeritaBeranda() {
                   // GANTI BAGIAN TERKAIT FOTOURL DENGAN KODE INI:
 // Cari potongan kode ini di dalam fungsi fetchBeritaBeranda() pada index.html:
 if (id) {
-    // Ubah menjadi format lh3 seperti di bawah ini:
-    fotoUrl = `https://lh3.googleusercontent.com/d/${id}`;
+    fotoUrl = `https://drive.google.com/thumbnail?id=${id}&sz=w1600`;
 } else {
     fotoUrl = urlString;
 }
@@ -366,7 +365,7 @@ if (id) {
         container.innerHTML = `<div class="text-center text-red-600 py-8 text-xs bg-white rounded-xl border">Error: ${error.message}</div>`;
     }
 }
-
+fetchBeritaBeranda();
         // --- FETCH SKM & INITIALIZE BAR CHART ---
         const API = "https://script.google.com/macros/s/AKfycbyvaAvWB2_ACWwN3Bk7fOezihnbLMZ_PmJ6Earj2y122Jsyt6RqbCKTPzKc30BW8J0rSw/exec?dashboard=1";
         
