@@ -323,10 +323,12 @@ async function fetchBeritaBeranda() {
                     }
                     
                     // Menggunakan format resmi HTTPS UC Google Drive yang didukung penuh oleh browser mobile
-                    if (id) {
-                        fotoUrl = `https://docs.google.com/uc?export=view&id=${id}`;
-                    } else {
-                        fotoUrl = urlString;
+                  // GANTI BAGIAN TERKAIT FOTOURL DENGAN KODE INI:
+if (id) {
+    // Jalur kilat khusus yang sangat ramah terhadap browser Chrome & Safari di HP
+    fotoUrl = `https://lh3.googleusercontent.com/d/${id}`;
+} else {
+    fotoUrl = urlString;
                     }
                 }
                 
