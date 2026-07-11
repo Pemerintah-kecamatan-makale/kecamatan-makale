@@ -166,14 +166,17 @@ function extractDriveId(url){
 
 
 function buildImage(url){
+
     if(!url){
         return DEFAULT_IMAGE;
     }
+
     const id = extractDriveId(url);
+
     if(id){
-        // MENGGUNAKAN CDN GOOGLE USERCONTENT YANG DIJAMIN TEMBUS DI HP Chrome/Safari
-        return `https://lh3.googleusercontent.com/d/${id}`;
+        return `https://drive.google.com/thumbnail?id=${id}&sz=w1600`;
     }
+
     return url;
 }
 
@@ -1078,36 +1081,14 @@ console.log(
 );
 
 console.log(
-
-"Total berita :",()=>totalNews()
-
+"Total berita :", totalNews()
 );
 
 /* ============================================================
    COPY LINK BERITA
 ============================================================ */
 
-function copyNewsLink(id){
 
-    const url =
-        window.location.origin +
-        "/kecamatan-makale/detail-berita.html?id=" +
-        id;
-
-
-    navigator.clipboard.writeText(url)
-    .then(()=>{
-
-        alert("Link berita berhasil disalin");
-
-    })
-    .catch(()=>{
-
-        alert("Gagal menyalin link");
-
-    });
-
-}
 /* ============================================================
    END OF FILE
 ============================================================ */
