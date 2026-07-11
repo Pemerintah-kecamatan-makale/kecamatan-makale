@@ -166,23 +166,15 @@ function extractDriveId(url){
 
 
 function buildImage(url){
-
     if(!url){
-
         return DEFAULT_IMAGE;
-
     }
-
-    const id=extractDriveId(url);
-
+    const id = extractDriveId(url);
     if(id){
-
-        return `https://drive.google.com/thumbnail?id=${id}&sz=w1600`;
-
+        // MENGGUNAKAN CDN GOOGLE USERCONTENT YANG DIJAMIN TEMBUS DI HP Chrome/Safari
+        return `https://lh3.googleusercontent.com/d/${id}`;
     }
-
     return url;
-
 }
 
 
