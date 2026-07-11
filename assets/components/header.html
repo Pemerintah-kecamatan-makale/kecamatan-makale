@@ -6,19 +6,15 @@
             <div class="flex flex-col">
                 <h1 class="text-xl font-bold tracking-wide">PORTAL RESMI</h1>
                 
-                <!-- Kontainer fleksibel untuk lokasi dan medsos -->
                 <div class="flex items-center gap-6">
                     <p class="text-xs text-amber-300 font-semibold tracking-widest uppercase">
                         Kecamatan Makale - Kabupaten Tana Toraja
                     </p>
                     
-                    <!-- Ikon Media Sosial -->
                     <div class="flex items-center gap-3">
-                        <!-- Facebook (diperbesar 25% dari standar w-6 menjadi w-7.5 atau w-8) -->
                         <a href="https://www.facebook.com/kecamatan.makale.2025/" target="_blank" class="hover:text-amber-300 transition-colors" aria-label="Facebook">
                             <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874V12h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                         </a>
-                        <!-- Instagram -->
                         <a href="https://www.instagram.com/kecamatanmakale/" target="_blank" class="hover:text-amber-300 transition-colors" aria-label="Instagram">
                             <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.25.058 2.096.258 2.822.541.767.297 1.405.696 2.04 1.332.636.635 1.034 1.274 1.332 2.04.283.726.483 1.572.541 2.822.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.058 1.25-.258 2.096-.541 2.822-.297.767-.696 1.405-1.332 2.04-.635.636-1.274 1.034-2.04 1.332-.726.283-1.572.483-2.822.541-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.25-.058-2.096-.258-2.822-.541-.767-.297-1.405-.696-2.04-1.332-.636-.635-1.034-1.274-1.332-2.04-.283-.726-.483-1.572-.541-2.822-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.058-1.25.258-2.096.541-2.822.297-.767.696-1.405 1.332-2.04.635-.636 1.274-1.034 2.04-1.332.726-.283 1.572-.483 2.822-.541 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-1.277.058-2.152.261-2.916.559-.79.306-1.458.718-2.115 1.376-.658.657-1.07 1.325-1.376 2.115-.298.764-.501 1.639-.559 2.916-.058 1.28-.072 1.688-.072 4.947s.014 3.667.072 4.947c.058 1.277.261 2.152.559 2.916.306.79.718 1.458 1.376 2.115.657.658 1.325 1.07 2.115 1.376.764.298 1.639.501 2.916.559 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.277-.058 2.152-.261 2.916-.559.79-.306 1.458-.718 2.115-1.376.658-.657 1.07-1.325 1.376-2.115.298-.764.501-1.639.559-2.916.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.058-1.277-.261-2.152-.559-2.916-.306-.79-.718-1.458-1.376-2.115-.657-.658-1.325-1.07-2.115-1.376-.764-.298-1.639-.501-2.916-.559-1.28-.058-1.688-.072-4.947-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.209-1.791 4-4 4zm6.406-11.845c0 .796-.645 1.441-1.441 1.441s-1.441-.645-1.441-1.441c0-.796.645-1.441 1.441-1.441s1.441.645 1.441 1.441z"/></svg>
                         </a>
@@ -28,19 +24,23 @@
         </div>
     </div>
 </header>
+
 <nav class="bg-amber-950 text-white py-3.5 px-6 shadow-md sticky top-0 z-40 w-full">
-    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center text-sm">
-        <!-- Menu Navigasi -->
-        <div class="flex flex-wrap gap-6 items-center">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-sm">
+        
+        <button id="mobile-menu-button" class="block lg:hidden text-white hover:text-amber-400 focus:outline-none p-1 text-xl order-1">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="hidden lg:flex gap-6 items-center order-2">
             <a href="index.html" class="hover:text-amber-400 font-medium transition-colors">Beranda</a>
             <a href="profil.html" class="hover:text-amber-400 font-medium transition-colors">Profil Kecamatan</a>
-              <!-- Perubahan Bagian Layanan Online (Dropdown) -->
+            
             <div class="relative group cursor-pointer py-1">
                 <div class="flex items-center gap-1 hover:text-amber-400 font-medium transition-colors">
                     <span>Pelayanan</span>
                     <i class="fas fa-chevron-down text-xs transition-transform group-hover:rotate-180"></i>
                 </div>
-                <!-- Isi 3 Sub Menu -->
                 <div class="absolute left-0 mt-2 w-48 bg-amber-900 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 text-xs overflow-hidden">
                     <a href="skck.html" class="block px-4 py-2.5 hover:bg-amber-800 hover:text-amber-300 border-b border-amber-950/30">Layanan SKCK</a>
                     <a href="sktm.html" class="block px-4 py-2.5 hover:bg-amber-800 hover:text-amber-300 border-b border-amber-950/30">SKTM</a>
@@ -52,13 +52,11 @@
             <a href="galeri.html" class="hover:text-amber-400 font-medium transition-colors">Galeri</a>
             <a href="pengumuman.html" class="hover:text-amber-400 font-medium transition-colors">Pengumuman</a>
             
-            <!-- Perubahan Bagian Layanan Online (Dropdown) -->
             <div class="relative group cursor-pointer py-1">
                 <div class="flex items-center gap-1 hover:text-amber-400 font-medium transition-colors">
                     <span>Layanan Online</span>
                     <i class="fas fa-chevron-down text-xs transition-transform group-hover:rotate-180"></i>
                 </div>
-                <!-- Isi 3 Sub Menu -->
                 <div class="absolute left-0 mt-2 w-48 bg-amber-900 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 text-xs overflow-hidden">
                     <a href="skck.html" class="block px-4 py-2.5 hover:bg-amber-800 hover:text-amber-300 border-b border-amber-950/30">Layanan SKCK</a>
                     <a href="sktm.html" class="block px-4 py-2.5 hover:bg-amber-800 hover:text-amber-300 border-b border-amber-950/30">KTP Online</a>
@@ -73,12 +71,34 @@
             <a href="kontak.html" class="hover:text-amber-400 font-medium transition-colors">Kontak</a>
         </div>
 
-        <!-- Kotak Pencarian -->
-        <div>
+        <div class="order-3 z-10">
             <input type="text" id="search-input" onkeyup="filterContent()" 
                    placeholder="Cari..." 
-                   class="bg-amber-900 text-white p-1.5 px-3 rounded border border-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 text-xs">
+                   class="bg-amber-900 text-white p-1.5 px-3 rounded border border-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 text-xs w-32 sm:w-auto">
         </div>
     </div>
-</nav>
 
+    <div id="mobile-menu" class="hidden lg:hidden bg-amber-900 border-t border-amber-950 px-2 py-3 mt-3 space-y-2 flex flex-col text-xs rounded-md shadow-inner transition-all">
+        <a href="index.html" class="block hover:bg-amber-800 p-2 rounded transition">Beranda</a>
+        <a href="profil.html" class="block hover:bg-amber-800 p-2 rounded transition">Profil Kecamatan</a>
+        
+        <div class="font-bold text-amber-300 px-2 pt-1 border-t border-amber-950/40 text-[11px] uppercase tracking-wider">Layanan Manual</div>
+        <a href="skck.html" class="block pl-4 hover:bg-amber-800 p-1.5 rounded transition">▸ Layanan SKCK</a>
+        <a href="sktm.html" class="block pl-4 hover:bg-amber-800 p-1.5 rounded transition">▸ SKTM</a>
+        <a href="kk.html" class="block pl-4 hover:bg-amber-800 p-1.5 rounded transition">▸ Akta Jual Beli (AJB)</a>
+        
+        <a href="berita.html" class="block hover:bg-amber-800 p-2 rounded transition border-t border-amber-950/40">Berita</a>
+        <a href="galeri.html" class="block hover:bg-amber-800 p-2 rounded transition">Galeri</a>
+        <a href="pengumuman.html" class="block hover:bg-amber-800 p-2 rounded transition">Pengumuman</a>
+        
+        <div class="font-bold text-amber-300 px-2 pt-1 border-t border-amber-950/40 text-[11px] uppercase tracking-wider">Layanan Online</div>
+        <a href="skck.html" class="block pl-4 hover:bg-amber-800 p-1.5 rounded transition">▸ Layanan SKCK</a>
+        <a href="sktm.html" class="block pl-4 hover:bg-amber-800 p-1.5 rounded transition">▸ KTP Online</a>
+        <a href="kk.html" class="block pl-4 hover:bg-amber-800 p-1.5 rounded transition">▸ Kartu Keluarga</a>
+        
+        <a href="survei.html" class="block hover:bg-amber-800 p-2 rounded transition border-t border-amber-950/40 text-yellow-300 font-medium">
+            <i class="fas fa-clipboard-check mr-1.5"></i>Survei Kepuasan
+        </a>
+        <a href="kontak.html" class="block hover:bg-amber-800 p-2 rounded transition">Kontak</a>
+    </div>
+</nav>
