@@ -306,7 +306,12 @@
                                 if (match) id = match[1];
                             }
                             if (!id && /^[A-Za-z0-9_-]{20,}$/.test(foto.trim())) id = foto.trim();
-                            if (id) fotoUrl = `https://drive.google.com/thumbnail?id=${id}&sz=w1200`;
+                            if (id) {
+    // Menggunakan server usercontent agar foto langsung tembus di browser HP tanpa hambatan cookie
+    fotoUrl = `https://lh3.googleusercontent.com/d/${id}`; 
+} else {
+    fotoUrl = foto;
+}
                             else fotoUrl = foto;
                         }
                         daftarBerita.push({ judul, isi, foto: fotoUrl, tanggal });
