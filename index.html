@@ -324,9 +324,7 @@ console.log("Jumlah rows:", rows.length);
                         id = urlString;
                     }
                     
-                    // Menggunakan format resmi HTTPS UC Google Drive yang didukung penuh oleh browser mobile
-                  // GANTI BAGIAN TERKAIT FOTOURL DENGAN KODE INI:
-// Cari potongan kode ini di dalam fungsi fetchBeritaBeranda() pada index.html:
+                 
 if (id) {
     fotoUrl = `https://drive.google.com/thumbnail?id=${id}&sz=w1600`;
 } else {
@@ -340,10 +338,11 @@ if (id) {
 
         daftarBerita.reverse();
         console.log("Daftar berita:", daftarBerita);
-        const berita = daftarBerita
-            console.log("Berita pertama:", berita);
+       const berita = daftarBerita
     .filter(x => x.judul && x.isi)
-    .sort((a,b)=>new Date(b.tanggal)-new Date(a.tanggal))[0];
+    .sort((a,b) => new Date(b.tanggal) - new Date(a.tanggal))[0];
+
+console.log("Berita pertama:", berita);
 
         if (!berita) {
             container.innerHTML = '<div class="text-center text-gray-400 py-8 bg-white rounded-xl border text-sm">Tidak ada berita yang valid.</div>';
