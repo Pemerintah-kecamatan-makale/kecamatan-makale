@@ -350,34 +350,51 @@ console.log("Berita pertama:", berita);
             return;
         }
 
-        const preview = berita.isi.length > 130 ? berita.isi.substring(0, 130) + "..." : berita.isi;
-        
-        container.innerHTML = `
-            <article class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col h-full hover:shadow-lg transition duration-200">
-                <div class="w-full h-48 sm:h-56 bg-gray-100 relative overflow-hidden">
-                    <img src="${berita.foto}" alt="${berita.judul}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='assets/images/Plaza Kolam Makale.jpg';">
-                </div>
-                <div class="p-4 sm:p-6 flex flex-col flex-grow">
-                    <div class="text-[11px] text-gray-400 mb-1.5"><i class="far fa-calendar-alt mr-1.5"></i>${berita.tanggal}</div>
-                    <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 leading-snug">${berita.judul}</h3>
-                    <p class="text-xs sm:text-sm text-gray-600 mb-4 flex-grow leading-relaxed">${preview}</p>
-                    <a href="berita.html" class="text-red-800 hover:text-red-950 text-xs sm:text-sm font-bold self-start inline-flex items-center group p-2 -ml-2">
-                        Baca Selengkapnya <i class="fas fa-arrow-right ml-1.5 group-hover:translate-x-1 transition-transform text-[10px]"></i>
-                    </a>
-                </div>
-            </article>
-        `;
-    }
+        const preview = berita.isi.length > 130
+    ? berita.isi.substring(0, 130) + "..."
+    : berita.isi;
+
+container.innerHTML = `
+    <article class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col h-full hover:shadow-lg transition duration-200">
+        <div class="w-full h-48 sm:h-56 bg-gray-100 relative overflow-hidden">
+            <img src="${berita.foto}" alt="${berita.judul}" class="w-full h-full object-cover"
+                 onerror="this.onerror=null; this.src='assets/images/Plaza Kolam Makale.jpg';">
+        </div>
+
+        <div class="p-4 sm:p-6 flex flex-col flex-grow">
+            <div class="text-[11px] text-gray-400 mb-1.5">
+                <i class="far fa-calendar-alt mr-1.5"></i>${berita.tanggal}
+            </div>
+
+            <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 leading-snug">
+                ${berita.judul}
+            </h3>
+
+            <p class="text-xs sm:text-sm text-gray-600 mb-4 flex-grow leading-relaxed">
+                ${preview}
+            </p>
+
+            <a href="berita.html"
+               class="text-red-800 hover:text-red-950 text-xs sm:text-sm font-bold self-start inline-flex items-center group p-2 -ml-2">
+                Baca Selengkapnya
+                <i class="fas fa-arrow-right ml-1.5 group-hover:translate-x-1 transition-transform text-[10px]"></i>
+            </a>
+        </div>
+    </article>
+`;
+
 } catch (error) {
     console.error("BERANDA ERROR:", error);
+
     container.innerHTML = `
         <div class="bg-red-50 border border-red-300 rounded-lg p-4 text-red-700">
             ${error.message}
         </div>
     `;
 }
-    }
+
 fetchBeritaBeranda();
+
         // --- FETCH SKM & INITIALIZE BAR CHART ---
         const API = "https://script.google.com/macros/s/AKfycbyvaAvWB2_ACWwN3Bk7fOezihnbLMZ_PmJ6Earj2y122Jsyt6RqbCKTPzKc30BW8J0rSw/exec?dashboard=1";
         
