@@ -206,9 +206,6 @@ function excerpt(text="",length=180){
     return clean.substring(0,length)+"...";
 
 }
-
-
-
 function formatDate(value){
 
     if(!value){
@@ -217,28 +214,13 @@ function formatDate(value){
 
     }
 
-    try{
-
-        return new Date(value)
-        .toLocaleDateString("id-ID",{
-
-            day:"2-digit",
-
-            month:"long",
-
-            year:"numeric"
-
-        });
-
-    }
-
-    catch{
-
-        return value;
-
-    }
+    // Mengembalikan langsung nilai teks asli dari Kolom F Spreadsheet 
+    // Tanpa dikonversi ulang secara otomatis oleh JavaScript (Matikan Auto Date)
+    return String(value).trim();
 
 }
+
+
 
 
 
