@@ -311,10 +311,13 @@ async function fetchBeritaBeranda() {
             const isi = row.c[2]?.v || "";
             const foto = row.c[3]?.v || "";
 
+            // --- 1. MATIKAN AUTO DATE & AMBIL DARI KOLOM F ---
             let tanggal = "Baru Saja";
+            let rawDateValue = row.c[0]?.v || ""; // Ambil nilai asli kolom A untuk cadangan ID
 
-            if (row.c[5]?.f) {
-                tanggal = row.c[5].f;
+            if (row.c[5]?.v) {
+                // Gunakan teks mentah (.v) dari kolom F agar 100% sesuai ketikan di Spreadsheet
+                tanggal = String(row.c[5].v).trim();
             } else if (row.c[0]?.f) {
                 tanggal = row.c[0].f.split(" ")[0];
             }
@@ -358,18 +361,32 @@ async function fetchBeritaBeranda() {
                 judul,
                 isi,
                 foto: fotoUrl,
-                tanggal
+                tanggal,
+                rawDateValue // Disimpan untuk cadangan pencocokan urutan
             });
 
         });
 
-        console.log("Daftar berita:", daftarBerita);
+        console.log("Daftar berita sebelum diurutkan:", daftarBerita);
 
-        daftarBerita.reverse();
+        // --- 2. SORTING BERDASARKAN TANGGAL TERBARU DI KOLOM F ---
+        daftarBerita.sort((a, b) => {
+            const dateA = new Date(a.tanggal);
+            const dateB = new Date(b.tanggal);
 
+            // Jika format teks di Kolom F valid diubah menjadi tanggal oleh JavaScript
+            if (!isNaN(dateB) && !isNaN(dateA)) {
+                return dateB - dateA; // Mengurutkan dari yang paling baru
+            }
+
+            // Cadangan jika kolom F berupa tulisan manual non-standar tanggal, pakai urutan Timestamp Kolom A
+            return String(b.rawDateValue).localeCompare(String(a.rawDateValue));
+        });
+
+        // Setelah diurutkan, indeks [0] secara otomatis menjadi berita yang paling baru
         const berita = daftarBerita[0];
 
-        console.log("Berita pertama:", berita);
+        console.log("Berita terupdate paling baru:", berita);
 
         if (!berita) {
             container.innerHTML =
@@ -409,7 +426,7 @@ async function fetchBeritaBeranda() {
         </p>
 
         <a href="berita.html"
-           class="mt-4 inline-flex items-center text-red-800 font-semibold">
+           class="mt-4 inline-flex items-center text-amber-700 font-semibold hover:text-amber-800">
             Baca Selengkapnya
             <i class="fas fa-arrow-right ml-2"></i>
         </a>
