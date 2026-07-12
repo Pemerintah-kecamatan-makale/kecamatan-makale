@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nama Halaman | Website Resmi Kecamatan Makale</title>
+    <title>Standar Pelayanan Publik | Website Resmi Kecamatan Makale</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="bg-gray-50 flex flex-col min-h-screen">
 
-    <!-- REUSABLE HEADER PLACEHOLDER -->
     <div id="header-placeholder"></div>
 
-    <!-- KONTEN UTAMA LAYANAN -->
     <main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
-        <!-- Header Halaman -->
         <div class="text-center mb-12">
             <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">Standar Pelayanan Publik</h1>
             <div class="h-1 w-24 bg-red-800 mx-auto rounded"></div>
@@ -25,10 +23,8 @@
             </p>
         </div>
 
-        <!-- GRID KARTU LAYANAN -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
-            <!-- LAYANAN 1: KTP-EL -->
             <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
                 <div class="p-6 bg-red-800 text-white">
                     <span class="text-xs uppercase font-bold tracking-wider text-amber-300">Administrasi</span>
@@ -43,14 +39,19 @@
                             <li>Surat Pengantar dari Kelurahan/Lembang</li>
                         </ul>
                     </div>
-                    <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
-                        <span>Waktu: 1 Hari Kerja</span>
-                        <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Gratis (Rp 0)</span>
+                    <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <div class="text-xs text-gray-500">
+                            <span class="block">Waktu: 1 Hari Kerja</span>
+                            <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded inline-block mt-1">Gratis (Rp 0)</span>
+                        </div>
+                        <a href="assets/dokumen/persyaratan-ktp.pdf" download class="inline-flex items-center gap-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold px-3 py-2 rounded-xl transition shadow-sm">
+                            <i class="fas fa-download"></i>
+                            Unduh Dokumen
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <!-- LAYANAN 2: KARTU KELUARGA -->
             <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
                 <div class="p-6 bg-red-800 text-white">
                     <span class="text-xs uppercase font-bold tracking-wider text-amber-300">Administrasi</span>
@@ -65,14 +66,19 @@
                             <li>Surat Pengantar Kelurahan/Lembang</li>
                         </ul>
                     </div>
-                    <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
-                        <span>Waktu: 1-2 Hari Kerja</span>
-                        <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Gratis (Rp 0)</span>
+                    <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <div class="text-xs text-gray-500">
+                            <span class="block">Waktu: 1-2 Hari Kerja</span>
+                            <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded inline-block mt-1">Gratis (Rp 0)</span>
+                        </div>
+                        <a href="assets/dokumen/F101-Permohonan-KK.pdf" download class="inline-flex items-center gap-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold px-3 py-2 rounded-xl transition shadow-sm">
+                            <i class="fas fa-download"></i>
+                            Unduh F-1.01
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <!-- LAYANAN 3: SURAT KETERANGAN -->
             <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
                 <div class="p-6 bg-red-800 text-white">
                     <span class="text-xs uppercase font-bold tracking-wider text-amber-300">Pelayanan Umum</span>
@@ -87,16 +93,21 @@
                             <li>Surat Pernyataan bermaterai Rp 10.000</li>
                         </ul>
                     </div>
-                    <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
-                        <span>Waktu: 15 Menit</span>
-                        <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Gratis (Rp 0)</span>
+                    <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <div class="text-xs text-gray-500">
+                            <span class="block">Waktu: 15 Menit</span>
+                            <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded inline-block mt-1">Gratis (Rp 0)</span>
+                        </div>
+                        <a href="assets/dokumen/surat-pernyataan-sktm.pdf" download class="inline-flex items-center gap-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold px-3 py-2 rounded-xl transition shadow-sm">
+                            <i class="fas fa-download"></i>
+                            Unduh Blangko
+                        </a>
                     </div>
                 </div>
             </div>
 
         </div>
 
-        <!-- CALLOUT LAYANAN PENGADUAN INTEGRASI -->
         <div class="mt-16 p-6 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex flex-col md:flex-row items-center justify-between gap-4">
             <div>
                 <h4 class="text-lg font-bold text-gray-900">Menemukan pelanggaran atau pungli dalam pelayanan?</h4>
@@ -104,11 +115,10 @@
             </div>
             <a href="kontak.html" class="px-6 py-2.5 bg-red-800 hover:bg-red-900 text-amber-300 font-bold rounded-xl text-sm transition-colors whitespace-nowrap shadow-sm">
                 Ajukan Pengaduan &rarr;
-            </button>
+            </a>
         </div>
     </main>
 
-    <!-- REUSABLE FOOTER PLACEHOLDER -->
     <div id="footer-placeholder"></div>
 
     <script src="assets/js/main.js"></script>
