@@ -14,46 +14,46 @@
 <body class="bg-gray-50 flex flex-col min-h-screen antialiased scroll-smooth">
 
     <!-- ================= MODAL MAKLUMAT PELAYANAN ================= -->
-    <div id="maklumatModal" style="position: fixed; inset: 0; z-index: 9999; display: none; align-items: center; justify-content: center; padding: 12px; background: rgba(0,0,0,.8); backdrop-filter: blur(5px);">
-        <div class="relative bg-white rounded-2xl w-full max-w-[350px] max-h-[90vh] flex flex-col overflow-hidden border-4 border-amber-500 shadow-2xl">
+    <div id="maklumatModal" style="position: fixed; inset: 0; z-index: 9999; display: none; align-items: center; justify-content: center; padding: 16px; background: rgba(0,0,0,.75); backdrop-filter: blur(4px);">
+    
+    <div class="relative bg-white rounded-2xl w-[92%] sm:w-full sm:max-w-[450px] md:max-w-[550px] max-h-[90vh] flex flex-col overflow-hidden border-4 border-amber-500 shadow-2xl transition-all duration-300">
+        
+        <div class="bg-red-800 p-4 md:p-5 text-center border-b-2 border-amber-400 flex-shrink-0">
+            <p class="text-white text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider m-0">Pemerintah Kabupaten Tana Toraja</p>
+            <h4 class="text-white text-lg sm:text-xl md:text-2xl font-black uppercase tracking-wide mt-1">Kecamatan Makale</h4>
+        </div>
+
+        <div class="p-6 md:p-8 flex-grow text-center overflow-y-auto bg-gradient-to-b from-amber-50/40 to-white">
             
-            <!-- HEADER MERAH -->
-            <div class="bg-red-800 p-3 text-center border-b-2 border-amber-400 flex-shrink-0">
-                <p class="text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider m-0">Pemerintah Kabupaten Tana Toraja</p>
-                <h4 class="text-white text-base font-black uppercase tracking-wide mt-0.5">Kecamatan Makale</h4>
+            <div class="flex justify-center mb-4">
+                <img src="assets/images/LOGO TATOR3.png" alt="Logo Tana Toraja" class="h-16 sm:h-20 md:h-24 w-auto object-contain drop-shadow">
             </div>
 
-            <!-- Konten Utama (Scrollable untuk HP Pendek) -->
-            <div class="p-5 flex-grow text-center overflow-y-auto bg-gradient-to-b from-amber-50/30 to-white">
-                <div class="flex justify-center mb-3">
-                    <img src="assets/images/LOGO TATOR3.png" alt="Logo Tana Toraja" class="h-14 sm:h-16 w-auto object-contain drop-shadow">
-                </div>
-
-                <div class="mb-3">
-                    <h3 class="text-lg sm:text-xl font-black text-stone-900 uppercase tracking-tight">Maklumat Pelayanan</h3>
-                    <div class="h-[3px] w-16 bg-amber-500 mx-auto mt-1 rounded-full"></div>
-                </div>
-
-                <p class="text-[12px] sm:text-xs text-stone-800 leading-relaxed font-medium italic mb-4 px-1">
-                    "Dengan ini kami menyatakan sanggup menyelenggarakan pelayanan sesuai standar pelayanan yang telah ditetapkan. Kami akan memberikan pelayanan sesuai dengan kewajiban dan akan melakukan perbaikan secara terus menerus. Apabila tidak menepati, kami siap menerima sanksi sesuai dan/atau memberi kompensasi sesuai dengan peraturan yang berlaku."
-                </p>
-
-                <div class="flex flex-col items-center border-t border-gray-100 pt-3">
-                    <p class="text-[10px] sm:text-xs text-gray-500 font-semibold">Makale, 02 Juli 2026</p>
-                    <div class="w-full max-h-[70px] sm:max-h-[90px] my-1 flex items-center justify-center overflow-hidden">
-                        <img src="assets/images/TTD Camat.png" alt="Tanda Tangan Camat" class="h-full w-auto object-contain">
-                    </div>
-                </div>
+            <div class="mb-4">
+                <h3 class="text-xl sm:text-2xl md:text-3xl font-black text-stone-950 uppercase tracking-tight">Maklumat Pelayanan</h3>
+                <div class="h-[4px] w-20 bg-amber-500 mx-auto mt-1.5 rounded-full"></div>
             </div>
 
-            <!-- Tombol Tutup -->
-            <div class="p-3 bg-gray-50 border-t border-gray-100 flex-shrink-0">
-                <button onclick="closeMaklumat()" class="w-full py-2.5 bg-red-800 hover:bg-red-900 text-white font-bold rounded-xl text-xs sm:text-sm uppercase tracking-wider shadow active:scale-[0.98] transition-all min-h-[44px]">
-                    Tutup Maklumat
-                </button>
+            <p class="text-xs sm:text-sm md:text-base text-stone-900 leading-relaxed font-semibold italic mb-6 px-1 md:px-4 text-justify sm:text-center">
+                "Dengan ini kami menyatakan sanggup menyelenggarakan pelayanan sesuai standar pelayanan yang telah ditetapkan. Kami akan memberikan pelayanan sesuai dengan kewajiban dan akan melakukan perbaikan secara terus menerus. Apabila tidak menepati, kami siap menerima sanksi sesuai dan/atau memberi kompensasi sesuai dengan peraturan yang berlaku."
+            </p>
+
+            <div class="flex flex-col items-center border-t border-stone-100 pt-4">
+                <p class="text-[11px] sm:text-xs md:text-sm text-stone-600 font-bold">Makale, 02 Juli 2026</p>
+                
+                <div class="w-full h-20 sm:h-24 md:h-28 my-2 flex items-center justify-center overflow-hidden">
+                    <img src="assets/images/TTD Camat.png" alt="Tanda Tangan Camat" class="h-full w-auto object-contain">
+                </div>
             </div>
         </div>
+
+        <div class="p-4 bg-gray-50 border-t border-gray-100 flex-shrink-0">
+            <button onclick="closeMaklumat()" class="w-full py-3 bg-red-800 hover:bg-red-900 text-white font-bold rounded-xl text-xs sm:text-sm md:text-base uppercase tracking-wider shadow-md active:scale-[0.99] transition-all min-h-[46px]">
+                Tutup Maklumat
+            </button>
+        </div>
     </div>
+</div>
 
     <!-- PLACEHOLDER HEADER -->
     <div id="header-placeholder"></div>
