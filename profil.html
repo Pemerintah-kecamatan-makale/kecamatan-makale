@@ -5,21 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil Kecamatan | Website Resmi Kecamatan Makale</title>
     
+    <!-- PANGGIL TAILWIND CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- HUBUNGKAN KE CSS LOKAL -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
+    <!-- 1. PENGKAIT OTOMATIS HEADER & NAVBAR (Wajib Ada) -->
     <div id="header-placeholder"></div>
 
+    <!-- KONTEN UTAMA PROFIL -->
     <main class="flex-grow max-w-5xl mx-auto px-4 py-12 w-full">
         
+        <!-- Judul Halaman -->
         <div class="mb-8 border-b-2 border-red-800 pb-3">
             <h2 class="text-3xl font-extrabold text-gray-900">Profil Data Kecamatan Makale</h2>
             <p class="text-sm text-gray-500 mt-1">Informasi komprehensif mengenai kondisi wilayah, potensi, dan kependudukan Ibu Kota Kabupaten.</p>
         </div>
 
+        <!-- SEKSI A: KONDISI WILAYAH -->
         <section class="mb-10">
             <h3 class="text-2xl font-bold text-red-800 mb-6 flex items-center gap-2">
                 <span class="w-2 h-6 bg-amber-500 rounded-full"></span>
@@ -27,6 +33,7 @@
             </h3>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                <!-- Sejarah & Karakteristik -->
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-4">
                     <h4 class="text-lg font-bold text-gray-900 border-b pb-1 border-gray-200">a. Sejarah & Karakteristik</h4>
                     <p class="text-sm text-gray-700 leading-relaxed text-justify">
@@ -52,6 +59,7 @@
                     </ul>
                 </div>
 
+                <!-- Letak Geografis -->
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                     <h4 class="text-lg font-bold text-gray-900 border-b pb-2 border-gray-200 mb-4">b. Letak Geografis</h4>
                     
@@ -77,6 +85,7 @@
                 </div>
             </div>
 
+            <!-- Tabel Pembagian Administrasi -->
             <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                 <h4 class="text-lg font-bold text-gray-900 mb-2">c. Wilayah Administrasi</h4>
                 <p class="text-sm text-gray-500 mb-4">Secara administratif, Kecamatan Makale terbagi menjadi <span class="font-bold text-red-800">14 Kelurahan</span> dan <span class="font-bold text-red-800">1 Lembang (Desa)</span>:</p>
@@ -104,8 +113,10 @@
             </div>
         </section>
 
+        <!-- SEKSI B & C: POTENSI & KEPENDUDUKAN -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             
+            <!-- Potensi Unggulan -->
             <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between">
                 <div>
                     <h3 class="text-xl font-bold text-red-800 mb-4 flex items-center gap-2">
@@ -123,6 +134,7 @@
                 </div>
             </div>
 
+            <!-- Komposisi Kependudukan -->
             <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between">
                 <div>
                     <h3 class="text-xl font-bold text-red-800 mb-4 flex items-center gap-2">
@@ -136,7 +148,7 @@
                                     <th class="px-4 py-3 text-left font-bold">Keterangan</th>
                                     <th class="px-4 py-3 text-left font-bold">Jumlah</th>
                                 </tr>
-                            </table>
+                            </thead>
                             <tbody class="bg-white divide-y divide-gray-200 font-medium text-gray-700">
                                 <tr class="bg-amber-50/20"><td class="px-4 py-2.5 font-bold text-gray-900">Total Penduduk (2024)</td><td class="px-4 py-2.5 font-extrabold text-red-800">36.722 Jiwa</td></tr>
                                 <tr><td class="px-4 py-2.5">Laki-laki</td><td class="px-4 py-2.5">18.571 Jiwa</td></tr>
@@ -154,8 +166,10 @@
 
     </main>
 
+    <!-- 2. PENGKAIT OTOMATIS FOOTER (Wajib Ada) -->
     <div id="footer-placeholder"></div>
 
+    <!-- 3. SKRIP UTAMA PENGGERAK INJECTOR -->
     <script src="assets/js/main.js"></script>
 </body>
 </html>
