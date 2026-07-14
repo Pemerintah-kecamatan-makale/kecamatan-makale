@@ -3,305 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Standar Pelayanan Publik | Website Resmi Kecamatan Makale</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
+    <title>Pelayanan Digital - Kecamatan Makale</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Font Awesome untuk Ikon Pro -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="bg-gray-50 flex flex-col min-h-screen">
+<body class="bg-gray-50 font-sans text-gray-800 antialiased flex flex-col min-h-screen">
 
-    <div id="header-placeholder"></div>
+    <!-- NAVBAR UTAMA -->
+    <nav class="bg-red-800 border-b-4 border-amber-400 sticky top-0 z-40 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 sm:h-20">
+                <div class="flex items-center gap-3">
+                    <!-- Logo Instansi (Ganti src dengan logo resmi jika ada) -->
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-amber-400 rounded-xl flex items-center justify-center shadow-inner shrink-0">
+                        <i class="fas fa-landmark text-red-800 text-lg sm:text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-white font-black text-sm sm:text-lg tracking-wide leading-tight uppercase">Kecamatan Makale</h1>
+                        <p class="text-[10px] sm:text-xs text-amber-300 font-medium tracking-wider uppercase">Kabupaten Tana Toraja</p>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <span class="bg-red-900/50 text-amber-300 border border-red-700 text-[10px] sm:text-xs px-3 py-1.5 rounded-full font-bold uppercase tracking-wider hidden sm:inline-flex items-center gap-2">
+                        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span> Pelayanan Online Aktif
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-  <!-- KONTEN UTAMA LAYANAN -->
-<main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
-    <!-- Header Halaman -->
-    <div class="text-center mb-12">
-        <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">Standar Pelayanan Publik</h1>
-        <div class="h-1 w-24 bg-red-800 mx-auto rounded"></div>
-        <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
-            Komitmen kami untuk memberikan pelayanan yang transparan, mudah, dan tanpa pungutan liar demi kenyamanan warga Kecamatan Makale.
-        </p>
-    </div>
-
-    <!-- GRID KARTU LAYANAN (7 LAYANAN UTAMA) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- HEADER / HERO SECTION -->
+    <header class="bg-gradient-to-br from-red-900 via-red-800 to-red-950 text-white py-12 sm:py-16 px-4 relative overflow-hidden shadow-inner">
+        <!-- Dekorasi Latar Belakang Istana / Estetika Toraja Modern -->
+        <div class="absolute inset-0 opacity-5 pointer-events-none mix-blend-overlay bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
         
-        <!-- LAYANAN 1: LEGALISASI PENGANTAR SKTM -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
-            <div class="p-6 bg-red-800 text-white">
-                <span class="text-xs uppercase font-bold tracking-wider text-amber-300">Pelayanan Umum</span>
-                <h3 class="text-lg font-bold mt-1">Legalisasi Pengantar SKTM</h3>
-            </div>
-            <div class="p-6 flex-grow flex flex-col justify-between">
-                <div class="space-y-4">
-                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Persyaratan Dokumen:</h4>
-                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside">
-                        <li>Surat Pengantar SKTM asli dari Lurah/Lembang</li>
-                        <li>Fotokopi Kartu Keluarga (KK) & KTP</li>
-                        <li>Rekomendasi pendukung (jika untuk sekolah/RS)</li>
-                    </ul>
-                </div>
-                <div class="mt-6 pt-4 border-t border-gray-100">
-                    <div class="flex items-center justify-between mb-3 text-xs text-gray-500">
-                        <span>Waktu: 10-15 Menit</span>
-                        <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Gratis (Rp 0)</span>
-                    </div>
-                    <div class="flex gap-2">
-                        <a href="assets/dokumen/STANDAR PELAYANAN_SKTM.pdf" download class="flex-1 text-center bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
-                            <i class="fas fa-download mr-1"></i> Unduh
-                        </a>
-                        <!-- SILAKAN GANTI URL DI BAWAH INI DENGAN LINK GOOGLE FORM SKTM ANDA -->
-                       <button onclick="openFormModal('Legalisasi Pengantar SKTM', 'https://docs.google.com/forms/d/e/1FAIpQLSdyVIBLKENLQQb93idX1P5rA4ESyXheqXPecx1Y3iN8EWNFGQ/viewform?embedded=true')" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
-    <i class="fas fa-edit mr-1"></i> Isi Berkas
-                        </button>
-                    </div>
-                </div>
-            </div>
+        <div class="max-w-3xl mx-auto text-center relative z-10">
+            <span class="inline-block bg-amber-400 text-red-900 text-[10px] sm:text-xs font-black uppercase tracking-widest px-3 py-1 rounded-md mb-4 shadow">
+                E-SAPA KECAMATAN
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight mb-3 sm:mb-4 drop-shadow">
+                Pusat Pelayanan Administrasi Digital
+            </h2>
+            <p class="text-sm sm:text-base text-red-100 max-w-2xl mx-auto leading-relaxed">
+                Silakan pilih jenis layanan di bawah ini untuk mengisi formulir permohonan secara online. Pengurusan dokumen menjadi lebih cepat, mudah, dan transparan dari rumah Anda.
+            </p>
+        </div>
+    </header>
+
+    <!-- KONTEN UTAMA: DAFTAR CARD LAYANAN -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 flex-grow">
+        <div class="text-center mb-8 sm:mb-12">
+            <h3 class="text-lg sm:text-2xl font-bold text-gray-900 flex items-center justify-center gap-2">
+                <i class="fas fa-th-large text-red-800 text-base sm:text-xl"></i> Pilihan Layanan Masyarakat
+            </h3>
+            <div class="w-16 h-1 bg-amber-400 mx-auto mt-2.5 rounded-full"></div>
         </div>
 
-        <!-- LAYANAN 2: LEGALISASI PENGANTAR SKCK -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
-            <div class="p-6 bg-red-800 text-white">
-                <span class="text-xs uppercase font-bold tracking-wider text-amber-300">Ketertiban & Keamanan</span>
-                <h3 class="text-lg font-bold mt-1">Legalisasi Pengantar SKCK</h3>
-            </div>
-            <div class="p-6 flex-grow flex flex-col justify-between">
-                <div class="space-y-4">
-                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Persyaratan Dokumen:</h4>
-                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside">
-                        <li>Surat Pengantar SKCK dari Kelurahan/Lembang</li>
-                        <li>Fotokopi KTP dan Kartu Keluarga</li>
-                        <li>Pasfoto terbaru ukuran 4x6 (1 lembar)</li>
-                    </ul>
-                </div>
-                <div class="mt-6 pt-4 border-t border-gray-100">
-                    <div class="flex items-center justify-between mb-3 text-xs text-gray-500">
-                        <span>Waktu: 10 Menit</span>
-                        <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Gratis (Rp 0)</span>
-                    </div>
-                    <div class="flex gap-2">
-                        <a href="assets/dokumen/STANDAR PELAYANAN_SKCK.pdf" download class="flex-1 text-center bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
-                            <i class="fas fa-download mr-1"></i> Unduh
-                        </a>
-                        <!-- SILAKAN GANTI URL DI BAWAH INI DENGAN LINK GOOGLE FORM SKCK ANDA -->
-                        <button onclick="openFormModal('Legalisasi Pengantar SKCK', 'https://docs.google.com/forms/d/e/MASUKKAN_ID_FORM_SKCK_DISINI/viewform?embedded=true')" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
-                            <i class="fas fa-edit mr-1"></i> Isi Berkas
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- LAYANAN 3: LEGALISASI PENGANTAR KK -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
-            <div class="p-6 bg-red-800 text-white">
-                <span class="text-xs uppercase font-bold tracking-wider text-amber-300">Administrasi</span>
-                <h3 class="text-lg font-bold mt-1">Legalisasi Pengantar KK</h3>
-            </div>
-            <div class="p-6 flex-grow flex flex-col justify-between">
-                <div class="space-y-4">
-                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Persyaratan Dokumen:</h4>
-                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside">
-                        <li>Surat Pengantar pengurusan KK dari Lurah/Lembang</li>
-                        <li>Format Isian berkas KK dari Kelurahan</li>
-                        <li>Fotokopi dokumen pendukung (Ijazah/Akta)</li>
-                    </ul>
-                </div>
-                <div class="mt-6 pt-4 border-t border-gray-100">
-                    <div class="flex items-center justify-between mb-3 text-xs text-gray-500">
-                        <span>Waktu: 10 Menit</span>
-                        <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Gratis (Rp 0)</span>
-                    </div>
-                    <div class="flex gap-2">
-                        <a href="assets/dokumen/STANDAR PELAYANAN_Surat Pengantar Pengurusan Kartu Keluarga (KK).pdf" download class="flex-1 text-center bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
-                            <i class="fas fa-download p-0.5"></i> Unduh
-                        </a>
-                        <!-- SILAKAN GANTI URL DI BAWAH INI DENGAN LINK GOOGLE FORM KK ANDA -->
-                        <button onclick="openFormModal('Legalisasi Pengantar KK', 'https://docs.google.com/forms/d/e/MASUKKAN_ID_FORM_KK_DISINI/viewform?embedded=true')" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
-                            <i class="fas fa-edit mr-1"></i> Isi Berkas
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- LAYANAN 4: KETERANGAN BELUM MENIKAH -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
-            <div class="p-6 bg-red-800 text-white">
-                <span class="text-xs uppercase font-bold tracking-wider text-amber-300">Pelayanan Umum</span>
-                <h3 class="text-lg font-bold mt-1">Keterangan Belum Menikah</h3>
-            </div>
-            <div class="p-6 flex-grow flex flex-col justify-between">
-                <div class="space-y-4">
-                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Persyaratan Dokumen:</h4>
-                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside">
-                        <li>Surat Keterangan dari Kelurahan/Lembang asli</li>
-                        <li>Fotokopi KTP & KK Pemohon</li>
-                        <li>Surat Pernyataan Belum Menikah (Materai 10.000)</li>
-                    </ul>
-                </div>
-                <div class="mt-6 pt-4 border-t border-gray-100">
-                    <div class="flex items-center justify-between mb-3 text-xs text-gray-500">
-                        <span>Waktu: 15 Menit</span>
-                        <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Gratis (Rp 0)</span>
-                    </div>
-                    <div class="flex gap-2">
-                        <a href="assets/dokumen/STANDAR PELAYANAN_Belum Menikah.pdf" download class="flex-1 text-center bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
-                            <i class="fas fa-download"></i> Unduh
-                        </a>
-                        <!-- PERBAIKAN: Format link pendek diganti ke format embed dinamis -->
-                        <button onclick="openFormModal('Keterangan Belum Menikah', 'https://docs.google.com/forms/d/e/MASUKKAN_ID_FORM_BELUM_MENIKAH_DISINI/viewform?embedded=true')" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
-                            <i class="fas fa-edit mr-1"></i> Isi Berkas
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- LAYANAN 5: PERMINTAAN DATA KECAMATAN -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
-            <div class="p-6 bg-red-800 text-white">
-                <span class="text-xs uppercase font-bold tracking-wider text-amber-300">Pemerintahan</span>
-                <h3 class="text-lg font-bold mt-1">Permintaan Data Kecamatan</h3>
-            </div>
-            <div class="p-6 flex-grow flex flex-col justify-between">
-                <div class="space-y-4">
-                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Persyaratan Dokumen:</h4>
-                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside">
-                        <li>Surat Permohonan Resmi (Instansi/Kampus/Lembaga)</li>
-                        <li>Proposal / Identitas Pengaju data yang jelas</li>
-                        <li>Mengisi Formulir tujuan penggunaan data</li>
-                    </ul>
-                </div>
-                <div class="mt-6 pt-4 border-t border-gray-100">
-                    <div class="flex items-center justify-between mb-3 text-xs text-gray-500">
-                        <span>Waktu: 1-2 Hari Kerja</span>
-                        <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Gratis (Rp 0)</span>
-                    </div>
-                    <div class="flex gap-2">
-                        <a href="assets/dokumen/STANDAR PELAYANAN_Permintaan Data Terkait Pemerintahan .pdf" download class="flex-1 text-center bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
-                            <i class="fas fa-download"></i> Unduh
-                        </a>
-                        <!-- SILAKAN GANTI URL DI BAWAH INI DENGAN LINK GOOGLE FORM REQUEST DATA -->
-                        <button onclick="openFormModal('Permintaan Data Kecamatan', 'https://docs.google.com/forms/d/e/MASUKKAN_ID_FORM_PERMINTAAN_DATA_DISINI/viewform?embedded=true')" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
-                            <i class="fas fa-edit mr-1"></i> Isi Berkas
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- LAYANAN 6: SURAT KETERANGAN USAHA (SKU) -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
-            <div class="p-6 bg-red-800 text-white">
-                <span class="text-xs uppercase font-bold tracking-wider text-amber-300">Pelayanan Umum</span>
-                <h3 class="text-lg font-bold mt-1">Surat Keterangan Usaha (SKU)</h3>
-            </div>
-            <div class="p-6 flex-grow flex flex-col justify-between">
-                <div class="space-y-4">
-                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Persyaratan Dokumen:</h4>
-                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside">
-                        <li>Surat Pengantar Usaha dari Kelurahan/Lembang</li>
-                        <li>Fotokopi KTP & KK Pemohon</li>
-                        <li>Dokumentasi / Foto tempat lokasi usaha</li>
-                    </ul>
-                </div>
-                <div class="mt-6 pt-4 border-t border-gray-100">
-                    <div class="flex items-center justify-between mb-3 text-xs text-gray-500">
-                        <span>Waktu: 15 Menit</span>
-                        <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Gratis (Rp 0)</span>
-                    </div>
-                    <div class="flex gap-2">
-                        <a href="assets/dokumen/STANDAR PELAYANAN_SKU.pdf" download class="flex-1 text-center bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
-                            <i class="fas fa-download"></i> Unduh
-                        </a>
-                        <!-- SILAKAN GANTI URL DI BAWAH INI DENGAN LINK GOOGLE FORM SKU -->
-                        <button onclick="openFormModal('Surat Keterangan Usaha (SKU)', 'https://docs.google.com/forms/d/e/MASUKKAN_ID_FORM_SKU_DISINI/viewform?embedded=true')" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
-                            <i class="fas fa-edit mr-1"></i> Isi Berkas
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- LAYANAN 7: Pembuatan Akta Jual Beli Tanah (AJB) -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
-            <div class="p-6 bg-red-800 text-white">
-                <span class="text-xs uppercase font-bold tracking-wider text-amber-300">Pemerintahan</span>
-                <h3 class="text-lg font-bold mt-1">Pembuatan Akta Jual Beli (AJB)</h3>
-            </div>
-            <div class="p-6 flex-grow flex flex-col justify-between">
-                <div class="space-y-4">
-                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Persyaratan Dokumen:</h4>
-                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside">
-                        <li>Sertifikat Tanah Asli / Surat Kapling Keterangan Kelurahan</li>
-                        <li>Fotokopi KTP Penjual & Pembeli (serta Saksi-saksi)</li>
-                        <li>Bukti Lunas PBB tahun berjalan</li>
-                    </ul>
-                </div>
-                <div class="mt-6 pt-4 border-t border-gray-100">
-                    <div class="flex items-center justify-between mb-3 text-xs text-gray-500">
-                        <span>Waktu: Sesuai Berkas</span>
-                        <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Gratis (Rp 0)</span>
-                    </div>
-                    <div class="flex gap-2">
-                        <a href="assets/dokumen/STANDAR PELAYANAN_AJB.pdf" download class="flex-1 text-center bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
-                            <i class="fas fa-download"></i> Unduh
-                        </a>
-                        <!-- SILAKAN GANTI URL DI BAWAH INI DENGAN LINK GOOGLE FORM AJB -->
-                        <button onclick="openFormModal('Pembuatan Akta Jual Beli Tanah (AJB)', 'https://docs.google.com/forms/d/e/MASUKKAN_ID_FORM_AJB_DISINI/viewform?embedded=true')" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
-                            <i class="fas fa-edit mr-1"></i> Isi Berkas
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</main>
-
-    <!-- COMPONENT POP-UP GOOGLE FORM MODAL (Lebih Luas & Responsif) -->
-    <div id="formModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
-        <div class="bg-white w-full max-w-3xl rounded-2xl shadow-xl overflow-hidden transform scale-95 transition-transform duration-300 flex flex-col h-[85vh]">
+        <!-- Grid Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             
-            <!-- Header Modal -->
-            <div class="p-5 bg-red-800 text-white flex justify-between items-center shrink-0">
+            <!-- LAYANAN 1: SURAT KETERANGAN USAHA -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-150 p-5 sm:p-6 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
                 <div>
-                    <span class="text-xs text-amber-300 font-bold uppercase tracking-wider">Formulir Pengajuan Online Resmi</span>
-                    <h3 id="modalLayananTitle" class="text-base font-bold">Nama Layanan</h3>
+                    <div class="w-12 h-12 rounded-xl bg-red-50 text-red-800 flex items-center justify-center text-xl mb-4 group-hover:bg-red-800 group-hover:text-white transition-all duration-300 shadow-sm">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h4 class="text-base sm:text-lg font-bold text-gray-900 mb-2 group-hover:text-red-800 transition-colors">Surat Keterangan Usaha (SKU)</h4>
+                    <p class="text-xs sm:text-sm text-gray-500 leading-relaxed mb-4">Pengajuan surat keterangan resmi bagi warga yang memiliki usaha mandiri di wilayah Kecamatan Makale.</p>
                 </div>
-                <button onclick="closeFormModal()" class="text-white/80 hover:text-white text-3xl p-1 leading-none">&times;</button>
+                <!-- PENTING: Ganti URL Google Form Dummy di bawah sesuai link formulir asli Anda -->
+                <button onclick="openFormModal('Surat Keterangan Usaha (SKU)', 'https://docs.google.com/forms/d/e/1FAIpQLSfDCl5D1Ww2z9vWvGqR55w99mJ6G-fV60o3g7hB94mR1S1aQw/viewform?embedded=true')" class="w-full mt-2 bg-red-800 hover:bg-red-900 text-white text-xs sm:text-sm font-bold py-2.5 px-4 rounded-xl transition-all shadow-sm active:scale-95 flex items-center justify-center gap-2">
+                    Mulai Mengisi <i class="fas fa-arrow-right text-[10px]"></i>
+                </button>
+            </div>
+
+            <!-- LAYANAN 2: SURAT KETERANGAN TIDAK MAMPU -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-150 p-5 sm:p-6 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-red-50 text-red-800 flex items-center justify-center text-xl mb-4 group-hover:bg-red-800 group-hover:text-white transition-all duration-300 shadow-sm">
+                        <i class="fas fa-id-card-alt"></i>
+                    </div>
+                    <h4 class="text-base sm:text-lg font-bold text-gray-900 mb-2 group-hover:text-red-800 transition-colors">Surat Keterangan Tidak Mampu</h4>
+                    <p class="text-xs sm:text-sm text-gray-500 leading-relaxed mb-4">Pengajuan surat keterangan untuk keperluan keringanan biaya pendidikan, kesehatan, atau bantuan sosial.</p>
+                </div>
+                <button onclick="openFormModal('Surat Keterangan Tidak Mampu (SKTM)', 'https://docs.google.com/forms/d/e/1FAIpQLSfDCl5D1Ww2z9vWvGqR55w99mJ6G-fV60o3g7hB94mR1S1aQw/viewform?embedded=true')" class="w-full mt-2 bg-red-800 hover:bg-red-900 text-white text-xs sm:text-sm font-bold py-2.5 px-4 rounded-xl transition-all shadow-sm active:scale-95 flex items-center justify-center gap-2">
+                    Mulai Mengisi <i class="fas fa-arrow-right text-[10px]"></i>
+                </button>
+            </div>
+
+            <!-- LAYANAN 3: PENGANTAR KARTU KELUARGA / KTP -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-150 p-5 sm:p-6 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-red-50 text-red-800 flex items-center justify-center text-xl mb-4 group-hover:bg-red-800 group-hover:text-white transition-all duration-300 shadow-sm">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <h4 class="text-base sm:text-lg font-bold text-gray-900 mb-2 group-hover:text-red-800 transition-colors">Pengantar KK / KTP Baru</h4>
+                    <p class="text-xs sm:text-sm text-gray-500 leading-relaxed mb-4">Permohonan surat pengantar dari kecamatan untuk penerbitan, perbaikan data, atau pencetakan ulang KK dan KTP.</p>
+                </div>
+                <button onclick="openFormModal('Pengantar KK / KTP Baru', 'https://docs.google.com/forms/d/e/1FAIpQLSfDCl5D1Ww2z9vWvGqR55w99mJ6G-fV60o3g7hB94mR1S1aQw/viewform?embedded=true')" class="w-full mt-2 bg-red-800 hover:bg-red-900 text-white text-xs sm:text-sm font-bold py-2.5 px-4 rounded-xl transition-all shadow-sm active:scale-95 flex items-center justify-center gap-2">
+                    Mulai Mengisi <i class="fas fa-arrow-right text-[10px]"></i>
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER INSTANSI -->
+    <footer class="bg-gray-900 text-gray-400 text-xs py-6 px-4 border-t border-gray-800 text-center shrink-0">
+        <div class="max-w-7xl mx-auto">
+            <p class="font-bold text-gray-300 mb-1">Pemerintah Kecamatan Makale</p>
+            <p class="mb-3">Jl. Pahlawan No.1, Makale, Kabupaten Tana Toraja, Sulawesi Selatan</p>
+            <div class="w-full h-[1px] bg-gray-800 my-3 max-w-xs mx-auto"></div>
+            <p>&copy; 2026 Kecamatan Makale. All Rights Reserved. Terintegrasi Google Form Aman.</p>
+        </div>
+    </footer>
+
+    <!-- COMPONENT POP-UP GOOGLE FORM MODAL (Sempurna & Profesional) -->
+    <div id="formModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-2 sm:p-4 hidden opacity-0 transition-opacity duration-300 backdrop-blur-sm" onclick="handleOutsideClick(event)">
+        <div class="bg-white w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300 flex flex-col h-[90vh] sm:h-[85vh]">
+            
+            <!-- Header Modal (Menyatu dengan tema Merah/Amber Kecamatan) -->
+            <div class="p-4 sm:p-5 bg-red-800 text-white flex justify-between items-center shrink-0 border-b border-red-900/20">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 bg-red-900/50 rounded-xl text-amber-300 hidden sm:block">
+                        <i class="fas fa-file-signature text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="text-[10px] sm:text-xs text-amber-300 font-bold uppercase tracking-wider block">Formulir Pengajuan Online Resmi</span>
+                        <h3 id="modalLayananTitle" class="text-sm sm:text-base font-bold text-white line-clamp-1">Nama Layanan</h3>
+                    </div>
+                </div>
+                <button onclick="closeFormModal()" class="text-white/70 hover:text-white hover:bg-white/10 text-2xl w-8 h-8 flex items-center justify-center rounded-full transition-all" aria-label="Tutup Jendela">&times;</button>
             </div>
             
-            <!-- Frame Konten Google Form -->
-            <div class="flex-grow w-full bg-gray-100 relative">
-                <iframe id="googleFormIframe" src="" class="w-full h-full border-0" allow="geolocation; microphone; camera">
+            <!-- Frame Konten Google Form dengan Loading State -->
+            <div class="flex-grow w-full bg-gray-50 relative overflow-hidden">
+                <!-- Sinyal Loading Cantik saat Google Form Memuat Data -->
+                <div id="iframeLoader" class="absolute inset-0 flex flex-col items-center justify-center bg-white z-10 transition-opacity duration-300">
+                    <div class="animate-spin rounded-full h-10 w-10 border-4 border-gray-200 border-t-red-800 mb-3"></div>
+                    <p class="text-xs font-medium text-gray-500 animate-pulse">Memuat formulir digital Kecamatan Makale...</p>
+                </div>
+
+                <iframe id="googleFormIframe" src="" class="w-full h-full border-0" allow="geolocation; microphone; camera" onload="hideLoader()">
                     Memuat formulir digital...
                 </iframe>
             </div>
             
             <!-- Footer Modal -->
-            <div class="p-3 bg-gray-50 border-t border-gray-100 flex justify-end shrink-0">
-                <button type="button" onclick="closeFormModal()" class="px-5 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold rounded-xl transition text-xs shadow-sm">
-                    Selesai / Tutup Jendela
+            <div class="p-3 sm:p-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center shrink-0 flex-row-reverse sm:flex-row gap-3">
+                <p class="text-[11px] text-gray-400 hidden sm:flex items-center gap-1.5">
+                    <i class="fas fa-shield-alt text-green-600"></i> Koneksi Enkripsi Aman
+                </p>
+                <button type="button" onclick="closeFormModal()" class="w-full sm:w-auto px-6 py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold rounded-xl transition text-xs shadow-sm active:scale-95">
+                    <i class="fas fa-times mr-1.5 text-gray-500"></i> Tutup Jendela
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- LOGIKA JAVASCRIPT UNTUK EMBED GOOGLE FORM -->
+    <!-- LOGIKA JAVASCRIPT UPGRADE -->
     <script>
         function openFormModal(layananName, googleFormUrl) {
             const modal = document.getElementById('formModal');
             const iframe = document.getElementById('googleFormIframe');
+            const loader = document.getElementById('iframeLoader');
             
             if (!modal || !iframe) return;
+
+            // Tampilkan animasi loading kembali setiap berganti formulir
+            if (loader) {
+                loader.classList.remove('hidden');
+                loader.classList.remove('opacity-0');
+            }
 
             // Injeksi nama layanan dan URL Google Form ke Iframe
             document.getElementById('modalLayananTitle').innerText = layananName;
             iframe.src = googleFormUrl;
+
+            // Mencegah scroll pada body utama saat form dibuka
+            document.body.style.overflow = 'hidden';
 
             // Animasi memunculkan Modal (Fade In & Scale Up)
             modal.classList.remove('hidden');
@@ -317,19 +199,42 @@
             
             if (!modal) return;
 
+            // Mengembalikan scroll body utama
+            document.body.style.overflow = '';
+
             // Animasi menghilangkan Modal
             modal.classList.add('opacity-0');
             modal.querySelector('.transform').classList.add('scale-95');
             setTimeout(() => {
                 modal.classList.add('hidden');
-                if (iframe) iframe.src = ""; // Flush isi iframe agar tidak lambat saat dibuka kembali
+                if (iframe) iframe.src = ""; // Flush isi iframe agar tidak memakan memori RAM browser
             }, 300);
         }
+
+        // Menyembunyikan loader secara mulus setelah iframe terisi sepenuhnya
+        function hideLoader() {
+            const loader = document.getElementById('iframeLoader');
+            if (loader && document.getElementById('googleFormIframe').src !== "") {
+                loader.classList.add('opacity-0');
+                setTimeout(() => {
+                    loader.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Menutup modal secara otomatis jika pengguna tidak sengaja mengeklik area luar box formulir
+        function handleOutsideClick(event) {
+            if (event.target.id === 'formModal') {
+                closeFormModal();
+            }
+        }
+
+        // Aksesibilitas: menutup form dengan menekan tombol 'Escape' di keyboard
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeFormModal();
+            }
+        });
     </script>
-
-    <!-- REUSABLE FOOTER PLACEHOLDER -->
-    <div id="footer-placeholder"></div>
-
-    <script src="assets/js/main.js"></script>
 </body>
 </html>
