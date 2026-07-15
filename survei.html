@@ -223,129 +223,53 @@
             </div>
 
             <!-- KANAN: DASHBOARD SKM (Mengambil 5/12 Bagian) -->
-            <div class="lg:col-span-5 flex flex-col gap-6">
+           <div class="lg:col-span-5 flex flex-col gap-6">
                 
-                <!-- Kotak Utama Dashboard -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
                     
-                    <!-- Header Dashboard -->
                     <div class="bg-red-800 text-white p-4 font-bold flex items-center gap-2">
                         <i class="fas fa-chart-line"></i>
                         <span class="text-md">Dashboard Survei Kepuasan Masyarakat</span>
                     </div>
 
-                    <!-- Isi/Konten Dashboard -->
                     <div class="p-6">
                         
-                        <!-- Grid 4 Card Indikator -->
                         <div class="grid grid-cols-2 gap-4 mb-6">
                             
-                            <!-- Box Responden -->
                             <div class="bg-red-50/50 p-4 rounded-xl border border-red-100 text-center flex flex-col items-center justify-center">
                                 <i class="fas fa-users text-red-600 text-2xl mb-1"></i>
                                 <span class="text-[11px] text-gray-500 font-bold tracking-wide uppercase">Responden</span>
-                                <span class="text-2xl font-black text-gray-800 mt-1">19</span>
+                                <span id="responden" class="text-2xl font-black text-gray-800 mt-1">...</span>
                             </div>
 
-                            <!-- Box Nilai IKM -->
                             <div class="bg-green-50/50 p-4 rounded-xl border border-green-100 text-center flex flex-col items-center justify-center">
                                 <i class="fas fa-star text-green-600 text-2xl mb-1"></i>
                                 <span class="text-[11px] text-gray-500 font-bold tracking-wide uppercase">Nilai IKM</span>
-                                <span class="text-2xl font-black text-green-700 mt-1">72.93</span>
+                                <span id="ikm" class="text-2xl font-black text-green-700 mt-1">...</span>
                             </div>
 
-                            <!-- Box Mutu -->
                             <div class="bg-blue-50/50 p-4 rounded-xl border border-blue-100 text-center flex flex-col items-center justify-center">
                                 <i class="fas fa-award text-blue-600 text-2xl mb-1"></i>
                                 <span class="text-[11px] text-gray-500 font-bold tracking-wide uppercase">Mutu</span>
-                                <span class="text-md font-extrabold text-blue-700 mt-1.5">Kurang Baik</span>
+                                <span id="mutu" class="text-md font-extrabold text-blue-700 mt-1.5">...</span>
                             </div>
 
-                            <!-- Box Kategori -->
                             <div class="bg-yellow-50/50 p-4 rounded-xl border border-yellow-100 text-center flex flex-col items-center justify-center">
                                 <i class="fas fa-medal text-yellow-600 text-2xl mb-1"></i>
                                 <span class="text-[11px] text-gray-500 font-bold tracking-wide uppercase">Kategori</span>
-                                <span class="text-md font-extrabold text-yellow-700 mt-1.5">Kurang Baik</span>
+                                <span id="kategori" class="text-md font-extrabold text-yellow-700 mt-1.5 truncate">...</span>
                             </div>
                         </div>
 
-                        <!-- Bagian Grafik Batang -->
                         <div class="border-t pt-5">
                             <h3 class="font-bold text-gray-700 text-sm flex items-center gap-2 mb-4">
                                 <i class="fas fa-chart-bar text-red-800"></i> Grafik Unsur Pelayanan
                             </h3>
 
-                            <!-- Grafik Batang Responsif (Custom dengan Tailwind) -->
-                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                                <div class="flex items-end justify-between h-44 px-1 gap-1">
-                                    
-                                    <!-- Bar U1 -->
-                                    <div class="flex flex-col items-center flex-1 group relative">
-                                        <div class="absolute -top-7 scale-0 group-hover:scale-100 transition-all duration-200 bg-gray-800 text-white text-[10px] rounded px-1.5 py-0.5 whitespace-nowrap shadow-md z-10">Nilai: 2.8</div>
-                                        <div class="w-full bg-red-800 rounded-t" style="height: 70%"></div>
-                                        <span class="text-[9px] text-gray-600 mt-1.5 font-bold">U1</span>
-                                    </div>
-
-                                    <!-- Bar U2 -->
-                                    <div class="flex flex-col items-center flex-1 group relative">
-                                        <div class="absolute -top-7 scale-0 group-hover:scale-100 transition-all duration-200 bg-gray-800 text-white text-[10px] rounded px-1.5 py-0.5 whitespace-nowrap shadow-md z-10">Nilai: 3.2</div>
-                                        <div class="w-full bg-red-800 rounded-t" style="height: 80%"></div>
-                                        <span class="text-[9px] text-gray-600 mt-1.5 font-bold">U2</span>
-                                    </div>
-
-                                    <!-- Bar U3 -->
-                                    <div class="flex flex-col items-center flex-1 group relative">
-                                        <div class="absolute -top-7 scale-0 group-hover:scale-100 transition-all duration-200 bg-gray-800 text-white text-[10px] rounded px-1.5 py-0.5 whitespace-nowrap shadow-md z-10">Nilai: 2.7</div>
-                                        <div class="w-full bg-red-800 rounded-t" style="height: 67%"></div>
-                                        <span class="text-[9px] text-gray-600 mt-1.5 font-bold">U3</span>
-                                    </div>
-
-                                    <!-- Bar U4 -->
-                                    <div class="flex flex-col items-center flex-1 group relative">
-                                        <div class="absolute -top-7 scale-0 group-hover:scale-100 transition-all duration-200 bg-gray-800 text-white text-[10px] rounded px-1.5 py-0.5 whitespace-nowrap shadow-md z-10">Nilai: 3.8</div>
-                                        <div class="w-full bg-red-800 rounded-t" style="height: 95%"></div>
-                                        <span class="text-[9px] text-gray-600 mt-1.5 font-bold">U4</span>
-                                    </div>
-
-                                    <!-- Bar U5 -->
-                                    <div class="flex flex-col items-center flex-1 group relative">
-                                        <div class="absolute -top-7 scale-0 group-hover:scale-100 transition-all duration-200 bg-gray-800 text-white text-[10px] rounded px-1.5 py-0.5 whitespace-nowrap shadow-md z-10">Nilai: 2.9</div>
-                                        <div class="w-full bg-red-800 rounded-t" style="height: 72%"></div>
-                                        <span class="text-[9px] text-gray-600 mt-1.5 font-bold">U5</span>
-                                    </div>
-
-                                    <!-- Bar U6 -->
-                                    <div class="flex flex-col items-center flex-1 group relative">
-                                        <div class="absolute -top-7 scale-0 group-hover:scale-100 transition-all duration-200 bg-gray-800 text-white text-[10px] rounded px-1.5 py-0.5 whitespace-nowrap shadow-md z-10">Nilai: 2.9</div>
-                                        <div class="w-full bg-red-800 rounded-t" style="height: 72%"></div>
-                                        <span class="text-[9px] text-gray-600 mt-1.5 font-bold">U6</span>
-                                    </div>
-
-                                    <!-- Bar U7 -->
-                                    <div class="flex flex-col items-center flex-1 group relative">
-                                        <div class="absolute -top-7 scale-0 group-hover:scale-100 transition-all duration-200 bg-gray-800 text-white text-[10px] rounded px-1.5 py-0.5 whitespace-nowrap shadow-md z-10">Nilai: 2.7</div>
-                                        <div class="w-full bg-red-800 rounded-t" style="height: 67%"></div>
-                                        <span class="text-[9px] text-gray-600 mt-1.5 font-bold">U7</span>
-                                    </div>
-
-                                    <!-- Bar U8 -->
-                                    <div class="flex flex-col items-center flex-1 group relative">
-                                        <div class="absolute -top-7 scale-0 group-hover:scale-100 transition-all duration-200 bg-gray-800 text-white text-[10px] rounded px-1.5 py-0.5 whitespace-nowrap shadow-md z-10">Nilai: 2.4</div>
-                                        <div class="w-full bg-red-800 rounded-t" style="height: 60%"></div>
-                                        <span class="text-[9px] text-gray-600 mt-1.5 font-bold">U8</span>
-                                    </div>
-
-                                    <!-- Bar U9 -->
-                                    <div class="flex flex-col items-center flex-1 group relative">
-                                        <div class="absolute -top-7 scale-0 group-hover:scale-100 transition-all duration-200 bg-gray-800 text-white text-[10px] rounded px-1.5 py-0.5 whitespace-nowrap shadow-md z-10">Nilai: 2.6</div>
-                                        <div class="w-full bg-red-800 rounded-t" style="height: 65%"></div>
-                                        <span class="text-[9px] text-gray-600 mt-1.5 font-bold">U9</span>
-                                    </div>
-
-                                </div>
+                            <div class="relative w-full" style="height: 250px;">
+                                <canvas id="ikmChart"></canvas>
                             </div>
                             
-                            <!-- Legenda Singkat -->
                             <p class="text-[11px] text-gray-500 mt-3 text-center italic">
                                 *Arahkan kursor pada batang grafik untuk melihat detail nilai rata-rata unsur (U1 - U9).
                             </p>
