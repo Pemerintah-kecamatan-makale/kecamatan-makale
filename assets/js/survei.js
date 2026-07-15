@@ -41,70 +41,73 @@ function muatDataDanGrafik() {
                 }
             }
 
-            console.log("Data berhasil diparsing secara aman:", data);
+           console.log("Data berhasil diparsing secara aman:", data);
 
-            // Tampilkan Data Angka ke Dashboard
+            // 1. ISI DATA RESPONDEN
             if (document.getElementById("responden")) {
-                document.getElementById("responden").innerText = data.responden ?? data.Responden ?? "0";
+                document.getElementById("responden").innerText = data.total_responden || data.responden || "0";
             }
+
+            // 2. ISI NILAI IKM (Dibatasi 2 Angka di Belakang Koma)
             if (document.getElementById("ikm")) {
-                document.getElementById("ikm").innerText = data.ikm ?? data.Ikm ?? data.IKM ?? "0.00";
+                let nilaiIKM = parseFloat(data.ikm);
+                document.getElementById("ikm").innerText = !isNaN(nilaiIKM) ? nilaiIKM.toFixed(2) : "0.00";
             }
+
+            // 3. ISI MUTU PELAYANAN (B, C, dsb diubah ke format teks rapi)
             if (document.getElementById("mutu")) {
-                document.getElementById("mutu").innerText = data.mutu ?? data.Mutu ?? "-";
+                let mutuRaw = data.mutu_pelayanan || data.mutu || "-";
+                // Jika hanya mengembalikan satu huruf, kita konversi ke teks standar Permenpan
+                if (mutuRaw === "A") mutuRaw = "Sangat Baik";
+                if (mutuRaw === "B") mutuRaw = "Baik";
+                if (mutuRaw === "C") mutuRaw = "Kurang Baik";
+                if (mutuRaw === "D") mutuRaw = "Tidak Baik";
+                
+                document.getElementById("mutu").innerText = mutuRaw;
             }
+
+            // 4. ISI KATEGORI
             if (document.getElementById("kategori")) {
-                document.getElementById("kategori").innerText = data.kategori ?? data.Kategori ?? "-";
+                document.getElementById("kategori").innerText = data.kategori || data.mutu_pelayanan || "-";
             }
 
-            // Baca Rekapitulasi Unsur (U1 - U9)
-            let rekap = data.rekap || data.Rekap || data;
+            // 5. PEMROSESAN GRAFIK UNSUR (U1 - U9)
+            // Membaca langsung dari root object data karena u1-u9 berada di tingkat teratas
+            const datasetUnsur = [
+                parseFloat(data.u1 || 0), parseFloat(data.u2 || 0), parseFloat(data.u3 || 0),
+                parseFloat(data.u4 || 0), parseFloat(data.u5 || 0), parseFloat(data.u6 || 0),
+                parseFloat(data.u7 || 0), parseFloat(data.u8 || 0), parseFloat(data.u9 || 0)
+            ];
 
-            if (rekap) {
-                const bersihkanNilai = (key) => {
-                    let nilaiRaw = rekap[key.toLowerCase()] ?? rekap[key.toUpperCase()] ?? "0";
-                    if (typeof nilaiRaw === 'string') {
-                        nilaiRaw = nilaiRaw.replace(',', '.');
+            const ctx = document.getElementById('ikmChart');
+            if (!ctx) return;
+
+            if (chartSKM) {
+                chartSKM.destroy();
+            }
+
+            chartSKM = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['U1', 'U2', 'U3', 'U4', 'U5', 'U6', 'U7', 'U8', 'U9'],
+                    datasets: [{
+                        label: 'Nilai Unsur',
+                        data: datasetUnsur,
+                        backgroundColor: 'rgba(153, 27, 27, 0.9)', // Merah Instansi
+                        borderColor: 'rgba(153, 27, 27, 1)',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { min: 0, max: 4, ticks: { stepSize: 1 } }
                     }
-                    const hasil = parseFloat(nilaiRaw);
-                    return isNaN(hasil) ? 0 : hasil;
-                };
-
-                const datasetUnsur = [
-                    bersihkanNilai('u1'), bersihkanNilai('u2'), bersihkanNilai('u3'),
-                    bersihkanNilai('u4'), bersihkanNilai('u5'), bersihkanNilai('u6'),
-                    bersihkanNilai('u7'), bersihkanNilai('u8'), bersihkanNilai('u9')
-                ];
-
-                const ctx = document.getElementById('ikmChart');
-                if (!ctx) return;
-
-                if (chartSKM) {
-                    chartSKM.destroy();
                 }
-
-                chartSKM = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['U1', 'U2', 'U3', 'U4', 'U5', 'U6', 'U7', 'U8', 'U9'],
-                        datasets: [{
-                            label: 'Nilai Unsur',
-                            data: datasetUnsur,
-                            backgroundColor: 'rgba(153, 27, 27, 0.9)',
-                            borderColor: 'rgba(153, 27, 27, 1)',
-                            borderWidth: 1,
-                            borderRadius: 4
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: { legend: { display: false } },
-                        scales: {
-                            y: { min: 0, max: 4, ticks: { stepSize: 1 } }
-                        }
-                    }
-                });
+            });
             }
         })
         .catch(err => {
