@@ -10,7 +10,7 @@ const URL_API = "https://script.google.com/macros/s/AKfycbyvaAvWB2_ACWwN3Bk7fOez
 let chartSKM = null;
 
 // ==========================================
-// 1. FUNGSI UNTUK MENGAMBIL DATA & RENDER CHART (DIPERBAIKI)
+// 1. FUNGSI UNTUK MENGAMBIL DATA & RENDER CHART (PERBAIKAN DESIMAL KOMA)
 // ==========================================
 function muatDataDanGrafik() {
     fetch(URL_API)
@@ -19,9 +19,8 @@ function muatDataDanGrafik() {
             return res.json();
         })
         .then(data => {
-            console.log("Data dari server:", data); // Untuk mempermudah cek di Inspect Console browser
+            console.log("Data asli dari server:", data); // Membantu debugging di console inspect
 
-            // Deteksi rekapitulasi baik huruf kecil maupun huruf besar
             let rekap = null;
             if (data && data.rekap) {
                 rekap = data.rekap;
@@ -30,23 +29,32 @@ function muatDataDanGrafik() {
             }
 
             if (rekap) {
-                // Ambil nilai dengan toleransi huruf besar/kecil dan konversi ke tipe Angka (Float)
-                const getNilai = (key) => {
-                    const val = rekap[key.toLowerCase()] ?? rekap[key.toUpperCase()] ?? 0;
-                    return parseFloat(val) || 0;
+                // Fungsi khusus pembersih angka desimal (Mengubah koma ',' menjadi titik '.')
+                const dapatkanNilaiAngka = (key) => {
+                    let nilaiRaw = rekap[key.toLowerCase()] ?? rekap[key.toUpperCase()] ?? "0";
+                    
+                    // Jika nilainya berbentuk string, ubah koma menjadi titik
+                    if (typeof nilaiRaw === 'string') {
+                        nilaiRaw = nilaiRaw.replace(',', '.');
+                    }
+                    
+                    const hasilAngka = parseFloat(nilaiRaw);
+                    return isNaN(hasilAngka) ? 0 : hasilAngka;
                 };
 
                 const datasetUnsur = [
-                    getNilai('u1'),
-                    getNilai('u2'),
-                    getNilai('u3'),
-                    getNilai('u4'),
-                    getNilai('u5'),
-                    getNilai('u6'),
-                    getNilai('u7'),
-                    getNilai('u8'),
-                    getNilai('u9')
+                    dapatkanNilaiAngka('u1'),
+                    dapatkanNilaiAngka('u2'),
+                    dapatkanNilaiAngka('u3'),
+                    dapatkanNilaiAngka('u4'),
+                    dapatkanNilaiAngka('u5'),
+                    dapatkanNilaiAngka('u6'),
+                    dapatkanNilaiAngka('u7'),
+                    dapatkanNilaiAngka('u8'),
+                    dapatkanNilaiAngka('u9')
                 ];
+
+                console.log("Dataset Unsur Terproses:", datasetUnsur); // Memastikan angka terbaca benar (misal: 2.8, 3.2, dst)
 
                 const ctx = document.getElementById('chartUnsur');
                 if (!ctx) return;
@@ -63,7 +71,7 @@ function muatDataDanGrafik() {
                         datasets: [{
                             label: 'Nilai Unsur',
                             data: datasetUnsur,
-                            backgroundColor: 'rgba(153, 27, 27, 0.9)', // Warna merah tua dinas Kecamatan Makale
+                            backgroundColor: 'rgba(153, 27, 27, 0.9)', // Warna Merah Pekat Instansi
                             borderColor: 'rgba(153, 27, 27, 1)',
                             borderWidth: 1,
                             borderRadius: 4
@@ -77,7 +85,7 @@ function muatDataDanGrafik() {
                         },
                         scales: {
                             y: {
-                                min: 0, // Diturunkan ke 0 agar batang grafik terlihat menjulang ke atas
+                                min: 0, 
                                 max: 4,
                                 ticks: {
                                     stepSize: 1
