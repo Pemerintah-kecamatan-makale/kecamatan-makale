@@ -1,20 +1,105 @@
 /**
- * Script Pengolahan & Validasi Form SKM Kecamatan Makale
- * Mengirim data langsung ke Google Apps Script Web App (Spreadsheet Database)
+ * Script Pengolahan, Validasi Form SKM, & Render Grafik Chart.js
+ * Kecamatan Makale, Kabupaten Tana Toraja
  */
 
+// URL Web App hasil deploy Google Apps Script Anda
+const URL_API = "https://script.google.com/macros/s/AKfycbyvaAvWB2_ACWwN3Bk7fOezihnbLMZ_PmJ6Earj2y122Jsyt6RqbCKTPzKc30BW8J0rSw/exec";
+
+// Global variable untuk menyimpan objek chart agar bisa di-destroy saat update
+let chartSKM = null;
+
+// ==========================================
+// 1. FUNGSI UNTUK MENGAMBIL DATA & RENDER CHART
+// ==========================================
+function muatDataDanGrafik() {
+    // Ambil data dari Google Apps Script (menggunakan GET)
+    fetch(URL_API)
+        .then(res => {
+            if (!res.ok) throw new Error("Gagal memuat database statistik.");
+            return res.json();
+        })
+        .then(data => {
+            // Pastikan data rekapitulasi tersedia dari server
+            if (data && data.rekap) {
+                const rekap = data.rekap; // Berisi rata-rata U1 sampai U9
+
+                // Ambil element canvas
+                const ctx = document.getElementById('chartUnsur');
+                if (!ctx) return;
+
+                // Jika chart sudah pernah digambar sebelumnya, hapus dulu agar tidak tumpang tindih
+                if (chartSKM) {
+                    chartSKM.destroy();
+                }
+
+                // Gambar Chart Baru menggunakan Chart.js
+                chartSKM = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['U1', 'U2', 'U3', 'U4', 'U5', 'U6', 'U7', 'U8', 'U9'],
+                        datasets: [{
+                            label: 'Nilai Unsur',
+                            data: [
+                                rekap.u1 || 0, 
+                                rekap.u2 || 0, 
+                                rekap.u3 || 0, 
+                                rekap.u4 || 0, 
+                                rekap.u5 || 0, 
+                                rekap.u6 || 0, 
+                                rekap.u7 || 0, 
+                                rekap.u8 || 0, 
+                                rekap.u9 || 0
+                            ],
+                            backgroundColor: 'rgba(153, 27, 27, 0.9)', // Merah Tua khas Kecamatan Makale
+                            borderColor: 'rgba(153, 27, 27, 1)',
+                            borderWidth: 1,
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: {
+                                min: 1,
+                                max: 4,
+                                ticks: {
+                                    stepSize: 0.5
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        })
+        .catch(err => {
+            console.error("Gagal menampilkan grafik dinamis:", err);
+        });
+}
+
+// Jalankan pengambilan grafik pertama kali saat halaman selesai dimuat
+document.addEventListener("DOMContentLoaded", muatDataDanGrafik);
+
+
+// ==========================================
+// 2. PROSES VALIDASI DAN SUBMIT FORMULIR
+// ==========================================
 document.getElementById("formSKM").addEventListener("submit", function(event) {
-    // 1. Kunci proses submisi otomatis bawaan browser
+    // Kunci proses submisi otomatis bawaan browser
     event.preventDefault();
 
-    // 2. Inisialisasi Elemen UI Pendukung
+    // Inisialisasi Elemen UI Pendukung
     const notifContainer = document.getElementById("notif");
     const notifIcon = document.getElementById("notifIcon");
     const notifTitle = document.getElementById("notifTitle");
     const notifText = document.getElementById("notifText");
     const btnKirim = document.getElementById("btnKirim");
 
-    // 3. Tangkap Seluruh Nilai Input Wajib (Di-trim agar spasi kosong dianggap kosong)
+    // Tangkap Seluruh Nilai Input Wajib (Di-trim agar spasi kosong dianggap kosong)
     const dataWajib = {
         umur: document.getElementById("umur").value.trim(),
         jk: document.getElementById("jk").value,
@@ -30,7 +115,7 @@ document.getElementById("formSKM").addEventListener("submit", function(event) {
         u9: document.getElementById("u9").value
     };
 
-    // 4. Proses Pengecekan Validasi: Apakah ada salah satu field yang masih kosong ("")?
+    // Proses Pengecekan Validasi: Apakah ada salah satu field yang masih kosong ("")?
     const adaYangKosong = Object.values(dataWajib).some(value => value === "");
 
     if (adaYangKosong) {
@@ -49,13 +134,10 @@ document.getElementById("formSKM").addEventListener("submit", function(event) {
         return false; // Hentikan fungsi script di sini
     }
 
-    // 5. APABILA VALIDASI SELESAI & LENGKAP: Jalankan Transmisi Data via Fetch API
+    // APABILA VALIDASI SELESAI & LENGKAP: Jalankan Transmisi Data via Fetch API
     // Ubah status tombol kirim menjadi mode loading (mencegah klik ganda)
     btnKirim.disabled = true;
     btnKirim.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i> Memproses Pengiriman...`;
-
-    // URL Web App hasil deploy Google Apps Script Anda
-    const URL_API = "https://script.google.com/macros/s/AKfycbyvaAvWB2_ACWwN3Bk7fOezihnbLMZ_PmJ6Earj2y122Jsyt6RqbCKTPzKc30BW8J0rSw/exec";
 
     // Susun Payload JSON (Set nilai default untuk Nama & Saran jika kosong)
     const payload = {
@@ -96,6 +178,10 @@ document.getElementById("formSKM").addEventListener("submit", function(event) {
             
             // Bersihkan isi seluruh formulir agar siap diisi responden baru
             document.getElementById("formSKM").reset();
+
+            // SANGAT PENTING: Refresh grafik secara otomatis agar langsung menampilkan data terbaru yang baru diinput!
+            muatDataDanGrafik();
+
         } else {
             throw new Error(response.message || "Gagal menyimpan data.");
         }
