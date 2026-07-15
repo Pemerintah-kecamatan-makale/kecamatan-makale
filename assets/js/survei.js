@@ -7,25 +7,48 @@ const URL_API = "https://script.google.com/macros/s/AKfycbyvaAvWB2_ACWwN3Bk7fOez
 let chartSKM = null;
 
 // ==========================================
-// 1. FUNGSI AMBIL DATA & TAMPILKAN GRAFIK
+// 1. FUNGSI AMBIL DATA & TAMPILKAN GRAFIK (ANTI-TEXT CRASH)
 // ==========================================
 function muatDataDanGrafik() {
     fetch(URL_API)
         .then(res => {
             if (!res.ok) throw new Error("Koneksi API bermasalah.");
-            return res.json();
+            // Ambil respons dalam bentuk teks terlebih dahulu untuk menghindari crash pembacaan JSON
+            return res.text(); 
         })
-        .then(data => {
-            console.log("Data berhasil dimuat untuk dashboard survei:", data);
+        .then(textRaw => {
+            console.log("Respons mentah dari server:", textRaw);
+            
+            let data;
+            try {
+                // Coba ubah teks menjadi JSON objek
+                data = JSON.parse(textRaw);
+            } catch (e) {
+                // JIKA TERNYATA YANG KELUAR ADALAH TEKS BERAWALAN "SKM Kecamatan..."
+                console.warn("Server mengirimkan format teks berbalut string JSON. Melakukan ekstraksi kedua...");
+                
+                // Coba bersihkan kutip ganda berlebih jika string terbungkus text
+                try {
+                    data = JSON.parse(JSON.parse(textRaw));
+                } catch (err2) {
+                    // Jika benar-benar teks HTML/Plain biasa, kita coba bersihkan manual jika itu string data objek
+                    let jsonCleaned = textRaw.substring(textRaw.indexOf("{"), textRaw.lastIndexOf("}") + 1);
+                    if (jsonCleaned) {
+                        data = JSON.parse(jsonCleaned);
+                    } else {
+                        throw new Error("Format yang dikirim server benar-benar teks murni, bukan JSON data: " + textRaw);
+                    }
+                }
+            }
 
-            // Tampilkan Data Angka ke Elemen Dashboard (Sesuai ID di HTML Beranda)
+            console.log("Data berhasil diparsing secara aman:", data);
+
+            // Tampilkan Data Angka ke Dashboard
             if (document.getElementById("responden")) {
                 document.getElementById("responden").innerText = data.responden ?? data.Responden ?? "0";
             }
             if (document.getElementById("ikm")) {
-                // Tampilkan nilai IKM
-                const nilaiIkm = data.ikm ?? data.Ikm ?? data.IKM ?? "0.00";
-                document.getElementById("ikm").innerText = nilaiIkm;
+                document.getElementById("ikm").innerText = data.ikm ?? data.Ikm ?? data.IKM ?? "0.00";
             }
             if (document.getElementById("mutu")) {
                 document.getElementById("mutu").innerText = data.mutu ?? data.Mutu ?? "-";
@@ -34,11 +57,10 @@ function muatDataDanGrafik() {
                 document.getElementById("kategori").innerText = data.kategori ?? data.Kategori ?? "-";
             }
 
-            // Ambil data rekapitulasi unsur U1 - U9
+            // Baca Rekapitulasi Unsur (U1 - U9)
             let rekap = data.rekap || data.Rekap || data;
 
             if (rekap) {
-                // Fungsi penanganan konversi koma ',' ke titik '.' jika data dari Sheets berbentuk teks desimal lokal
                 const bersihkanNilai = (key) => {
                     let nilaiRaw = rekap[key.toLowerCase()] ?? rekap[key.toUpperCase()] ?? "0";
                     if (typeof nilaiRaw === 'string') {
@@ -49,30 +71,18 @@ function muatDataDanGrafik() {
                 };
 
                 const datasetUnsur = [
-                    bersihkanNilai('u1'),
-                    bersihkanNilai('u2'),
-                    bersihkanNilai('u3'),
-                    bersihkanNilai('u4'),
-                    bersihkanNilai('u5'),
-                    bersihkanNilai('u6'),
-                    bersihkanNilai('u7'),
-                    bersihkanNilai('u8'),
-                    bersihkanNilai('u9')
+                    bersihkanNilai('u1'), bersihkanNilai('u2'), bersihkanNilai('u3'),
+                    bersihkanNilai('u4'), bersihkanNilai('u5'), bersihkanNilai('u6'),
+                    bersihkanNilai('u7'), bersihkanNilai('u8'), bersihkanNilai('u9')
                 ];
 
-                // Cari canvas id="ikmChart" sesuai elemen HTML Anda
                 const ctx = document.getElementById('ikmChart');
-                if (!ctx) {
-                    console.warn("Elemen canvas 'ikmChart' tidak ditemukan di halaman survei.");
-                    return;
-                }
+                if (!ctx) return;
 
-                // Hapus instance chart lama untuk mencegah penumpukan render
                 if (chartSKM) {
                     chartSKM.destroy();
                 }
 
-                // Gambar grafik baru
                 chartSKM = new Chart(ctx, {
                     type: 'bar',
                     data: {
@@ -80,7 +90,7 @@ function muatDataDanGrafik() {
                         datasets: [{
                             label: 'Nilai Unsur',
                             data: datasetUnsur,
-                            backgroundColor: 'rgba(153, 27, 27, 0.9)', // Warna Merah Instansi Kecamatan
+                            backgroundColor: 'rgba(153, 27, 27, 0.9)',
                             borderColor: 'rgba(153, 27, 27, 1)',
                             borderWidth: 1,
                             borderRadius: 4
@@ -89,24 +99,16 @@ function muatDataDanGrafik() {
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
-                        plugins: {
-                            legend: { display: false }
-                        },
+                        plugins: { legend: { display: false } },
                         scales: {
-                            y: {
-                                min: 0,
-                                max: 4,
-                                ticks: {
-                                    stepSize: 1
-                                }
-                            }
+                            y: { min: 0, max: 4, ticks: { stepSize: 1 } }
                         }
                     }
                 });
             }
         })
         .catch(err => {
-            console.error("Error menampilkan grafik dinamis:", err);
+            console.error("Gagal memproses visualisasi grafik:", err);
         });
 }
 
