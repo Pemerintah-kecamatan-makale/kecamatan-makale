@@ -20,3 +20,191 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #7f1d1d;
 }
+/* --- HERO SECTION UTAMA --- */
+.hero-section {
+  position: relative;
+  color: #ffffff;
+  padding: 3rem 1rem; /* py-12 px-4 */
+  overflow: hidden;
+  background-image: url('assets/images/Plaza Kolam Makale.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Lapisan Gelap (Overlay) */
+.hero-overlay-dark {
+  position: absolute;
+  inset: 0;
+  background-color: #000000;
+  opacity: 0.55;
+  z-index: 0;
+}
+
+/* Lapisan Pola Titik Emas */
+.hero-overlay-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.10;
+  background-image: radial-gradient(#d4af37 1px, transparent 1px);
+  background-size: 16px 16px;
+  z-index: 10;
+}
+
+/* --- KONTEN TENGAH --- */
+.hero-content {
+  max-width: 56rem; /* max-w-4xl */
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  position: relative;
+  z-index: 20;
+}
+
+/* Wadah Label */
+.label-container {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem; /* mb-6 */
+  width: 100%;
+  max-width: 20rem; /* max-w-xs (Layar HP) */
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+/* Label Atas (Masero) */
+.label-top {
+  background-color: #991b1b; /* bg-red-800 */
+  color: #f59e0b; /* text-amber-500 */
+  font-size: 0.875rem; /* text-sm (HP) */
+  font-weight: 900; /* font-black */
+  letter-spacing: 0.1em; /* tracking-widest */
+  padding: 0.5rem 1rem; /* py-2 px-4 */
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem; /* rounded-t-2xl */
+  border-top: 2px solid #f59e0b;
+  border-left: 2px solid #f59e0b;
+  border-right: 2px solid #f59e0b; /* border-t-2 border-x-2 border-amber-500 */
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
+  text-transform: uppercase;
+  box-sizing: border-box;
+}
+
+/* Label Bawah (Semboyan) */
+.label-bottom {
+  background-color: #7f1d1d; /* bg-red-900 */
+  color: #f59e0b; /* text-amber-500 */
+  font-size: 10px; /* text-[10px] (HP) */
+  font-weight: bold;
+  letter-spacing: 0.05em; /* tracking-wider */
+  padding: 0.5rem 0.75rem; /* py-2 px-3 */
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem; /* rounded-b-2xl */
+  border-bottom: 2px solid rgba(217, 119, 6, 0.5);
+  border-left: 2px solid rgba(217, 119, 6, 0.5);
+  border-right: 2px solid rgba(217, 119, 6, 0.5); /* border-b-2 border-x-2 border-amber-600/50 */
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
+  text-transform: uppercase;
+  white-space: normal; /* whitespace-normal */
+  box-sizing: border-box;
+}
+
+/* Judul Utama */
+.hero-title {
+  font-size: 1.5rem; /* text-2xl (HP) */
+  font-weight: 800; /* font-extrabold */
+  margin-bottom: 0.75rem; /* mb-3 */
+  line-height: 1.25; /* leading-tight */
+  filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04)) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1)); /* drop-shadow-lg */
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+/* Deskripsi Paragraf */
+.hero-description {
+  font-size: 0.875rem; /* text-sm (HP) */
+  color: #e5e7eb; /* text-gray-200 */
+  max-width: 42rem; /* max-w-2xl */
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.25rem; /* mb-1 */
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.05)); /* drop-shadow */
+}
+
+/* --- TOMBOL NAVIGASI --- */
+.btn-container {
+  margin-top: 1.5rem; /* mt-6 */
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* gap-3 */
+  padding-left: 1rem;
+  padding-right: 1rem; /* px-4 */
+}
+
+/* Gaya Dasar Semua Tombol */
+.btn {
+  text-decoration: none;
+  padding: 0.75rem 1.25rem; /* py-3 px-5 */
+  border-radius: 0.75rem; /* rounded-xl */
+  font-weight: bold;
+  font-size: 0.875rem; /* text-sm (HP) */
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease; /* transition */
+  box-sizing: border-box;
+}
+
+.btn i {
+  margin-right: 0.5rem; /* mr-2 */
+}
+
+.btn:active {
+  transform: scale(0.98); /* active:scale-[0.98] */
+}
+
+/* Tombol Pelayanan Publik (Primary) */
+.btn-primary {
+  background-color: #fbbf24; /* bg-amber-400 */
+  color: #7f1d1d; /* text-red-900 */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* shadow-md */
+}
+
+.btn-primary:hover {
+  background-color: #fcd34d; /* hover:bg-amber-300 */
+}
+
+/* Tombol Berita Terbaru (Secondary) */
+.btn-secondary {
+  border: 2px solid #ffffff; /* border-2 border-white */
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background-color: #ffffff;
+  color: #7f1d1d; /* hover:bg-white hover:text-red-900 */
+}
+
+
+/* --- 📱 MEDIA QUERIES (Sistem Responsif Layar Lebar) --- */
+@media (min-width: 640px) {
+  .hero-section { padding: 3rem 1.5rem; } /* sm:px-6 */
+  .label-container { max-width: 28rem; } /* sm:max-w-md */
+  .label-top { font-size: 1rem; padding: 0.5rem 1.5rem; } /* sm:text-base sm:px-6 */
+  .label-bottom { font-size: 0.75rem; padding: 0.5rem 1.5rem; white-space: nowrap; } /* sm:text-xs sm:px-6 sm:whitespace-nowrap */
+  .hero-title { font-size: 2.25rem; } /* sm:text-4xl */
+  .hero-description { font-size: 1rem; } /* sm:text-base */
+  .btn-container { flex-direction: row; justify-content: center; padding: 0; } /* sm:flex-row sm:px-0 */
+  .btn { font-size: 1rem; } /* sm:text-base */
+}
+
+@media (min-width: 768px) {
+  .hero-title { font-size: 3rem; } /* md:text-5xl */
+  .hero-description { font-size: 1.125rem; } /* md:text-lg */
+}
