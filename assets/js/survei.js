@@ -10,7 +10,7 @@ const URL_API = "https://script.google.com/macros/s/AKfycbyvaAvWB2_ACWwN3Bk7fOez
 let chartSKM = null;
 
 // ==========================================
-// 1. FUNGSI UNTUK MENGAMBIL DATA & RENDER CHART (PERBAIKAN DESIMAL KOMA)
+// 1. FUNGSI UNTUK MENGAMBIL DATA & RENDER CHART (SINKRON DENGAN BERANDA)
 // ==========================================
 function muatDataDanGrafik() {
     fetch(URL_API)
@@ -19,25 +19,34 @@ function muatDataDanGrafik() {
             return res.json();
         })
         .then(data => {
-            console.log("Data asli dari server:", data); // Membantu debugging di console inspect
+            console.log("Data dari server:", data);
 
-            let rekap = null;
-            if (data && data.rekap) {
-                rekap = data.rekap;
-            } else if (data && data.Rekap) {
-                rekap = data.Rekap;
+            // 1. UPDATE KOTAK INDIKATOR ANGKA & TEKS DI DASHBOARD
+            if (data) {
+                if (document.getElementById("responden")) {
+                    document.getElementById("responden").innerText = data.responden || "0";
+                }
+                if (document.getElementById("ikm")) {
+                    document.getElementById("ikm").innerText = data.ikm || "0.00";
+                }
+                if (document.getElementById("mutu")) {
+                    document.getElementById("mutu").innerText = data.mutu || "-";
+                }
+                if (document.getElementById("kategori")) {
+                    document.getElementById("kategori").innerText = data.kategori || "-";
+                }
             }
 
+            // 2. PROSES & NORMALISASI DATA GRAFIK
+            let rekap = data && (data.rekap || data.Rekap);
+
             if (rekap) {
-                // Fungsi khusus pembersih angka desimal (Mengubah koma ',' menjadi titik '.')
+                // Fungsi penanganan konversi koma ke titik untuk desimal yang aman
                 const dapatkanNilaiAngka = (key) => {
                     let nilaiRaw = rekap[key.toLowerCase()] ?? rekap[key.toUpperCase()] ?? "0";
-                    
-                    // Jika nilainya berbentuk string, ubah koma menjadi titik
                     if (typeof nilaiRaw === 'string') {
                         nilaiRaw = nilaiRaw.replace(',', '.');
                     }
-                    
                     const hasilAngka = parseFloat(nilaiRaw);
                     return isNaN(hasilAngka) ? 0 : hasilAngka;
                 };
@@ -54,9 +63,8 @@ function muatDataDanGrafik() {
                     dapatkanNilaiAngka('u9')
                 ];
 
-                console.log("Dataset Unsur Terproses:", datasetUnsur); // Memastikan angka terbaca benar (misal: 2.8, 3.2, dst)
-
-                const ctx = document.getElementById('chartUnsur');
+                // Menargetkan ID ikmChart seperti halnya di Beranda
+                const ctx = document.getElementById('ikmChart');
                 if (!ctx) return;
 
                 if (chartSKM) {
@@ -71,7 +79,7 @@ function muatDataDanGrafik() {
                         datasets: [{
                             label: 'Nilai Unsur',
                             data: datasetUnsur,
-                            backgroundColor: 'rgba(153, 27, 27, 0.9)', // Warna Merah Pekat Instansi
+                            backgroundColor: 'rgba(153, 27, 27, 0.9)', // Warna Merah Instansi
                             borderColor: 'rgba(153, 27, 27, 1)',
                             borderWidth: 1,
                             borderRadius: 4
