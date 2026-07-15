@@ -26,7 +26,7 @@ body {
   color: #ffffff;
   padding: 3rem 1rem; /* py-12 px-4 */
   overflow: hidden;
-  background-image: url(`assets/images/Plaza Kolam Makale.jpg`);
+  background-image: url('../images/Plaza Kolam Makale.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
