@@ -1,228 +1,323 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Survei Kepuasan Masyarakat | Kecamatan Makale</title>
+<!-- MAIN CONTAINER (DITINGKATKAN MENJADI max-w-7xl) -->
+    <main class="max-w-7xl mx-auto w-full px-4 py-10 flex-grow">
+        
+        <!-- GRID WRAPPER: Otomatis 1 kolom di HP, 12 kolom di Desktop -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- KIRI: KOTAK KUESIONER (Lebih Ramping, Mengambil 7/12 Bagian) -->
+            <div class="lg:col-span-7 bg-white rounded-xl shadow-lg p-6 md:p-8">
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+                <!-- NOTIFIKASI DINAMIS -->
+                <div id="notif" class="hidden mb-6 rounded-lg border p-4 shadow transition-all duration-300">
+                    <div class="flex items-center">
+                        <i id="notifIcon" class="text-2xl mr-3"></i>
+                        <div>
+                            <h3 id="notifTitle" class="font-bold text-lg"></h3>
+                            <p id="notifText" class="mt-0.5 text-sm md:text-base"></p>
+                        </div>
+                    </div>
+                </div>
 
-    <!-- Font Awesome untuk Ikon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+                <form id="formSKM" novalidate>
+                    
+                    <!-- BAGIAN 1: IDENTITAS RESPONDEN -->
+                    <h2 class="text-xl font-bold text-red-800 mb-6 border-b pb-3">
+                        Identitas Responden
+                    </h2>
 
-    <!-- CSS Kustom Anda -->
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="nama" class="font-semibold text-sm">Nama (Opsional)</label>
+                            <input type="text" id="nama" placeholder="Nama Anda" class="w-full mt-1.5 border rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-800">
+                        </div>
 
-<body class="bg-gray-100 flex flex-col min-h-screen">
+                        <div>
+                            <label for="umur" class="font-semibold text-sm">Umur <span class="text-red-600">*</span></label>
+                            <input type="number" id="umur" placeholder="Contoh: 25" class="w-full mt-1.5 border rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-800">
+                        </div>
 
-    <!-- Header Website (Dinonaktifkan pencariannya untuk perlindungan privasi data riwayat web) -->
-    <div id="header-placeholder"></div>
+                        <div>
+                            <label for="jk" class="font-semibold text-sm">Jenis Kelamin <span class="text-red-600">*</span></label>
+                            <select id="jk" class="w-full mt-1.5 border rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-800">
+                                <option value="">Pilih</option>
+                                <option value="Laki-laki">Laki-laki</option>
+                                <option value="Perempuan">Perempuan</option>
+                            </select>
+                        </div>
 
-    <!-- HERO SECTION -->
-    <section class="relative bg-cover bg-center h-72" style="background-image:url('assets/images/Plaza Kolam Makale.jpg')">
-        <div class="absolute inset-0 bg-black/60"></div>
-        <div class="relative z-10 flex flex-col justify-center items-center h-full text-center text-white px-4">
-            <h1 class="text-4xl font-extrabold tracking-wide">
-                SURVEI KEPUASAN MASYARAKAT
-            </h1>
-            <p class="mt-3 max-w-2xl text-gray-200">
-                Pendapat Anda sangat berarti bagi kami untuk meningkatkan kualitas pelayanan publik di Kecamatan Makale.
-            </p>
-        </div>
-    </section>
+                        <div>
+                            <label for="layanan" class="font-semibold text-sm">Jenis Pelayanan <span class="text-red-600">*</span></label>
+                            <select id="layanan" class="w-full mt-1.5 border rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-800">
+                                <option value="">Pilih</option>
+                                <option value="Administrasi Kependudukan">Administrasi Kependudukan</option>
+                                <option value="Surat Keterangan">Surat Keterangan</option>
+                                <option value="Legalisasi">Legalisasi</option>
+                                <option value="Informasi Publik">Informasi Publik</option>
+                                <option value="Pengaduan">Pengaduan</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div>
+                    </div>
 
-    <!-- MAIN FORM CONTAINER -->
-    <main class="max-w-5xl mx-auto w-full px-4 py-10 flex-grow">
-        <div class="bg-white rounded-xl shadow-lg p-8">
+                    <!-- BAGIAN 2: PENILAIAN 9 UNSUR PELAYANAN -->
+                    <h2 class="text-xl font-bold text-red-800 mt-8 mb-6 border-b pb-3">
+                        Penilaian Pelayanan <span class="text-red-500 text-xs font-normal">(Wajib Diisi Semua)</span>
+                    </h2>
 
-            <!-- NOTIFIKASI DINAMIS (Warna diatur via JavaScript: Merah = Peringatan, Hijau = Sukses) -->
-            <div id="notif" class="hidden mb-6 rounded-lg border p-4 shadow transition-all duration-300">
-                <div class="flex items-center">
-                    <i id="notifIcon" class="text-2xl mr-3"></i>
-                    <div>
-                        <h3 id="notifTitle" class="font-bold text-lg"></h3>
-                        <p id="notifText" class="mt-0.5 text-sm md:text-base"></p>
+                    <!-- U1 -->
+                    <div class="mb-4">
+                        <label for="u1" class="block font-semibold text-sm mb-1.5">1. Persyaratan Pelayanan</label>
+                        <select id="u1" class="w-full border rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-800">
+                            <option value="">Pilih Penilaian</option>
+                            <option value="4">Sangat Baik</option>
+                            <option value="3">Baik</option>
+                            <option value="2">Cukup</option>
+                            <option value="1">Kurang</option>
+                        </select>
+                    </div>
+
+                    <!-- U2 -->
+                    <div class="mb-4">
+                        <label for="u2" class="block font-semibold text-sm mb-1.5">2. Sistem, Mekanisme dan Prosedur</label>
+                        <select id="u2" class="w-full border rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-800">
+                            <option value="">Pilih Penilaian</option>
+                            <option value="4">Sangat Baik</option>
+                            <option value="3">Baik</option>
+                            <option value="2">Cukup</option>
+                            <option value="1">Kurang</option>
+                        </select>
+                    </div>
+
+                    <!-- U3 -->
+                    <div class="mb-4">
+                        <label for="u3" class="block font-semibold text-sm mb-1.5">3. Waktu Penyelesaian</label>
+                        <select id="u3" class="w-full border rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-800">
+                            <option value="">Pilih Penilaian</option>
+                            <option value="4">Sangat Baik</option>
+                            <option value="3">Baik</option>
+                            <option value="2">Cukup</option>
+                            <option value="1">Kurang</option>
+                        </select>
+                    </div>
+
+                    <!-- U4 -->
+                    <div class="mb-4">
+                        <label for="u4" class="block font-semibold text-sm mb-1.5">4. Biaya / Tarif</label>
+                        <select id="u4" class="w-full border rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-800">
+                            <option value="">Pilih Penilaian</option>
+                            <option value="4">Sangat Baik</option>
+                            <option value="3">Baik</option>
+                            <option value="2">Cukup</option>
+                            <option value="1">Kurang</option>
+                        </select>
+                    </div>
+
+                    <!-- U5 -->
+                    <div class="mb-4">
+                        <label for="u5" class="block font-semibold text-sm mb-1.5">5. Produk Pelayanan</label>
+                        <select id="u5" class="w-full border rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-800">
+                            <option value="">Pilih Penilaian</option>
+                            <option value="4">Sangat Baik</option>
+                            <option value="3">Baik</option>
+                            <option value="2">Cukup</option>
+                            <option value="1">Kurang</option>
+                        </select>
+                    </div>
+
+                    <!-- U6 -->
+                    <div class="mb-4">
+                        <label for="u6" class="block font-semibold text-sm mb-1.5">6. Kompetensi Pelaksana</label>
+                        <select id="u6" class="w-full border rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-800">
+                            <option value="">Pilih Penilaian</option>
+                            <option value="4">Sangat Baik</option>
+                            <option value="3">Baik</option>
+                            <option value="2">Cukup</option>
+                            <option value="1">Kurang</option>
+                        </select>
+                    </div>
+
+                    <!-- U7 -->
+                    <div class="mb-4">
+                        <label for="u7" class="block font-semibold text-sm mb-1.5">7. Perilaku Pelaksana</label>
+                        <select id="u7" class="w-full border rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-800">
+                            <option value="">Pilih Penilaian</option>
+                            <option value="4">Sangat Baik</option>
+                            <option value="3">Baik</option>
+                            <option value="2">Cukup</option>
+                            <option value="1">Kurang</option>
+                        </select>
+                    </div>
+
+                    <!-- U8 -->
+                    <div class="mb-4">
+                        <label for="u8" class="block font-semibold text-sm mb-1.5">8. Sarana dan Prasarana</label>
+                        <select id="u8" class="w-full border rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-800">
+                            <option value="">Pilih Penilaian</option>
+                            <option value="4">Sangat Baik</option>
+                            <option value="3">Baik</option>
+                            <option value="2">Cukup</option>
+                            <option value="1">Kurang</option>
+                        </select>
+                    </div>
+
+                    <!-- U9 -->
+                    <div class="mb-6">
+                        <label for="u9" class="block font-semibold text-sm mb-1.5">9. Penanganan Pengaduan, Saran</label>
+                        <select id="u9" class="w-full border rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-800">
+                            <option value="">Pilih Penilaian</option>
+                            <option value="4">Sangat Baik</option>
+                            <option value="3">Baik</option>
+                            <option value="2">Cukup</option>
+                            <option value="1">Kurang</option>
+                        </select>
+                    </div>
+
+                    <!-- BAGIAN 3: KRITIK DAN SARAN -->
+                    <h2 class="text-xl font-bold text-red-800 mt-8 mb-4 border-b pb-3">
+                        Kritik dan Saran
+                    </h2>
+                    <textarea id="saran" rows="4" placeholder="Tuliskan kritik atau saran Anda..." class="w-full border rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-red-800"></textarea>
+
+                    <!-- TOMBOL SUBMIT -->
+                    <div class="text-center mt-6">
+                        <button id="btnKirim" type="submit" class="bg-red-800 hover:bg-red-900 text-white w-full py-3 rounded-lg font-bold text-md shadow-md transition duration-200">
+                            <i class="fas fa-paper-plane mr-2"></i> Kirim Survei
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- KANAN: DASHBOARD SKM (Mengambil 5/12 Bagian) -->
+            <div class="lg:col-span-5 flex flex-col gap-6">
+                
+                <!-- Kotak Utama Dashboard -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+                    
+                    <!-- Header Dashboard -->
+                    <div class="bg-red-800 text-white p-4 font-bold flex items-center gap-2">
+                        <i class="fas fa-chart-line"></i>
+                        <span class="text-md">Dashboard Survei Kepuasan Masyarakat</span>
+                    </div>
+
+                    <!-- Isi/Konten Dashboard -->
+                    <div class="p-6">
+                        
+                        <!-- Grid 4 Card Indikator -->
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            
+                            <!-- Box Responden -->
+                            <div class="bg-red-50/50 p-4 rounded-xl border border-red-100 text-center flex flex-col items-center justify-center">
+                                <i class="fas fa-users text-red-600 text-2xl mb-1"></i>
+                                <span class="text-[11px] text-gray-500 font-bold tracking-wide uppercase">Responden</span>
+                                <span class="text-2xl font-black text-gray-800 mt-1">19</span>
+                            </div>
+
+                            <!-- Box Nilai IKM -->
+                            <div class="bg-green-50/50 p-4 rounded-xl border border-green-100 text-center flex flex-col items-center justify-center">
+                                <i class="fas fa-star text-green-600 text-2xl mb-1"></i>
+                                <span class="text-[11px] text-gray-500 font-bold tracking-wide uppercase">Nilai IKM</span>
+                                <span class="text-2xl font-black text-green-700 mt-1">72.93</span>
+                            </div>
+
+                            <!-- Box Mutu -->
+                            <div class="bg-blue-50/50 p-4 rounded-xl border border-blue-100 text-center flex flex-col items-center justify-center">
+                                <i class="fas fa-award text-blue-600 text-2xl mb-1"></i>
+                                <span class="text-[11px] text-gray-500 font-bold tracking-wide uppercase">Mutu</span>
+                                <span class="text-md font-extrabold text-blue-700 mt-1.5">Kurang Baik</span>
+                            </div>
+
+                            <!-- Box Kategori -->
+                            <div class="bg-yellow-50/50 p-4 rounded-xl border border-yellow-100 text-center flex flex-col items-center justify-center">
+                                <i class="fas fa-medal text-yellow-600 text-2xl mb-1"></i>
+                                <span class="text-[11px] text-gray-500 font-bold tracking-wide uppercase">Kategori</span>
+                                <span class="text-md font-extrabold text-yellow-700 mt-1.5">Kurang Baik</span>
+                            </div>
+                        </div>
+
+                        <!-- Bagian Grafik Batang -->
+                        <div class="border-t pt-5">
+                            <h3 class="font-bold text-gray-700 text-sm flex items-center gap-2 mb-4">
+                                <i class="fas fa-chart-bar text-red-800"></i> Grafik Unsur Pelayanan
+                            </h3>
+
+                            <!-- Grafik Batang Responsif (Custom dengan Tailwind) -->
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                                <div class="flex items-end justify-between h-44 px-1 gap-1">
+                                    
+                                    <!-- Bar U1 -->
+                                    <div class="flex flex-col items-center flex-1 group relative">
+                                        <div class="absolute -top-7 scale-0 group-hover:scale-100 transition-all duration-200 bg-gray-800 text-white text-[10px] rounded px-1.5 py-0.5 whitespace-nowrap shadow-md z-10">Nilai: 2.8</div>
+                                        <div class="w-full bg-red-800 rounded-t" style="height: 70%"></div>
+                                        <span class="text-[9px] text-gray-600 mt-1.5 font-bold">U1</span>
+                                    </div>
+
+                                    <!-- Bar U2 -->
+                                    <div class="flex flex-col items-center flex-1 group relative">
+                                        <div class="absolute -top-7 scale-0 group-hover:scale-100 transition-all duration-200 bg-gray-800 text-white text-[10px] rounded px-1.5 py-0.5 whitespace-nowrap shadow-md z-10">Nilai: 3.2</div>
+                                        <div class="w-full bg-red-800 rounded-t" style="height: 80%"></div>
+                                        <span class="text-[9px] text-gray-600 mt-1.5 font-bold">U2</span>
+                                    </div>
+
+                                    <!-- Bar U3 -->
+                                    <div class="flex flex-col items-center flex-1 group relative">
+                                        <div class="absolute -top-7 scale-0 group-hover:scale-100 transition-all duration-200 bg-gray-800 text-white text-[10px] rounded px-1.5 py-0.5 whitespace-nowrap shadow-md z-10">Nilai: 2.7</div>
+                                        <div class="w-full bg-red-800 rounded-t" style="height: 67%"></div>
+                                        <span class="text-[9px] text-gray-600 mt-1.5 font-bold">U3</span>
+                                    </div>
+
+                                    <!-- Bar U4 -->
+                                    <div class="flex flex-col items-center flex-1 group relative">
+                                        <div class="absolute -top-7 scale-0 group-hover:scale-100 transition-all duration-200 bg-gray-800 text-white text-[10px] rounded px-1.5 py-0.5 whitespace-nowrap shadow-md z-10">Nilai: 3.8</div>
+                                        <div class="w-full bg-red-800 rounded-t" style="height: 95%"></div>
+                                        <span class="text-[9px] text-gray-600 mt-1.5 font-bold">U4</span>
+                                    </div>
+
+                                    <!-- Bar U5 -->
+                                    <div class="flex flex-col items-center flex-1 group relative">
+                                        <div class="absolute -top-7 scale-0 group-hover:scale-100 transition-all duration-200 bg-gray-800 text-white text-[10px] rounded px-1.5 py-0.5 whitespace-nowrap shadow-md z-10">Nilai: 2.9</div>
+                                        <div class="w-full bg-red-800 rounded-t" style="height: 72%"></div>
+                                        <span class="text-[9px] text-gray-600 mt-1.5 font-bold">U5</span>
+                                    </div>
+
+                                    <!-- Bar U6 -->
+                                    <div class="flex flex-col items-center flex-1 group relative">
+                                        <div class="absolute -top-7 scale-0 group-hover:scale-100 transition-all duration-200 bg-gray-800 text-white text-[10px] rounded px-1.5 py-0.5 whitespace-nowrap shadow-md z-10">Nilai: 2.9</div>
+                                        <div class="w-full bg-red-800 rounded-t" style="height: 72%"></div>
+                                        <span class="text-[9px] text-gray-600 mt-1.5 font-bold">U6</span>
+                                    </div>
+
+                                    <!-- Bar U7 -->
+                                    <div class="flex flex-col items-center flex-1 group relative">
+                                        <div class="absolute -top-7 scale-0 group-hover:scale-100 transition-all duration-200 bg-gray-800 text-white text-[10px] rounded px-1.5 py-0.5 whitespace-nowrap shadow-md z-10">Nilai: 2.7</div>
+                                        <div class="w-full bg-red-800 rounded-t" style="height: 67%"></div>
+                                        <span class="text-[9px] text-gray-600 mt-1.5 font-bold">U7</span>
+                                    </div>
+
+                                    <!-- Bar U8 -->
+                                    <div class="flex flex-col items-center flex-1 group relative">
+                                        <div class="absolute -top-7 scale-0 group-hover:scale-100 transition-all duration-200 bg-gray-800 text-white text-[10px] rounded px-1.5 py-0.5 whitespace-nowrap shadow-md z-10">Nilai: 2.4</div>
+                                        <div class="w-full bg-red-800 rounded-t" style="height: 60%"></div>
+                                        <span class="text-[9px] text-gray-600 mt-1.5 font-bold">U8</span>
+                                    </div>
+
+                                    <!-- Bar U9 -->
+                                    <div class="flex flex-col items-center flex-1 group relative">
+                                        <div class="absolute -top-7 scale-0 group-hover:scale-100 transition-all duration-200 bg-gray-800 text-white text-[10px] rounded px-1.5 py-0.5 whitespace-nowrap shadow-md z-10">Nilai: 2.6</div>
+                                        <div class="w-full bg-red-800 rounded-t" style="height: 65%"></div>
+                                        <span class="text-[9px] text-gray-600 mt-1.5 font-bold">U9</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                            <!-- Legenda Singkat -->
+                            <p class="text-[11px] text-gray-500 mt-3 text-center italic">
+                                *Arahkan kursor pada batang grafik untuk melihat detail nilai rata-rata unsur (U1 - U9).
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <form id="formSKM" novalidate>
-                
-                <!-- BAGIAN 1: IDENTITAS RESPONDEN -->
-                <h2 class="text-2xl font-bold text-red-800 mb-6 border-b pb-3">
-                    Identitas Responden
-                </h2>
-
-                <div class="grid md:grid-cols-2 gap-5">
-                    <div>
-                        <label for="nama" class="font-semibold">Nama (Opsional)</label>
-                        <input type="text" id="nama" placeholder="Masukkan nama Anda (boleh dikosongkan)" class="w-full mt-2 border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-800">
-                    </div>
-
-                    <div>
-                        <label for="umur" class="font-semibold">Umur <span class="text-red-600">*</span></label>
-                        <input type="number" id="umur" placeholder="Contoh: 25" class="w-full mt-2 border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-800">
-                    </div>
-
-                    <div>
-                        <label for="jk" class="font-semibold">Jenis Kelamin <span class="text-red-600">*</span></label>
-                        <select id="jk" class="w-full mt-2 border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-800">
-                            <option value="">Pilih</option>
-                            <option value="Laki-laki">Laki-laki</option>
-                            <option value="Perempuan">Perempuan</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="layanan" class="font-semibold">Jenis Pelayanan Yang Diterima <span class="text-red-600">*</span></label>
-                        <select id="layanan" class="w-full mt-2 border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-800">
-                            <option value="">Pilih</option>
-                            <option value="Administrasi Kependudukan">Administrasi Kependudukan</option>
-                            <option value="Surat Keterangan">Surat Keterangan</option>
-                            <option value="Legalisasi">Legalisasi</option>
-                            <option value="Informasi Publik">Informasi Publik</option>
-                            <option value="Pengaduan">Pengaduan</option>
-                            <option value="Lainnya">Lainnya</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- BAGIAN 2: PENILAIAN 9 UNSUR PELAYANAN -->
-                <h2 class="text-2xl font-bold text-red-800 mt-10 mb-6 border-b pb-3">
-                    Penilaian Pelayanan <span class="text-red-500 text-sm font-normal">(Wajib Diisi Semua)</span>
-                </h2>
-
-                <!-- U1 -->
-                <div class="mb-6">
-                    <label for="u1" class="block font-semibold mb-2">1. Persyaratan Pelayanan</label>
-                    <select id="u1" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-800">
-                        <option value="">Pilih Penilaian</option>
-                        <option value="4">Sangat Baik</option>
-                        <option value="3">Baik</option>
-                        <option value="2">Cukup</option>
-                        <option value="1">Kurang</option>
-                    </select>
-                </div>
-
-                <!-- U2 -->
-                <div class="mb-6">
-                    <label for="u2" class="block font-semibold mb-2">2. Sistem, Mekanisme dan Prosedur</label>
-                    <select id="u2" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-800">
-                        <option value="">Pilih Penilaian</option>
-                        <option value="4">Sangat Baik</option>
-                        <option value="3">Baik</option>
-                        <option value="2">Cukup</option>
-                        <option value="1">Kurang</option>
-                    </select>
-                </div>
-
-                <!-- U3 -->
-                <div class="mb-6">
-                    <label for="u3" class="block font-semibold mb-2">3. Waktu Penyelesaian</label>
-                    <select id="u3" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-800">
-                        <option value="">Pilih Penilaian</option>
-                        <option value="4">Sangat Baik</option>
-                        <option value="3">Baik</option>
-                        <option value="2">Cukup</option>
-                        <option value="1">Kurang</option>
-                    </select>
-                </div>
-
-                <!-- U4 -->
-                <div class="mb-6">
-                    <label for="u4" class="block font-semibold mb-2">4. Biaya / Tarif</label>
-                    <select id="u4" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-800">
-                        <option value="">Pilih Penilaian</option>
-                        <option value="4">Sangat Baik</option>
-                        <option value="3">Baik</option>
-                        <option value="2">Cukup</option>
-                        <option value="1">Kurang</option>
-                    </select>
-                </div>
-
-                <!-- U5 -->
-                <div class="mb-6">
-                    <label for="u5" class="block font-semibold mb-2">5. Produk Pelayanan</label>
-                    <select id="u5" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-800">
-                        <option value="">Pilih Penilaian</option>
-                        <option value="4">Sangat Baik</option>
-                        <option value="3">Baik</option>
-                        <option value="2">Cukup</option>
-                        <option value="1">Kurang</option>
-                    </select>
-                </div>
-
-                <!-- U6 -->
-                <div class="mb-6">
-                    <label for="u6" class="block font-semibold mb-2">6. Kompetensi Pelaksana</label>
-                    <select id="u6" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-800">
-                        <option value="">Pilih Penilaian</option>
-                        <option value="4">Sangat Baik</option>
-                        <option value="3">Baik</option>
-                        <option value="2">Cukup</option>
-                        <option value="1">Kurang</option>
-                    </select>
-                </div>
-
-                <!-- U7 -->
-                <div class="mb-6">
-                    <label for="u7" class="block font-semibold mb-2">7. Perilaku Pelaksana</label>
-                    <select id="u7" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-800">
-                        <option value="">Pilih Penilaian</option>
-                        <option value="4">Sangat Baik</option>
-                        <option value="3">Baik</option>
-                        <option value="2">Cukup</option>
-                        <option value="1">Kurang</option>
-                    </select>
-                </div>
-
-                <!-- U8 -->
-                <div class="mb-6">
-                    <label for="u8" class="block font-semibold mb-2">8. Sarana dan Prasarana</label>
-                    <select id="u8" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-800">
-                        <option value="">Pilih Penilaian</option>
-                        <option value="4">Sangat Baik</option>
-                        <option value="3">Baik</option>
-                        <option value="2">Cukup</option>
-                        <option value="1">Kurang</option>
-                    </select>
-                </div>
-
-                <!-- U9 -->
-                <div class="mb-8">
-                    <label for="u9" class="block font-semibold mb-2">9. Penanganan Pengaduan, Saran dan Masukan</label>
-                    <select id="u9" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-800">
-                        <option value="">Pilih Penilaian</option>
-                        <option value="4">Sangat Baik</option>
-                        <option value="3">Baik</option>
-                        <option value="2">Cukup</option>
-                        <option value="1">Kurang</option>
-                    </select>
-                </div>
-
-                <!-- BAGIAN 3: KRITIK DAN SARAN -->
-                <h2 class="text-2xl font-bold text-red-800 mt-10 mb-5 border-b pb-3">
-                    Kritik dan Saran
-                </h2>
-                <textarea id="saran" rows="6" placeholder="Tuliskan kritik atau saran konstruktif Anda di sini..." class="w-full border rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-red-800"></textarea>
-
-                <!-- TOMBOL SUBMIT -->
-                <div class="text-center mt-10">
-                    <button id="btnKirim" type="submit" class="bg-red-800 hover:bg-red-900 text-white px-12 py-4 rounded-lg font-bold text-lg shadow-md transition duration-200">
-                        <i class="fas fa-paper-plane mr-2"></i> Kirim Survei
-                    </button>
-                </div>
-            </form>
         </div>
     </main>
-
-    <!-- Footer Website -->
-    <div id="footer-placeholder"></div>
-
-    <!-- Pemuatan JavaScript External -->
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/survei.js"></script>
-</body>
-</html>
