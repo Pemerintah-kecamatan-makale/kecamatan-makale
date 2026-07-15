@@ -78,38 +78,44 @@
 
     <main class="flex-grow w-full">
         
-        <!-- HERO SECTION -->
-        <section class="relative text-white py-12 px-4 sm:px-6 overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('assets/images/Plaza Kolam Makale.jpg');">
-            <div class="absolute inset-0 bg-black opacity-55 z-0"></div>
-            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:16px_16px] z-10"></div>
-            
-            <div class="max-w-4xl mx-auto text-center relative z-20">
-                <div class="inline-flex flex-col items-center mb-6 w-full max-w-xs sm:max-w-md px-2">
-                    <span class="bg-red-800 text-amber-500 text-sm sm:text-base font-black tracking-widest px-4 sm:px-6 py-2 rounded-t-2xl border-t-2 border-x-2 border-amber-500 text-center w-full shadow-sm uppercase">
-                        TANA TORAJA MASERO
-                    </span>
-                    <span class="bg-red-900 text-amber-500 text-[10px] sm:text-xs font-bold tracking-wider px-3 sm:px-6 py-2 rounded-b-2xl border-b-2 border-x-2 border-amber-600/50 text-center w-full shadow-sm uppercase whitespace-normal sm:whitespace-nowrap">
-                        TANGNGA' - PA'INAAN - TIKULAO
-                    </span>
-                </div>
+     <!-- HERO SECTION -->
+<section class="hero-section">
+  <!-- Elemen dekorasi background -->
+  <div class="hero-overlay-dark"></div>
+  <div class="hero-overlay-pattern"></div>
+  
+  <!-- Konten Utama -->
+  <div class="hero-content">
+    
+    <!-- Bagian Tag / Label Semboyan -->
+    <div class="label-container">
+      <span class="label-top">TANA TORAJA MASERO</span>
+      <span class="label-bottom">TANGNGA' - PA'INAAN - TIKULAO</span>
+    </div>
+    
+    <!-- Teks Judul Utama -->
+    <h2 class="hero-title">
+      Selamat Datang di Portal Resmi<br>Kecamatan Makale
+    </h2>
+    
+    <!-- Deskripsi Singkat -->
+    <p class="hero-description">
+      Pusat informasi pelayanan publik, transparansi tata kelola pemerintahan, dan roda pembangunan di Ibu Kota Kabupaten Tana Toraja.
+    </p>
+    
+    <!-- Tombol Aksi (Links) -->
+    <div class="btn-container">
+      <a href="layanan.html" class="btn btn-primary">
+        <i class="fas fa-building"></i>Pelayanan Publik
+      </a>
+      <a href="berita.html" class="btn btn-secondary">
+        <i class="fas fa-newspaper"></i>Berita Terbaru
+      </a>
+    </div>
+    
+  </div>
+</section>
 
-                <h2 class="text-2xl sm:text-4xl md:text-5xl font-extrabold mb-3 leading-tight drop-shadow-lg px-2">
-                    Selamat Datang di Portal Resmi<br>Kecamatan Makale
-                </h2>
-                <p class="text-sm sm:text-base md:text-lg text-gray-200 max-w-2xl mx-auto drop-shadow mb-1">
-                    Pusat informasi pelayanan publik, transparansi tata kelola pemerintahan, dan roda pembangunan di Ibu Kota Kabupaten Tana Toraja.
-                </p>
-                
-                <div class="mt-6 flex flex-col sm:flex-row justify-center gap-3 px-4 sm:px-0">
-                    <a href="layanan.html" class="bg-amber-400 text-red-900 font-bold px-5 py-3 rounded-xl hover:bg-amber-300 active:scale-[0.98] transition text-center shadow-md text-sm sm:text-base min-h-[48px] flex items-center justify-center">
-                        <i class="fas fa-building mr-2"></i>Pelayanan Publik
-                    </a>
-                    <a href="berita.html" class="border-2 border-white px-5 py-3 rounded-xl hover:bg-white hover:text-red-900 active:scale-[0.98] transition text-center text-sm sm:text-base min-h-[48px] flex items-center justify-center">
-                        <i class="fas fa-newspaper mr-2"></i>Berita Terbaru
-                    </a>
-                </div>
-            </div>
-        </section>
 
         <!-- SECTION UTAMA: BERITA & SURVEI -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
