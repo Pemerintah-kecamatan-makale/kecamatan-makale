@@ -10,25 +10,47 @@ const URL_API = "https://script.google.com/macros/s/AKfycbyvaAvWB2_ACWwN3Bk7fOez
 let chartSKM = null;
 
 // ==========================================
-// 1. FUNGSI UNTUK MENGAMBIL DATA & RENDER CHART
+// 1. FUNGSI UNTUK MENGAMBIL DATA & RENDER CHART (DIPERBAIKI)
 // ==========================================
 function muatDataDanGrafik() {
-    // Ambil data dari Google Apps Script (menggunakan GET)
     fetch(URL_API)
         .then(res => {
             if (!res.ok) throw new Error("Gagal memuat database statistik.");
             return res.json();
         })
         .then(data => {
-            // Pastikan data rekapitulasi tersedia dari server
-            if (data && data.rekap) {
-                const rekap = data.rekap; // Berisi rata-rata U1 sampai U9
+            console.log("Data dari server:", data); // Untuk mempermudah cek di Inspect Console browser
 
-                // Ambil element canvas
+            // Deteksi rekapitulasi baik huruf kecil maupun huruf besar
+            let rekap = null;
+            if (data && data.rekap) {
+                rekap = data.rekap;
+            } else if (data && data.Rekap) {
+                rekap = data.Rekap;
+            }
+
+            if (rekap) {
+                // Ambil nilai dengan toleransi huruf besar/kecil dan konversi ke tipe Angka (Float)
+                const getNilai = (key) => {
+                    const val = rekap[key.toLowerCase()] ?? rekap[key.toUpperCase()] ?? 0;
+                    return parseFloat(val) || 0;
+                };
+
+                const datasetUnsur = [
+                    getNilai('u1'),
+                    getNilai('u2'),
+                    getNilai('u3'),
+                    getNilai('u4'),
+                    getNilai('u5'),
+                    getNilai('u6'),
+                    getNilai('u7'),
+                    getNilai('u8'),
+                    getNilai('u9')
+                ];
+
                 const ctx = document.getElementById('chartUnsur');
                 if (!ctx) return;
 
-                // Jika chart sudah pernah digambar sebelumnya, hapus dulu agar tidak tumpang tindih
                 if (chartSKM) {
                     chartSKM.destroy();
                 }
@@ -40,18 +62,8 @@ function muatDataDanGrafik() {
                         labels: ['U1', 'U2', 'U3', 'U4', 'U5', 'U6', 'U7', 'U8', 'U9'],
                         datasets: [{
                             label: 'Nilai Unsur',
-                            data: [
-                                rekap.u1 || 0, 
-                                rekap.u2 || 0, 
-                                rekap.u3 || 0, 
-                                rekap.u4 || 0, 
-                                rekap.u5 || 0, 
-                                rekap.u6 || 0, 
-                                rekap.u7 || 0, 
-                                rekap.u8 || 0, 
-                                rekap.u9 || 0
-                            ],
-                            backgroundColor: 'rgba(153, 27, 27, 0.9)', // Merah Tua khas Kecamatan Makale
+                            data: datasetUnsur,
+                            backgroundColor: 'rgba(153, 27, 27, 0.9)', // Warna merah tua dinas Kecamatan Makale
                             borderColor: 'rgba(153, 27, 27, 1)',
                             borderWidth: 1,
                             borderRadius: 4
@@ -65,10 +77,10 @@ function muatDataDanGrafik() {
                         },
                         scales: {
                             y: {
-                                min: 1,
+                                min: 0, // Diturunkan ke 0 agar batang grafik terlihat menjulang ke atas
                                 max: 4,
                                 ticks: {
-                                    stepSize: 0.5
+                                    stepSize: 1
                                 }
                             }
                         }
