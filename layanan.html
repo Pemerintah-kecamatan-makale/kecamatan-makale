@@ -3,389 +3,333 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pelayanan Publik - Kecamatan Makale</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Font Awesome untuk Ikon -->
+    <title>Standar Pelayanan Publik | Website Resmi Kecamatan Makale</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Chart.js CDN untuk Grafik SKM -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+<body class="bg-gray-50 flex flex-col min-h-screen">
 
-    <!-- HEADER / NAVIGATION -->
-    <header class="bg-red-900 text-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <i class="fa-solid fa-building-shield text-2xl text-yellow-400"></i>
-                <div>
-                    <span class="font-bold text-lg block tracking-wide leading-tight">KECAMATAN MAKALE</span>
-                    <span class="text-xs text-red-200 block">Kabupaten Tana Toraja</span>
-                </div>
+    <div id="header-placeholder"></div>
+
+  <!-- KONTEN UTAMA LAYANAN -->
+<main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
+    <!-- Header Halaman -->
+    <div class="text-center mb-12">
+        <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">Standar Pelayanan Publik</h1>
+        <div class="h-1 w-24 bg-red-800 mx-auto rounded"></div>
+        <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
+            Komitmen kami untuk memberikan pelayanan yang transparan, mudah, dan tanpa pungutan liar demi kenyamanan warga Kecamatan Makale.
+        </p>
+    </div>
+
+    <!-- GRID KARTU LAYANAN (7 LAYANAN UTAMA) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- LAYANAN 1: LEGALISASI PENGANTAR SKTM -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+            <div class="p-6 bg-red-800 text-white">
+                <span class="text-xs uppercase font-bold tracking-wider text-amber-300">Pelayanan Umum</span>
+                <h3 class="text-lg font-bold mt-1">Legalisasi Pengantar SKTM</h3>
             </div>
-            <nav class="hidden md:flex space-x-6 text-sm font-medium">
-                <a href="https://makale.tanatorajakab.go.id/" class="hover:text-yellow-400 transition">Beranda</a>
-                <a href="#layanan" class="hover:text-yellow-400 transition">Jenis Layanan</a>
-                <a href="#prosedur" class="hover:text-yellow-400 transition">Alur Prosedur</a>
-                <a href="#survei" class="text-yellow-400 font-semibold border-b-2 border-yellow-400 pb-1">Survei & Dashboard SKM</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- HERO SECTION -->
-    <section class="bg-gradient-to-r from-red-900 to-red-800 text-white py-12 px-4 shadow-inner">
-        <div class="max-w-4xl mx-auto text-center">
-            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3">Informasi Pelayanan Publik</h1>
-            <p class="text-red-100 text-base sm:text-lg max-w-2xl mx-auto">
-                Mewujudkan pelayanan yang transparan, akuntabel, dan prima bagi seluruh lapisan masyarakat Kecamatan Makale.
-            </p>
-        </div>
-    </section>
-
-    <!-- MAIN CONTENT CONTAINER -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
-
-        <!-- MAKLUMAT PELAYANAN -->
-        <section class="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-r-xl shadow-sm">
-            <div class="flex items-start space-x-4">
-                <div class="p-2 bg-yellow-500 rounded-lg text-white">
-                    <i class="fa-solid fa-scroll text-xl"></i>
+            <div class="p-6 flex-grow flex flex-col justify-between">
+                <div class="space-y-4">
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Persyaratan Dokumen:</h4>
+                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside">
+                        <li>Surat Pengantar SKTM asli dari Lurah/Lembang</li>
+                        <li>Fotokopi Kartu Keluarga (KK) & KTP</li>
+                        <li>Rekomendasi pendukung (jika untuk sekolah/RS)</li>
+                    </ul>
                 </div>
-                <div>
-                    <h2 class="text-lg font-bold text-yellow-900 mb-1">Maklumat Pelayanan</h2>
-                    <p class="text-sm text-yellow-800 italic leading-relaxed">
-                    <p>Dengan ini kami menyatakan:</p>
-<ol>
-    <li>1. Berjanji dan memiliki kesanggupan untuk melaksanakan pelayanan publik sesuai dengan Standar Pelayanan Publik yang telah ditetapkan.</li>
-    <li>2. Memberikan pelayanan publik sesuai dengan kewajiban dan akan melakukan perbaikan secara terus-menerus; dan,</li>
-    <li>3. Bersedia untuk menerima sanksi, dan/atau memberikan kompensasi sesuai dengan ketentuan peraturan perundang - undangan apabila pelayanan publik yang diberikan tidak sesuai standar yang ditetapkan.</li>
-</ol>
-
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- DAFTAR JENIS LAYANAN -->
-        <section id="layanan" class="scroll-mt-20">
-            <div class="text-center mb-10">
-                <h2 class="text-2xl font-bold text-gray-900">Daftar Pelayanan Administrasi</h2>
-                <div class="h-1 w-16 bg-red-700 mx-auto mt-2 rounded-full"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Layanan 1 -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
-                    <div class="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center text-red-950 mb-4 text-xl">
-                        <i class="fa-solid fa-address-card"></i>
+                <div class="mt-6 pt-4 border-t border-gray-100">
+                    <div class="flex items-center justify-between mb-3 text-xs text-gray-500">
+                        <span>Waktu: 10-15 Menit</span>
+                        <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Gratis (Rp 0)</span>
                     </div>
-                    <h3 class="font-bold text-lg mb-2">Administrasi Kependudukan</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">
-                        Pengantar Kartu Tanda Penduduk (KTP), Kartu Keluarga (KK), Surat Keterangan Pindah, dan pencatatan biodata warga.
-                    </p>
-                </div>
-                <!-- Layanan 2 -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
-                    <div class="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center text-red-950 mb-4 text-xl">
-                        <i class="fa-solid fa-file-signature"></i>
-                    </div>
-                    <h3 class="font-bold text-lg mb-2">Surat Keterangan & Legalitas</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">
-                        Surat Keterangan Tidak Mampu (SKTM), Surat Keterangan Usaha (SKU), Domisili, serta rekomendasi perizinan umum.
-                    </p>
-                </div>
-                <!-- Layanan 3 -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
-                    <div class="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center text-red-950 mb-4 text-xl">
-                        <i class="fa-solid fa-handshake-angle"></i>
-                    </div>
-                    <h3 class="font-bold text-lg mb-2">Fasilitasi & Kesejahteraan</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">
-                        Rekomendasi bantuan sosial, fasilitasi konflik warga, legalisasi proposal masyarakat, dan urusan pertanahan tingkat kecamatan.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ALUR PROSEDUR -->
-        <section id="prosedur" class="scroll-mt-20">
-            <div class="text-center mb-10">
-                <h2 class="text-2xl font-bold text-gray-900">Alur Umum Prosedur Pelayanan</h2>
-                <div class="h-1 w-16 bg-red-700 mx-auto mt-2 rounded-full"></div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-4 gap-6 relative">
-                <div class="bg-white p-5 rounded-xl border border-gray-100 text-center shadow-xs">
-                    <div class="w-10 h-10 rounded-full bg-red-950 text-white flex items-center justify-center font-bold mx-auto mb-3">1</div>
-                    <h4 class="font-semibold text-sm mb-1">Loket Informasi</h4>
-                    <p class="text-xs text-gray-500">Masyarakat datang membawa berkas persyaratan lengkap dari Lembang/Kelurahan.</p>
-                </div>
-                <div class="bg-white p-5 rounded-xl border border-gray-100 text-center shadow-xs">
-                    <div class="w-10 h-10 rounded-full bg-red-950 text-white flex items-center justify-center font-bold mx-auto mb-3">2</div>
-                    <h4 class="font-semibold text-sm mb-1">Verifikasi Berkas</h4>
-                    <p class="text-xs text-gray-500">Petugas loket memeriksa keabsahan dan kelengkapan dokumen pendukung.</p>
-                </div>
-                <div class="bg-white p-5 rounded-xl border border-gray-100 text-center shadow-xs">
-                    <div class="w-10 h-10 rounded-full bg-red-950 text-white flex items-center justify-center font-bold mx-auto mb-3">3</div>
-                    <h4 class="font-semibold text-sm mb-1">Pengolahan & Paraf</h4>
-                    <p class="text-xs text-gray-500">Dokumen diproses oleh seksi terkait dan ditandatangani oleh pejabat berwenang/Camat.</p>
-                </div>
-                <div class="bg-white p-5 rounded-xl border border-gray-100 text-center shadow-xs">
-                    <div class="w-10 h-10 rounded-full bg-red-950 text-white flex items-center justify-center font-bold mx-auto mb-3">4</div>
-                    <h4 class="font-semibold text-sm mb-1">Penyerahan & SKM</h4>
-                    <p class="text-xs text-gray-500">Pemohon menerima dokumen jadi lalu mengisi kuesioner indeks kepuasan (SKM).</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION SURVEI & DASHBOARD SKM -->
-        <section id="survei" class="grid grid-cols-1 lg:grid-cols-12 gap-8 scroll-mt-20">
-            
-            <!-- FORM INPUT SKM (Kiri - 5 Kolom) -->
-            <div class="lg:col-span-5 bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100">
-                <div class="mb-6">
-                    <h2 class="text-xl font-bold text-gray-900">Formulir Survei SKM</h2>
-                    <p class="text-xs text-gray-500 mt-1">Pendapat Anda sangat menentukan kualitas mutu pelayanan kami.</p>
-                </div>
-
-                <!-- Notifikasi Respons Transaksi -->
-                <div id="notifSKM" class="hidden mb-5 p-4 rounded-xl border text-sm flex items-start">
-                    <i id="notifIcon" class="mr-3 mt-0.5"></i>
-                    <div>
-                        <b id="notifTitle" class="block font-semibold"></b>
-                        <span id="notifText"></span>
-                    </div>
-                </div>
-
-                <!-- Form Target Simulasi POST -->
-                <form id="formSKM" class="space-y-4 text-sm">
-                    <div>
-                        <label class="block font-medium text-gray-700 mb-1">Nama Lengkap</label>
-                        <input type="text" name="nama" required placeholder="Contoh: Budi Gunawan" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-900 focus:border-transparent">
-                    </div>
-                    
-                    <div>
-                        <label class="block font-medium text-gray-700 mb-1">Jenis Layanan yang Diakses</label>
-                        <select name="layanan" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-900 focus:border-transparent bg-white">
-                            <option value="">-- Pilih Layanan --</option>
-                            <option value="Kependudukan">Administrasi Kependudukan (KTP/KK)</option>
-                            <option value="Surat Keterangan">Surat Keterangan Umum (SKTM/SKU)</option>
-                            <option value="Perizinan">Rekomendasi Perizinan</option>
-                            <option value="Lainnya">Lain-lain</option>
-                        </select>
-                    </div>
-
-                    <div class="border-t border-gray-100 pt-3">
-                        <p class="font-medium text-gray-800 mb-2">Berikan Nilai Penilaian Anda (1 - 4):</p>
-                        <div class="space-y-3 max-h-[220px] overflow-y-auto pr-2 bg-gray-50 p-3 rounded-lg border border-gray-200">
-                            <!-- Input dinamis untuk simulasi U1-U9 demi kemudahan form -->
-                            <div>
-                                <label class="block text-xs text-gray-600 mb-1">U1. Kesesuaian Persyaratan Pelayanan</label>
-                                <input type="number" name="u1" min="1" max="4" required placeholder="Skala 1-4" class="w-full px-2 py-1 border border-gray-300 rounded bg-white">
-                            </div>
-                            <div>
-                                <label class="block text-xs text-gray-600 mb-1">U2. Kemudahan Prosedur Sistem</label>
-                                <input type="number" name="u2" min="1" max="4" required placeholder="Skala 1-4" class="w-full px-2 py-1 border border-gray-300 rounded bg-white">
-                            </div>
-                            <div>
-                                <label class="block text-xs text-gray-600 mb-1">U3. Kecepatan Waktu Penyelesaian</label>
-                                <input type="number" name="u3" min="1" max="4" required placeholder="Skala 1-4" class="w-full px-2 py-1 border border-gray-300 rounded bg-white">
-                            </div>
-                            <!-- Anggap U4-U9 akan otomatis terisi nilai seimbang dalam simulasi kirim data -->
-                        </div>
-                    </div>
-
-                    <button type="submit" id="btnSubmit" class="w-full bg-red-950 text-white py-2.5 rounded-lg font-semibold hover:bg-red-900 transition flex items-center justify-center cursor-pointer shadow-sm">
-                        <i class="fa-solid fa-paper-plane mr-2 text-xs"></i> Kirim Penilaian
-                    </button>
-                </form>
-            </div>
-
-            <!-- DASHBOARD MONITORING SKM (Kanan - 7 Kolom) -->
-            <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
-                
-                <!-- Ringkasan Angka Utama (Grid Atas) -->
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                    <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs text-center">
-                        <span class="text-xs text-gray-400 font-medium block uppercase tracking-wider mb-1">Responden</span>
-                        <div id="responden" class="text-2xl font-black text-gray-900">...</div>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs text-center">
-                        <span class="text-xs text-gray-400 font-medium block uppercase tracking-wider mb-1">Indeks IKM</span>
-                        <div id="ikm" class="text-2xl font-black text-red-900">...</div>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs text-center">
-                        <span class="text-xs text-gray-400 font-medium block uppercase tracking-wider mb-1">Mutu</span>
-                        <div id="mutu" class="text-2xl font-black text-gray-900">...</div>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs text-center">
-                        <span class="text-xs text-gray-400 font-medium block uppercase tracking-wider mb-1">Kinerja</span>
-                        <div id="kategori" class="text-sm font-bold text-gray-700 mt-1">...</div>
-                    </div>
-                </div>
-
-                <!-- Grafik Batang Representasi Nilai Unsur -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex-1 flex flex-col justify-between">
-                    <div class="flex items-center justify-between mb-4">
-                        <div>
-                            <h3 class="font-bold text-gray-900 text-base">Grafik Nilai per Unsur SKM</h3>
-                            <p class="text-xs text-gray-400">Nilai rata-rata tertimbang per komponen (U1 s/d U9)</p>
-                        </div>
-                        <button onclick="window.refreshDashboardSKM()" title="Refresh Manual" class="text-gray-400 hover:text-red-900 transition p-1 text-sm cursor-pointer">
-                            <i class="fa-solid fa-arrows-rotate"></i>
+                    <div class="flex gap-2">
+                        <a href="assets/dokumen/STANDAR PELAYANAN_SKTM.pdf" download class="flex-1 text-center bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
+                            <i class="fas fa-download mr-1"></i> Unduh
+                        </a>
+                        <!-- SILAKAN GANTI URL DI BAWAH INI DENGAN LINK GOOGLE FORM SKTM ANDA -->
+                       <button onclick="openFormModal('Legalisasi Pengantar SKTM', 'https://docs.google.com/forms/d/e/1FAIpQLSdyVIBLKENLQQb93idX1P5rA4ESyXheqXPecx1Y3iN8EWNFGQ/viewform?embedded=true')" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
+    <i class="fas fa-edit mr-1"></i> Isi Berkas
                         </button>
                     </div>
+                </div>
+            </div>
+        </div>
 
-                    <!-- Tempat Canvas Grafik Dimuat -->
-                    <div class="relative w-full h-[220px] sm:h-[260px]">
-                        <canvas id="grafikSKM"></canvas>
+        <!-- LAYANAN 2: LEGALISASI PENGANTAR SKCK -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+            <div class="p-6 bg-red-800 text-white">
+                <span class="text-xs uppercase font-bold tracking-wider text-amber-300">Ketertiban & Keamanan</span>
+                <h3 class="text-lg font-bold mt-1">Legalisasi Pengantar SKCK</h3>
+            </div>
+            <div class="p-6 flex-grow flex flex-col justify-between">
+                <div class="space-y-4">
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Persyaratan Dokumen:</h4>
+                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside">
+                        <li>Surat Pengantar SKCK dari Kelurahan/Lembang</li>
+                        <li>Fotokopi KTP dan Kartu Keluarga</li>
+                        <li>Pasfoto terbaru ukuran 4x6 (1 lembar)</li>
+                    </ul>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-100">
+                    <div class="flex items-center justify-between mb-3 text-xs text-gray-500">
+                        <span>Waktu: 10 Menit</span>
+                        <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Gratis (Rp 0)</span>
                     </div>
-
-                    <div class="grid grid-cols-3 gap-2 text-[10px] text-gray-400 border-t border-gray-100 pt-3 mt-2">
-                        <span><b>U1-U3:</b> Layanan, Sistem, Waktu</span>
-                        <span><b>U4-U6:</b> Biaya, Produk, Kompetensi</span>
-                        <span><b>U7-U9:</b> Perilaku, Sarpras, Pengaduan</span>
+                    <div class="flex gap-2">
+                        <a href="assets/dokumen/STANDAR PELAYANAN_SKCK.pdf" download class="flex-1 text-center bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
+                            <i class="fas fa-download mr-1"></i> Unduh
+                        </a>
+                        <!-- SILAKAN GANTI URL DI BAWAH INI DENGAN LINK GOOGLE FORM SKCK ANDA -->
+                        <button onclick="openFormModal('Legalisasi Pengantar SKCK', 'https://docs.google.com/forms/d/e/MASUKKAN_ID_FORM_SKCK_DISINI/viewform?embedded=true')" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
+                            <i class="fas fa-edit mr-1"></i> Isi Berkas
+                        </button>
                     </div>
                 </div>
-
             </div>
-        </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="bg-gray-900 text-gray-400 text-xs py-6 border-t border-gray-800 mt-20">
-        <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
-            <p class="text-gray-300 font-medium">&copy; 2026 Pemerintah Kecamatan Makale. All Rights Reserved.</p>
-            <p>Jl. Pahlawan No. 1, Kecamatan Makale, Kabupaten Tana Toraja, Sulawesi Selatan</p>
         </div>
-    </footer>
 
-    <!-- LOGIKA JAVASCRIPT & INTEGRASI REALTIME -->
+        <!-- LAYANAN 3: LEGALISASI PENGANTAR KK -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+            <div class="p-6 bg-red-800 text-white">
+                <span class="text-xs uppercase font-bold tracking-wider text-amber-300">Administrasi</span>
+                <h3 class="text-lg font-bold mt-1">Legalisasi Pengantar KK</h3>
+            </div>
+            <div class="p-6 flex-grow flex flex-col justify-between">
+                <div class="space-y-4">
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Persyaratan Dokumen:</h4>
+                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside">
+                        <li>Surat Pengantar pengurusan KK dari Lurah/Lembang</li>
+                        <li>Format Isian berkas KK dari Kelurahan</li>
+                        <li>Fotokopi dokumen pendukung (Ijazah/Akta)</li>
+                    </ul>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-100">
+                    <div class="flex items-center justify-between mb-3 text-xs text-gray-500">
+                        <span>Waktu: 10 Menit</span>
+                        <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Gratis (Rp 0)</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <a href="assets/dokumen/STANDAR PELAYANAN_Surat Pengantar Pengurusan Kartu Keluarga (KK).pdf" download class="flex-1 text-center bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
+                            <i class="fas fa-download p-0.5"></i> Unduh
+                        </a>
+                        <!-- SILAKAN GANTI URL DI BAWAH INI DENGAN LINK GOOGLE FORM KK ANDA -->
+                        <button onclick="openFormModal('Legalisasi Pengantar KK', 'https://docs.google.com/forms/d/e/MASUKKAN_ID_FORM_KK_DISINI/viewform?embedded=true')" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
+                            <i class="fas fa-edit mr-1"></i> Isi Berkas
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LAYANAN 4: KETERANGAN BELUM MENIKAH -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+            <div class="p-6 bg-red-800 text-white">
+                <span class="text-xs uppercase font-bold tracking-wider text-amber-300">Pelayanan Umum</span>
+                <h3 class="text-lg font-bold mt-1">Keterangan Belum Menikah</h3>
+            </div>
+            <div class="p-6 flex-grow flex flex-col justify-between">
+                <div class="space-y-4">
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Persyaratan Dokumen:</h4>
+                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside">
+                        <li>Surat Keterangan dari Kelurahan/Lembang asli</li>
+                        <li>Fotokopi KTP & KK Pemohon</li>
+                        <li>Surat Pernyataan Belum Menikah (Materai 10.000)</li>
+                    </ul>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-100">
+                    <div class="flex items-center justify-between mb-3 text-xs text-gray-500">
+                        <span>Waktu: 15 Menit</span>
+                        <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Gratis (Rp 0)</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <a href="assets/dokumen/STANDAR PELAYANAN_Belum Menikah.pdf" download class="flex-1 text-center bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
+                            <i class="fas fa-download"></i> Unduh
+                        </a>
+                        <!-- PERBAIKAN: Format link pendek diganti ke format embed dinamis -->
+                        <button onclick="openFormModal('Keterangan Belum Menikah', 'https://docs.google.com/forms/d/e/MASUKKAN_ID_FORM_BELUM_MENIKAH_DISINI/viewform?embedded=true')" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
+                            <i class="fas fa-edit mr-1"></i> Isi Berkas
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LAYANAN 5: PERMINTAAN DATA KECAMATAN -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+            <div class="p-6 bg-red-800 text-white">
+                <span class="text-xs uppercase font-bold tracking-wider text-amber-300">Pemerintahan</span>
+                <h3 class="text-lg font-bold mt-1">Permintaan Data Kecamatan</h3>
+            </div>
+            <div class="p-6 flex-grow flex flex-col justify-between">
+                <div class="space-y-4">
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Persyaratan Dokumen:</h4>
+                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside">
+                        <li>Surat Permohonan Resmi (Instansi/Kampus/Lembaga)</li>
+                        <li>Proposal / Identitas Pengaju data yang jelas</li>
+                        <li>Mengisi Formulir tujuan penggunaan data</li>
+                    </ul>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-100">
+                    <div class="flex items-center justify-between mb-3 text-xs text-gray-500">
+                        <span>Waktu: 1-2 Hari Kerja</span>
+                        <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Gratis (Rp 0)</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <a href="assets/dokumen/STANDAR PELAYANAN_Permintaan Data Terkait Pemerintahan .pdf" download class="flex-1 text-center bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
+                            <i class="fas fa-download"></i> Unduh
+                        </a>
+                        <!-- SILAKAN GANTI URL DI BAWAH INI DENGAN LINK GOOGLE FORM REQUEST DATA -->
+                        <button onclick="openFormModal('Permintaan Data Kecamatan', 'https://docs.google.com/forms/d/e/MASUKKAN_ID_FORM_PERMINTAAN_DATA_DISINI/viewform?embedded=true')" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
+                            <i class="fas fa-edit mr-1"></i> Isi Berkas
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LAYANAN 6: SURAT KETERANGAN USAHA (SKU) -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+            <div class="p-6 bg-red-800 text-white">
+                <span class="text-xs uppercase font-bold tracking-wider text-amber-300">Pelayanan Umum</span>
+                <h3 class="text-lg font-bold mt-1">Surat Keterangan Usaha (SKU)</h3>
+            </div>
+            <div class="p-6 flex-grow flex flex-col justify-between">
+                <div class="space-y-4">
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Persyaratan Dokumen:</h4>
+                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside">
+                        <li>Surat Pengantar Usaha dari Kelurahan/Lembang</li>
+                        <li>Fotokopi KTP & KK Pemohon</li>
+                        <li>Dokumentasi / Foto tempat lokasi usaha</li>
+                    </ul>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-100">
+                    <div class="flex items-center justify-between mb-3 text-xs text-gray-500">
+                        <span>Waktu: 15 Menit</span>
+                        <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Gratis (Rp 0)</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <a href="assets/dokumen/STANDAR PELAYANAN_SKU.pdf" download class="flex-1 text-center bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
+                            <i class="fas fa-download"></i> Unduh
+                        </a>
+                        <!-- SILAKAN GANTI URL DI BAWAH INI DENGAN LINK GOOGLE FORM SKU -->
+                        <button onclick="openFormModal('Surat Keterangan Usaha (SKU)', 'https://docs.google.com/forms/d/e/MASUKKAN_ID_FORM_SKU_DISINI/viewform?embedded=true')" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
+                            <i class="fas fa-edit mr-1"></i> Isi Berkas
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LAYANAN 7: Pembuatan Akta Jual Beli Tanah (AJB) -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+            <div class="p-6 bg-red-800 text-white">
+                <span class="text-xs uppercase font-bold tracking-wider text-amber-300">Pemerintahan</span>
+                <h3 class="text-lg font-bold mt-1">Pembuatan Akta Jual Beli (AJB)</h3>
+            </div>
+            <div class="p-6 flex-grow flex flex-col justify-between">
+                <div class="space-y-4">
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Persyaratan Dokumen:</h4>
+                    <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside">
+                        <li>Sertifikat Tanah Asli / Surat Kapling Keterangan Kelurahan</li>
+                        <li>Fotokopi KTP Penjual & Pembeli (serta Saksi-saksi)</li>
+                        <li>Bukti Lunas PBB tahun berjalan</li>
+                    </ul>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-100">
+                    <div class="flex items-center justify-between mb-3 text-xs text-gray-500">
+                        <span>Waktu: Sesuai Berkas</span>
+                        <span class="font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Gratis (Rp 0)</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <a href="assets/dokumen/STANDAR PELAYANAN_AJB.pdf" download class="flex-1 text-center bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
+                            <i class="fas fa-download"></i> Unduh
+                        </a>
+                        <!-- SILAKAN GANTI URL DI BAWAH INI DENGAN LINK GOOGLE FORM AJB -->
+                        <button onclick="openFormModal('Pembuatan Akta Jual Beli Tanah (AJB)', 'https://docs.google.com/forms/d/e/MASUKKAN_ID_FORM_AJB_DISINI/viewform?embedded=true')" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow-sm">
+                            <i class="fas fa-edit mr-1"></i> Isi Berkas
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+    <!-- COMPONENT POP-UP GOOGLE FORM MODAL (Lebih Luas & Responsif) -->
+    <div id="formModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-3xl rounded-2xl shadow-xl overflow-hidden transform scale-95 transition-transform duration-300 flex flex-col h-[85vh]">
+            
+            <!-- Header Modal -->
+            <div class="p-5 bg-red-800 text-white flex justify-between items-center shrink-0">
+                <div>
+                    <span class="text-xs text-amber-300 font-bold uppercase tracking-wider">Formulir Pengajuan Online Resmi</span>
+                    <h3 id="modalLayananTitle" class="text-base font-bold">Nama Layanan</h3>
+                </div>
+                <button onclick="closeFormModal()" class="text-white/80 hover:text-white text-3xl p-1 leading-none">&times;</button>
+            </div>
+            
+            <!-- Frame Konten Google Form -->
+            <div class="flex-grow w-full bg-gray-100 relative">
+                <iframe id="googleFormIframe" src="" class="w-full h-full border-0" allow="geolocation; microphone; camera">
+                    Memuat formulir digital...
+                </iframe>
+            </div>
+            
+            <!-- Footer Modal -->
+            <div class="p-3 bg-gray-50 border-t border-gray-100 flex justify-end shrink-0">
+                <button type="button" onclick="closeFormModal()" class="px-5 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold rounded-xl transition text-xs shadow-sm">
+                    Selesai / Tutup Jendela
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIKA JAVASCRIPT UNTUK EMBED GOOGLE FORM -->
     <script>
-        const API = "https://script.google.com/macros/s/AKfycbyvaAvWB2_ACWwN3Bk7fOezihnbLMZ_PmJ6Earj2y122Jsyt6RqbCKTPzKc30BW8J0rSw/exec?dashboard=1";
-        let chart;
+        function openFormModal(layananName, googleFormUrl) {
+            const modal = document.getElementById('formModal');
+            const iframe = document.getElementById('googleFormIframe');
+            
+            if (!modal || !iframe) return;
 
-        // 1. FUNGSI LOAD DATA DASHBOARD
-        async function loadDashboard() {
-            try {
-                const res = await fetch(API);
-                if (!res.ok) throw new Error("Respons jaringan bermasalah.");
-                
-                const d = await res.json();
+            // Injeksi nama layanan dan URL Google Form ke Iframe
+            document.getElementById('modalLayananTitle').innerText = layananName;
+            iframe.src = googleFormUrl;
 
-                // Perbarui konten teks angka ringkasan
-                document.getElementById("responden").innerHTML = d.responden ?? 0;
-                document.getElementById("ikm").innerHTML = d.ikm ? Number(d.ikm).toFixed(2) : "0.00";
-                document.getElementById("mutu").innerHTML = d.mutu ?? "-";
-                document.getElementById("kategori").innerHTML = d.kategori ?? "-";
-
-                // Kelompokkan nilai unsur U1 sampai U9
-                const dataUnsur = [
-                    d.u1 ?? 0, d.u2 ?? 0, d.u3 ?? 0, d.u4 ?? 0, d.u5 ?? 0, 
-                    d.u6 ?? 0, d.u7 ?? 0, d.u8 ?? 0, d.u9 ?? 0
-                ];
-
-                // Logika Update Grafik Chart.js
-                if (chart) {
-                    chart.data.datasets[0].data = dataUnsur;
-                    chart.update(); // Update tanpa berkedip
-                } else {
-                    const ctx = document.getElementById("grafikSKM");
-                    if (!ctx) return;
-
-                    chart = new Chart(ctx, {
-                        type: "bar",
-                        data: {
-                            labels: ["U1", "U2", "U3", "U4", "U5", "U6", "U7", "U8", "U9"],
-                            datasets: [{
-                                label: "Nilai Unsur",
-                                data: dataUnsur,
-                                backgroundColor: "#991b1b",
-                                hoverBackgroundColor: "#7f1d1d",
-                                borderRadius: 5
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                legend: { display: false }
-                            },
-                            scales: {
-                                x: { grid: { display: false } },
-                                y: {
-                                    beginAtZero: true,
-                                    max: 4,
-                                    ticks: { stepSize: 1 }
-                                }
-                            }
-                        }
-                    });
-                }
-            } catch (error) {
-                console.error("Gagal memuat data SKM:", error);
-            }
+            // Animasi memunculkan Modal (Fade In & Scale Up)
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('.transform').classList.remove('scale-95');
+            }, 10);
         }
 
-        // 2. INTERSEPSI EVENT SUBMIT FORMULIR SKM
-        document.getElementById("formSKM").addEventListener("submit", async function(e) {
-            e.preventDefault();
+        function closeFormModal() {
+            const modal = document.getElementById('formModal');
+            const iframe = document.getElementById('googleFormIframe');
             
-            const btn = document.getElementById("btnSubmit");
-            const notif = document.getElementById("notifSKM");
-            
-            // Mengubah status tombol saat loading
-            btn.disabled = true;
-            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin mr-2"></i> Memproses...`;
+            if (!modal) return;
 
-            const formData = new FormData(this);
-            
-            try {
-                // Mengirimkan data formulir ke Apps Script Endpoint (POST method)
-                const response = await fetch("https://script.google.com/macros/s/AKfycbyvaAvWB2_ACWwN3Bk7fOezihnbLMZ_PmJ6Earj2y122Jsyt6RqbCKTPzKc30BW8J0rSw/exec", {
-                    method: "POST",
-                    body: formData
-                });
-                
-                const result = await response.json();
-
-                if (result.status === "success" || response.ok) {
-                    // Tampilkan notifikasi sukses berwarna hijau
-                    notif.className = "mb-5 p-4 rounded-xl border text-sm flex items-start bg-green-50 border-green-200 text-green-800";
-                    document.getElementById("notifIcon").className = "fa-solid fa-circle-check text-green-500 mr-3 mt-0.5 text-base";
-                    document.getElementById("notifTitle").innerText = "Berhasil Dikirim!";
-                    document.getElementById("notifText").innerText = "Terima kasih, data survei Anda langsung memperbarui grafik dashboard secara realtime.";
-                    
-                    this.reset(); // Bersihkan kolom input form
-                    
-                    // Segera tarik data terbaru untuk memperbarui grafik secara instan
-                    await loadDashboard();
-                } else {
-                    throw new Error("Gagal menyimpan ke spreadsheet.");
-                }
-            } catch (err) {
-                // Tampilkan notifikasi gagal berwarna merah
-                notif.className = "mb-5 p-4 rounded-xl border text-sm flex items-start bg-red-50 border-red-200 text-red-800";
-                document.getElementById("notifIcon").className = "fa-solid fa-circle-xmark text-red-500 mr-3 mt-0.5 text-base";
-                document.getElementById("notifTitle").innerText = "Pengiriman Gagal";
-                document.getElementById("notifText").innerText = "Terjadi kendala koneksi ke server. Mohon coba beberapa saat lagi.";
-            } finally {
-                // Kembalikan status tombol kirim
-                btn.disabled = false;
-                btn.innerHTML = `<i class="fa-solid fa-paper-plane mr-2 text-xs"></i> Kirim Penilaian`;
-                notif.classList.remove("hidden");
-            }
-        });
-
-        // 3. EVENT INITIALIZATION & TIMER
-        document.addEventListener("DOMContentLoaded", () => {
-            loadDashboard(); // Muat data pertama kali saat halaman siap
-            setInterval(loadDashboard, 60000); // Sinkronisasi otomatis berkala setiap 60 detik
-        });
-
-        // Ekspos fungsi ke scope window agar bisa dipicu tombol manual
-        window.refreshDashboardSKM = loadDashboard;
+            // Animasi menghilangkan Modal
+            modal.classList.add('opacity-0');
+            modal.querySelector('.transform').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                if (iframe) iframe.src = ""; // Flush isi iframe agar tidak lambat saat dibuka kembali
+            }, 300);
+        }
     </script>
+
+    <!-- REUSABLE FOOTER PLACEHOLDER -->
+    <div id="footer-placeholder"></div>
+
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
